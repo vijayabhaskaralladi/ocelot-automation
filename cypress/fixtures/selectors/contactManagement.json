@@ -1,0 +1,63 @@
+{
+  "contactManagement": {
+    "contacts": {
+      "downloadContacts": "button[title=' Export results to CSV']"
+    },
+    "contactLists": {
+      "viewFirstContactListButton": "tr:first-child>td:nth-child(4)>div>button:first-child",
+      "searchInput": "input[name='keywords']",
+      "addContactListButton": "button[aria-label='Create contact list']",
+      "actionsDropdownFirstRow": { "selector": "div[role='group']>button:nth-child(2)", "index": 0 },
+      "actionsDropdowns": "div[role='group']>button:nth-child(2)",
+      "firstCampaignName": { "selector": "td>p", "index": 0 },
+      "csvInput": "#csvFile",
+      "nextButton": { "selector": "span", "text": "Next" },
+      "header1Input": "input[aria-label*='Assign a value for header 1']",
+      "header2Input": "input[aria-label*='Assign a value for header 2']",
+      "header3Input": "input[aria-label*='Assign a value for header 3']",
+      "header4Input": "input[aria-label*='Assign a value for header 4']",
+      "nameInput": "#name",
+      "tagsInput": "div>input[placeholder*='Add tags...']",
+      "createContactListButton": { "selector": "span", "text": "Create Contact List" },
+      "finishButton": { "selector": "span", "text": "Finish" },
+      "cloneNameInput": "input[aria-invalid]",
+      "viewFirstRow": {"selector": "[role='group']>button:nth-child(1)", "index": 0},
+      "edit_contact" : "[title='Edit Contact']",
+      "email_text_box" : "[type='email']",
+      "update_button" : ".MuiButton-textPrimary > .MuiButton-label",
+      "success_banner": "#notistack-snackbar",
+      "EditElement": {"selector": "li[role='menuitem']", "text": "Edit"},
+      "AdvancedModeButton": { "selector": "input[type='checkbox']", "index": 0 },
+      "AddElement": "input[placeholder='Field Name']",
+      "FieldType": {"selector": "div", "text": "Field Type"},
+      "FieldText": {"selector": "li", "text": "Text"},
+      "Column2": {"selector": "div", "text": "Column 2"},
+      "NoneSelection": {"selector": "li", "text": "None"},
+      "AddColumn2": {"selector": "li", "text": "Column 2"},
+      "AddField": {"selector": "span", "text": "Add Field"},
+      "LastElement": "div[aria-labelledby*='mapTo']",
+      "NextElement": {"selector": "span", "text": "Next"},
+      "UpdateContactList": {"selector": "span", "text": "Update Contact List"},
+      "ViewButton": { "selector": "td span.MuiButton-label", "index": 0 },
+      "tableRows": "tbody .MuiTableRow-root",
+      "menuItem": "li[role='menuitem']",
+      "EditContact": { "selector": "tr.MuiTableRow-root span.MuiIconButton-label", "index": 0 },
+      "EditFirstName": { "selector": "input[type='text']", "index": 0 },
+      "EditPhoneNumber": { "selector": "input[type='tel']", "index": 0 },
+      "EditEmail": { "selector": "input[type='email']", "index": 0 },
+      "UpdateButton": { "selector": "button[type='submit']", "index": 1 },
+      "ContactManagementTag": {"selector": "span", "text": "contact management"},
+      "singleElement": {"selector": "div p", "text": "1-1 of 1"}
+    },
+    "optOuts" : {
+      "searchInput": "input[type='search']",
+      "addContactButton": "button[aria-label='Add opt-out contact']",
+      "emailInput": "input.MuiInput-input[type='text']",
+      "saveOptOut": { "selector": "span", "text": "Save Opt-Out" },
+      "deleteButtons": "td>button",
+      "deleteFirstRowButton": { "selector": "td>button", "index": 0 },
+      "confirmDeleteButton": { "selector": ".MuiDialogActions-root>button>span.MuiButton-label", "index": 1 },
+      "optOutButton": "tbody.MuiTableBody-root tr:nth-child(1) path[d*='M7']"
+    }
+  }
+}

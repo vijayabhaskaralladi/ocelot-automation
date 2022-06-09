@@ -1,0 +1,14 @@
+{
+  "integrations": {
+    "dialogTitle": "#form-dialog-title",
+    "authenticationProviders": {
+      "addNewAuthenticationProviderButton": "button[aria-label='Add new Authentication Provider']"
+    },
+    "serviceProviders": {
+      "addNewServiceProviderButton": "button[aria-label='Add new Service Provider']"
+    },
+    "sftpUsers": {
+      "addNewSftpUserButton": "button[aria-label='Add new SFTP user']"
+    }
+  }
+}

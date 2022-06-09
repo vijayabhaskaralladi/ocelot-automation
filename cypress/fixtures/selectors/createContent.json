@@ -1,0 +1,30 @@
+{
+    "createContent": {
+    "createContentMenuButton": "button[aria-label='Create Content']",
+    "createQuestion": { "selector": "li", "text": "Create Question" },
+    "createCampaign": { "selector": "li", "text": "Create Campaign" },
+    "campaigns": {
+      "createFromTemplate": "button[aria-label='Create from Ocelot library']",
+      "createFromScratch": "button[aria-label='Create from scratch']",
+      "admissions": { "selector": "span", "text": "Admissions"},
+      "searchInput": "input[name='keywords']",
+      "selectContactListForCampaign": {"selector": "ul[aria-label='contact lists']>li", "index": 0},
+      "addTemplateButton": "[aria-label*='Use Applicant does not want information']",
+      "addContactListButton": {"selector":"button[class='MuiButtonBase-root MuiIconButton-root']", "index":  0},
+      "campaignTitleInput": "#campaign-title",
+      "messageInput": "[aria-label='Rich Text Editor, main']",
+      "yesResponse": { "selector": "[aria-label='Rich Text Editor, Auto-Respond Message (Optional)']", "index": 0 },
+      "noResponse": { "selector": "[aria-label='Rich Text Editor, Auto-Respond Message (Optional)']", "index": 1 },
+      "сampusOfficeDropdown": { "selector": "[data-testid='grouped-campus-office']", "getPrevious": "true" },
+      "campusAndOfficeInput": {"selector": ".MuiFormControl-root > .MuiInputBase-root > .MuiSelect-root","index": 0},
+      "сampusAndOfficeDropdown": { "selector": "ul[role='listbox']>li", "index": 1 },
+      "campaignContent": "div[aria-label='Rich Text Editor, main']",
+      "campaignTags": "input[aria-labelledby='campaign-tags']",
+      "campaignInboxes": "div>div>div>#inboxSubscriptions",
+      "admissionsItem": { "selector": "span", "text": "Main Campus - Admissions" },
+      "firstOfficeItem": { "selector": "span", "text": "MyCampus - Office 1" },
+      "saveCampaignButton": { "selector": "span", "text": "Save Campaign" },
+      "launchButton": "[title=\"\"] > .MuiButtonBase-root"
+    }
+  }
+}

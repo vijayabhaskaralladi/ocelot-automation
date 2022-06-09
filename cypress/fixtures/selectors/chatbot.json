@@ -1,0 +1,37 @@
+{
+  "chatbot": {
+    "analytics": {
+      "conversationsNumber": "div>div:nth-child(1)>div.MuiTypography-root.MuiTypography-h3",
+      "interactionsNumber": "div>div:nth-child(1)>div.MuiTypography-root.MuiTypography-subtitle1"
+    },
+    "transcripts": {
+      "viewConversationFirstRow": { "selector": "td>button.MuiButtonBase-root.MuiIconButton-root", "index": 0 },
+      "closeConversation": "button[aria-label*='Close']",
+      "markReadFirstRow": { "selector": "[title='Mark read']", "index": 0 },
+      "markUnreadFirstRow": { "selector": "[title='Mark unread']", "index": 0 }
+    },
+    "knowledgebase": {
+      "generalLibrary": {
+        "questions": ".MuiButtonBase-root.MuiAccordionSummary-root",
+        "viewFirstQuestion": { "selector": "div.MuiAccordionSummary-expandIcon", "index": 0 }
+      },
+      "customQuestions": {
+        "questions": ".MuiButtonBase-root.MuiAccordionSummary-root",
+        "search": "input[name='keywords']",
+        "viewFirstQuestion": { "selector": "div.MuiAccordionSummary-expandIcon", "index": 0 }
+      },
+      "questionTemplates": {
+        "viewFirstQuestion": { "selector": "div.MuiAccordionSummary-expandIcon", "index": 0 }
+      },
+      "moderationQueue": {
+        "cellsWithQuestion": "th[role='cell']"
+      }
+    },
+    "feedback": {
+      "netPromoterScoreValue": { "selector": "svg>text", "index": 1 }
+    },
+    "embedding": {
+      "scriptText": ".language-htmlBars>span>span"
+    }
+  }
+}

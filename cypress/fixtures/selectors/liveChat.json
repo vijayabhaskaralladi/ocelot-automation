@@ -1,0 +1,29 @@
+{
+  "liveChat": {
+    "activeConversations": {
+      "inboundDialog": { "selector": "p", "text": "Inbound (Unassigned)" },
+      "latestConversation": { "selector": "li>div.MuiButtonBase-root", "index": 0 },
+      "input": "div[aria-label='Rich Text Editor, main']",
+      "send": "button.MuiButtonBase-root[type='submit']"
+    },
+    "analytics": {
+      "chatsNumber": { "selector": "div.MuiTypography-colorPrimary", "index": 0 }
+    },
+    "whosOnline": {
+      "agentsOnline": { "selector": ".MuiGrid-item>p", "index": 1 },
+      "totalAgents": { "selector": ".MuiGrid-item>p", "index": 3 }
+    },
+    "cannedResponses": {
+      "searchInput": "input[name='keywords']",
+      "firstCannedResponseItem": { "selector": "p[data-testid='responseTitle']", "index": 0},
+      "deleteButton": { "selector": "span", "text": "Delete" },
+      "confirmDelete": "div[role='dialog']>div>span>button>span",
+      "createButton": "button[aria-label='Add New Canned Response']",
+      "titleInput": "input[aria-label='Title']",
+      "responseText": "div[aria-label='Rich Text Editor, Response']",
+      "tagsInput": "input[aria-labelledby='canned-response-tags']",
+      "saveButton": "button.MuiButton-containedPrimary",
+      "campusesDropdown": "#mui-component-select-campusOffices"
+    }
+  }
+}

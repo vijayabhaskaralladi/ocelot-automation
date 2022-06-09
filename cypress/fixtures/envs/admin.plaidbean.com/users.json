@@ -1,0 +1,106 @@
+{
+  "defaultUser": {
+    "email": "ocelot.admin.for.qa@ocelotbot.com",
+    "password": "OW5BiyI9po8k1Rf5rZ",
+    "token": "RFFWBQZLKQDMOQ6XSJLY5QXUPT6ID5DU5YFDMRRAOXAYHDHBRXNA"
+  },
+  "viewOtherOfficesChatbot": {
+    "email": "view_other_offices_chatbot@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "SCJTPJY2IPLESOV6GIXHB4FN26EFIHVUXPHXSNELUBCY42XWOOIQ",
+    "description": "View other offices + Chatbot Standard"
+  },
+  "viewOtherOfficesLiveChat": {
+    "email": "view_other_offices_live_chat@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "TWX6RBW3POWOOVFSKM7GJWXBMN3SVBSZ22HRLQKDD5MA6VLM7NTA",
+    "description": "View other offices + Live Chat Standard"
+  },
+  "viewOtherOfficesCampaigns": {
+    "email": "view_other_offices_campaigns@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "O6XCSYIT6VOXNHCABSZWABG2222UHZ4B6A6W7EX6QO62R3TJ7K2Q",
+    "description": "View other offices + Campaigns Standard"
+  },
+  "chatbotLimited": {
+    "email": "chatbot_limited@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "TUGUZE5RKO2L5RF4GQW3C677L7BFI3MFPJNBBNWYDOZWVTVVAPVQ"
+  },
+  "chatbotStandard": {
+    "email": "chatbot_standard@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "4JSLQX4JJYGF6RZ2NWQY4FUBDDAK6Z6NMEWQZXWMQLSEHFZUQHDQ"
+  },
+  "chatbotAdmin": {
+    "email": "chatbot_admin@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "WMZRLIH7XZGLTGXMMY7Z6FMLQCK2TDZ2HNFWNS77M6ZNPT27HIMA"
+  },
+  "liveChatLimited": {
+    "email": "live_chat_limited@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "Z7P6ZKLDYO3AXLNML47RQAU57JU2KNO6QKMHEDZIFBZVYABRTR4A"
+  },
+  "liveChatStandard": {
+    "email": "live_chat_standard@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "74ORO3MJ6QQ6QU7ZNGFRGZZCBDFYANAFU3KXV7FBABVTJCX5RNGA"
+  },
+  "liveChatAdmin": {
+    "email": "live_chat_admin@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "3RLEAVSF4N6NUVLG62KB4WKCMNNEYBIRIYCN5HMDJ5NQ7VKOTORA"
+  },
+  "campaignsLimited": {
+    "email": "campaigns_limited@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "CAOCRGN5OXXLM6NQO6VLNDS4FKJJK5TR5422HN63JX7M6DOAOQQQ"
+  },
+  "campaignsStandard": {
+    "email": "campaigns_standard@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "OTCR56LIYE2XUZ7YBAUJJM2KWD66PZTFCV7HQHG2PPB5IU4AC6CQ"
+  },
+  "campaignsAdmin": {
+    "email": "campaigns_admin@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "FBUY77KYRYBCLH6EQMMVVJBZRVQKP4DKWPDAXDRWKPLPKO4IG6VIZ7JOF7QGETPWJZZB2L37RYOES6RLLHDQ65KHPZRMGL4IYUVIBRI"
+  },
+  "chatbotStandard-FinancialAidOffice": {
+    "email": "chatbot_standard_financial_aid@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "J3PABFBUU3UUE5KVIEB2H5U7GSR62AFS6IG3OTG6KROLW3GVSV2Q"
+  },
+  "chatbotStandard-BookstoreOffice": {
+    "email": "chatbot_standard_bookstore@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "6QXZE4EKTY2O4ZAJSMJZ4GVMTBXU6WQLCCQIGYEDCJ6H7CYIVVAA"
+  },
+  "chatbotStandard-AthleticsOffice": {
+    "email": "chatbot_standard_athletics@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "DR72MXGMMRNKQOIBBYUPSUTFIXPLL56ZMJUBEO6KDO66DI35W6CA",
+    "description": "chatbot standard + live chat admin"
+  },
+  "chatbotStandard-BookstoreOffice-canViewOtherOffices": {
+    "email": "chatbot_standard_bookstore_can_view_offices@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "NB2C3JLHZCE27R4PK6JKYRJSFAFJX774JVQB6452XPWJUD3MSALA"
+  },
+  "sales": {
+    "email": "sales@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "FIEZ47LGE3XI6GLHT6YLFJACNLW3MZCFGEY4FWNTL4YWNWJSXEN44XY4RLLPF43YH54YFP3XTUCGOSYJ2IU6PCOWCTT5DBYZLSNTFYQ"
+  },
+  "clientRelations": {
+    "email": "client_relations@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "LGY265Q2VH7HCLFKWVV4FLU6S6X3BZMS4SHCBFHNKDPKKIGWEQWZISP4QY5LNQGGXKUTTQHWLX4H6YWNESQ35WJG3U4SBN56OAW7OFQ"
+  },
+  "ocelotAdmin": {
+    "email": "ocelot_admin@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "PJ5TT3UMCWVTI2KV7EIJPNYQHEVZSDRSVPON5YWC7E5WQDXT2HGYLAHROU7VAW4S33J5K54IVATJMZWEJBY3AOUE3A7FPP4L3S7VBIA"
+  }
+}

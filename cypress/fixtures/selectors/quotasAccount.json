@@ -1,0 +1,18 @@
+{
+  "quotasAccount": {
+    "contractLimits": {
+      "licensedAgentsNumbers": { "selector": "div.MuiCardContent-root>div>svg>text", "index": 0 }
+    },
+    "permissions": {
+      "searchInput": "input[aria-label='Search']",
+      "userRows": "ul>.MuiListItem-button",
+      "liveChatTab": { "selector": "span", "text": "Live Chat" },
+      "campaignsTab": { "selector": "span", "text": "Campaigns" },
+      "roleValue": "#rolesField",
+      "viewOtherOfficesSwitch": "#viewAllOfficesField",
+      "office1Checkbox": { "selector": "input[type='checkbox']", "index": 2},
+      "office2Checkbox": { "selector": "input[type='checkbox']", "index": 3},
+      "office3Checkbox": { "selector": "input[type='checkbox']", "index": 4}
+    }
+  }
+}

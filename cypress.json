@@ -1,0 +1,16 @@
+{
+  "projectId": "c618nh",
+  "baseUrl": "https://admin.plaidbean.com/",
+  "defaultCommandTimeout": 30000,
+  "pageLoadTimeout": 60000,
+  "responseTimeout": 30000,
+  "video": false,
+  "env": {
+    "MESSAGE_API_DOMAIN": "https://ai.plaidbean.com/",
+    "GRAPHQL_URL": "https://gql.plaidbean.com/",
+    "DRUPAL_URL": "https://cms.plaidbean.com/",
+    "PROVISION_NUMBER": "(513) 647-2774"
+  },
+  "testFiles": "**/*.feature"
+}
+

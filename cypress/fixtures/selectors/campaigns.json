@@ -1,0 +1,14 @@
+{
+  "campaigns": {
+    "analytics": {
+      "contactsMessaged": "[data-testid='Contacts Messaged-counter']",
+      "contactsResponded": "[data-testid='Contacts Responded-counter']",
+      "contactResponsesPerHourChart": { "selector": ".MuiCardContent-root>.chartjs-render-monitor", "index": 0 }
+    },
+    "active": {
+      "viewFirstRow": { "selector": "[role='group']>button:nth-child(1)", "index": 0 },
+      "generalTab": { "selector": "span.MuiTab-wrapper", "text": "General" },
+      "campaignName": { "selector": "div.MuiFormControl-fullWidth>div", "index": 0 }
+    }
+  }
+}
