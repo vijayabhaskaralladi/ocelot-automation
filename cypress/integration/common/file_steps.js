@@ -10,8 +10,8 @@ And('Create file {string}', (fileName) => {
 });
 
 And('Prepare temp folder for the test', () => {
-  const PREPARE_TEMP_FOLDER_SCRIPT_UNIX = `mkdir -p cypress/temp; rm -rf cypress/temp/.*;`;
-  const PREPARE_TEMP_FOLDER_SCRIPT_WIN = `mkdir cypress\\temp && del /q cypress\\temp\\*`;
+  const PREPARE_TEMP_FOLDER_SCRIPT_UNIX = 'mkdir -p cypress/temp; rm -rf cypress/temp/.*;';
+  const PREPARE_TEMP_FOLDER_SCRIPT_WIN = 'mkdir cypress\\temp && del /q cypress\\temp\\*';
   cy.get('@isWinSystem').then((isWinSystem) => {
     const script = isWinSystem ? PREPARE_TEMP_FOLDER_SCRIPT_WIN : PREPARE_TEMP_FOLDER_SCRIPT_UNIX;
     cy.exec(script, { failOnNonZeroExit: false });
@@ -30,7 +30,7 @@ And('Wait for marker file {string}', (fileName) => {
 
   const iterator = Array.from(Array(RETRIES));
   cy.wrap('false').as('isFilePresent');
-  cy.wrap(iterator).each((index) => {
+  cy.wrap(iterator).each(() => {
     cy.get('@isFilePresent').then((value) => {
       if (value === 'false') {
         cy.wait(DELAY);

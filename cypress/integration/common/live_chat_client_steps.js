@@ -1,7 +1,7 @@
 import { And } from 'cypress-cucumber-preprocessor/steps';
 
 And('Open chatbot window', () => {
-  cy.get("button[aria-label*='Click to open Arty']").click();
+  cy.get('button[aria-label*="Click to open Arty"]').click();
 });
 
 And('Start Live Chat', () => {

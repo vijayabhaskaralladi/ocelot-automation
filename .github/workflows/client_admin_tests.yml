@@ -52,19 +52,19 @@ jobs:
           path: |
             '**/node_modules'
             'cypress/cache'
-          key: cypress-tests-${{ hashFiles('**/yarn.lock') }}
+          key: cypress-tests-${{ hashFiles('./package-lock.lock') }}
       - uses: actions/setup-node@v1
         with:
           node-version: 14.x
-      - name: "Install global dependencies"
+      - name: "Install dependencies"
         if: steps.node-modules.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
+        run: npm install
       - name: Cypress run
         uses: cypress-io/github-action@v2
         timeout-minutes: 90
         with:
           parallel: true
-          working-directory: ./packages/admin
+          working-directory: ./
           spec: |
             ./cypress/integration/tests/*/*.feature
           browser: chrome

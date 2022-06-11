@@ -72,5 +72,5 @@ Feature: Permissions - opt-outs
     And Wait for element "contactManagement.contactLists.EditContact"
     And Element "contactManagement.optOuts.optOutButton" should "exist"
     Examples:
-      | user_name         |
+      | user_name      |
       | campaignsAdmin |

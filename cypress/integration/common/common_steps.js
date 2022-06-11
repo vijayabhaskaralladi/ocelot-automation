@@ -203,7 +203,7 @@ And('Verify that {string} length is greater than {string}', (key, length) => {
 });
 
 And('Click on last element {string}', (selector) => {
-  cy.getElement(selector).last().click({force:true})
+  cy.getElement(selector).last().click({ force: true });
   cy.getElement(selector).last().click({ force: true });
 });
 

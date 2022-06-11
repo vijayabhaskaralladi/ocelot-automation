@@ -1,5 +1,5 @@
-import { And } from 'cypress-cucumber-preprocessor/steps';
-import { ENVIRONMENT_NAME } from '../../support/utils';
+import {And} from 'cypress-cucumber-preprocessor/steps';
+import {ENVIRONMENT_NAME} from '../../support/utils';
 
 And('API: Select {string} chatbot', (chatbotName) => {
   cy.fixture(`envs/${ENVIRONMENT_NAME}/chatbots`).then((chatbots) => {
@@ -33,11 +33,10 @@ And('API: Send first message {string} and save response as {string}', (message, 
   cy.wait(1000);
 });
 
-And(
-  'API: Set language {string} and send message {string} and save response as {string}',
+And('API: Set language {string} and send message {string} and save response as {string}',
   (langCode, message, responseAlias) => {
     cy.get('@activeChatbotId').then((chatbotId) => {
       cy.sendFirstMessage(chatbotId, message, langCode).as(responseAlias);
     });
     cy.wait(1000);
-});
+  });

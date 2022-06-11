@@ -1,4 +1,4 @@
-import {ENVIRONMENT_NAME} from "./utils";
+import { ENVIRONMENT_NAME } from './utils';
 
 Cypress.Commands.add('login', (username, password, secret) => {
   cy.log(`Log in as ${username}`);
@@ -19,7 +19,7 @@ Cypress.Commands.add('openMenuItem', (menuItem) => {
    * Analytics->Live Chat->Dashboard
    */
   cy.log(`Opening ${menuItem}`);
-  cy.get("button[aria-label='Open menu drawer']").click({ force: true });
+  cy.get('button[aria-label="Open menu drawer"]').click({ force: true });
   cy.wait(500);
   const items = menuItem.split('->');
   items.forEach((item) => {
@@ -50,7 +50,7 @@ Cypress.Commands.add('verifyThatPageContainsTitles', (expectedTitles) => {
 });
 
 Cypress.Commands.add('verifyThatNoErrorsDisplayed', () => {
-  cy.get("div[data-testid='snackbar-error']>div").should('not.exist');
+  cy.get('div[data-testid="snackbar-error"]>div').should('not.exist');
 });
 
 Cypress.Commands.add('replacePlaceholderAndSaveAs', (textWithPlaceholder, saveAsKey) => {

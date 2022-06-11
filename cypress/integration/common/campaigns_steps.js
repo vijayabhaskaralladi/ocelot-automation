@@ -128,35 +128,34 @@ And('Archive campaign {string}', (campaignName) => {
   cy.get('span').contains('Confirm').click();
 });
 
-And("Select available Phone number from phone number list",()=>{
-  cy.get("table[aria-label='Reusable Phone Number Picker']>tbody>tr>td").eq(0).click();
-})
+And('Select available Phone number from phone number list', () => {
+  cy.get('table[aria-label="Reusable Phone Number Picker"]>tbody>tr>td').eq(0).click();
+});
 
 And('Get the opted out the PhoneNumber and EMail', () => {
-  cy.get("thead th span").each((el, index, $list) => {
-    if(el.text()==='Email Address'){
-      const emailIndex=index+2;
-      cy.get('tbody tr:nth-child(1) td:nth-child('+emailIndex+')').then((mail)=>{
+  cy.get('thead th span').each((el, index) => {
+    if(el.text() === 'Email Address'){
+      const emailIndex = index + 2;
+      cy.get('tbody tr:nth-child(1) td:nth-child(' + emailIndex + ')').then((mail) => {
         cy.wrap(mail.text()).as('email');
-      })
+      });
     }
-    if(el.text()==='Phone Number'){
-      const phnIndex=index+2;
-      cy.get('tbody tr:nth-child(1) td:nth-child('+phnIndex+')').then((phn)=>{
+    if(el.text() === 'Phone Number'){
+      const phnIndex = index + 2;
+      cy.get('tbody tr:nth-child(1) td:nth-child(' + phnIndex + ')').then((phn) => {
         cy.wrap(phn.text()).as('phnNumber');
-      })
+      });
     }
   });
-})
+});
 
 And('Optout first contact if opted-In', () => {
-  cy.get('tbody.MuiTableBody-root tr:nth-child(1)').then(function(element1){
-    if(element1.find('path[d*="M7"]').length==0){
-      cy.log("Already a Opted out contact")
-    }
-    else{
-      cy.wrap(element1.find('path[d*="M7"]')).click()
-      cy.get("button[class*='Primary']").click();
+  cy.get('tbody.MuiTableBody-root tr:nth-child(1)').then(function(element1) {
+    if(element1.find('path[d*="M7"]').length === 0) {
+      cy.log('Contact already opted out');
+    } else {
+      cy.wrap(element1.find('path[d*="M7"]')).click();
+      cy.get('button[class*="Primary"]').click();
     }
   });
 });
