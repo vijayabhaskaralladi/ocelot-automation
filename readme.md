@@ -31,13 +31,20 @@ npx cypress run --headed --no-exit --spec "cypress/integration/tests/chatbot/ana
 _A headless browser is a type of software that can access webpages but does not show them to the user and can pipe 
 the content of the webpages to another program_
 
-### Running eslint
-Eslint output contains code style errors like unused variables, wrong formatting etc. List of 
+### Running Lint for js files
+Lint output contains code style errors like unused variables, wrong formatting etc. List of 
 these rules will be extended in the future. 
 
+Lint for  .js files:
 ```console
-eslint .  --ext .js
+npm run-script lint-bdd
 ```
+
+Lint for *.feature files:
+```console
+npm run-script lint-bdd
+```
+Lint for bdd can search for scenario duplicates, empty feature files, formatting issues etc.
 
 ### Environment requirements
 Automation expects that environment contains test record like users,custom questions etc.
