@@ -45,7 +45,6 @@ Feature: Integrations
     And Click on "integrations.sftpUsers.addNewSftpUserButton"
     Then Verify that page contains element "integrations.dialogTitle" with text "Create SFTP User"
 
-
   Scenario: Limited users don't see Authentication Providers, Service Providers and SFTP Users pages
     Given Login using random user from the list
       | chatbotLimited    |

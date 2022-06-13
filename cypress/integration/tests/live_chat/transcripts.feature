@@ -1,6 +1,6 @@
 Feature: Permissions - Live Chat transcripts
 
-  Scenario: TMD-43: Verify that Live Chat admin of Office 3 can't view Transcripts for Office 1 and Office 2
+  Scenario: TMD-43: Live Chat admin of Office 3 can't view Transcripts for Office 1 and Office 2
     Given Login as "chatbotStandard-AthleticsOffice"
     And Open chatbot "chatbotForAutomation"
     When Open "Live Chat->Transcripts" menu item
@@ -9,7 +9,7 @@ Feature: Permissions - Live Chat transcripts
     Then Tag "th.MuiTableCell-root" with text "Hi Office 1" should "not.exist"
     And Tag "th.MuiTableCell-root" with text "Hi Office 2" should "not.exist"
 
-  Scenario: TMD-43: Verify that user Live Chat admin(all offices) can view Transcripts for all offices
+  Scenario: TMD-43: Live Chat admin(all offices) can view Transcripts for all offices
     Given Login as "liveChatAdmin"
     And Open chatbot "chatbotForAutomation"
     When Open "Live Chat->Transcripts" menu item

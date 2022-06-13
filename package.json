@@ -1,12 +1,17 @@
 {
   "name": "ocelot-automation",
   "version": "1.0.0",
+  "scripts": {
+    "lint": "eslint . --ext .js",
+    "lint-bdd": "gherkin-lint -c .gherkin-lintrc ./cypress/integration/tests/"
+  },
   "devDependencies": {
     "cypress": "9.6.1",
     "cypress-cucumber-preprocessor": "~4.3.1",
     "cypress-file-upload": "~5.0.8",
     "cypress-otp": "~1.0.3",
     "eslint": "^8.17.0",
+    "gherkin-lint": "^4.2.2",
     "twilio": "~3.77.0"
   },
   "cypress-cucumber-preprocessor": {

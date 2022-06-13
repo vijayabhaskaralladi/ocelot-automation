@@ -11,7 +11,6 @@ Feature: Permissions - awaiting review
     When Open "Chatbot->Knowledgebase->Awaiting Review" menu item
     Then Tag "p" with text "${awaitingReviewQuestion}" should "exist"
 
-
   Scenario Outline: Verify that user <user_name> can't view Awaiting Review
     Given Login as "<user_name>"
     And Open chatbot "chatbotForAutomation"
