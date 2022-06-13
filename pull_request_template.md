@@ -2,7 +2,7 @@
 
 > Short overview of changes
 
-## Screenshots (for new tests):
+## Screenshots (test results):
 
 > Attach screenshots here
 
