@@ -18,7 +18,6 @@ Set System Properties->Advanced->Environment Variables via 'Setting' and restart
 npm install
 ```
 
-
 ### Running a single feature file:
 
 ```console
@@ -56,6 +55,10 @@ If you need to execute tests on a different environment update _baseUrl_ and _en
  
 
 ### Code Style
+As our project grows we need to pay more attention on code review processes to keep 
+project 'easy-to-maintain'. It's essential to think about maintenance and stability before adding 
+new features and tests.
+
 **PR requirements:**
 
 * Before adding a new test check that it’s not implemented

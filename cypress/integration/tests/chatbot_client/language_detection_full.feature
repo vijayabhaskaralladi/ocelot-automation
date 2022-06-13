@@ -4,7 +4,7 @@ Feature: Chatbot API - language detection
   Scenario: Language detection
   This test sends messages from the input file and verifies language of response.
   Check 'linesWithWrongDetectedLanguage' file after execution.
-  P.S. this test makes 1200 requests so don't run on CI
+  P.S. this test makes 1200 requests so don't run it on CI
     Given Convert CSV "chatbot_inputs.csv" to JSON and save as "chatbot_inputs.json"
     And API: Select "aimsCommunityCollege" chatbot
     When Verify that chatbot detects language according to "chatbot_inputs.json"
