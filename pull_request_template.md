@@ -10,5 +10,5 @@
 
 - [ ] I checked that I don't duplicate tests
 - [ ] I checked that I don't affect existing tests
-- [ ] The code formatted using 'auto-format' 
+- [ ] I executed eslint and gherkin-lint and verified output 
 - [ ] Code follows project style guide rules
