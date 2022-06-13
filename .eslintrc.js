@@ -26,7 +26,12 @@ module.exports = {
       'error',
       'always'
     ],
-    'no-plusplus': ['error', {'allowForLoopAfterthoughts': true}]
+    'no-plusplus': ['error', {'allowForLoopAfterthoughts': true}],
+    'no-console': 2,
+    'no-var': 2,
+    'max-len': ['error', {'code': 100}],
+    'no-dupe-else-if': 2,
+    'no-multiple-empty-lines': ['error', {'max': 1}]
   },
   'globals': {
     'cy': true,

@@ -5,7 +5,8 @@ And('Intercept {string} as {string}', (url, alias) => {
   // url may include request method 'REQUEST_METHOD: URL'
   // Also 'url' may contain variable name, for example: 'POST: ${env_variable_name}'
   let urlWithReplacedPlaceholder = url;
-  // ToDo: replace 'if' block (https://stackoverflow.com/questions/52665091/cypress-if-else-switch-case-doesnt-work)
+  // ToDo: replace 'if' block:
+  // https://stackoverflow.com/questions/52665091/cypress-if-else-switch-case-doesnt-work
 
   const matchedStrings = url.match(/\${([^}]*)}/);
   if (matchedStrings && matchedStrings[1]) {
