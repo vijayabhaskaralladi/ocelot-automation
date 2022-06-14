@@ -190,3 +190,10 @@ And('Archive campaign which uses {string} number', (number) => {
   });
   cy.visit('/');
 });
+
+And('Verify that element {string} has phone number', (element) => {
+  cy.getElement(element).invoke('text').then((phoneText) => {
+    const phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im;
+    expect(phoneRegex.test(phoneText)).to.eq(true,`Extracted phone number: ${phoneText}`);
+  });
+});

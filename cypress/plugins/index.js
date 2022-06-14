@@ -1,6 +1,3 @@
-/**
- * @type {Cypress.PluginConfig}
- */
 const cucumber = require('cypress-cucumber-preprocessor').default;
 
 module.exports = (on) => {
@@ -9,7 +6,6 @@ module.exports = (on) => {
   const client = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
   on('task', {
-    // eslint-disable-next-line global-require
     generateOTP: require('cypress-otp'),
     sendSms(data) {
       client.messages
