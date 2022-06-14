@@ -15,8 +15,10 @@ Set System Properties->Advanced->Environment Variables via 'Setting' and restart
 ### Install all required libraries
 
 ```console
-npm install
+npm ci
 ```
+
+This command will re-use existing package-lock file.
 
 ### Running a single feature file:
 
