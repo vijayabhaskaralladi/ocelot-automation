@@ -123,6 +123,16 @@ And('Verify that element {string} contains positive number', (selector) => {
     });
 });
 
+And('Verify that element {string} has number greater than {string}', (selector, number) => {
+  cy.getElement(selector)
+    .invoke('text')
+    .then((text) => {
+      const parsedText = text.substring(0, 7).replace(/[^0-9.]/g, '');
+      cy.log(`Extracted value: ${parsedText}`);
+      assert.isAtLeast(parseInt(parsedText, 10), parseInt(number, 10));
+    });
+});
+
 And(
   'Verify that selector {string} contains more than {string} elements',
   (selector, minimumNumberOfElements) => {

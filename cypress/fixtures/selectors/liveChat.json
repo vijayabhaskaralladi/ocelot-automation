@@ -7,7 +7,9 @@
       "send": "button.MuiButtonBase-root[type='submit']"
     },
     "analytics": {
-      "chatsNumber": { "selector": "div.MuiTypography-colorPrimary", "index": 0 }
+      "chatsNumber": { "selector": "div.MuiTypography-colorPrimary", "index": 0 },
+      "missedChatsNumber": { "selector": "div.MuiTypography-h5", "index": 0 },
+      "averagePerDayMissedChatsNumber": { "selector": "div.MuiTypography-h5", "index": 1 }
     },
     "whosOnline": {
       "agentsOnline": { "selector": ".MuiGrid-item>p", "index": 1 },

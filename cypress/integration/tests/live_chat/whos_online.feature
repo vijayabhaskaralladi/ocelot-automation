@@ -10,3 +10,15 @@ Feature: Permissions - Live Chat Who's online
     When Open "Live Chat->Who’s Online" menu item
     Then Verify that element "liveChat.whosOnline.agentsOnline" contains positive number
     And Verify that element "liveChat.whosOnline.totalAgents" contains positive number
+
+  Scenario: Viewing Who is Online when someone is online
+    Given Login using random user from the list
+      | viewOtherOfficesLiveChat |
+      | liveChatLimited          |
+      | liveChatStandard         |
+      | liveChatAdmin            |
+    And Open chatbot "chatbotForAutomation"
+    And Set operator status to "enabled"
+    When Open "Live Chat->Who’s Online" menu item
+    Then Verify that element "liveChat.whosOnline.agentsOnline" has number greater than "1"
+    And Verify that element "liveChat.whosOnline.totalAgents" contains positive number

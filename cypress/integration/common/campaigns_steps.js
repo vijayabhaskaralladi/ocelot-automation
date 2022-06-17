@@ -183,7 +183,7 @@ And('Archive campaign which uses {string} number', (number) => {
       const campaignOptionsButtonSelector = 'div>button.MuiButton-containedSizeSmall:nth-child(2)';
       cy.get(campaignOptionsButtonSelector).click();
       cy.get(archiveButtonSelector).click();
-      cy.get('span').contains('Confirm').click();
+      cy.get('button>span').contains('Confirm').click();
     } else {
       cy.log(`Provision number isn't in use: ${number}`);
     }
