@@ -38,7 +38,7 @@ these rules will be extended in the future.
 
 Lint for  .js files:
 ```console
-npm run-script lint-bdd
+npm run-script lint
 ```
 
 Lint for *.feature files:

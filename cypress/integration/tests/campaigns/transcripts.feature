@@ -43,3 +43,24 @@ Feature: Permissions - campaigns transcripts
     Examples:
       | user_name      |
       | campaignsAdmin |
+
+  Scenario: Verify that user can mark transcripts Read/Unread in a campaign
+    Given Login using random user from the list
+      | campaignsStandard |
+      | campaignsAdmin    |
+    And Open chatbot "chatbotForAutomation"
+    And Open "Campaigns->Transcripts" menu item
+    And URL should include "campaigns/transcripts"
+    And Add "?readStatus=Read" to the current URL
+    
+    When Intercept "${GRAPHQL_URL}graphql" with "setCampaignTranscriptReadStatus" keyword in the response as "markTranscriptAsRead"
+    And Click on "campaigns.transcripts.readStatusButtonFirstRow"
+    And Wait for "markTranscriptAsRead" network call
+    Then Verify that response "markTranscriptAsRead" has status code "200"
+    And Verify that element "campaigns.transcripts.readStatusButtonFirstRow" has attribute "aria-label" with value "Mark Read"
+
+    When Intercept "${GRAPHQL_URL}graphql" with "setCampaignTranscriptReadStatus" keyword in the response as "markTranscriptAsUnread"
+    And Click on "campaigns.transcripts.readStatusButtonFirstRow"
+    And Wait for "markTranscriptAsUnread" network call
+    Then Verify that response "markTranscriptAsUnread" has status code "200"
+    And Verify that element "campaigns.transcripts.readStatusButtonFirstRow" has attribute "aria-label" with value "Mark Unread"

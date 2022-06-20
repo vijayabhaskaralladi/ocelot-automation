@@ -12,6 +12,9 @@
     },
     "phoneNumbers": {
       "phoneNumberFromFirstRow": { "selector": "tbody>tr>td>div.MuiBox-root", "index": 0 }
+    },
+    "transcripts": {
+      "readStatusButtonFirstRow": { "selector": "td.MuiTableCell-alignCenter>button", "index": 0 }
     }
   }
 }

@@ -19,9 +19,6 @@ Feature: Permissions - active campaigns
     When Open "Inbox" menu item
     Then Tag "div.MuiBox-root" with text "Needs Attention" should "exist"
 
-  # active campaigns page contains drafts and 'active' campaigns
-  # these 2 types have different general tab page, test should handle this
-  @need_to_fix
   Scenario: Verify that user can View General Settings in a campaign
     Given Login using random user from the list
       | campaignsLimited  |
@@ -29,7 +26,9 @@ Feature: Permissions - active campaigns
       | campaignsAdmin    |
     And Open chatbot "chatbotForAutomation"
     When Open "Campaigns->Active" menu item
+    And URL should include "campaigns/active"
+    And Add "?status=Active" to the current URL
     And Click on "campaigns.active.viewFirstRow"
     And Click on "campaigns.active.generalTab"
     And Retrieve text from "campaigns.active.campaignName" and save as "CampaignName"
-    And Verify that "CampaignName" length is greater than "2"
+    And Verify that "CampaignName" length is greater than "3"
