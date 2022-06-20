@@ -8,13 +8,21 @@
     "active": {
       "viewFirstRow": { "selector": "[role='group']>button:nth-child(1)", "index": 0 },
       "generalTab": { "selector": "span.MuiTab-wrapper", "text": "General" },
-      "campaignName": { "selector": "div.MuiFormControl-fullWidth>div", "index": 0 }
+      "campaignName": { "selector": "div.MuiFormControl-fullWidth>div", "index": 0 },
+      "keywordSearch": "input[name='keywords']"
     },
     "phoneNumbers": {
-      "phoneNumberFromFirstRow": { "selector": "tbody>tr>td>div.MuiBox-root", "index": 0 }
+      "phoneNumberFromFirstRow": { "selector": "tbody>tr>td>div.MuiBox-root", "index": 0 },
+      "exportResults": "button[aria-label=' Export results to CSV']"
     },
     "transcripts": {
       "readStatusButtonFirstRow": { "selector": "td.MuiTableCell-alignCenter>button", "index": 0 }
+    },
+    "archived": {
+      "firstRowDropdown": { "selector": "div[role='group']>button:nth-child(2)", "index": 0 },
+      "cloneButton": { "selector": "span>li", "text": "Clone" },
+      "campaignNameInputDialog": "input[aria-invalid='true']",
+      "confirmClone": { "selector": ".MuiDialogActions-root>button>span", "text": "Clone" }
     }
   }
 }

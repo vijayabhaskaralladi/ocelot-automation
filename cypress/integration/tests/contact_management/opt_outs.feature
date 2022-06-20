@@ -74,3 +74,16 @@ Feature: Permissions - opt-outs
     Examples:
       | user_name      |
       | campaignsAdmin |
+
+  Scenario: Exporting Opt-Outs
+    Given Login using random user from the list
+      | viewOtherOfficesCampaigns |
+      | campaignsStandard         |
+      | campaignsAdmin            |
+    And Open chatbot "chatbotForAutomation"
+    And Open "Contact Management->Opt-outs" menu item
+    And Intercept "${MESSAGE_API_DOMAIN}opt-out-contacts/exported*" as "downloadRequest"
+    And Add reload event listener
+    When Click on "contactManagement.optOuts.exportOptsOuts"
+    And Wait for "downloadRequest" network call
+    Then Verify that download folder contains "opt-out-contacts.csv"
