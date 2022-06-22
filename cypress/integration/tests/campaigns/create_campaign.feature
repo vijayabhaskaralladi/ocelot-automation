@@ -7,7 +7,7 @@ Feature: Permissions - create campaigns
     And Open chatbot "chatbotForAutomation"
     And Create random number and save it as "randomNumber"
     And Element "createContent.createContentMenuButton" should "exist"
-    When Create campaign
+    When Create campaign from template
       | campaignName              | templateName            | contactListName     |
       | MyCampaign${randomNumber} | ${campaignTemplateName} | ContactListForTests |
     Then Verify that page title is "MyCampaign"

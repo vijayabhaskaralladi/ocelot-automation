@@ -25,7 +25,7 @@ module.exports = (on) => {
       const delay = 3000;
       let retries = 5;
       const inboxFilter = (msg) =>
-        msg.body === data.message && msg.errorCode === null && msg.direction === 'inbound';
+        msg.body.includes(data.message) && msg.errorCode === null && msg.direction === 'inbound';
 
       let inbox = [];
       let isMessageFound = false;
@@ -34,7 +34,7 @@ module.exports = (on) => {
         await sleep(delay);
         const inboxAll = await client.messages.list({
           to: data.number,
-          limit: 5,
+          limit: 2,
         });
         const filteredInbox = inboxAll.filter(inboxFilter);
         if (filteredInbox.length === 1) {

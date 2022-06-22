@@ -5,8 +5,6 @@ Feature: Campaigns
   -   ContactListForAutomation with 1 contact (513) 586-1971(first name: Message, second: Tool)
   -   ThreeContacts: (513) 586-1971, (970) 670-9874, 3rd contact should be opted out
 
-  - if test fails it will cause failure for other tests too due to busy provision number
-
   Background:
     Given Login as "campaignsAdmin"
     And Open chatbot "chatbotForAutomation"
@@ -15,13 +13,16 @@ Feature: Campaigns
 
   Scenario: TMD-84: Binary campaigns - transcripts
   Test checks auto response and transcript
-    When Create binary campaign
+    When Create campaign
       | campaignName | Binary${id}              |
+      | createFrom   | Scratch                  |
+      | contentType  | binary                   |
       | contactList  | ContactListForAutomation |
       | office       | Office 1                 |
       | message      | Hi. Build ${id}          |
       | yesResponse  | Yep ${id}                |
       | number       | ${PROVISION_NUMBER}      |
+      | campaignType | Bot                      |
     Then Verify that "(513) 586-1971" number received "Hi. Build ${id}" message
     When Send SMS "${randomYesResponse}" to "${PROVISION_NUMBER}" from "(513) 586-1971"
     Then Verify that "(513) 586-1971" number received "Yep ${id}" message
@@ -37,8 +38,10 @@ Feature: Campaigns
   @exclude_from_ci
   Scenario Outline: Binary campaigns - <test_name>
   Test checks 'yes' auto response, needs attention switch and statistics
-    When Create binary campaign
+    When Create campaign
       | campaignName        | Binary${id}              |
+      | createFrom          | Scratch                  |
+      | contentType         | binary                   |
       | contactList         | ContactListForAutomation |
       | office              | Office 1                 |
       | message             | Hi. Build ${id}          |
@@ -69,8 +72,10 @@ Feature: Campaigns
   @exclude_from_ci
   Scenario Outline: Binary campaign - <test_name>
   Test checks 'no' auto response, needs attention switch and statistics
-    When Create binary campaign
+    When Create campaign
       | campaignName       | Binary${id}              |
+      | createFrom         | Scratch                  |
+      | contentType        | binary                   |
       | contactList        | ContactListForAutomation |
       | office             | Office 1                 |
       | message            | Hi. Build ${id}          |
@@ -104,8 +109,10 @@ Feature: Campaigns
 
   @exclude_from_ci
   Scenario: Binary campaign - other response
-    When Create binary campaign
+    When Create campaign
       | campaignName | Binary${id}         |
+      | createFrom   | Scratch             |
+      | contentType  | binary              |
       | contactList  | ThreeContacts       |
       | office       | Office 1            |
       | message      | Hi. Build ${id}     |
@@ -136,3 +143,27 @@ Feature: Campaigns
     And Verify that response "graphql" has field "response.body.data.getCampaignAnalytics.binaryResponses.no" equal to "0"
     And Verify that response "graphql" has field "response.body.data.getCampaignAnalytics.binaryResponses.other" equal to "1"
     And Verify that response "graphql" has field "response.body.data.getCampaignAnalytics.binaryResponses.noResponse" equal to "2"
+
+  Scenario: Simple campaign - bot operated, IDK response
+  Bot operated campaign should notify user about 'waiting for an operator' for IDK responses
+    When Create campaign
+      | campaignName | Simple${id}               |
+      | createFrom   | Scratch                   |
+      | contentType  | simple                    |
+      | contactList  | ContactListForAutomation  |
+      | office       | Office 1                  |
+      | message      | Hi. Simple campaign ${id} |
+      | number       | ${PROVISION_NUMBER}       |
+      | campaignType | Bot                       |
+      | idkType      | Agent                     |
+    Then Verify that "(513) 586-1971" number received "Hi. Simple campaign ${id}" message
+    When Send SMS "${IDK_QUESTION}" to "${PROVISION_NUMBER}" from "(513) 586-1971"
+    Then Verify that "(513) 586-1971" number received "${IDK_AUTO_RESPONSE}" message
+
+    When Click on tag "p" which contains text "Needs Attention"
+    And Click on "[title='Message Tool']"
+    And Type "Operator is here ${id}" in "campaigns.active.responseInput"
+    And Wait "1000"
+    And Click on tag "span.MuiButton-label" which contains text "Send"
+
+    Then Verify that "(513) 586-1971" number received "Operator is here ${id}" message

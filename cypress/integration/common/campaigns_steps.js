@@ -1,9 +1,10 @@
 import { And } from 'cypress-cucumber-preprocessor/steps';
-import { convertDataTableIntoDict } from '../../support/utils';
+import {convertDataTableIntoDict, validateInputParamsAccordingToDict} from '../../support/utils';
 
 const archiveButtonSelector = '#split-button-menu>span:nth-child(2)>li';
+const BINARY_CONTENT_TYPE = 'binary';
 
-And('Create campaign', (datatable) => {
+And('Create campaign from template', (datatable) => {
   const inputData = datatable.rawTable[1];
   cy.replacePlaceholderAndSaveAs(inputData[0], 'campaignName');
   cy.replacePlaceholderAndSaveAs(inputData[1], 'templateName');
@@ -42,12 +43,33 @@ And('Create campaign', (datatable) => {
   cy.getElement('createContent.campaigns.saveCampaignButton').click();
 });
 
-And('Create binary campaign', (datatable) => {
+And('Create campaign', (datatable) => {
   const campaignData = convertDataTableIntoDict(datatable);
+  const requiredParametersAndAcceptableValues = {
+    createFrom: ['scratch', 'library', 'previous'],
+    contentType: ['simple', BINARY_CONTENT_TYPE],
+    message: 'any',
+    campaignName: 'any',
+    campaignType: ['bot', 'agent'],
+    number: 'any',
+    office: 'any'
+  };
+  validateInputParamsAccordingToDict(campaignData, requiredParametersAndAcceptableValues);
 
   cy.getElement('createContent.createContentMenuButton').click();
-  cy.getElement('createContent.createCampaign').click();
-  cy.getElement('createContent.campaigns.createFromScratch').click();
+  // cy.getElement('createContent.createCampaign').click();
+  cy.wrap(campaignData).then((data) => {
+    let selector;
+    switch (data.createFrom.toLowerCase()) {
+      case "library":
+      case "previous":
+        throw Error('Not implemented');
+      case "scratch":
+        selector = 'createContent.campaigns.createFromScratch';
+        break;
+    }
+    cy.getElement(selector).click();
+  });
 
   // selecting contact list
   cy.intercept(`${Cypress.env('GRAPHQL_URL')}graphql`).as('searchRequest');
@@ -64,15 +86,16 @@ And('Create binary campaign', (datatable) => {
   cy.getElement('createContent.campaigns.сampusOfficeDropdown').click();
   cy.contains('span', campaignData.office).click();
 
-  cy.contains('div', 'Simple message (Default)').click();
-  cy.contains('span', 'Yes/No Question').click();
-  cy.wait(3000);
-
   cy.replacePlaceholder(campaignData.message).then((message) => {
     cy.getElement('createContent.campaigns.messageInput').type(message);
   });
 
   cy.wrap(campaignData).then((data) => {
+    if (data.contentType.toLowerCase() === BINARY_CONTENT_TYPE) {
+      cy.contains('div', 'Simple message (Default)').click();
+      cy.contains('span', 'Yes/No Question').click();
+      cy.wait(3000);
+    }
     if (
       data.escalateYesResponse !== undefined &&
       ['yes', 'true'].includes(data.escalateYesResponse.toLowerCase())
@@ -85,13 +108,11 @@ And('Create binary campaign', (datatable) => {
     ) {
       cy.get('#needs-attention-label-NoResponses').click();
     }
-
     if (campaignData.yesResponse !== undefined) {
       cy.replacePlaceholder(campaignData.yesResponse).then((yesResponse) => {
         cy.getElement('createContent.campaigns.yesResponse').type(yesResponse);
       });
     }
-
     if (campaignData.noResponse !== undefined) {
       cy.replacePlaceholder(campaignData.noResponse).then((noResponse) => {
         cy.getElement('createContent.campaigns.noResponse').type(noResponse);
@@ -107,7 +128,11 @@ And('Create binary campaign', (datatable) => {
   cy.wrap(campaignData).then((data) => {
     if (data.campaignType) {
       cy.get('#campaignType').click();
-      cy.contains('li', data.campaignType).click();
+      cy.contains('[aria-labelledby="campaignType-label"]>li', data.campaignType).click();
+    }
+    if (data.idkType) {
+      cy.get('#idkType').click();
+      cy.contains('[aria-labelledby="idkType-label"]>li', data.idkType).click();
     }
   });
   cy.replacePlaceholder(campaignData.number).then((provisionNumber) => {
@@ -162,18 +187,18 @@ And('Optout first contact if opted-In', () => {
 
 And('Archive campaign which uses {string} number', (number) => {
   cy.openMenuItem('Campaigns->Phone Numbers');
-  cy.intercept('POST', `${Cypress.env('GRAPHQL_URL')}graphql`).as('searchRequest');
   cy.replacePlaceholder(number).then((provisionNumber) => {
     cy.get('[name="keywords"]').type(provisionNumber).type('{enter}');
+    // waiting for search results
+    const provisionNumberFirstRow = 'tbody>tr:nth-child(1)>td>div';
+    cy.get(provisionNumberFirstRow).should('have.text', provisionNumber);
   });
-  cy.wait('@searchRequest');
 
-  const cellWithCampaignName = 'tbody>tr>td:nth-child(7)';
+  const cellWithCampaignName = 'tbody>tr:nth-child(1)>td:nth-child(7)';
   cy.get(cellWithCampaignName).then((cell) => {
     const campaignName = cell.text();
     if (campaignName.length > 1) {
       cy.log(`Archiving campaign: ${campaignName}`);
-
       cy.get('@currentChatbot').then((chatbotName) => {
         cy.openChatbot(chatbotName);
       });

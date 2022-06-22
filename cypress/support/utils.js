@@ -19,6 +19,20 @@ export const convertDataTableIntoDict = (datatable) => {
   return dict;
 };
 
+export const validateInputParamsAccordingToDict = (inputDict, validationDict) => {
+  // validationDict = {requiredKey1: 'any', requiredKey2: ['acceptableVal1','acceptableVal2']}
+  for (let key in validationDict) {
+    const acceptableValuesForParameter = validationDict[key];
+    if (!inputDict.hasOwnProperty(key)){
+      throw Error(`Input data doesnt contain ${key}`);
+    }
+    const inputVal = inputDict[key].toLowerCase();
+    if (acceptableValuesForParameter !== 'any' && !acceptableValuesForParameter.includes(inputVal)) {
+      throw Error(`Wrong value of ${key}: ${inputVal}`);
+    }
+  }
+};
+
 const YES_RESPONSES_FOR_CAMPAIGNS = [
   'Y',
   'yes',
