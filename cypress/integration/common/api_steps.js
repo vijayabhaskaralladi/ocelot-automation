@@ -76,3 +76,7 @@ And(
     });
   }
 );
+
+And('Retrieve {string} from {string} and save as {string}', (fieldPath, alias, saveAsAlias) => {
+  cy.get(`@${alias}`).its(fieldPath).as(saveAsAlias);
+});

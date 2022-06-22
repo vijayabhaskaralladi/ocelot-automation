@@ -18,7 +18,9 @@ And('API: Create dialog and save conversation_id as {string}', (conversationIdAl
 And('API: Send message {string} for {string} conversation', (message, conversationIdAlias) => {
   cy.get(`@${conversationIdAlias}`).then((conversationId) => {
     cy.get('@activeChatbotId').then((chatbotId) => {
-      cy.sendMessage(message, conversationId, chatbotId);
+      cy.replacePlaceholder(message).then((msg) => {
+        cy.sendMessage(msg, conversationId, chatbotId);
+      });
     });
   });
   cy.wait(2000);
