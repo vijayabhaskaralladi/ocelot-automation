@@ -57,14 +57,14 @@ And('Create campaign', (datatable) => {
   validateInputParamsAccordingToDict(campaignData, requiredParametersAndAcceptableValues);
 
   cy.getElement('createContent.createContentMenuButton').click();
-  // cy.getElement('createContent.createCampaign').click();
+  cy.getElement('createContent.createCampaign').click();
   cy.wrap(campaignData).then((data) => {
     let selector;
     switch (data.createFrom.toLowerCase()) {
-      case "library":
-      case "previous":
+      case 'library':
+      case 'previous':
         throw Error('Not implemented');
-      case "scratch":
+      case 'scratch':
         selector = 'createContent.campaigns.createFromScratch';
         break;
     }
@@ -208,7 +208,7 @@ And('Archive campaign which uses {string} number', (number) => {
       const campaignOptionsButtonSelector = 'div>button.MuiButton-containedSizeSmall:nth-child(2)';
       cy.get(campaignOptionsButtonSelector).click();
       cy.get(archiveButtonSelector).click();
-      cy.get('button>span').contains('Confirm').click();
+      cy.get('button>span').contains('Confirm').click({force: true});
     } else {
       cy.log(`Provision number isn't in use: ${number}`);
     }

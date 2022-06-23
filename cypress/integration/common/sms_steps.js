@@ -12,12 +12,16 @@ And('Send SMS {string} to {string} from {string}', (msg, to, from) => {
   });
 });
 
-And('Verify that {string} number received {string} message', (phoneNum, expectedMsg) => {
-  // the step verifies that Twilio send message to specified number
+And('Verify that {string} number {string} {string} message', (phoneNum, expectedStatus, expectedMsg) => {
+  const acceptableValues = ['received', 'not.received'];
+  if (!acceptableValues.includes(expectedStatus.toLowerCase())) {
+    throw Error(`Unsupported value ${expectedStatus}. Please use one of the following: ${acceptableValues.join(', ')}`);
+  }
   const number = phoneNum.replace(/\D/g, '');
   cy.replacePlaceholder(expectedMsg).then((message) => {
-    const dataObj = { message, number };
-    cy.task('verifyThatNumberReceivedSms', dataObj).should('have.length', 1);
+    const dataObj = {message, number};
+    const length = expectedStatus.toLowerCase() === 'received' ? 1 : 0;
+    cy.task('verifyThatNumberReceivedSms', dataObj).should('have.length', length);
   });
 });
 

@@ -11,6 +11,7 @@ Feature: Campaigns
     And Create random number and save it as "id"
     And Archive campaign which uses "${PROVISION_NUMBER}" number
 
+  @exclude_from_ci
   Scenario: TMD-84: Binary campaigns - transcripts
   Test checks auto response and transcript
     When Create campaign
@@ -23,9 +24,9 @@ Feature: Campaigns
       | yesResponse  | Yep ${id}                |
       | number       | ${PROVISION_NUMBER}      |
       | campaignType | Bot                      |
-    Then Verify that "(513) 586-1971" number received "Hi. Build ${id}" message
+    Then Verify that "(513) 586-1971" number "received" "Hi. Build ${id}" message
     When Send SMS "${randomYesResponse}" to "${PROVISION_NUMBER}" from "(513) 586-1971"
-    Then Verify that "(513) 586-1971" number received "Yep ${id}" message
+    Then Verify that "(513) 586-1971" number "received" "Yep ${id}" message
 
     When Open chatbot "chatbotForAutomation"
     And Open "Campaigns->Transcripts" menu item
@@ -49,10 +50,10 @@ Feature: Campaigns
       | number              | ${PROVISION_NUMBER}      |
       | campaignType        | Bot                      |
       | escalateYesResponse | <escalate_yes_response>  |
-    Then Verify that "(513) 586-1971" number received "Hi. Build ${id}" message
+    Then Verify that "(513) 586-1971" number "received" "Hi. Build ${id}" message
 
     When Send SMS "${randomYesResponse}" to "${PROVISION_NUMBER}" from "(513) 586-1971"
-    Then Verify that "(513) 586-1971" number received "Yep ${id}" message
+    Then Verify that "(513) 586-1971" number "received" "Yep ${id}" message
     And Tag "p" with text "Needs Attention" should "<is_needs_attention_displayed>"
 
     When Click on tag "p" which contains text "<conversation_keyword>"
@@ -84,10 +85,10 @@ Feature: Campaigns
       | campaignType       | Bot                      |
       | escalateNoResponse | <escalate_no_response>   |
 
-    Then Verify that "(513) 586-1971" number received "Hi. Build ${id}" message
+    Then Verify that "(513) 586-1971" number "received" "Hi. Build ${id}" message
 
     When Send SMS "${randomNoResponse}" to "${PROVISION_NUMBER}" from "(513) 586-1971"
-    Then Verify that "(513) 586-1971" number received "Nope ${id}" message
+    Then Verify that "(513) 586-1971" number "received" "Nope ${id}" message
     And Tag "p" with text "Needs Attention" should "<is_needs_attention_displayed>"
 
     When Click on tag "p" which contains text "<conversation_keyword>"
@@ -107,7 +108,6 @@ Feature: Campaigns
       | no response          | no                   | not.exist                    | Bot-operated         |
       | escalate no response | yes                  | exist                        | Needs Attention      |
 
-  @exclude_from_ci
   Scenario: Binary campaign - other response
     When Create campaign
       | campaignName | Binary${id}         |
@@ -121,8 +121,9 @@ Feature: Campaigns
       | number       | ${PROVISION_NUMBER} |
       | campaignType | Bot                 |
 
-    Then Verify that "(513) 586-1971" number received "Hi. Build ${id}" message
-    And Verify that "(970) 670-9874" number received "Hi. Build ${id}" message
+    Then Verify that "(513) 586-1971" number "received" "Hi. Build ${id}" message
+    And Verify that "(970) 670-9874" number "received" "Hi. Build ${id}" message
+    And Verify that "(970) 594-8337" number "not.received" "Hi. Build ${id}" message
 
     When Send SMS "Other response ${id}" to "${PROVISION_NUMBER}" from "(513) 586-1971"
     And Tag "p" with text "Needs Attention" should "exist"
@@ -156,9 +157,9 @@ Feature: Campaigns
       | number       | ${PROVISION_NUMBER}       |
       | campaignType | Bot                       |
       | idkType      | Agent                     |
-    Then Verify that "(513) 586-1971" number received "Hi. Simple campaign ${id}" message
+    Then Verify that "(513) 586-1971" number "received" "Hi. Simple campaign ${id}" message
     When Send SMS "${IDK_QUESTION}" to "${PROVISION_NUMBER}" from "(513) 586-1971"
-    Then Verify that "(513) 586-1971" number received "${IDK_AUTO_RESPONSE}" message
+    Then Verify that "(513) 586-1971" number "received" "${IDK_AUTO_RESPONSE}" message
 
     When Click on tag "p" which contains text "Needs Attention"
     And Click on "[title='Message Tool']"
@@ -166,4 +167,4 @@ Feature: Campaigns
     And Wait "1000"
     And Click on tag "span.MuiButton-label" which contains text "Send"
 
-    Then Verify that "(513) 586-1971" number received "Operator is here ${id}" message
+    Then Verify that "(513) 586-1971" number "received" "Operator is here ${id}" message
