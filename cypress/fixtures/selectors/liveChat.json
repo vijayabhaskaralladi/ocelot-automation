@@ -26,6 +26,9 @@
       "tagsInput": "input[aria-labelledby='canned-response-tags']",
       "saveButton": "button.MuiButton-containedPrimary",
       "campusesDropdown": "#mui-component-select-campusOffices"
+    },
+    "transcripts": {
+      "readStatusButtonFirstRow": { "selector": "td>button[aria-label*='Mark']", "index": 0 }
     }
   }
 }
