@@ -169,6 +169,12 @@ And('Visit base URL', () => {
   cy.visit('/');
 });
 
+And('Visit {string}', (url) => {
+  cy.replacePlaceholder(url).then((parsedUrl) => {
+    cy.visit(parsedUrl);
+  });
+});
+
 And('URL should include {string}', (substring) => {
   cy.url().should('include', substring);
 });

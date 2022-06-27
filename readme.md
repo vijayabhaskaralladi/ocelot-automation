@@ -6,6 +6,7 @@ The test automation project requires Twilio tokens. Set them as env variables be
 ```console
 export TWILIO_ACCOUNT_SID='INSERT_SID_HERE'
 export TWILIO_AUTH_TOKEN='INSERT_TOKEN_HERE'
+export MAILOSAUR_API_KEY='INSERT_API_KEY_HERE'
 ```
 
 **For win users:**
