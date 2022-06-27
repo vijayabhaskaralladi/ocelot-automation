@@ -52,7 +52,7 @@ jobs:
           path: |
             '**/node_modules'
             'cypress/cache'
-          key: cypress-tests-${{ hashFiles('./package-lock.lock') }}
+          key: cypress-tests-${{ hashFiles('./package-lock.json') }}
       - uses: actions/setup-node@v1
         with:
           node-version: 14.x

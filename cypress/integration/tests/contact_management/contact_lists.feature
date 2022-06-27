@@ -8,8 +8,9 @@ Feature: Permissions - contact lists
       | viewOtherOfficesCampaigns |
     And Open chatbot "chatbotForAutomation"
     When Open "Contact Management->Contact Lists" menu item
+    Then Verify that page title is "Contact Lists"
     And Click on "contactManagement.contactLists.viewFirstContactListButton"
-    Then Tag "span" with text "contact management" should "exist"
+    And Tag "span" with text "contact management" should "exist"
     And Tag "span" with text "First Name" should "exist"
 
   Scenario: TMD-14: Exporting contacts
@@ -124,15 +125,6 @@ Feature: Permissions - contact lists
 
     And Type "${campaignName}{enter}" in "contactManagement.contactLists.searchInput"
     Then Element "td>p" should "not.exist"
-
-  Scenario: Viewing Contact Lists
-    Given Login using random user from the list
-      | campaignsLimited  |
-      | campaignsStandard |
-      | campaignsAdmin    |
-    And Open chatbot "chatbotForAutomation"
-    When Open "Contact Management->Contact Lists" menu item
-    Then Verify that page title is "Contact Lists"
 
   Scenario: TMD-23: Limited users can't see Contact Lists/Contact Management
     Given Login using random user from the list

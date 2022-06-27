@@ -1,6 +1,6 @@
 Feature: Permissions - chatbot variables
 
-  Scenario Outline: Verify that user can see chatbot variables for his library - <library_name>
+  Scenario Outline: User should see variables for his library - <library_name>
   User should see variables for his office(library) and variables which are visible for everyone. Also user shouldn't see
   variables from other libraries
     Given Login as "<user>"

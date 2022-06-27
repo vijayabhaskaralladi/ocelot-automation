@@ -52,7 +52,7 @@ Feature: Permissions - campaigns transcripts
     And Open "Campaigns->Transcripts" menu item
     And URL should include "campaigns/transcripts"
     And Add "?readStatus=Read" to the current URL
-    
+
     When Intercept "${GRAPHQL_URL}graphql" with "setCampaignTranscriptReadStatus" keyword in the response as "markTranscriptAsRead"
     And Click on "campaigns.transcripts.readStatusButtonFirstRow"
     And Wait for "markTranscriptAsRead" network call

@@ -1,6 +1,6 @@
 Feature: Permissions - custom questions
 
-  Scenario: TMD-44: Verify that user can see custom questions from library assigned to his office
+  Scenario: TMD-44: User should see custom questions from library assigned to his office
   User from Office 1(financial aid lib) should see custom questions from Financial Aid library
     Given Login as "chatbotStandard-FinancialAidOffice"
     And Open chatbot "chatbotForAutomation"
@@ -8,7 +8,7 @@ Feature: Permissions - custom questions
     And Type "${financialAidLibraryCustomQuestion}" in "chatbot.knowledgebase.customQuestions.search"
     Then Tag "p.MuiTypography-body1" with text "${financialAidLibraryCustomQuestion}" should "exist"
 
-  Scenario: TMD-44: Verify that user can't see custom questions from other libraries
+  Scenario: TMD-44: User shouldn't see custom questions from other libraries
   User from Office 1(financial aid lib) shouldn't see custom questions from Bookstore library
     Given Login as "chatbotStandard-FinancialAidOffice"
     And Open chatbot "chatbotForAutomation"
@@ -17,7 +17,7 @@ Feature: Permissions - custom questions
     And Wait "5000"
     Then Tag "p" with text "${bookstoreLibraryCustomQuestion}" should "not.exist"
 
-  Scenario: TMD-44: Verify that user can see custom questions from other offices if offices have the same libraries
+  Scenario: TMD-44: User should see custom questions from other offices if offices have the same libraries
   User from Office 3(financial aid lib) should see custom questions from Office 1(financial aid lib + athletics lib)
     Given Login as "chatbotStandard-AthleticsOffice"
     And Open chatbot "chatbotForAutomation"

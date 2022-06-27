@@ -1,4 +1,4 @@
-Feature: Permissions - active campaigns
+Feature: Permissions - archived campaigns
 
   Scenario: Viewing Archived Campaigns
     Given Login using random user from the list
