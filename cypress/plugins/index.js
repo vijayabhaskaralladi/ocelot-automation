@@ -7,6 +7,15 @@ module.exports = (on) => {
 
   on('task', {
     generateOTP: require('cypress-otp'),
+    log(msg) {
+      // cy.log prints logs in the browser window only
+      // if test fails on CI we have access only to a screenshot and a few logs from the screenshot
+      // using cy.task('log', 'My Log Message') will keep this message in console logs
+      // cy.task() - runs inside node process, console.log will print to the terminal
+      // cy.command() - runs in the browser window, console.log will print log to the browser console
+      console.log(`[TEST]: ${msg}`);
+      return null;
+    },
     sendSms(data) {
       client.messages
         .create({

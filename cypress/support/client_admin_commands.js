@@ -2,6 +2,7 @@ import { ENVIRONMENT_NAME } from './utils';
 
 Cypress.Commands.add('login', (username, password, secret) => {
   cy.log(`Log in as ${username}`);
+  cy.task('log', `Login as ${username}`);
   cy.visit('/');
   cy.get('#edit-username').type(username);
   cy.get('#edit-password').type(password).type('{enter}');
