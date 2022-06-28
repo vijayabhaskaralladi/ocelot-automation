@@ -233,3 +233,7 @@ And(
 And('Verify that checkbox {string} is {string}', (selector, expectedState) => {
   cy.getElement(selector).should(convertCheckboxStatusIntoChainer(expectedState));
 });
+
+And('Save {string} as {string}', (value, key) => {
+  cy.wrap(value).as(key);
+});

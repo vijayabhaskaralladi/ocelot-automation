@@ -10,8 +10,7 @@ And('Create campaign from template', (datatable) => {
   cy.replacePlaceholderAndSaveAs(inputData[1], 'templateName');
   cy.replacePlaceholderAndSaveAs(inputData[2], 'contactListName');
 
-  cy.getElement('createContent.createContentMenuButton').click();
-  cy.getElement('createContent.createCampaign').click();
+  cy.openCreateCampaignModal();
   cy.getElement('createContent.campaigns.createFromTemplate').click();
   // ToDo: use parameter
   cy.getElement('createContent.campaigns.admissions').click();
@@ -56,8 +55,7 @@ And('Create campaign', (datatable) => {
   };
   validateInputParamsAccordingToDict(campaignData, requiredParametersAndAcceptableValues);
 
-  cy.getElement('createContent.createContentMenuButton').click();
-  cy.getElement('createContent.createCampaign').click();
+  cy.openCreateCampaignModal();
   cy.wrap(campaignData).then((data) => {
     let selector;
     switch (data.createFrom.toLowerCase()) {

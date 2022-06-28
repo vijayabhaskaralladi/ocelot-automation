@@ -3,11 +3,13 @@ import { And } from 'cypress-cucumber-preprocessor/steps';
 And('Send SMS {string} to {string} from {string}', (msg, to, from) => {
   cy.replacePlaceholder(msg).then((message) => {
     cy.replacePlaceholder(to).then((toWithReplacedPlaceholder) => {
-      const toNumber = toWithReplacedPlaceholder.replace(/\D/g, '');
-      const fromNumber = from.replace(/\D/g, '');
-      cy.log(`Sending <${message}> to <${toNumber}> from <${fromNumber}>`);
-      const dataObj = { message, toNumber, fromNumber };
-      cy.task('sendSms', dataObj);
+      cy.replacePlaceholder(from).then((fromWithReplacedPlaceholder) => {
+        const toNumber = toWithReplacedPlaceholder.replace(/\D/g, '');
+        const fromNumber = fromWithReplacedPlaceholder.replace(/\D/g, '');
+        cy.log(`Sending <${message}> to <${toNumber}> from <${fromNumber}>`);
+        const dataObj = {message, toNumber, fromNumber};
+        cy.task('sendSms', dataObj);
+      });
     });
   });
 });
@@ -17,11 +19,13 @@ And('Verify that {string} number {string} {string} message', (phoneNum, expected
   if (!acceptableValues.includes(expectedStatus.toLowerCase())) {
     throw Error(`Unsupported value ${expectedStatus}. Please use one of the following: ${acceptableValues.join(', ')}`);
   }
-  const number = phoneNum.replace(/\D/g, '');
-  cy.replacePlaceholder(expectedMsg).then((message) => {
-    const dataObj = {message, number};
-    const length = expectedStatus.toLowerCase() === 'received' ? 1 : 0;
-    cy.task('verifyThatNumberReceivedSms', dataObj).should('have.length', length);
+  cy.replacePlaceholder(phoneNum).then((number)=> {
+    const numberParsed = phoneNum.replace(/\D/g, '');
+    cy.replacePlaceholder(expectedMsg).then((message) => {
+      const dataObj = {message, numberParsed};
+      const length = expectedStatus.toLowerCase() === 'received' ? 1 : 0;
+      cy.task('verifyThatNumberReceivedSms', dataObj).should('have.length', length);
+    });
   });
 });
 

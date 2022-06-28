@@ -12,7 +12,6 @@ Feature: Chatbot - inquiry form
       | Immediately | checked |
 
     And Remove incoming messages from automation inbox
-
     And Create random number and save it as "id"
     And API: Select "chatbotforInquiryForm" chatbot
 
