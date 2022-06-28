@@ -72,7 +72,7 @@ jobs:
           record: true
           config-file: ./cypress.json
           config: baseUrl=${{ env.BASE_URL }}
-          env: MESSAGE_API_DOMAIN=${{ env.MESSAGE_API_DOMAIN }},GRAPHQL_URL=${{ env.GRAPHQL_URL }},DRUPAL_URL=${{ env.DRUPAL_URL }},MAILOSAUR_API_KEY=${{ env.MAILOSAUR_API_KEY }}
+          env: MESSAGE_API_DOMAIN=${{ env.MESSAGE_API_DOMAIN }},GRAPHQL_URL=${{ env.GRAPHQL_URL }},DRUPAL_URL=${{ env.DRUPAL_URL }},CYPRESS_MAILOSAUR_API_KEY=${{ env.CYPRESS_MAILOSAUR_API_KEY }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
