@@ -1,9 +1,9 @@
 name: Client Admin Tests
 
 on:
-  schedule:
+  #schedule:
     # Runs on Tue,Fri
-    - cron: '0 0 * * 2,5'
+    #- cron: '0 0 * * 2,5'
   workflow_dispatch:
     inputs:
       environmentName:
@@ -11,8 +11,8 @@ on:
         description: 'Environment name'
         required: true
         options:
-        - com
         - net
+        - com
 
 jobs:
   client-admin-tests:
@@ -61,7 +61,7 @@ jobs:
         run: npm install
       - name: Cypress run
         uses: cypress-io/github-action@v2
-        timeout-minutes: 90
+        timeout-minutes: 60
         with:
           parallel: true
           working-directory: ./
