@@ -1,5 +1,5 @@
 import {And} from 'cypress-cucumber-preprocessor/steps';
-import {convertDataTableIntoDict} from "../../support/utils";
+import {convertDataTableIntoDict} from '../../support/utils';
 
 And('Enable Inquiry Form', (datatable) => {
   const inquiryFormData = convertDataTableIntoDict(datatable);
@@ -33,7 +33,7 @@ And('Enable Inquiry Form', (datatable) => {
     'citizenship',
     'textMessaging',
   ];
-  const EMAIL_CHECKBOXES = ['DailyDigest', 'Immediately']
+  const EMAIL_CHECKBOXES = ['DailyDigest', 'Immediately'];
   const checkedClass = 'Mui-checked';
 
   cy.wrap(CHECKBOXES.concat(EMAIL_CHECKBOXES)).each((checkboxName) => {

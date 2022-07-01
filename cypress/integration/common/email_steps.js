@@ -3,7 +3,7 @@ import {And} from 'cypress-cucumber-preprocessor/steps';
 const SERVER_ID = 'dqwhivf6';
 // automation uses this inbox 'automation@dqwhivf6.mailosaur.net'
 
-And('Remove incoming messages from automation inbox', (fileName) => {
+And('Remove incoming messages from automation inbox', () => {
   cy.mailosaurDeleteAllMessages(SERVER_ID);
 });
 
