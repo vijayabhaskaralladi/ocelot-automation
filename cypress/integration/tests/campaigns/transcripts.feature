@@ -37,7 +37,7 @@ Feature: Permissions - campaigns transcripts
     And Select available Phone number from phone number list
     And Click on "createContent.campaigns.launchButton"
     And Type "Keyword for campaign Transcript ${randomNumber}" in "createContent.campaign.conversation"
-    And Open "Campaigns.Transcripts" menu item
+    And Open "Texting.Transcripts" menu item
     And Click on "createContent.campaigns.viewConversation"
     Then Tag "span.MuiListItem" with text "Keyword for campaign Transcript ${randomNumber}" should "exist"
     Examples:
@@ -49,15 +49,15 @@ Feature: Permissions - campaigns transcripts
       | campaignsStandard |
       | campaignsAdmin    |
     And Open chatbot "chatbotForAutomation"
-    And Open "Campaigns->Transcripts" menu item
+    And Open "Texting->Transcripts" menu item
     And URL should include "campaigns/transcripts"
     And Add "?readStatus=Read" to the current URL
 
     When Intercept "${GRAPHQL_URL}graphql" with "setCampaignTranscriptReadStatus" keyword in the response as "markTranscriptAsRead"
-    And Click on "campaigns.transcripts.readStatusButtonFirstRow"
+    And Click on "texting.transcripts.readStatusButtonFirstRow"
     And Wait for "markTranscriptAsRead" network call
     Then Verify that response "markTranscriptAsRead" has status code "200"
-    And Verify that element "campaigns.transcripts.readStatusButtonFirstRow" has attribute "aria-label" with value "Mark Read"
+    And Verify that element "texting.transcripts.readStatusButtonFirstRow" has attribute "aria-label" with value "Mark Read"
 
     When Intercept "${GRAPHQL_URL}graphql" with "setCampaignTranscriptReadStatus" keyword in the response as "markTranscriptAsUnread"
     And Click on "campaigns.transcripts.readStatusButtonFirstRow"

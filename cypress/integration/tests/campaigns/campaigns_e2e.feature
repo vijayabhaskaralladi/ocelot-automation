@@ -29,7 +29,7 @@ Feature: Campaigns
     Then Verify that "(513) 586-1971" number "received" "Yep ${id}" message
 
     When Open chatbot "chatbotForAutomation"
-    And Open "Campaigns->Transcripts" menu item
+    And Open "Texting->Transcripts" menu item
     And Open the latest transcript
 
     Then Verify that page contains text "Hi. Build ${id}"
@@ -163,7 +163,7 @@ Feature: Campaigns
 
     When Click on tag "p" which contains text "Needs Attention"
     And Click on "[title='Message Tool']"
-    And Type "Operator is here ${id}" in "campaigns.active.responseInput"
+    And Type "Operator is here ${id}" in "texting.activeCampaigns.responseInput"
     And Wait "1000"
     And Click on tag "span.MuiButton-label" which contains text "Send"
 

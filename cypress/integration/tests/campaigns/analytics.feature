@@ -7,10 +7,10 @@ Feature: Permissions - campaigns analytics
       | campaignsAdmin            |
       | viewOtherOfficesCampaigns |
     And Open chatbot "chatbotForAutomation"
-    When Open "Campaigns->Analytics" menu item
-    And Wait for element "campaigns.analytics.contactResponsesPerHourChart"
-    Then Verify that element "campaigns.analytics.contactsMessaged" contains positive number
-    And Verify that element "campaigns.analytics.contactsResponded" contains positive number
+    When Open "Texting->Campaign Analytics" menu item
+    And Wait for element "texting.campaignAnalytics.contactResponsesPerHourChart"
+    Then Verify that element "texting.campaignAnalytics.contactsMessaged" contains positive number
+    And Verify that element "texting.campaignAnalytics.contactsResponded" contains positive number
 
   Scenario: Limited users can't view Campaigns item in the menu
     Given Login using random user from the list

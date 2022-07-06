@@ -7,7 +7,7 @@ Feature: Permissions - archived campaigns
       | campaignsAdmin            |
       | viewOtherOfficesCampaigns |
     And Open chatbot "chatbotForAutomation"
-    When Open "Campaigns->Archived" menu item
+    When Open "Texting->Archived" menu item
     Then Verify that browser tab title contains "Archived"
 
   Scenario: Cloning archived campaign
@@ -15,14 +15,14 @@ Feature: Permissions - archived campaigns
       | campaignsStandard |
       | campaignsAdmin    |
     And Open chatbot "chatbotForAutomation"
-    When Open "Campaigns->Archived" menu item
-    And Click on "campaigns.archived.firstRowDropdown"
-    Then Click on "campaigns.archived.cloneButton"
+    When Open "Texting->Archived" menu item
+    And Click on "texting.archived.firstRowDropdown"
+    Then Click on "texting.archived.cloneButton"
     And Create random number and save it as "randomNumber"
-    And Type "ClonedCampaign${randomNumber}" in "campaigns.archived.campaignNameInputDialog"
-    And Click on "campaigns.archived.confirmClone"
+    And Type "ClonedCampaign${randomNumber}" in "texting.archived.campaignNameInputDialog"
+    And Click on "texting.archived.confirmClone"
     Then Open "Active" menu item
     And Intercept "${GRAPHQL_URL}graphql" with "SearchCampaigns" keyword in the response as "searchRequest"
-    And Type "ClonedCampaign${randomNumber}" in "campaigns.active.keywordSearch"
+    And Type "ClonedCampaign${randomNumber}" in "texting.activeCampaigns.keywordSearch"
     And Wait for "searchRequest" network call
     And Tag "tr>td>p" with text "ClonedCampaign${randomNumber}" should "exist"

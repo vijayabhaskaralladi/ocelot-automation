@@ -51,6 +51,7 @@ And('Wait for marker file {string}', (fileName) => {
 
 And('Verify that download folder contains {string}', (fileName) => {
   const DOWNLOAD_FOLDER = Cypress.config('downloadsFolder');
+  // replace ls with dir   (without -a) for windows
   cy.exec(`ls -a ${DOWNLOAD_FOLDER}`).then((output) => {
     expect(output.stdout).to.have.string(fileName);
   });

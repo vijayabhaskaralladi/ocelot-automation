@@ -1,15 +1,15 @@
 {
   "projectId": "c618nh",
-  "baseUrl": "https://admin.plaidbean.com/",
+  "baseUrl": "https://admin.plaidbean.net/",
   "defaultCommandTimeout": 30000,
   "pageLoadTimeout": 60000,
   "responseTimeout": 30000,
   "video": false,
   "env": {
-    "MESSAGE_API_DOMAIN": "https://ai.plaidbean.com/",
-    "GRAPHQL_URL": "https://gql.plaidbean.com/",
-    "DRUPAL_URL": "https://cms.plaidbean.com/",
-    "PROVISION_NUMBER": "(513) 647-2774",
+    "MESSAGE_API_DOMAIN": "https://ai.plaidbean.net/",
+    "GRAPHQL_URL": "https://ai.plaidbean.net/",
+    "DRUPAL_URL": "https://cms.plaidbean.net/",
+    "PROVISION_NUMBER": "(513) 854-4802",
     "TAGS": "not @ignore and not @exclude_from_ci and not @need_to_fix"
   },
   "testFiles": "**/*.feature"
