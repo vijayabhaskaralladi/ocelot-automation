@@ -20,6 +20,7 @@
       "firstCannedResponseItem": { "selector": "p[data-testid='responseTitle']", "index": 0},
       "deleteButton": { "selector": "span", "text": "Delete" },
       "confirmDelete": "div[role='dialog']>div>span>button>span",
+      "successDeletionNotification": { "selector": "#notistack-snackbar", "text": "Your response has been deleted." },
       "createButton": "button[aria-label='Add New Canned Response']",
       "titleInput": "input[aria-label='Title']",
       "responseText": "div[aria-label='Rich Text Editor, Response']",

@@ -20,9 +20,9 @@ And('Verify that {string} number {string} {string} message', (phoneNum, expected
     throw Error(`Unsupported value ${expectedStatus}. Please use one of the following: ${acceptableValues.join(', ')}`);
   }
   cy.replacePlaceholder(phoneNum).then((number)=> {
-    const numberParsed = phoneNum.replace(/\D/g, '');
+    const numberParsed = number.replace(/\D/g, '');
     cy.replacePlaceholder(expectedMsg).then((message) => {
-      const dataObj = {message, numberParsed};
+      const dataObj = {message, number: numberParsed};
       const length = expectedStatus.toLowerCase() === 'received' ? 1 : 0;
       cy.task('verifyThatNumberReceivedSms', dataObj).should('have.length', length);
     });

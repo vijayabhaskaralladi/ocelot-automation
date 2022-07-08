@@ -15,7 +15,6 @@ Feature: Permissions - contact lists
 
   Scenario: TMD-14: Exporting contacts
     Given Login using random user from the list
-      | campaignsLimited          |
       | campaignsStandard         |
       | campaignsAdmin            |
       | viewOtherOfficesCampaigns |

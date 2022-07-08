@@ -26,6 +26,7 @@ Feature: Content Lock
     And Intercept "${DRUPAL_URL}jsonapi/chatbot_question/chatbot_question*" as "searchRequest"
     And Type "Custom question for automation{enter}" in "chatbot.knowledgebase.customQuestions.search"
     And Wait for "searchRequest" network call
+    And Wait "2000"
     When Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
     Then Tag "span" with text "Edit" should "not.exist"
     When Click on tag "span" which contains text "View"
@@ -42,5 +43,5 @@ Feature: Content Lock
     When Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
     And Click on tag "span" which contains text "View"
     Then Verify that page contains text "Content Locked"
-    And Verify that page contains text "ocelot, admin"
-    And Verify that page contains text "2022"
+    And Verify that page contains text "OcelotAdmin, Automation"
+    And Verify that page contains text "07/08/2022"

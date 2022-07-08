@@ -6,13 +6,13 @@ Feature: Permissions - campaigns transcripts
       | campaignsAdmin            |
       | viewOtherOfficesCampaigns |
     And Open chatbot "chatbotForAutomation"
-    When Open "Campaigns->Transcripts" menu item
+    When Open "Texting->Transcripts" menu item
     Then Verify that browser tab title contains "Transcripts"
 
   Scenario Outline: Verify that user <user_name> can't see Campaigns Transcripts
     Given Login as "<user_name>"
     And Open chatbot "chatbotForAutomation"
-    And Open "Campaigns" menu item
+    And Open "Texting" menu item
     Then Tag "span.MuiButton-label" with text "Transcripts" should "not.exist"
     Examples:
       | user_name        |
@@ -51,7 +51,7 @@ Feature: Permissions - campaigns transcripts
     And Open chatbot "chatbotForAutomation"
     And Open "Texting->Transcripts" menu item
     And URL should include "campaigns/transcripts"
-    And Add "?readStatus=Read" to the current URL
+    And Add "?readStatus=Read&startDate=2022-05-05" to the current URL
 
     When Intercept "${GRAPHQL_URL}graphql" with "setCampaignTranscriptReadStatus" keyword in the response as "markTranscriptAsRead"
     And Click on "texting.transcripts.readStatusButtonFirstRow"
@@ -60,7 +60,7 @@ Feature: Permissions - campaigns transcripts
     And Verify that element "texting.transcripts.readStatusButtonFirstRow" has attribute "aria-label" with value "Mark Read"
 
     When Intercept "${GRAPHQL_URL}graphql" with "setCampaignTranscriptReadStatus" keyword in the response as "markTranscriptAsUnread"
-    And Click on "campaigns.transcripts.readStatusButtonFirstRow"
+    And Click on "texting.transcripts.readStatusButtonFirstRow"
     And Wait for "markTranscriptAsUnread" network call
     Then Verify that response "markTranscriptAsUnread" has status code "200"
-    And Verify that element "campaigns.transcripts.readStatusButtonFirstRow" has attribute "aria-label" with value "Mark Unread"
+    And Verify that element "texting.transcripts.readStatusButtonFirstRow" has attribute "aria-label" with value "Mark Unread"

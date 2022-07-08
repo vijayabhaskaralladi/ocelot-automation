@@ -50,6 +50,7 @@ And('Create campaign', (datatable) => {
     message: 'any',
     campaignName: 'any',
     campaignType: ['bot', 'agent'],
+    automaticArchive: ['1 day', '2 day', '3 day', '4 day'],
     number: 'any',
     office: 'any'
   };
@@ -132,6 +133,10 @@ And('Create campaign', (datatable) => {
       cy.get('#idkType').click();
       cy.contains('[aria-labelledby="idkType-label"]>li', data.idkType).click();
     }
+    if (data.automaticArchive) {
+      cy.get('#autoArchiveScheduleDays').click();
+      cy.contains('li', data.automaticArchive).click();
+    }
   });
   cy.replacePlaceholder(campaignData.number).then((provisionNumber) => {
     cy.get(`[aria-label="${provisionNumber}"]`).click();
@@ -184,7 +189,7 @@ And('Optout first contact if opted-In', () => {
 });
 
 And('Archive campaign which uses {string} number', (number) => {
-  cy.openMenuItem('Campaigns->Phone Numbers');
+  cy.openMenuItem('Texting->Phone Numbers');
   cy.replacePlaceholder(number).then((provisionNumber) => {
     cy.get('[name="keywords"]').type(provisionNumber).type('{enter}');
     // waiting for search results
@@ -208,7 +213,7 @@ And('Archive campaign which uses {string} number', (number) => {
       cy.get(archiveButtonSelector).click();
       cy.get('button>span').contains('Confirm').click({force: true});
     } else {
-      cy.log(`Provision number isn't in use: ${number}`);
+      cy.log('Provision number isnt in use.');
     }
   });
   cy.visit('/');

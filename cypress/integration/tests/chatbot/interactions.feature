@@ -10,7 +10,6 @@ Feature: Chatbot interactions
     And API: Send first message "chatbotInteraction${randomNumber2}" and save response as "response2"
 
     And Login using random user from the list
-      | chatbotLimited          |
       | chatbotStandard         |
       | chatbotAdmin            |
       | viewOtherOfficesChatbot |

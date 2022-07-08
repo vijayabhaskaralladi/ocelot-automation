@@ -3,7 +3,7 @@ Feature: Chatbot - inquiry form
   Scenario: Enabled Inquiry Form should send emails with lead data
   Test expects that we added 'automation@dqwhivf6.mailosaur.net' address to 'Email Destinations' manually
     Given Login as "defaultUser"
-    And Open chatbot "chatbotforInquiryForm"
+    And Open chatbot "chatbotForInquiryForm"
     And Open "Chatbot->Behavior Settings" menu item
     And Enable Inquiry Form
       | name        | checked |
@@ -13,7 +13,7 @@ Feature: Chatbot - inquiry form
 
     And Remove incoming messages from automation inbox
     And Create random number and save it as "id"
-    And API: Select "chatbotforInquiryForm" chatbot
+    And API: Select "chatbotForInquiryForm" chatbot
 
     When API: Send first message "Answer Question(s)" and save response as "firstResponse"
     And Retrieve "body.context.conversation_id" from "firstResponse" and save as "conversationId"

@@ -82,5 +82,26 @@
     "password": "Passwordforautomation1!",
     "token": "XPHGXXSIETSCM3FXNI5J4M7FJWM6CLYKCQ3LPKLIGGTWGKNGFGDA",
     "description": "chatbot standard + live chat admin"
+  },
+  "chatbotStandard-BookstoreOffice-canViewOtherOffices": {
+    "email": "chatbot_standard_bookstore_can_view_offices@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "4OROJNWMQYOFF76UHYT62QOKRHUSWJL6RQPJAVWXI42PGLKXO6ISFUSHZ7NWOSM2KNYICQ57FCQ4KIJHBOK6BCWJH6X37RE4YGLCNCY",
+    "description": "chatbot standard + live chat standard + can view other offices(LC+C)"
+  },
+  "sales": {
+    "email": "sales@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "NH73S5G3ESHRLKELTU2MVE3BYK6UO3ZU37DGACQNTUVG4HTEUCF644TM3X5ZBPJ6DDDXBXR3RUIWTHY6CDEA75DQMQYNQNPXSYV4ESY"
+  },
+  "clientRelations": {
+    "email": "client_relations@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "WQYTVMZHVATZZO2T3VUPWDJTW2B4I3UIQP2XSQLRAW6GYO75IE57SC3L37T7G3BXENL36H4GR6WIHU3INVOOR6EFZ6GC7XHE45BI3DA"
+  },
+  "ocelotAdmin": {
+    "email": "ocelot_admin@automation.com",
+    "password": "Passwordforautomation1!",
+    "token": "CH5SDIVQUOM6IATASFQYURRM2L2FUYYLUXROTAYVH7MQES57JO4S6M5W3HUL4G5RYO6Y3IMNG45Y56O3OGM7IRJP5B5RWVBPQLOSZOI"
   }
 }

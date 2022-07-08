@@ -1,7 +1,7 @@
 {
   "quotasAccount": {
     "contractLimits": {
-      "licensedAgentsNumbers": { "selector": "div.MuiCardContent-root>div>svg>text", "index": 0 }
+      "licensedAgentsNumber": { "selector": "div.MuiCardContent-root>div>svg>text", "index": 0 }
     },
     "permissions": {
       "searchInput": "input[aria-label='Search']",

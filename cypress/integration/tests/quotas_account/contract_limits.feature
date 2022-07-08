@@ -7,4 +7,4 @@ Feature: Quotas and Accounts
       | campaignsAdmin |
     And Open chatbot "chatbotForAutomation"
     When Open "Quotas & Account->Contract Limits" menu item
-    Then Verify that element "quotasAccount.contractLimits.licensedAgentsNumbers" contains positive number
+    Then Verify that element "quotasAccount.contractLimits.licensedAgentsNumber" contains positive number
