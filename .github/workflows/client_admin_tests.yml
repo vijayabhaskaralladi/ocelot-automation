@@ -40,25 +40,27 @@ jobs:
           echo "DRUPAL_URL=https://cms.plaidbean.net/" >> $GITHUB_ENV
           echo "PROVISION_NUMBER=(513) 854-4802" >> $GITHUB_ENV
 
-      - uses: hmarr/debug-action@v2
       - uses: actions/checkout@v2
       - uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-      - name: Cache node modules and cypress
-        uses: actions/cache@v2
-        id: node-modules
-        with:
-          path: |
-            '**/node_modules'
-            'cypress/cache'
-          key: cypress-tests-${{ hashFiles('./package-lock.json') }}
-      - uses: actions/setup-node@v1
+      - name: Setup Node
+        uses: actions/setup-node@v1
         with:
           node-version: 14.x
+      - name: Cache node modules and cypress
+        uses: pat-s/always-upload-cache@v3.0.1
+        id: automation-cache
+        with:
+          path: |
+            **/node_modules
+            cypress/cache
+            /home/runner/.cache/Cypress
+            /home/runner/.cache/Cypress/9.6.1
+          key: automation-cache-${{ hashFiles('./package-lock.json') }}
       - name: "Install dependencies"
-        if: steps.node-modules.outputs.cache-hit != 'true'
-        run: npm install
+        if: steps.automation-cache.outputs.cache-hit != 'true'
+        run: npm ci
       - name: Cypress run
         uses: cypress-io/github-action@v2
         timeout-minutes: 60
