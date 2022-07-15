@@ -32,6 +32,11 @@
     },
     "embedding": {
       "scriptText": ".language-htmlBars>span>span"
+    },
+    "spider": {
+      "spiderTable": ".MuiTable-root>tbody>tr",
+      "viewFirstSpiderButton": { "selector": "button[title='View Content']", "index": 0 }
     }
   }
 }
+
