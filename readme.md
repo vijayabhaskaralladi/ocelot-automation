@@ -25,9 +25,11 @@ This command will re-use existing package-lock file.
 ### Running a single feature file:
 
 ```console
-npx cypress run --headed --no-exit --spec "cypress/integration/tests/chatbot/analytics.feature"
+npx cypress run --headed --no-exit --browser=chrome --spec "cypress/integration/tests/chatbot/analytics.feature"
 ```
 **--headed** means that cypress will open a regular headed browser (*)
+
+**--browser=chrome** optional parameter
 
 **--no-exit** means that cypress won't close browser window in the end
 
@@ -56,6 +58,9 @@ See cypress/fixture/envs/readme.md for more details.
 
 ### Changing environment(for local development)
 If you need to execute tests on a different environment update _baseUrl_ and _env_ fields in **cypress.json** file.
+
+### Capturing browser errors
+Framework prints browser errors to the console output - this feature works only in chrome browser.
 
 ### Difference between cypress task and cypress command
 #### Cypress Commands

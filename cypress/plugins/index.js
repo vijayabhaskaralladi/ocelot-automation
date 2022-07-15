@@ -5,6 +5,10 @@ module.exports = (on) => {
   const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
   const client = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
+  require('cypress-log-to-output').install(on, (type, event) => {
+    return event.level === 'error' || event.type === 'error';
+  });
+
   on('task', {
     generateOTP: require('cypress-otp'),
     log(msg) {
