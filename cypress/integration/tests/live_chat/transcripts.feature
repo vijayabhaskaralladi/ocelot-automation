@@ -1,5 +1,20 @@
 Feature: Permissions - Live Chat transcripts
 
+  Scenario: Exporting Live Chat Transcripts
+  Test expects that transcripts contain at least 1 conversation where operator is 'Admin Automation'
+    Given Login using random user from the list
+      | liveChatStandard         |
+      | liveChatAdmin            |
+      | viewOtherOfficesLiveChat |
+      | defaultUser              |
+    And Open chatbot "chatbotForAutomation"
+    When Open "Live Chat->Transcripts" menu item
+    And Add reload event listener
+    And Click on "liveChat.transcripts.exportTranscripts"
+    Then Verify that download folder contains "live-chat-transcripts.csv"
+    And Verify that file "live-chat-transcripts.csv" from download folder contains text "operatorName"
+    And Verify that file "live-chat-transcripts.csv" from download folder contains text "Admin Automation"
+
   Scenario: TMD-43: Live Chat admin of Office 3 can't view Transcripts for Office 1 and Office 2
     Given Login as "chatbotStandard-AthleticsOffice"
     And Open chatbot "chatbotForAutomation"

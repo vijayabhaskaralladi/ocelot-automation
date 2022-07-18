@@ -1,5 +1,20 @@
 Feature: Permissions - campaigns transcripts
 
+  Scenario: Exporting Campaigns Transcripts
+  Test expects that transcripts contain at least 1 campaign conversation with name 'Binary*'
+    Given Login using random user from the list
+      | campaignsStandard         |
+      | campaignsAdmin            |
+      | viewOtherOfficesCampaigns |
+    And Open chatbot "chatbotForAutomation"
+    When Open "Texting->Transcripts" menu item
+    And Add reload event listener
+    And Click on "texting.transcripts.exportTranscripts"
+    Then Verify that download folder contains "campaign-transcripts.csv"
+    And Verify that file "campaign-transcripts.csv" from download folder contains text "operatedBy"
+    And Verify that file "campaign-transcripts.csv" from download folder contains text "bot"
+    And Verify that file "campaign-transcripts.csv" from download folder contains text "Binary"
+
   Scenario: Viewing Campaigns Transcripts
     Given Login using random user from the list
       | campaignsStandard         |

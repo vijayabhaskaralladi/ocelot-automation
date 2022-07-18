@@ -1,5 +1,19 @@
 Feature: Permissions - custom questions
 
+  Scenario: Exporting Chatbot Transcripts
+    Given Login using random user from the list
+      | chatbotStandard         |
+      | chatbotAdmin            |
+      | viewOtherOfficesChatbot |
+      | defaultUser             |
+    And Open chatbot "chatbotForAutomation"
+    When Open "Chatbot->Knowledgebase->Custom Questions" menu item
+    And Add reload event listener
+    And Click on "chatbot.knowledgebase.customQuestions.exportCustomQuestions"
+    Then Verify that download folder contains "review-custom"
+    And Get full file name with prefix "review-custom" in download folder and save it as "customQuestionsFile"
+    And Verify that file "${customQuestionsFile}" from download folder contains text "Custom question for automation"
+
   Scenario: TMD-44: User should see custom questions from library assigned to his office
   User from Office 1(financial aid lib) should see custom questions from Financial Aid library
     Given Login as "chatbotStandard-FinancialAidOffice"

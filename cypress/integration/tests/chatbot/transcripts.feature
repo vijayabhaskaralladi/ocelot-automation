@@ -1,5 +1,24 @@
 Feature: Permissions - chatbot transcripts
 
+  Scenario: Exporting Chatbot Transcripts
+    Given API: Select "chatbotForAutomation" chatbot
+    And Create random number and save it as "id"
+    And API: Create dialog and save conversation_id as "conversationId"
+    And API: Send message "HeyHey${id}" for "conversationId" conversation
+
+    And Login using random user from the list
+      | chatbotStandard         |
+      | chatbotAdmin            |
+      | viewOtherOfficesChatbot |
+      | defaultUser             |
+    And Open chatbot "chatbotForAutomation"
+    When Open "Chatbot->Transcripts" menu item
+    And Add reload event listener
+    And Click on "chatbot.transcripts.exportTranscripts"
+    Then Verify that download folder contains "conversations-"
+    And Get full file name with prefix "conversations-" in download folder and save it as "transcriptsFile"
+    And Verify that file "${transcriptsFile}" from download folder contains text "HeyHey${id}"
+
   Scenario: TMD-28: Viewing Chatbot Transcripts
     Given Login using random user from the list
       | chatbotStandard         |

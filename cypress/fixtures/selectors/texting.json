@@ -17,7 +17,8 @@
       "exportResults": "button[aria-label=' Export results to CSV']"
     },
     "transcripts": {
-      "readStatusButtonFirstRow": { "selector": "td.MuiTableCell-alignCenter>button", "index": 0 }
+      "readStatusButtonFirstRow": { "selector": "td.MuiTableCell-alignCenter>button", "index": 0 },
+      "exportTranscripts": "button[aria-label=' Export results to CSV']"
     },
     "archived": {
       "firstRowDropdown": { "selector": "div[role='group']>button:nth-child(2)", "index": 0 },
