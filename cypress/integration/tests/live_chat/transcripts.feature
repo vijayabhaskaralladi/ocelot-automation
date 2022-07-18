@@ -12,8 +12,8 @@ Feature: Permissions - Live Chat transcripts
     And Add reload event listener
     And Click on "liveChat.transcripts.exportTranscripts"
     Then Verify that download folder contains "live-chat-transcripts.csv"
-    And Verify that file "live-chat-transcripts.csv" from download folder contains text "operatorName"
-    And Verify that file "live-chat-transcripts.csv" from download folder contains text "Admin Automation"
+    And Verify that file "live-chat-transcripts.csv" from download folder contains text "studentName"
+    And Verify that file "live-chat-transcripts.csv" from download folder contains text "Unknown Student"
 
   Scenario: TMD-43: Live Chat admin of Office 3 can't view Transcripts for Office 1 and Office 2
     Given Login as "chatbotStandard-AthleticsOffice"

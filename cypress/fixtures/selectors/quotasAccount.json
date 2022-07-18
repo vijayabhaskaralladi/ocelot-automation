@@ -7,7 +7,7 @@
       "searchInput": "input[aria-label='Search']",
       "userRows": "ul>.MuiListItem-button",
       "liveChatTab": { "selector": "span", "text": "Live Chat" },
-      "campaignsTab": { "selector": "span", "text": "Campaigns" },
+      "textingTab": { "selector": "span", "text": "Texting" },
       "roleValue": "#rolesField",
       "viewOtherOfficesSwitch": "#viewAllOfficesField",
       "office1Checkbox": { "selector": "input[type='checkbox']", "index": 2},

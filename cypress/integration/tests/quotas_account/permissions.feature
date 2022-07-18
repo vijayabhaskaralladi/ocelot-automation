@@ -23,9 +23,9 @@ Feature: Permission Manager
     When Open "Quotas & Account" menu item
     Then Tag "span.MuiButton-label" with text "Permissions" should "not.exist"
 
-  Scenario: TMD-80: Verify that Permission Manager shows list of users(chatbot/livechat/campaigns)
+  Scenario: TMD-80: Verify that Permission Manager shows list of users(chatbot/livechat/texting)
   This test verifies that permission manager gets user records
-  chatbot/live chat/campaigns tabs contain 5+ users
+  chatbot/live chat/texting tabs contain 5+ users
     Given Login as "defaultUser"
     And Open chatbot "chatbotForAutomation"
     When Open "Quotas & Account->Permissions" menu item
@@ -34,7 +34,7 @@ Feature: Permission Manager
     When Click on "quotasAccount.permissions.liveChatTab"
     Then Verify that selector "quotasAccount.permissions.userRows" contains more than "5" elements
 
-    When Click on "quotasAccount.permissions.campaignsTab"
+    When Click on "quotasAccount.permissions.textingTab"
     Then Verify that selector "quotasAccount.permissions.userRows" contains more than "5" elements
 
   Scenario: TMD-80: Check that permission manager shows correct data
