@@ -8,6 +8,7 @@ Cypress.Commands.add('getElement', (selectorAlias) => {
   // { selector: 'css selector which returns a few elements', index: numberOfOurElement }
   // the last type is very useful when it's very difficult to create nice selector
   cy.log(`Retrieving element: ${selectorAlias}`);
+  cy.task('log', `Retrieving element: ${selectorAlias}`);
 
   // selectors folder contains JSON files which represent different pages
   // page name = file name

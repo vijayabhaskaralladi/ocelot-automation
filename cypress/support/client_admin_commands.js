@@ -20,6 +20,7 @@ Cypress.Commands.add('openMenuItem', (menuItem) => {
    * Analytics->Live Chat->Dashboard
    */
   cy.log(`Opening ${menuItem}`);
+  cy.task('log', `Opening ${menuItem}`);
   cy.get('button[aria-label="Open menu drawer"]').click({ force: true });
   cy.wait(500);
   const items = menuItem.split('->');
@@ -31,6 +32,7 @@ Cypress.Commands.add('openMenuItem', (menuItem) => {
   cy.verifyThatNoErrorsDisplayed();
 });
 
+// ToDo: remove if unused
 Cypress.Commands.add('clientAdminTestSetup', () => {
   cy.visit('/');
   cy.title().then((title) => {
