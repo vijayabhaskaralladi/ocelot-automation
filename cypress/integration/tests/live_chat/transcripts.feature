@@ -1,12 +1,8 @@
 Feature: Permissions - Live Chat transcripts
 
   Scenario: Exporting Live Chat Transcripts
-  Test expects that transcripts contain at least 1 conversation where operator is 'Admin Automation'
-    Given Login using random user from the list
-      | liveChatStandard         |
-      | liveChatAdmin            |
-      | viewOtherOfficesLiveChat |
-      | defaultUser              |
+  Test expects that transcripts contain at least 1 conversation where student name is 'Unknown Student'
+    Given Login as "defaultUser"
     And Open chatbot "chatbotForAutomation"
     When Open "Live Chat->Transcripts" menu item
     And Add reload event listener
