@@ -108,8 +108,13 @@ And('Add reload event listener', () => {
     .then((doc) => {
       doc.addEventListener('click', () => {
         setTimeout(() => {
-          doc.location.reload();
-        }, 5000, {once : true});
+          if (doc.location !== null){
+            console.error('Created reload event');
+            doc.location.reload();
+          }else{
+            console.error('Failed to create reload event');
+          }
+        }, 5000);
       });
     });
 });
