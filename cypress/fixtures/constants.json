@@ -2,6 +2,7 @@
   "campaignTemplateName": "Applicant does not want information about institutional scholarships",
   "awaitingReviewQuestion": "Question for 'Awaiting Review' test",
   "financialAidLibraryCustomQuestion": "Financial aid library question for automation chatbot",
+  "parentCustomQuestion": "Child bot can't delete shared question by the parent bot ?",
   "bookstoreLibraryCustomQuestion": "Bookstore library question for automation chatbot",
   "IDK_AUTO_RESPONSE": "One moment please",
   "IDK_QUESTION": "How far away is the delta quadrant?"
