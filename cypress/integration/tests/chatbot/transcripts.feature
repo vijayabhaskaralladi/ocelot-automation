@@ -4,7 +4,9 @@ Feature: Permissions - chatbot transcripts
     Given API: Select "chatbotForAutomation" chatbot
     And Create random number and save it as "id"
     And API: Create dialog and save conversation_id as "conversationId"
-    And API: Send message "HeyHey${id}" for "conversationId" conversation
+    And API: Send message
+      | message             | HeyHey${id}    |
+      | conversationIdAlias | conversationId |
 
     And Login using random user from the list
       | chatbotStandard         |
@@ -47,7 +49,9 @@ Feature: Permissions - chatbot transcripts
   This test creates conversation and verifies that specified users can mark this transcript as Read/Unread
     Given API: Select "chatbotForAutomation" chatbot
     And API: Create dialog and save conversation_id as "conversationId"
-    And API: Send message "What is FAFSA?" for "conversationId" conversation
+    And API: Send message
+      | message             | What is FAFSA? |
+      | conversationIdAlias | conversationId |
 
     And Login using random user from the list
       | chatbotStandard |
@@ -68,14 +72,16 @@ Feature: Permissions - chatbot transcripts
   Scenario: TMD-15: Create dialog and verify transcript
     Given API: Select "aimsCommunityCollege" chatbot
     And API: Create dialog and save conversation_id as "conversationId"
-    And API: Send message "Financial Aid OFFICE" for "conversationId" conversation
-    And API: Send message "how are you?" for "conversationId" conversation
-    And API: Send message "what is your name?" for "conversationId" conversation
-    And Client Admin test setup
-      | chatbotStandard  |
-      | chatbotAdmin     |
-      | liveChatStandard |
-      | liveChatAdmin    |
+    And API: Send message
+      | message             | Financial Aid OFFICE |
+      | conversationIdAlias | conversationId       |
+    And API: Send message
+      | message             | how are you?   |
+      | conversationIdAlias | conversationId |
+    And API: Send message
+      | message             | what is your name? |
+      | conversationIdAlias | conversationId     |
+    And Login as "defaultUser"
 
     When Open chatbot "aimsCommunityCollege"
     And Open 'Chatbot->Transcripts' menu item
