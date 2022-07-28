@@ -1,5 +1,6 @@
 import {And} from 'cypress-cucumber-preprocessor/steps';
 import {ENVIRONMENT_NAME} from '../../support/utils';
+import {convertDataTableIntoDict, validateInputParamsAccordingToDict} from '../../support/utils';
 
 And('API: Select {string} chatbot', (chatbotName) => {
   cy.fixture(`envs/${ENVIRONMENT_NAME}/chatbots`).then((chatbots) => {
@@ -15,11 +16,22 @@ And('API: Create dialog and save conversation_id as {string}', (conversationIdAl
   });
 });
 
-And('API: Send message {string} for {string} conversation', (message, conversationIdAlias) => {
-  cy.get(`@${conversationIdAlias}`).then((conversationId) => {
+And('API: Send message', (datatable) => {
+  const messageRequestData = convertDataTableIntoDict(datatable);
+  const requiredParametersAndAcceptableValues = {
+    conversationIdAlias: 'any',
+    message: 'any'
+  };
+  validateInputParamsAccordingToDict(messageRequestData, requiredParametersAndAcceptableValues);
+
+  cy.get(`@${messageRequestData.conversationIdAlias}`).then((conversationId) => {
     cy.get('@activeChatbotId').then((chatbotId) => {
-      cy.replacePlaceholder(message).then((msg) => {
-        cy.sendMessage(msg, conversationId, chatbotId);
+      cy.replacePlaceholder(messageRequestData.message).then((msg) => {
+        cy.sendMessage(msg, conversationId, chatbotId).then((response) => {
+          if ('saveResponseAs' in messageRequestData) {
+            cy.wrap(response).as(messageRequestData.saveResponseAs);
+          }
+        });
       });
     });
   });

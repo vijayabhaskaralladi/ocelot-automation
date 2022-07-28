@@ -5,6 +5,8 @@ Feature: Chatbot - inquiry form
     Given Login as "defaultUser"
     And Open chatbot "chatbotForInquiryForm"
     And Open "Chatbot->Behavior Settings" menu item
+    # temporary workaround for MAINT-1855
+    And Wait "3000"
     And Enable Inquiry Form
       | name        | checked |
       | email       | checked |
@@ -17,9 +19,15 @@ Feature: Chatbot - inquiry form
 
     When API: Send first message "Answer Question(s)" and save response as "firstResponse"
     And Retrieve "body.context.conversation_id" from "firstResponse" and save as "conversationId"
-    And API: Send message "Automation Buddy${id}" for "conversationId" conversation
-    And API: Send message "student${id}@automation.com" for "conversationId" conversation
-    And API: Send message "111-222-${id}" for "conversationId" conversation
+    And API: Send message
+      | message             | Automation Buddy${id} |
+      | conversationIdAlias | conversationId        |
+    And API: Send message
+      | message             | student${id}@automation.com |
+      | conversationIdAlias | conversationId              |
+    And API: Send message
+      | message             | 111-222-${id}  |
+      | conversationIdAlias | conversationId |
 
     Then Extract link from email with subject "New Lead Data from Chatbot" and save as "leadDataLink"
     And Visit "${leadDataLink}"
