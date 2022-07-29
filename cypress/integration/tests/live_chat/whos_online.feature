@@ -18,7 +18,7 @@ Feature: Permissions - Live Chat Who's online
       | liveChatStandard         |
       | liveChatAdmin            |
     And Open chatbot "chatbotForAutomation"
-    And Set operator status to "enabled"
+    And Set operator status to "available"
     When Open "Live Chat->Who’s Online" menu item
     Then Verify that element "liveChat.whosOnline.agentsOnline" has number greater than "1"
     And Verify that element "liveChat.whosOnline.totalAgents" contains positive number
