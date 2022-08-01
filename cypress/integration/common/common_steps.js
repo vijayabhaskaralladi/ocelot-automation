@@ -146,13 +146,10 @@ And(
 
 And('Verify that element {string} contains the following text {string}',
   (selector, expectedText) => {
-    cy.getElement(selector)
-      .invoke('text')
-      .then((text) => {
-        expect(text).to.be.equal(expectedText);
-      });
-  },
-);
+    cy.replacePlaceholder(expectedText).then((expectedTextReplaced) => {
+      cy.getElement(selector).should('have.text', expectedTextReplaced);
+    });
+  });
 
 And('Select {string} from {string}', (itemSelector, menuSelector) => {
   cy.getElement(menuSelector).click();
