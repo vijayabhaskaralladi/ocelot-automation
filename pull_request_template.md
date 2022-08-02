@@ -12,3 +12,4 @@
 - [ ] I checked that I don't affect existing tests
 - [ ] I executed eslint and gherkin-lint and verified output 
 - [ ] Code follows project style guide rules
+- [ ] Test passes on .com and .net environments

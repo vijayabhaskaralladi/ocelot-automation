@@ -15,7 +15,6 @@ Feature: Campaigns
     And Save "(970) 670-9874" as "secondContact"
     And Save "(970) 594-8337" as "optedOutContact"
 
-  @exclude_from_ci
   Scenario: TMD-84: Binary campaigns - transcripts
   Test checks auto response and transcript
     When Create campaign
@@ -41,7 +40,6 @@ Feature: Campaigns
     And Verify that page contains text "${randomYesResponse}"
     And Verify that page contains text "Yep ${id}"
 
-  @exclude_from_ci
   Scenario Outline: Binary campaigns - <test_name>
   Test checks 'yes' auto response, needs attention switch and statistics
     When Create campaign
@@ -76,7 +74,6 @@ Feature: Campaigns
       | yes response          | no                    | not.exist                    | Bot-operated         |
       | escalate yes response | yes                   | exist                        | Needs Attention      |
 
-  @exclude_from_ci
   Scenario Outline: Binary campaign - <test_name>
   Test checks 'no' auto response, needs attention switch and statistics
     When Create campaign
