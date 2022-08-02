@@ -14,13 +14,28 @@
     "knowledgebase": {
       "generalLibrary": {
         "questions": ".MuiButtonBase-root.MuiAccordionSummary-root",
-        "viewFirstQuestion": { "selector": "div.MuiAccordionSummary-expandIcon", "index": 0 }
+        "viewFirstQuestion": { "selector": "div.MuiAccordionSummary-expandIcon", "index": 0 },
+        "search": "input[name='keywords']",
+        "answer": {"selector":".MuiAccordionDetails-root p","index": 0},
+        "buttonContentShare": {"selector": "div.MuiTypography-root","text":"Shared Content"},
+        "buttonSave": {"selector":"span","text":"Save"},
+        "msgSuccess": {"selector": "div[id='notistack-snackbar']","text": "Your question has been successfully published and will soon become part of the bot's knowledgebase!"},
+        "contentShare": "svg[title='Shared with other bot(s)']"
       },
       "customQuestions": {
         "questions": ".MuiButtonBase-root.MuiAccordionSummary-root",
         "search": "input[name='keywords']",
         "viewFirstQuestion": { "selector": "div.MuiAccordionSummary-expandIcon", "index": 0 },
-        "exportCustomQuestions": "button[aria-label=' Export results to CSV']"
+        "exportCustomQuestions": "button[aria-label=' Export results to CSV']",
+        "buttonContentShare": {"selector": "div.MuiTypography-root","text":"Shared Content"},
+        "buttonSave": {"selector":"span","text":"Save"},
+        "msgSuccess": {"selector": "div[id='notistack-snackbar']","text": "Your question has been successfully published and will soon become part of the bot's knowledgebase!"},
+        "contentShare": "svg[title='Shared with other bot(s)']",
+        "questionCloseButton": "button[aria-label='close']",
+        "contentSharingCheckbox": "#contentShare",
+        "questionSaveButton": ".MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary",
+        "questionTable": "div.MuiButtonBase-root.MuiAccordionSummary-root",
+        "selectedQuestion": "div:nth-child(2)>div.MuiAccordionSummary-root>div>p"
       },
       "questionTemplates": {
         "viewFirstQuestion": { "selector": "div.MuiAccordionSummary-expandIcon", "index": 0 }
