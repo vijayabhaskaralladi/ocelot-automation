@@ -1,6 +1,6 @@
 Feature: Permissions - campaigns analytics
 
-  Scenario: Viewing Campaigns Analytics
+  Scenario: Viewing and Exporting Campaigns Analytics
     Given Login using random user from the list
       | campaignsLimited          |
       | campaignsStandard         |
@@ -11,6 +11,11 @@ Feature: Permissions - campaigns analytics
     And Wait for element "texting.campaignAnalytics.contactResponsesPerHourChart"
     Then Verify that element "texting.campaignAnalytics.contactsMessaged" contains positive number
     And Verify that element "texting.campaignAnalytics.contactsResponded" contains positive number
+
+    When Add reload event listener
+    And Click on "texting.campaignAnalytics.exportAnalytics"
+    Then Verify that download folder contains "campaign-analytics.csv"
+    And Verify that file "campaign-analytics.csv" from download folder contains text "Campaign Name"
 
   Scenario: Limited users can't view Campaigns item in the menu
     Given Login using random user from the list
