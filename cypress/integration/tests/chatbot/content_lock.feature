@@ -23,10 +23,8 @@ Feature: Content Lock
       | chatbotStandard |
     And Open chatbot "chatbotForAutomation"
     And Open "Chatbot->Knowledgebase->Custom Questions" menu item
-    And Intercept "${DRUPAL_URL}jsonapi/chatbot_question/chatbot_question*" as "searchRequest"
     And Type "Custom question for automation{enter}" in "chatbot.knowledgebase.customQuestions.search"
-    And Wait for "searchRequest" network call
-    And Wait "2000"
+    And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
     When Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
     Then Tag "span" with text "Edit" should "not.exist"
     When Click on tag "span" which contains text "View"

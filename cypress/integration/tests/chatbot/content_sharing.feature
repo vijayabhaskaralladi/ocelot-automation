@@ -5,6 +5,7 @@ Feature: chatbot - Content Sharing
     And Open chatbot "chatbotForInquiryForm"
     When Open "Chatbot->Knowledgebase->Custom Questions" menu item
     And Type "${parentCustomQuestion}" in "chatbot.knowledgebase.customQuestions.search"
+    And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
     And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" contains the following text "${parentCustomQuestion}"
     And Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
     Then Tag "span.MuiButton-label" with text "Delete" should "not.exist"

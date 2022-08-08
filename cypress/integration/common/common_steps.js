@@ -144,6 +144,13 @@ And(
   },
 );
 
+And(
+  'Verify that selector {string} contains {string} elements',
+  (selector, numberOfElements) => {
+    cy.getElement(selector).should('have.length', parseInt(numberOfElements, 10));
+  },
+);
+
 And('Verify that element {string} contains the following text {string}',
   (selector, expectedText) => {
     cy.replacePlaceholder(expectedText).then((expectedTextReplaced) => {
