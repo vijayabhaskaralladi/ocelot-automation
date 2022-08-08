@@ -1,5 +1,7 @@
 const MESSAGE_API_ENDPOINT = Cypress.env('MESSAGE_API_DOMAIN') + 'api/message';
 const DEFAULT_HEADER = { 'Content-Type': 'application/json' };
+// it may take some time to get response due to cache implementation
+const FIRST_MESSAGE_REQUEST_TIMEOUT = 60000;
 
 function createSendMessageRequest(botId, messageText, lang, contextObj) {
   const requestBody = {
@@ -41,6 +43,7 @@ Cypress.Commands.add('sendFirstMessage', (botId, message, language = 'en') => {
     headers: DEFAULT_HEADER,
     failOnStatusCode: false,
     log: false,
+    timeout: FIRST_MESSAGE_REQUEST_TIMEOUT
   }).then((xhr) => {
     return xhr;
   });
