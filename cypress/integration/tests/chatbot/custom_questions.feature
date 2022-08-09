@@ -1,6 +1,6 @@
 Feature: Permissions - custom questions
 
-  Scenario: Exporting Chatbot Transcripts
+  Scenario: Exporting Custom Questions
     Given Login using random user from the list
       | chatbotStandard         |
       | chatbotAdmin            |

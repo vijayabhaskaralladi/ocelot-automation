@@ -31,8 +31,8 @@ Feature: Permissions - Canned responses
     And Click on "liveChat.cannedResponses.firstCannedResponseItem"
     And Tag "span" with text "Delete" should "not.exist"
 
-  Scenario Outline: Verify that user <user_name> can Delete canned response
-    Given Login as "<user_name>"
+  Scenario: Creating and Deleting canned response
+    Given Login as "liveChatAdmin"
     And Open chatbot "chatbotForAutomation"
     And Create random number and save it as "randomNumber"
 
@@ -45,7 +45,7 @@ Feature: Permissions - Canned responses
     And Click on tag "span.MuiTypography-displayBlock" which contains text "All Campuses/Offices"
     And Click on "liveChat.cannedResponses.saveButton"
 
-    When Intercept "${DRUPAL_URL}jsonapi/node/canned_response*" as "searchRequest"
+    When Intercept "GET: ${DRUPAL_URL}jsonapi/node/canned_response*" as "searchRequest"
     And Type "CannedResponse${randomNumber}{enter}" in "liveChat.cannedResponses.searchInput"
     And Wait for "searchRequest" network call
     And Tag "p" with text "CannedResponse${randomNumber}" should "exist"
@@ -56,9 +56,6 @@ Feature: Permissions - Canned responses
     And Element "liveChat.cannedResponses.successDeletionNotification" should "exist"
 
     Then  Type "CannedResponse${randomNumber}{enter}" in "liveChat.cannedResponses.searchInput"
+    And Wait for "searchRequest" network call
     And Element "div.MuiButtonBase-root.MuiAccordionSummary-root" should "not.exist"
     And Tag "p" with text "CannedResponse${randomNumber}" should "not.exist"
-
-    Examples:
-      | user_name     |
-      | liveChatAdmin |
