@@ -1,8 +1,8 @@
 Feature: Chatbot interactions
 
-  Scenario: TMD-30: Verify that Chatbot Interactions page contains latest messages
-  Test creates 2 dialogs and checks that Chatbot interaction page contains messages from both dialogs
-
+  Scenario: TMD-30: Chatbot Interactions
+  Test creates 2 dialogs and checks that Chatbot interaction page contains messages from both dialogs and then
+  downloads interactions and checks the content
     Given Create random number and save it as "randomNumber1"
     And Create random number and save it as "randomNumber2"
     And API: Select "chatbotForAutomation" chatbot
@@ -18,3 +18,10 @@ Feature: Chatbot interactions
     When Open "Chatbot->Interactions" menu item
     Then Tag "em" with text "chatbotInteraction${randomNumber1}" should "exist"
     And Tag "em" with text "chatbotInteraction${randomNumber2}" should "exist"
+
+    When Add reload event listener
+    And Click on "chatbot.interactions.exportInteractions"
+    Then Verify that download folder contains "interactions-"
+    And Get full file name with prefix "interactions-" in download folder and save it as "interactionsFileName"
+    And Verify that file "${interactionsFileName}" from download folder contains text "chatbotInteraction${randomNumber1}"
+    And Verify that file "${interactionsFileName}" from download folder contains text "chatbotInteraction${randomNumber2}"

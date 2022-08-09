@@ -11,6 +11,9 @@
       "markUnreadFirstRow": { "selector": "[title='Mark unread']", "index": 0 },
       "exportTranscripts": "button[aria-label=' Export results to CSV']"
     },
+    "interactions": {
+      "exportInteractions": "button[aria-label=' Export results to CSV']"
+    },
     "knowledgebase": {
       "generalLibrary": {
         "questions": ".MuiButtonBase-root.MuiAccordionSummary-root",
