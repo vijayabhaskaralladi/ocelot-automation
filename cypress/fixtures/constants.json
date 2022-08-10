@@ -1,6 +1,7 @@
 {
   "campaignTemplateName": "Applicant does not want information about institutional scholarships",
   "awaitingReviewQuestion": "Question for 'Awaiting Review' test",
+  "moderationQueueQuestion": "Question for 'Moderation Queue' test",
   "financialAidLibraryCustomQuestion": "Financial aid library question for automation chatbot",
   "parentCustomQuestion": "Child bot can't delete shared question by the parent bot ?",
   "parentGeneralQuestion": "Are there free textbooks?",
