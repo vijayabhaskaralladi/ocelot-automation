@@ -44,7 +44,8 @@
         "viewFirstQuestion": { "selector": "div.MuiAccordionSummary-expandIcon", "index": 0 }
       },
       "moderationQueue": {
-        "cellsWithQuestion": "th[role='cell']"
+        "cellsWithQuestion": "th[role='cell']",
+        "exportModerationQueue": "button[aria-label=' Export results to CSV']"
       }
     },
     "feedback": {

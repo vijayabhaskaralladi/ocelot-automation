@@ -45,7 +45,7 @@ Before(() => {
   cy.wrap(noResponse).as('randomNoResponse');
   cy.fixture('constants').then((constants) => {
     for (const [key, value] of Object.entries(constants)) {
-      cy.wrap(value).as(key);
+      cy.wrap(value, {log: false}).as(key);
     }
   });
 });
