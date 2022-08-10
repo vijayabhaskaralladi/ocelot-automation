@@ -41,7 +41,9 @@
         "selectedQuestion": "div:nth-child(2)>div.MuiAccordionSummary-root>div>p"
       },
       "questionTemplates": {
-        "viewFirstQuestion": { "selector": "div.MuiAccordionSummary-expandIcon", "index": 0 }
+        "search": "input[name='keywords']",
+        "viewFirstQuestion": { "selector": "div.MuiAccordionSummary-expandIcon", "index": 0 },
+        "searchQuestionAnswer": "div[role='region']>div.MuiAccordionDetails-root"
       },
       "moderationQueue": {
         "cellsWithQuestion": "th[role='cell']",
