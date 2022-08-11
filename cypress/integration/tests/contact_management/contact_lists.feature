@@ -13,19 +13,6 @@ Feature: Permissions - contact lists
     And Tag "span" with text "contact management" should "exist"
     And Tag "span" with text "First Name" should "exist"
 
-  Scenario: TMD-14: Exporting contacts
-    Given Login using random user from the list
-      | campaignsStandard         |
-      | campaignsAdmin            |
-      | viewOtherOfficesCampaigns |
-    When Open "Contact Management->Contacts" menu item
-    And Intercept "${MESSAGE_API_DOMAIN}student-profiles/exported*" as "downloadRequest"
-    And Add reload event listener
-    And Click on "contactManagement.contacts.downloadContacts"
-    # generating csv file takes some time and we need to wait for it
-    And Wait for "downloadRequest" network call
-    Then Verify that download folder contains "student-profiles.csv"
-
   Scenario: TMD-16: Verify that user Campaigns Limited can't Create Contact Lists
   Limited user shouldn't see 'Add Contact List' button
     Given Login as "campaignsLimited"

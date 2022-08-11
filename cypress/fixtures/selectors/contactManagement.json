@@ -1,7 +1,8 @@
 {
   "contactManagement": {
     "contacts": {
-      "downloadContacts": "button[title=' Export results to CSV']"
+      "downloadContacts": "button[title=' Export results to CSV']",
+      "contactRow": "tbody>tr.MuiTableRow-root"
     },
     "contactLists": {
       "viewFirstContactListButton": "tr:first-child>td:nth-child(4)>div>button:first-child",
