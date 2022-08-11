@@ -83,6 +83,7 @@ And('Click on {string}', (selector) => {
 });
 
 And('Click on tag {string} which contains text {string}', (tag, text) => {
+  cy.task('log', `Click on: ${text}`);
   cy.contains(tag, text).click({ force: true });
 });
 
@@ -123,6 +124,7 @@ And('Verify that element {string} contains positive number', (selector) => {
     .then((text) => {
       const parsedText = text.substring(0, 7).replace(/[^0-9.]/g, '');
       cy.log(`Extracted value: ${parsedText}`);
+      cy.task('log', `Extracted value: ${parsedText}`);
       assert.isAtLeast(parseInt(parsedText, 10), 0);
     });
 });
