@@ -50,6 +50,10 @@
         "exportModerationQueue": "button[aria-label=' Export results to CSV']"
       }
     },
+    "variables": {
+      "requiredNumber": { "selector": "div.MuiTypography-caption", "index": 0 },
+      "optionalNumber": { "selector": "div.MuiTypography-caption", "index": 1 }
+    },
     "feedback": {
       "netPromoterScoreValue": { "selector": "svg>text", "index": 1 }
     },

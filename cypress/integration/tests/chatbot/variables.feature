@@ -7,7 +7,10 @@ Feature: Permissions - chatbot variables
     And Open chatbot "chatbotForAutomation"
 
     When Open "Chatbot->Variables" menu item
-    And Click on tag "p" which contains text "General"
+    Then Verify that element "chatbot.variables.requiredNumber" contains positive number
+    And Verify that element "chatbot.variables.optionalNumber" contains positive number
+
+    When Click on tag "p" which contains text "General"
     Then Tag "p" with text "Me" should "exist"
     And Tag "td>div" with text "automation chatbot" should "exist"
 
@@ -27,7 +30,10 @@ Feature: Permissions - chatbot variables
     And Open chatbot "chatbotForAutomation"
 
     When Open "Chatbot->Variables" menu item
-    And Click on tag "p" which contains text "General"
+    Then Verify that element "chatbot.variables.requiredNumber" contains positive number
+    And Verify that element "chatbot.variables.optionalNumber" contains positive number
+
+    When Click on tag "p" which contains text "General"
     Then Tag "p" with text "Me" should "exist"
     And Tag "td>div" with text "automation chatbot" should "exist"
 
