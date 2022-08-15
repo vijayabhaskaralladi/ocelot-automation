@@ -50,6 +50,9 @@
         "exportModerationQueue": "button[aria-label=' Export results to CSV']"
       }
     },
+    "lookAndFeel": {
+      "welcomeMessageInput": "div[aria-label='Rich Text Editor, main']"
+    },
     "variables": {
       "requiredNumber": { "selector": "div.MuiTypography-caption", "index": 0 },
       "optionalNumber": { "selector": "div.MuiTypography-caption", "index": 1 }

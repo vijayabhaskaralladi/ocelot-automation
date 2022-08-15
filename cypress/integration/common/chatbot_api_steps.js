@@ -54,3 +54,44 @@ And('API: Set language {string} and send message {string} and save response as {
     });
     cy.wait(1000);
   });
+
+And('API: Check that chatbot welcome message is {string}', (expectedWelcomeMessage) => {
+  cy.replacePlaceholder(expectedWelcomeMessage).as('expectedWelcomeMessage');
+  cy.get('@activeChatbotId').then((chatbotId) => {
+    const chatbotConfigUrl = Cypress.env('MESSAGE_API_DOMAIN') + 'api/config?key=' + chatbotId;
+    cy.wrap(chatbotConfigUrl).as('chatbotConfigUrl');
+  });
+
+  const DELAY = 500;
+  const RETRIES = 10;
+
+  const iterator = Array.from(Array(RETRIES));
+  cy.wrap(false).as('isWelcomeMessageCorrect');
+  cy.wrap(iterator).each(() => {
+    cy.get('@isWelcomeMessageCorrect', {log: false}).then((isWelcomeMessageCorrect) => {
+      if (isWelcomeMessageCorrect === false) {
+        cy.wait(DELAY);
+        cy.get('@chatbotConfigUrl').then((chatbotConfigUrl) => {
+          cy.request({
+            method: 'GET',
+            url: chatbotConfigUrl
+          }).then((responseObject) => {
+            expect(responseObject.status).to.eq(200);
+            cy.get('@expectedWelcomeMessage').then((expectedMessage) => {
+              const retrievedWelcomeMessage = responseObject.body.hello.en;
+              cy.log(`Retrieved welcome message: ${retrievedWelcomeMessage}`);
+              cy.log(`Expected welcome message: ${expectedMessage}`);
+              if (retrievedWelcomeMessage.includes(expectedMessage)) {
+                cy.wrap(true).as('isWelcomeMessageCorrect');
+              }
+            });
+          });
+        });
+      }
+    });
+  });
+  cy.get('@isWelcomeMessageCorrect').then((isWelcomeMessageCorrect) => {
+    expect(isWelcomeMessageCorrect).to.be.equal(true);
+  });
+
+});
