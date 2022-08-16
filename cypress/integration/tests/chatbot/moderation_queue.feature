@@ -11,6 +11,7 @@ Feature: Permissions - moderation queue
     And URL should include "moderation-queue"
     And Add "?startDate=2022-02-03" to the current URL
     Then Verify that selector "chatbot.knowledgebase.moderationQueue.cellsWithQuestion" contains more than "1" elements
+    And Retrieve text from "chatbot.knowledgebase.moderationQueue.firstRowQuestion" and save as "moderationQueueQuestion"
 
     When Add reload event listener
     And Click on "chatbot.knowledgebase.moderationQueue.exportModerationQueue"

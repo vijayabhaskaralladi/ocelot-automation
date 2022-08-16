@@ -3,6 +3,7 @@ import 'cypress-file-upload';
 import {
   YES_RESPONSES_FOR_CAMPAIGNS,
   NO_RESPONSES_FOR_CAMPAIGNS,
+  ENVIRONMENT_NAME,
 } from '../../support/utils';
 
 // ToDo: move this function to something like utils.js
@@ -43,7 +44,16 @@ Before(() => {
     NO_RESPONSES_FOR_CAMPAIGNS[Math.floor(Math.random() * NO_RESPONSES_FOR_CAMPAIGNS.length)];
   cy.wrap(yesResponse).as('randomYesResponse');
   cy.wrap(noResponse).as('randomNoResponse');
+
+  // loading constants
   cy.fixture('constants').then((constants) => {
+    for (const [key, value] of Object.entries(constants)) {
+      cy.wrap(value, {log: false}).as(key);
+    }
+  });
+
+  // loading constants for the specific environment
+  cy.fixture(`envs/${ENVIRONMENT_NAME}/constants`).then((constants) => {
     for (const [key, value] of Object.entries(constants)) {
       cy.wrap(value, {log: false}).as(key);
     }
@@ -218,7 +228,7 @@ And('Retrieve text from {string} and save as {string}', (selectorPath, alias) =>
     .invoke('text')
     .then((text) => {
       cy.log(`Retrieved: ${text}`);
-      cy.wrap(text).as(alias);
+      cy.wrap(text.trim()).as(alias);
     });
 });
 

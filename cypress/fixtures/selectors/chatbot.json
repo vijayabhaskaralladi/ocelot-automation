@@ -47,7 +47,8 @@
       },
       "moderationQueue": {
         "cellsWithQuestion": "th[role='cell']",
-        "exportModerationQueue": "button[aria-label=' Export results to CSV']"
+        "exportModerationQueue": "button[aria-label=' Export results to CSV']",
+        "firstRowQuestion": "tbody>tr:nth-child(1)>th"
       }
     },
     "lookAndFeel": {
