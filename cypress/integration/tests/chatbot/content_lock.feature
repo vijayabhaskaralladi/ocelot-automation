@@ -41,5 +41,5 @@ Feature: Content Lock
     When Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
     And Click on tag "span" which contains text "View"
     Then Verify that page contains text "Content Locked"
-    And Verify that page contains text "OcelotAdmin, Automation"
-    And Verify that page contains text "07/08/2022"
+    And Verify that page contains text "${lockedBy}"
+    And Verify that page contains text "${lockedDate}"
