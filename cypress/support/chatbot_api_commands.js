@@ -57,3 +57,11 @@ Cypress.Commands.add('sendMessage', (message, conversationId, botId) => {
     headers: DEFAULT_HEADER,
   });
 });
+
+Cypress.Commands.add('getChatbotConfig', (chatbotId) => {
+  const chatbotConfigUrl = Cypress.env('MESSAGE_API_DOMAIN') + 'api/config?key=' + chatbotId;
+  cy.request({
+    method: 'GET',
+    url: chatbotConfigUrl
+  });
+});

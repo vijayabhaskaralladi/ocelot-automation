@@ -62,8 +62,10 @@ And(
   'Verify that response {string} has field {string} equal to {string}',
   (responseAlias, fieldName, expectedValue) => {
     cy.get(`@${responseAlias}`).then((responseObject) => {
-      const field = getValueByPath(responseObject, fieldName);
-      expect(field.toString()).to.eq(expectedValue);
+      cy.replacePlaceholder(expectedValue).then((expectedValueReplaced) => {
+        const field = getValueByPath(responseObject, fieldName);
+        expect(field.toString()).to.eq(expectedValueReplaced);
+      });
     });
   },
 );
