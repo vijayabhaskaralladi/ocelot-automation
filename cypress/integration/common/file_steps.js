@@ -57,8 +57,10 @@ And('Verify that download folder contains {string}', (fileName) => {
   const DELAY = 3000;
   const RETRIES = 8;
 
-  cy.log(`Waiting for ${fileName} file`);
+  const CREATE_DOWNLOAD_FOLDER_IF_NOT_EXIST = `mkdir -p ${DOWNLOAD_FOLDER}`;
+  cy.exec(CREATE_DOWNLOAD_FOLDER_IF_NOT_EXIST);
 
+  cy.log(`Waiting for ${fileName} file`);
   const iterator = Array.from(Array(RETRIES));
   cy.wrap(false).as('isFilePresent');
   cy.wrap(iterator).each(() => {

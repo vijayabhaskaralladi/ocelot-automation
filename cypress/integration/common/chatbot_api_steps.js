@@ -93,5 +93,11 @@ And('API: Check that chatbot welcome message is {string}', (expectedWelcomeMessa
   cy.get('@isWelcomeMessageCorrect').then((isWelcomeMessageCorrect) => {
     expect(isWelcomeMessageCorrect).to.be.equal(true);
   });
+});
 
+And('API: Get chatbot config and save it as {string}', (responseAlias) => {
+  cy.get('@activeChatbotId').then((chatbotId) => {
+    cy.getChatbotConfig(chatbotId).as(responseAlias);
+  });
+  cy.wait(1000);
 });

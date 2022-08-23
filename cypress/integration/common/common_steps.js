@@ -257,3 +257,11 @@ And('Verify that checkbox {string} is {string}', (selector, expectedState) => {
 And('Save {string} as {string}', (value, key) => {
   cy.wrap(value).as(key);
 });
+
+And('Check that difference between {string} and {string} is {string}', (alias1, alias2, expectedDif) => {
+  cy.get(`@${alias1}`).then((num1) => {
+    cy.get(`@${alias2}`).then((num2) => {
+      expect(Math.abs(parseInt(num2, 10) - parseInt(num1, 10))).to.be.equal(parseInt(expectedDif, 10));
+    });
+  });
+});
