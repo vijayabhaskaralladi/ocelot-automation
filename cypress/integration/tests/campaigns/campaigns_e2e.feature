@@ -14,6 +14,7 @@ Feature: Campaigns
     And Save "(513) 586-1971" as "firstContact"
     And Save "(970) 670-9874" as "secondContact"
     And Save "(970) 594-8337" as "optedOutContact"
+    And Save "campaigns@automation.com" as "firstContactEmail"
 
   Scenario: TMD-84: Binary campaigns - transcripts
   Test checks auto response and transcript
@@ -97,6 +98,10 @@ Feature: Campaigns
 
     When Click on tag "p" which contains text "<conversation_keyword>"
     And Click on "[title='Message Tool']"
+    And Click on tag "h6" which contains text "Conversation Details"
+    And Verify that element "texting.activeCampaigns.conversationDetail.contactInformation" contains the following text "${firstContactEmail}"
+    And Verify that element "texting.activeCampaigns.conversationDetail.contactPhoneNumber" contains the following text "${firstContact}"
+    And Verify that element "texting.activeCampaigns.conversationDetail.provisionedPhoneNumber" contains the following text "+1 ${PROVISION_NUMBER}"
     And Tag "span" with text "“NO” Response - " should "exist"
     And Tag "p" with text "Hi. Build ${id}" should "exist"
     And Tag "div" with text "${randomNoResponse}" should "exist"
