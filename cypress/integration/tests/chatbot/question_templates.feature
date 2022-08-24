@@ -23,5 +23,5 @@ Feature: Permissions - question templates
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
     And Click on "chatbot.knowledgebase.generalLibrary.viewFirstQuestion"
     Then Element "div.Mui-expanded>div.MuiCollapse-entered" should "exist"
-    And Verify that element "chatbot.knowledgebase.questionTemplates.searchQuestionAnswer" contains the following text "${searchQuestionTemplateAnswer}"
+    And Verify that element "chatbot.knowledgebase.questionTemplates.searchQuestionAnswer" has the following text "${searchQuestionTemplateAnswer}"
 

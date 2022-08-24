@@ -46,7 +46,7 @@ Feature: Permission Manager
     When Type "BookstoreCanViewOtherOffices{enter}" in "quotasAccount.permissions.searchInput"
     And Click on tag "span" which contains text "BookstoreCanViewOtherOffices"
 
-    Then Verify that element "quotasAccount.permissions.roleValue" contains the following text "Standard"
+    Then Verify that element "quotasAccount.permissions.roleValue" has the following text "Standard"
     And Verify that element "quotasAccount.permissions.viewOtherOfficesSwitch" has attribute "value" with value "true"
     And Verify that checkbox "quotasAccount.permissions.office1Checkbox" is "unchecked"
     And Verify that checkbox "quotasAccount.permissions.office2Checkbox" is "checked"

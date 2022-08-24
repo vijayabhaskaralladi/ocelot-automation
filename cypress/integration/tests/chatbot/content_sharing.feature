@@ -6,7 +6,7 @@ Feature: chatbot - Content Sharing
     When Open "Chatbot->Knowledgebase->Custom Questions" menu item
     And Type "${parentCustomQuestion}" in "chatbot.knowledgebase.customQuestions.search"
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
-    And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" contains the following text "${parentCustomQuestion}"
+    And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" has the following text "${parentCustomQuestion}"
     And Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
     Then Tag "span.MuiButton-label" with text "Delete" should "not.exist"
 
@@ -16,7 +16,7 @@ Feature: chatbot - Content Sharing
       And Open chatbot "chatbotForAutomation"
       When Open "Chatbot->Knowledgebase->Custom Questions" menu item
       And Type "${parentGeneralQuestion}" in "chatbot.knowledgebase.customQuestions.search"
-      And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" contains the following text "${parentGeneralQuestion}"
+      And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" has the following text "${parentGeneralQuestion}"
       And Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
       And Click on tag "span" which contains text "Edit"
       And Set content sharing switch to "enabled"
@@ -25,12 +25,12 @@ Feature: chatbot - Content Sharing
       And Open chatbot "chatbotForInquiryForm"
       When Open "Chatbot->Knowledgebase->Custom Questions" menu item
       And Type "${parentGeneralQuestion}" in "chatbot.knowledgebase.customQuestions.search"
-      And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" contains the following text "${parentGeneralQuestion}"
+      And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" has the following text "${parentGeneralQuestion}"
 
       And Open chatbot "chatbotForAutomation"
       When Open "Chatbot->Knowledgebase->Custom Questions" menu item
       And Type "${parentGeneralQuestion}" in "chatbot.knowledgebase.customQuestions.search"
-      And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" contains the following text "${parentGeneralQuestion}"
+      And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" has the following text "${parentGeneralQuestion}"
       And Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
       And Click on tag "span" which contains text "Edit"
       And Set content sharing switch to "disabled"

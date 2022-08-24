@@ -98,14 +98,15 @@ Feature: Campaigns
 
     When Click on tag "p" which contains text "<conversation_keyword>"
     And Click on "[title='Message Tool']"
-    And Click on tag "h6" which contains text "Conversation Details"
-    And Verify that element "texting.activeCampaigns.conversationDetail.contactInformation" contains the following text "${firstContactEmail}"
-    And Verify that element "texting.activeCampaigns.conversationDetail.contactPhoneNumber" contains the following text "${firstContact}"
-    And Verify that element "texting.activeCampaigns.conversationDetail.provisionedPhoneNumber" contains the following text "+1 ${PROVISION_NUMBER}"
     And Tag "span" with text "“NO” Response - " should "exist"
     And Tag "p" with text "Hi. Build ${id}" should "exist"
     And Tag "div" with text "${randomNoResponse}" should "exist"
     And Tag "p" with text "Nope ${id}" should "exist"
+
+    And Click on tag "h6" which contains text "Conversation Details"
+    And Tag "div" with text "${firstContactEmail}" should "exist"
+    And Tag "div" with text "${firstContact}" should "exist"
+    And Tag "div" with text "+1 ${PROVISION_NUMBER}" should "exist"
 
     When Intercept "${GRAPHQL_URL}graphql" with "getCampaignAnalytics" keyword in the response as "graphql"
     And Click on "[data-testid='Analytics-tab']"
