@@ -11,14 +11,7 @@
       "generalTab": { "selector": "span.MuiTab-wrapper", "text": "General" },
       "campaignName": { "selector": "div.MuiFormControl-fullWidth>div", "index": 0 },
       "keywordSearch": "input[name='keywords']",
-      "responseInput": "[aria-label='Rich Text Editor, main']",
-      "conversationDetail": {
-        "contactName": { "selector": "#conversation-details-pane>div.MuiAccordionDetails-root>div>div", "index": 0 },
-        "contactInformation": { "selector": "#conversation-details-pane>div.MuiAccordionDetails-root>div>div", "index": 1 },
-        "launchTime": { "selector": "#conversation-details-pane>div.MuiAccordionDetails-root>div>div", "index": 2 },
-        "contactPhoneNumber": { "selector": "#conversation-details-pane>div.MuiAccordionDetails-root>div>div", "index": 3 },
-        "provisionedPhoneNumber": { "selector": "#conversation-details-pane>div.MuiAccordionDetails-root>div>div", "index": 4 }
-      }
+      "responseInput": "[aria-label='Rich Text Editor, main']"
     },
     "phoneNumbers": {
       "phoneNumberFromFirstRow": { "selector": "tbody>tr>td>div.MuiBox-root", "index": 0 },
