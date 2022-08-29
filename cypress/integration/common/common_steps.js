@@ -227,6 +227,7 @@ And('Retrieve text from {string} and save as {string}', (selectorPath, alias) =>
     .invoke('text')
     .then((text) => {
       cy.log(`Retrieved: ${text}`);
+      cy.task('log', `Retrieved: ${text}`);
       cy.wrap(text.trim()).as(alias);
     });
 });
@@ -260,7 +261,8 @@ And('Save {string} as {string}', (value, key) => {
 And('Check that difference between {string} and {string} is {string}', (alias1, alias2, expectedDif) => {
   cy.get(`@${alias1}`).then((num1) => {
     cy.get(`@${alias2}`).then((num2) => {
-      expect(Math.abs(parseInt(num2, 10) - parseInt(num1, 10))).to.be.equal(parseInt(expectedDif, 10));
+      const difference = Math.abs(parseInt(num2, 10) - parseInt(num1, 10));
+      expect(difference).to.be.equal(parseInt(expectedDif, 10));
     });
   });
 });
