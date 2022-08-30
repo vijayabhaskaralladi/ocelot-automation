@@ -64,8 +64,10 @@
       "netPromoterScoreValue": { "selector": "svg>text", "index": 1 }
     },
     "embedding": {
-      "scriptText": ".language-htmlBars>span>span"
+      "scriptText": ".language-htmlBars>span>span",
+      "officeDropdown": "#mui-component-select-campusOffice"
     },
+
     "spider": {
       "spiderTable": ".MuiTable-root>tbody>tr",
       "viewFirstSpiderButton": { "selector": "button[title='View Content']", "index": 0 }

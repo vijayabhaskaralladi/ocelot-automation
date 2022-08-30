@@ -35,3 +35,16 @@ Feature: Notifications
 
     Then Wait for "saveRequest" network call
     And Verify that response "saveRequest" has status code "200"
+
+  Scenario:  Admin user should see both Live chat and Inbox notification settings
+    Given Login as "defaultUser"
+    And Open chatbot "chatbotForAutomation"
+    When Open "Notifications" menu item
+    Then Verify that page contains text "Configure sounds and timings for notifications within the admin"
+    And Tag "h6" with text "Live chat notifications" should "exist"
+    And Tag "h6" with text "Inbox message notifications" should "exist"
+    When Intercept "${GRAPHQL_URL}graphql" with "notificationSettings" keyword in the response as "saveRequest"
+    And Click on "notifications.saveButton"
+
+    Then Wait for "saveRequest" network call
+    And Verify that response "saveRequest" has status code "200"
