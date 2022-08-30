@@ -101,3 +101,21 @@ And('API: Get chatbot config and save it as {string}', (responseAlias) => {
   });
   cy.wait(1000);
 });
+
+And('API: Send feedback', (datatable) => {
+  const feedbackData = convertDataTableIntoDict(datatable);
+  const requiredParametersAndAcceptableValues = {
+    conversationId: 'any',
+    score: 'any',
+    feedbackMessage: 'any'
+  };
+  validateInputParamsAccordingToDict(feedbackData, requiredParametersAndAcceptableValues);
+
+  cy.get('@activeChatbotId').then((chatbotId) => {
+    cy.replacePlaceholder(feedbackData.conversationId).then((conversationId) => {
+      cy.replacePlaceholder(feedbackData.feedbackMessage).then((feedbackMessage) => {
+        cy.sendFeedback(chatbotId, conversationId, feedbackData.score, feedbackMessage);
+      });
+    });
+  });
+});

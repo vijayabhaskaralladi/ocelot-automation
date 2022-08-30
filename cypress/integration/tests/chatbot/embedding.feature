@@ -2,9 +2,10 @@ Feature: Embedding
 
   Scenario: TMD-12: Verify that Chatbot->Embedding page contains correct JS script
     Given Login as "defaultUser"
-    Then Open chatbot "chatbotForAutomation"
-    When Open "Chatbot->Embedding" menu item
+    When Open chatbot "chatbotForAutomation"
+    And Open "Chatbot->Embedding" menu item
     Then Verify that embedded script contains id for "chatbotForAutomation" chatbot
+
     When Click on "chatbot.embedding.officeDropdown"
     And Click on tag "span" which contains text "MyCampus - Office 1"
     Then Tag "span" with text "campus_id=${chatbotForAutomationCampusId}" should "exist"
