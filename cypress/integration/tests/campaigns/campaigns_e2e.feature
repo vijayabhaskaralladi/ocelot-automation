@@ -180,3 +180,24 @@ Feature: Campaigns
     And Click on tag "span.MuiButton-label" which contains text "Send"
 
     Then Verify that "${firstContact}" number "received" "Operator is here ${id}" message
+
+  Scenario: Sending inboxes messages - bot operated
+  Verify Duplicate messages sending to the inboxes
+    When Create campaign
+      | campaignName     | Simple${id}               |
+      | createFrom       | Scratch                   |
+      | contentType      | simple                    |
+      | contactList      | ContactListForAutomation  |
+      | office           | Office 1                  |
+      | message          | Hi. Simple campaign ${id} |
+      | number           | ${PROVISION_NUMBER}       |
+      | campaignType     | Bot                       |
+      | automaticArchive | 1 day                     |
+      | idkType          | Agent                     |
+    Then Verify that "${firstContact}" number "received" "Hi. Simple campaign ${id}" message
+    And Click on tag "span" which contains text "End campaign"
+    Then Click on tag "span" which contains text "Confirm"
+    When Send SMS "Hi. inbox ${id}" to "${PROVISION_NUMBER}" from "${firstContact}"
+    And Open chatbot "chatbotForAutomation"
+    Then Open "Inbox" menu item
+    And Tag "ul.MuiList-root" with text "Hi. inbox ${id}" should "exist"
