@@ -36,7 +36,7 @@ Feature: Notifications
     Then Wait for "saveRequest" network call
     And Verify that response "saveRequest" has status code "200"
 
-  Scenario:  Admin user should see both Live chat and Inbox notification settings
+  Scenario: Admin user should see both Live chat and Inbox notification settings
     Given Login as "defaultUser"
     And Open chatbot "chatbotForAutomation"
     When Open "Notifications" menu item

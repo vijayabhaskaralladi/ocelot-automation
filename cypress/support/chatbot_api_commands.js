@@ -65,3 +65,21 @@ Cypress.Commands.add('getChatbotConfig', (chatbotId) => {
     url: chatbotConfigUrl
   });
 });
+
+Cypress.Commands.add('sendFeedback', (chatbotId, conversationId, score, feedbackMessage) => {
+  const chatbotFeedbackgUrl = Cypress.env('MESSAGE_API_DOMAIN') + 'api/feedback';
+  const feedbackRequestBody = {
+    key: chatbotId,
+    conversation_id: conversationId,
+    score: parseInt(score, 10),
+    additionalFeedback: feedbackMessage
+  };
+  cy.request({
+    method: 'POST',
+    url: chatbotFeedbackgUrl,
+    body: JSON.stringify(feedbackRequestBody),
+    headers: DEFAULT_HEADER
+  }).then((responseObject) => {
+    expect(responseObject.status).to.eq(200);
+  });
+});
