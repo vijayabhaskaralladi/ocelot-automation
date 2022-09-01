@@ -49,6 +49,23 @@ Cypress.Commands.add('sendFirstMessage', (botId, message, language = 'en') => {
   });
 });
 
+Cypress.Commands.add('sendFirstMessageToOffice', (botId, campusId, officeId, message) => {
+  const contextObject = {
+    campus_id: parseInt(campusId, 10),
+    office_id: parseInt(officeId, 10)
+  };
+
+  cy.request({
+    method: 'POST',
+    url: MESSAGE_API_ENDPOINT,
+    body: createSendMessageRequest(botId, message, 'en', contextObject),
+    headers: DEFAULT_HEADER,
+    log: false
+  }).then((xhr) => {
+    return xhr;
+  });
+});
+
 Cypress.Commands.add('sendMessage', (message, conversationId, botId) => {
   cy.request({
     method: 'POST',

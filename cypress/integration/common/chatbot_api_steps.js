@@ -47,6 +47,28 @@ And('API: Send first message {string} and save response as {string}', (message, 
   cy.wait(1000);
 });
 
+And('API: Send first message to specific Office', (datatable) => {
+  const messageData = convertDataTableIntoDict(datatable);
+  const requiredParametersAndAcceptableValues = {
+    campusId: 'any',
+    officeId: 'any',
+    message: 'any',
+    saveResponseAs: 'any'
+  };
+  validateInputParamsAccordingToDict(messageData, requiredParametersAndAcceptableValues);
+  cy.get('@activeChatbotId').then((chatbotId) => {
+    cy.replacePlaceholder(messageData.message).then((msg) => {
+      cy.replacePlaceholder(messageData.campusId).then((campusId) => {
+        cy.replacePlaceholder(messageData.officeId).then((officeId) => {
+          cy.sendFirstMessageToOffice(chatbotId, campusId, officeId, msg)
+            .as(messageData.saveResponseAs);
+        });
+      });
+    });
+  });
+  cy.wait(1000);
+});
+
 And('API: Set language {string} and send message {string} and save response as {string}',
   (langCode, message, responseAlias) => {
     cy.get('@activeChatbotId').then((chatbotId) => {
