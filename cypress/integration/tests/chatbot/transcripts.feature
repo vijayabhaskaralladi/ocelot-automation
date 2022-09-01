@@ -88,3 +88,32 @@ Feature: Permissions - chatbot transcripts
     And Open the latest transcript
     Then Verify that page contains text "how are you?"
     And Verify that page contains text "what is your name?"
+
+  Scenario: Creating conversations with different offices
+  Test creates 2 conversations - with office 1 and office 2. Then it verifies transcripts and filtering by office.
+    Given API: Select "chatbotForAutomation" chatbot
+
+    And Create random number and save it as "id"
+    And API: Send first message to specific Office
+      | message             | Hi Office 1 ${id}                |
+      | officeId            | ${chatbotForAutomationOffice1Id} |
+      | campusId            | ${chatbotForAutomationCampusId}  |
+      | conversationIdAlias | conversationId1                  |
+      | saveResponseAs      | response1                        |
+
+    And API: Send first message to specific Office
+      | message           | Hi Office 2 ${id}                |
+      | officeId          | ${chatbotForAutomationOffice2Id} |
+      | campusId          | ${chatbotForAutomationCampusId}  |
+      | conversationIdKey | conversationId2                  |
+      | saveResponseAs    | response2                        |
+
+    When Login as "defaultUser"
+    And Open chatbot "chatbotForAutomation"
+    And Open "Chatbot->Transcripts" menu item
+    And Click on "chatbot.transcripts.filter"
+    And Click on "chatbot.transcripts.officeDropdown"
+    And Click on tag "li" which contains text "MyCampus - Office 1"
+
+    Then Tag "th" with text "Hi Office 1 ${id}" should "exist"
+    And Tag "th" with text "Hi Office 2 ${id}" should "not.exist"

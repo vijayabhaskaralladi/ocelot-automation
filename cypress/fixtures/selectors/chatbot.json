@@ -11,7 +11,9 @@
       "closeConversation": "button[aria-label*='Close']",
       "markReadFirstRow": { "selector": "[title='Mark read']", "index": 0 },
       "markUnreadFirstRow": { "selector": "[title='Mark unread']", "index": 0 },
-      "exportTranscripts": "button[aria-label=' Export results to CSV']"
+      "exportTranscripts": "button[aria-label=' Export results to CSV']",
+      "filter": "button[aria-label='Filter results']",
+      "officeDropdown": { "selector": "input[name='officeId']", "getPrevious": true }
     },
     "interactions": {
       "exportInteractions": "button[aria-label=' Export results to CSV']"
