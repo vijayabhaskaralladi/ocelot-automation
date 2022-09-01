@@ -98,14 +98,12 @@ Feature: Permissions - chatbot transcripts
       | message             | Hi Office 1 ${id}                |
       | officeId            | ${chatbotForAutomationOffice1Id} |
       | campusId            | ${chatbotForAutomationCampusId}  |
-      | conversationIdAlias | conversationId1                  |
       | saveResponseAs      | response1                        |
 
     And API: Send first message to specific Office
       | message           | Hi Office 2 ${id}                |
       | officeId          | ${chatbotForAutomationOffice2Id} |
       | campusId          | ${chatbotForAutomationCampusId}  |
-      | conversationIdKey | conversationId2                  |
       | saveResponseAs    | response2                        |
 
     When Login as "defaultUser"
