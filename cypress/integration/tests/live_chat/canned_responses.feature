@@ -59,3 +59,24 @@ Feature: Permissions - Canned responses
     And Wait for "searchRequest" network call
     And Element "div.MuiButtonBase-root.MuiAccordionSummary-root" should "not.exist"
     And Tag "p" with text "CannedResponse${randomNumber}" should "not.exist"
+
+  Scenario: Editing Canned Response
+    Given Login as "defaultUser"
+    When Open chatbot "chatbotForAutomation"
+
+    When Open "Live Chat->Canned Responses" menu item
+    Then Verify that selector "liveChat.cannedResponses.cannedResponseCount" contains more than "1" elements
+    And Click on "liveChat.cannedResponses.firstCannedResponseItem"
+    And Click on "liveChat.cannedResponses.editButton"
+    And Create random number and save it as "id"
+    And Type "EditedCannedTitle${id}" in "liveChat.cannedResponses.editTitle"
+    And Type "EditedCannedResponse${id}" in "liveChat.cannedResponses.editResponse"
+    And Click on "liveChat.cannedResponses.saveButton"
+    Then Type "EditedCannedTitle${id}" in "liveChat.cannedResponses.searchInput"
+    When Intercept "GET: ${DRUPAL_URL}jsonapi/node/canned_response*" as "searchRequest"
+    And Type "EditedCannedTitle${id}{enter}" in "liveChat.cannedResponses.searchInput"
+    And Wait for "searchRequest" network call
+    Then Verify that selector "liveChat.cannedResponses.cannedResponseCount" contains "1" elements
+    And Click on "liveChat.cannedResponses.firstCannedResponseItem"
+    And Tag "p" with text "EditedCannedTitle${id}" should "exist"
+    And Tag "p" with text "EditedCannedResponse${id}" should "exist"
