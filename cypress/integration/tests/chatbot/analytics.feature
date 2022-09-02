@@ -64,10 +64,44 @@ Feature: Permissions - chatbot analytics
     Then Check that difference between "conversationsNumber2" and "conversationsNumber1" is "1"
     And Check that difference between "interactionsNumber2" and "interactionsNumber1" is "1"
 
+  Scenario: Viewing Chatbot Analytics - by office
+    Given Login as "defaultUser"
+    And Open chatbot "chatbotForAutomation"
+
+    When Open "Chatbot->Analytics" menu item
+    And Click on "chatbot.analytics.filter"
+    And Click on "chatbot.analytics.officeDropdown"
+    And Click on tag "li" which contains text "MyCampus - Office 2"
+
+    Then Verify that element "chatbot.analytics.conversationsNumber" contains positive number
+    And Verify that element "chatbot.analytics.interactionsNumber" contains positive number
+    And Retrieve text from "chatbot.analytics.conversationsNumber" and save as "conversationsNumber1"
+    And Retrieve text from "chatbot.analytics.interactionsNumber" and save as "interactionsNumber1"
+
+
+    When API: Select "chatbotForAutomation" chatbot
+    And Create random number and save it as "id"
+    And API: Send first message to specific Office
+      | message        | Analytics, Office 2 ${id}        |
+      | officeId       | ${chatbotForAutomationOffice2Id} |
+      | campusId       | ${chatbotForAutomationCampusId}  |
+      | saveResponseAs | response                         |
+
+    And Open chatbot "chatbotForAutomation"
+    And Open "Chatbot->Analytics" menu item
+    And Click on "chatbot.analytics.filter"
+    And Click on "chatbot.analytics.officeDropdown"
+    And Click on tag "li" which contains text "MyCampus - Office 2"
+    And Retrieve text from "chatbot.analytics.conversationsNumber" and save as "conversationsNumber2"
+    And Retrieve text from "chatbot.analytics.interactionsNumber" and save as "interactionsNumber2"
+
+    Then Check that difference between "conversationsNumber2" and "conversationsNumber1" is "1"
+    And Check that difference between "interactionsNumber2" and "interactionsNumber1" is "1"
+
   Scenario: Limited users can't view Chatbot Analytics
     Given Login using random user from the list
       | viewOtherOfficesLiveChat  |
-      | viewOtherOfficesC ampaigns |
+      | viewOtherOfficesCampaigns |
       | liveChatLimited           |
       | liveChatStandard          |
       | liveChatAdmin             |
