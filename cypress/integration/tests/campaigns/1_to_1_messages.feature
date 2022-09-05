@@ -20,10 +20,10 @@ Feature: 1:1 messages
     Given Login as "campaignsAdmin"
     And Open chatbot "chatbotForAutomation"
     And Create random number and save it as "id"
-    And Save "(513) 447-6784" as "optedOutNumber"
+    And Save "(970) 594-8337" as "optedOutNumber"
     When Send 1:1 message
       | message | Hey! Test ${id}     |
-      | to      | ${optedOutNumber}    |
+      | to      | ${optedOutNumber}   |
       | from    | ${PROVISION_NUMBER} |
     Then Tag "#notistack-snackbar" with text "Failed to send. Phone number opted out." should "exist"
     And Verify that "${optedOutNumber}" number "not.received" "Hey! Test ${id}" message
