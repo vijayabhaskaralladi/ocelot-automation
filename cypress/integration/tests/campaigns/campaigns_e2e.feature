@@ -201,3 +201,32 @@ Feature: Campaigns
     And Open chatbot "chatbotForAutomation"
     Then Open "Inbox" menu item
     And Tag "ul.MuiList-root" with text "Hi. inbox ${id}" should "exist"
+
+  Scenario: Campaigns Analytics
+    Verify that Launching a Campaign Changes the count on Campaign Analytics
+    When Open "Texting->Campaign Analytics" menu item
+    And Wait for element "texting.campaignAnalytics.contactResponsesPerHourChart"
+    And Retrieve text from "texting.campaignAnalytics.contactsMessaged" and save as "oldContactsMessaged"
+    And Retrieve text from "texting.campaignAnalytics.contactsResponded" and save as "oldContactsResponded"
+    When Create campaign
+      | campaignName       | Binary${id}              |
+      | createFrom         | Scratch                  |
+      | contentType        | binary                   |
+      | contactList        | ThreeContacts            |
+      | office             | Office 1                 |
+      | message            | Hi. Build ${id}          |
+      | noResponse         | Nope ${id}               |
+      | number             | ${PROVISION_NUMBER}      |
+      | campaignType       | Bot                      |
+      | automaticArchive   | 1 day                    |
+      | escalateNoResponse | no                       |
+    Then Verify that "${firstContact}" number "received" "Hi. Build ${id}" message
+    When Send SMS "${randomNoResponse}" to "${PROVISION_NUMBER}" from "${firstContact}"
+    And Open chatbot "chatbotForAutomation"
+    When Open "Texting->Campaign Analytics" menu item
+    And Wait for element "texting.campaignAnalytics.contactResponsesPerHourChart"
+    And Retrieve text from "texting.campaignAnalytics.contactsMessaged" and save as "newContactsMessaged"
+    And Retrieve text from "texting.campaignAnalytics.contactsResponded" and save as "newContactsResponded"
+    And Tag "p" with text "Binary${id}" should "exist"
+    And Check that difference between "newContactsMessaged" and "oldContactsMessaged" is "2"
+    And Check that difference between "newContactsResponded" and "oldContactsResponded" is "1"
