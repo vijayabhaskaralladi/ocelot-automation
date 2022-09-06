@@ -17,7 +17,10 @@
       "officeDropdown": { "selector": "input[name='officeId']", "getPrevious": true }
     },
     "interactions": {
-      "exportInteractions": "button[aria-label=' Export results to CSV']"
+      "exportInteractions": "button[aria-label=' Export results to CSV']",
+      "chatbotInteractions": {"selector":"[style='word-break: break-word;']","index": 0},
+      "viewConversationButton": {"selector":"td.MuiTableCell-paddingCheckbox>button","index": 0},
+      "conversationMessage": {"selector":"ul[role='log']>li","index": 1}
     },
     "knowledgebase": {
       "generalLibrary": {

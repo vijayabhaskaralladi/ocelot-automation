@@ -25,3 +25,15 @@ Feature: Chatbot interactions
     And Get full file name with prefix "interactions-" in download folder and save it as "interactionsFileName"
     And Verify that file "${interactionsFileName}" from download folder contains text "chatbotInteraction${randomNumber1}"
     And Verify that file "${interactionsFileName}" from download folder contains text "chatbotInteraction${randomNumber2}"
+
+   Scenario: Viewing interactions
+     Given Create random number and save it as "randomNumber"
+     And API: Select "chatbotForAutomation" chatbot
+     And API: Send first message "chatbotInteraction${randomNumber}" and save response as "response1"
+     Given Login as "defaultUser"
+     And Open chatbot "chatbotForAutomation"
+     When Open "Chatbot->Interactions" menu item
+     And Retrieve text from "chatbot.interactions.chatbotInteractions" and save as "conversationText"
+     And Click on "chatbot.interactions.viewConversationButton"
+     And Tag "span" with text "${conversationText}" should "exist"
+     And Tag "ul div" with text "chatbotInteraction${randomNumber}" should "exist"
