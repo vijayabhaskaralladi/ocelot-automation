@@ -12,7 +12,7 @@ And('Send 1:1 message', (datatable) => {
     cy.contains('span', from).click();
   });
 
-  const toInput = 'input[name="smsTo"]'
+  const toInput = 'input[name="smsTo"]';
   cy.replacePlaceholder(messageData.to).then((to) => {
     cy.get(toInput).type(to);
   });

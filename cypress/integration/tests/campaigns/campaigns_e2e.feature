@@ -145,6 +145,11 @@ Feature: Campaigns
     And Tag "p" with text "Hi. Build ${id}" should "exist"
     And Tag "div" with text "Other response ${id}" should "exist"
 
+    And Type "Second Message ${id}" in "texting.activeCampaigns.responseInput"
+    And Wait "1000"
+    And Click on tag "span.MuiButton-label" which contains text "Send"
+    Then Verify that "${firstContact}" number "received" "Second Message ${id}" message
+
     # uncomment when NUG-1497 will be resolved
     # And Verify that last SMS for number "(513) 586-1971" has text "Hi. Build ${id}"
 
@@ -203,7 +208,7 @@ Feature: Campaigns
     And Tag "ul.MuiList-root" with text "Hi. inbox ${id}" should "exist"
 
   Scenario: Campaigns Analytics
-    Verify that Launching a Campaign Changes the count on Campaign Analytics
+  Verify that Launching a Campaign Changes the count on Campaign Analytics
     When Open "Texting->Campaign Analytics" menu item
     And Wait for element "texting.campaignAnalytics.contactResponsesPerHourChart"
     And Retrieve text from "texting.campaignAnalytics.contactsMessaged" and save as "oldContactsMessaged"
