@@ -4,39 +4,39 @@ Feature: chatbot - Content Sharing
     Given Login as "chatbotAdmin"
     And Open chatbot "chatbotForInquiryForm"
     When Open "Chatbot->Knowledgebase->Custom Questions" menu item
-    And Type "${parentCustomQuestion}" in "chatbot.knowledgebase.customQuestions.search"
+    And Type "${parentCustomQuestion2}" in "chatbot.knowledgebase.customQuestions.search"
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
-    And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" has the following text "${parentCustomQuestion}"
+    And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" has the following text "${parentCustomQuestion2}"
     And Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
     Then Tag "span.MuiButton-label" with text "Delete" should "not.exist"
 
-  @exclude_from_ci
-    Scenario: Unsharing question removes question from child bots
-      Given Login as "chatbotAdmin"
-      And Open chatbot "chatbotForAutomation"
-      When Open "Chatbot->Knowledgebase->Custom Questions" menu item
-      And Type "${parentGeneralQuestion}" in "chatbot.knowledgebase.customQuestions.search"
-      And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" has the following text "${parentGeneralQuestion}"
-      And Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
-      And Click on tag "span" which contains text "Edit"
-      And Set content sharing switch to "enabled"
-      And Click on "chatbot.knowledgebase.customQuestions.questionSaveButton"
+  Scenario: Unsharing question removes question from child bots
+    Given Login as "chatbotAdmin"
+    And Open chatbot "chatbotForAutomation"
 
-      And Open chatbot "chatbotForInquiryForm"
-      When Open "Chatbot->Knowledgebase->Custom Questions" menu item
-      And Type "${parentGeneralQuestion}" in "chatbot.knowledgebase.customQuestions.search"
-      And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" has the following text "${parentGeneralQuestion}"
+    When Open "Chatbot->Knowledgebase->Custom Questions" menu item
+    And Type "${parentCustomQuestion1}" in "chatbot.knowledgebase.customQuestions.search"
+    And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" has the following text "${parentCustomQuestion1}"
+    And Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
+    And Click on tag "span" which contains text "Edit"
+    And Set content sharing switch to "enabled"
+    And Click on "chatbot.knowledgebase.customQuestions.questionSaveButton"
 
-      And Open chatbot "chatbotForAutomation"
-      When Open "Chatbot->Knowledgebase->Custom Questions" menu item
-      And Type "${parentGeneralQuestion}" in "chatbot.knowledgebase.customQuestions.search"
-      And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" has the following text "${parentGeneralQuestion}"
-      And Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
-      And Click on tag "span" which contains text "Edit"
-      And Set content sharing switch to "disabled"
-      And Click on "chatbot.knowledgebase.customQuestions.questionSaveButton"
+    Then Open chatbot "chatbotForInquiryForm"
+    And Open "Chatbot->Knowledgebase->Custom Questions" menu item
+    And Type "${parentCustomQuestion1}" in "chatbot.knowledgebase.customQuestions.search"
+    And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" has the following text "${parentCustomQuestion1}"
 
-      And Open chatbot "chatbotForInquiryForm"
-      When Open "Chatbot->Knowledgebase->Custom Questions" menu item
-      And Type "${parentGeneralQuestion}" in "chatbot.knowledgebase.customQuestions.search"
-      Then Tag "p.MuiTypography-body1" with text "${parentGeneralQuestion}" should "not.exist"
+    When Open chatbot "chatbotForAutomation"
+    And Open "Chatbot->Knowledgebase->Custom Questions" menu item
+    And Type "${parentCustomQuestion1}" in "chatbot.knowledgebase.customQuestions.search"
+    And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" has the following text "${parentCustomQuestion1}"
+    And Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
+    And Click on tag "span" which contains text "Edit"
+    And Set content sharing switch to "disabled"
+    And Click on "chatbot.knowledgebase.customQuestions.questionSaveButton"
+
+    Then Open chatbot "chatbotForInquiryForm"
+    And Open "Chatbot->Knowledgebase->Custom Questions" menu item
+    And Type "${parentCustomQuestion1}" in "chatbot.knowledgebase.customQuestions.search"
+    And Tag "p.MuiTypography-body1" with text "${parentCustomQuestion1}" should "not.exist"
