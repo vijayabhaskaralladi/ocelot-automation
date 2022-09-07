@@ -261,7 +261,11 @@ And('Save {string} as {string}', (value, key) => {
 And('Check that difference between {string} and {string} is {string}', (alias1, alias2, expectedDif) => {
   cy.get(`@${alias1}`).then((num1) => {
     cy.get(`@${alias2}`).then((num2) => {
-      const difference = Math.abs(parseInt(num2, 10) - parseInt(num1, 10));
+      // retrieved values may contain extra text, like '86 %' or '148 questions'
+      // this function removes all non-numeric characters before comparing them
+      const num1Parsed = parseInt(num1.replace(/\D/g, ''), 10);
+      const num2Parsed = parseInt(num2.replace(/\D/g, ''), 10);
+      const difference = Math.abs(num2Parsed - num1Parsed);
       expect(difference).to.be.equal(parseInt(expectedDif, 10));
     });
   });
