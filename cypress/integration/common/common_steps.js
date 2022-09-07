@@ -93,8 +93,10 @@ And('Click on {string}', (selector) => {
 });
 
 And('Click on tag {string} which contains text {string}', (tag, text) => {
-  cy.task('log', `Click on: ${text}`);
-  cy.contains(tag, text).click({ force: true });
+  cy.replacePlaceholder(text).then((keyword) => {
+    cy.task('log', `Click on: ${keyword}`);
+    cy.contains(tag, keyword).click({ force: true });
+  });
 });
 
 And('Tag {string} with text {string} should {string}', (tag, text, expectedStatus) => {
@@ -269,4 +271,26 @@ And('Check that difference between {string} and {string} is {string}', (alias1, 
       expect(difference).to.be.equal(parseInt(expectedDif, 10));
     });
   });
+});
+
+// ToDo: replace other steps for switches with this one
+And('Set switch {string} to {string}', (switchSelector, status) => {
+  cy.getElement(switchSelector).invoke('attr','value').then(switchState => {
+    cy.replacePlaceholder(status).then((setStatus) => {
+      if((switchState === 'false' && setStatus === 'enabled')
+          || (switchState === 'true' && setStatus === 'disabled')) {
+        cy.getElement(switchSelector).click();
+      }
+    });
+  });
+});
+
+And('Choose random value from {string} and save it as {string}', (list, key) => {
+  // Example: Choose random value from "Office 1|Office 2|Office 3" and save it as "office"
+  // this step will choose random value and save it as "office"
+  // later you can use this variable, for example:
+  // Type "${office}" in "some.input"
+  const values = list.split('|');
+  const randomIndex = Math.floor(Math.random() * values.length);
+  cy.wrap(values[randomIndex]).as(key);
 });

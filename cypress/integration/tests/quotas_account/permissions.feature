@@ -51,3 +51,22 @@ Feature: Permission Manager
     And Verify that checkbox "quotasAccount.permissions.office1Checkbox" is "unchecked"
     And Verify that checkbox "quotasAccount.permissions.office2Checkbox" is "checked"
     And Verify that checkbox "quotasAccount.permissions.office3Checkbox" is "unchecked"
+
+  Scenario: Updating permissions
+  This test requires user with name 'LegacyUser'. It updates it's 'chatbot role' and 'view other offices'.
+    Given Login as "defaultUser"
+    And Open chatbot "chatbotForAutomation"
+    And Open "Quotas & Account->Permissions" menu item
+    And Choose random value from "Limited|Standard|Admin" and save it as "role"
+    And Choose random value from "enabled|disabled" and save it as "viewOtherOfficesSwitch"
+
+    When Type "LegacyUser{enter}" in "quotasAccount.permissions.searchInput"
+    And Click on tag "span" which contains text "LegacyUser"
+
+    And Click on "#rolesField"
+    And Click on tag "li" which contains text "${role}"
+    And Set switch "quotasAccount.permissions.viewOtherOfficesSwitch" to "${viewOtherOfficesSwitch}"
+    And Click on tag "span" which contains text "Save"
+
+    Then Tag "#notistack-snackbar" with text "Permissions saved successfully" should "exist"
+
