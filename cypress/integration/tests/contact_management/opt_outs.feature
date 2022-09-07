@@ -45,35 +45,40 @@ Feature: Permissions - opt-outs
     And Wait "1000"
     And Tag "p" with text "myemail_" should "not.exist"
 
-  Scenario Outline: TMD-86: Verify that <user_name> can opt-In a opted out contact if the phone number and email for the
-  contact are removed from opt out portal.
-    Given Login as "<user_name>"
+  Scenario: TMD-86: Opt In an Opted out contact
+  Test opt outs contact and then it removes this email and number from Opt-Outs page and
+  checks that it's possible to opt out this contact again
+    Given Login as "campaignsAdmin"
     And Open chatbot "chatbotForAutomation"
-    When Open "Contact Management->Contact Lists" menu item
-    Then Type "qwert" in "contactManagement.contactLists.searchInput"
+    And Open "Contact Management->Contact Lists" menu item
+
+    And Type "qwert" in "contactManagement.contactLists.searchInput"
     And Wait for element "contactManagement.contactLists.singleElement"
     And Click on "contactManagement.contactLists.viewFirstRow"
     And Wait for element "contactManagement.contactLists.EditContact"
     And Optout first contact if opted-In
     And Get the opted out the PhoneNumber and EMail
-    And Open "Contact Management->Opt-outs" menu item
-    Then Type "${email}" in "contactManagement.optOuts.searchInput"
+
+    When Open "Contact Management->Opt-outs" menu item
+    And Type "${email}" in "contactManagement.optOuts.searchInput"
     And Wait for element "contactManagement.contactLists.singleElement"
-    When Click on "contactManagement.optOuts.deleteFirstRowButton"
+    And Click on "contactManagement.optOuts.deleteFirstRowButton"
     And Click on "contactManagement.optOuts.confirmDeleteButton"
-    Then Type "${phnNumber}" in "contactManagement.optOuts.searchInput"
+    And Tag "#notistack-snackbar" with text "Opt-out contact removed" should "exist"
+
+    And Type "${phnNumber}" in "contactManagement.optOuts.searchInput"
     And Wait for element "contactManagement.contactLists.singleElement"
-    When Click on "contactManagement.optOuts.deleteFirstRowButton"
+    And Click on "contactManagement.optOuts.deleteFirstRowButton"
     And Click on "contactManagement.optOuts.confirmDeleteButton"
-    When Open "Contact Management->Contact Lists" menu item
-    Then Type "qwert" in "contactManagement.contactLists.searchInput"
+    And Tag "#notistack-snackbar" with text "Opt-out contact removed" should "exist"
+
+    Then Open "Contact Management->Contact Lists" menu item
+    And Verify that page title is "Contact Lists"
+    And Type "qwert" in "contactManagement.contactLists.searchInput"
     And Wait for element "contactManagement.contactLists.singleElement"
     And Click on "contactManagement.contactLists.viewFirstRow"
     And Wait for element "contactManagement.contactLists.EditContact"
     And Element "contactManagement.optOuts.optOutButton" should "exist"
-    Examples:
-      | user_name      |
-      | campaignsAdmin |
 
   Scenario: Exporting Opt-Outs
     Given Login using random user from the list
