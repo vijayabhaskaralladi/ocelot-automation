@@ -294,3 +294,25 @@ And('Choose random value from {string} and save it as {string}', (list, key) => 
   const randomIndex = Math.floor(Math.random() * values.length);
   cy.wrap(values[randomIndex]).as(key);
 });
+
+And('Save current date as {string} using {string} format', (key, format) => {
+  // examples of supported formats:
+  // mm/dd/yyyy - use it for content lock date
+  // yyyy-mm-dd  - use it for conversation details(interactions/transcripts)
+  const isFormatCorrect = format.includes('dd') && format.includes('mm') && format.includes('yyyy');
+  if (!isFormatCorrect) {
+    throw Error(`Unsupported date format ${format}`);
+  }
+
+  const today = new Date();
+  const twoDigitDay = ('0' + today.getDate()).slice(-2);
+  const twoDigitMonth = ('0' + (today.getMonth() + 1)).slice(-2);
+  const year = today.getFullYear();
+
+  const date = format
+    .replace('dd', twoDigitDay)
+    .replace('mm', twoDigitMonth)
+    .replace('yyyy', year);
+
+  cy.wrap(date).as(key);
+});
