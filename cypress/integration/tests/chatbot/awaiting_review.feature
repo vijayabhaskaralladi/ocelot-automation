@@ -1,5 +1,5 @@
 Feature: Permissions - awaiting review
-@ignore
+
   Scenario: Viewing Awaiting Review questions
     # This test requires question "Question for 'Awaiting Review' test" with correct review date;
     # We update this date manually for now, it will be replaced with API call in the future
@@ -10,7 +10,7 @@ Feature: Permissions - awaiting review
     And Open chatbot "chatbotForAutomation"
     When Open "Chatbot->Knowledgebase->Awaiting Review" menu item
     Then Tag "p" with text "${awaitingReviewQuestion}" should "exist"
-  @ignore
+
   Scenario Outline: Verify that user <user_name> can't view Awaiting Review
     Given Login as "<user_name>"
     And Open chatbot "chatbotForAutomation"
