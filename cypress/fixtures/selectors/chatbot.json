@@ -57,6 +57,12 @@
         "cellsWithQuestion": "th[role='cell']",
         "exportModerationQueue": "button[aria-label=' Export results to CSV']",
         "firstRowQuestion": "tbody>tr:nth-child(1)>th"
+      },
+      "awaitingReview": {
+        "searchQuestion": "input[name='keywords']",
+        "firstRowAwaitingQuestion": "div[role='button'] p",
+        "viewFirstAwaitingQuestion": { "selector": "div.MuiAccordionSummary-expandIcon", "index": 0 },
+        "editAwaitingResponse": "div.ck.ck-editor__main p"
       }
     },
     "lookAndFeel": {
