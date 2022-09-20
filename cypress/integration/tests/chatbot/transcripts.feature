@@ -22,14 +22,25 @@ Feature: Permissions - chatbot transcripts
     And Verify that file "${transcriptsFile}" from download folder contains text "HeyHey${id}"
 
   Scenario: TMD-28: Viewing Chatbot Transcripts
-    Given Login using random user from the list
+    Validate date and other parameters on Conversation page of transcripts
+    Given API: Select "chatbotForAutomation" chatbot
+    And Create random number and save it as "id"
+    And API: Create dialog and save conversation_id as "conversationId"
+    And API: Send message
+      | message             | HeyHey${id}    |
+      | conversationIdAlias | conversationId |
+
+    And Login using random user from the list
       | chatbotStandard         |
       | chatbotAdmin            |
       | viewOtherOfficesChatbot |
     And Open chatbot "chatbotForAutomation"
     When Open "Chatbot->Transcripts" menu item
     And Click on "chatbot.transcripts.viewConversationFirstRow"
-    Then Tag "h6" with text "Conversation Details" should "exist"
+    And Click on tag "h6" which contains text "Conversation Details"
+    Then Verify that page contains text "HeyHey${id}"
+    Then Save current date as "date" using "yyyy-mm-dd" format
+    Then Tag ".Mui-expanded div" with text "${date}" should "exist"
 
   Scenario: TMD-28: Limited users can't View Chatbot Transcripts
     Given Login using random user from the list
@@ -112,6 +123,5 @@ Feature: Permissions - chatbot transcripts
     And Click on "chatbot.transcripts.filter"
     And Click on "chatbot.transcripts.officeDropdown"
     And Click on tag "li" which contains text "MyCampus - Office 1"
-
     Then Tag "th" with text "Hi Office 1 ${id}" should "exist"
     And Tag "th" with text "Hi Office 2 ${id}" should "not.exist"
