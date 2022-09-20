@@ -40,6 +40,9 @@ Feature: Campaigns
     Then Verify that page contains text "Hi. Build ${id}"
     And Verify that page contains text "${randomYesResponse}"
     And Verify that page contains text "Yep ${id}"
+    And Click on tag "h6" which contains text "Conversation Details"
+    Then Save current date as "date" using "yyyy-mm-dd" format
+    Then Tag ".Mui-expanded div" with text "${date}" should "exist"
 
   Scenario Outline: Binary campaigns - <test_name>
   Test checks 'yes' auto response, needs attention switch and statistics

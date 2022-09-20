@@ -19,7 +19,9 @@
     },
     "transcripts": {
       "readStatusButtonFirstRow": { "selector": "td.MuiTableCell-alignCenter>button", "index": 0 },
-      "exportTranscripts": "button[aria-label=' Export results to CSV']"
+      "exportTranscripts": "button[aria-label=' Export results to CSV']",
+      "viewConversationFirstRow": { "selector": "td button.MuiButtonBase-root", "index": 0 },
+      "conversationTab": { "selector": "h6", "text": "Conversation Details" }
     },
     "archived": {
       "firstRowDropdown": { "selector": "div[role='group']>button:nth-child(2)", "index": 0 },
