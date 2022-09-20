@@ -30,10 +30,15 @@ Feature: Chatbot interactions
      Given Create random number and save it as "randomNumber"
      And API: Select "chatbotForAutomation" chatbot
      And API: Send first message "chatbotInteraction${randomNumber}" and save response as "response1"
-     Given Login as "defaultUser"
+     And Login as "defaultUser"
      And Open chatbot "chatbotForAutomation"
+
      When Open "Chatbot->Interactions" menu item
      And Retrieve text from "chatbot.interactions.chatbotInteractions" and save as "conversationText"
      And Click on "chatbot.interactions.viewConversationButton"
-     And Tag "span" with text "${conversationText}" should "exist"
+     Then Tag "span" with text "${conversationText}" should "exist"
      And Tag "ul div" with text "chatbotInteraction${randomNumber}" should "exist"
+
+     When Click on "chatbot.interactions.conversationDetails"
+     And Save current date as "date" using "yyyy-mm-dd" format
+     Then Tag "div" with text "${date}" should "exist"
