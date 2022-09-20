@@ -84,6 +84,11 @@
     "spider": {
       "spiderTable": ".MuiTable-root>tbody>tr",
       "viewFirstSpiderButton": { "selector": "button[title='View Content']", "index": 0 }
+    },
+    "testMyBot":{
+      "buttonTestMyBot": "button[title='Test My Bot']",
+      "inputAskQuestion": "textarea[aria-label='Ask a question']",
+      "openMenu": "button[aria-label='Open Menu']"
     }
   }
 }

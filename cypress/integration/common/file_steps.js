@@ -95,7 +95,7 @@ And('Get full file name with prefix {string} in download folder and save it as {
 And('Verify that file {string} from download folder contains text {string}', (fileName, text) => {
   cy.replacePlaceholder(fileName).then((fileNameReplaced) => {
     cy.replacePlaceholder(text).then((expectedText) => {
-      cy.exec(`cat ${DOWNLOAD_FOLDER}/${fileNameReplaced}`).then((output) => {
+      cy.exec(`cat "${DOWNLOAD_FOLDER}/${fileNameReplaced}"`).then((output) => {
         expect(output.stdout).to.have.string(expectedText);
       });
     });
