@@ -3,5 +3,6 @@
   "lockedDate": "05/13/2022",
   "chatbotForAutomationOffice1Id": "4605",
   "chatbotForAutomationOffice2Id": "4606",
-  "chatbotForAutomationCampusId": "4608"
+  "chatbotForAutomationCampusId": "4608",
+  "chatbotNameResponse": "My name is automation chatbot. I was created by Ocelot and Automation chatbot to help answer your questions. Ask away."
 }
