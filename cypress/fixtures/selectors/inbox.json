@@ -1,0 +1,7 @@
+{
+  "inbox": {
+    "searchInput": "input[name='keywords']",
+    "messageInput": "div.ck-editor__editable",
+    "sendButton": { "selector": "button>span.MuiButton-label", "text": "Send" }
+  }
+}
