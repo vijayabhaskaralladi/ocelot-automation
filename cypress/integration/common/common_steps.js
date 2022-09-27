@@ -316,3 +316,13 @@ And('Save current date as {string} using {string} format', (key, format) => {
 
   cy.wrap(date).as(key);
 });
+
+And('Scroll to {string} element',(selector)=>{
+  // this step accepts regular CSS selectors and path to selector value
+  // from support/selectors.js file
+  if (isSelector(selector)) {
+    cy.get(selector).scrollIntoView();
+  } else {
+    cy.getElement(selector).scrollIntoView();
+  }
+});

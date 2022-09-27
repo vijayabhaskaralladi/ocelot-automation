@@ -1,7 +1,12 @@
 {
   "quotasAccount": {
     "contractLimits": {
-      "licensedAgentsNumber": { "selector": "div.MuiCardContent-root>div>svg>text", "index": 0 }
+      "licensedAgentsNumber": { "selector": "div.MuiCardContent-root>div>svg>text", "index": 0 },
+      "textingActiveNumber": {"selector": "div.MuiGrid-root.MuiGrid-item>div>svg>text",
+        "index": 0},
+      "textingUniqueContactsNumber": {"selector": "div.MuiGrid-root.MuiGrid-item>div>svg>text",
+        "index": 4},
+      "myCampusOffice1ExpandButton": "button[aria-label='Expand MyCampus, Office 1']"
     },
     "permissions": {
       "searchInput": "input[aria-label='Search']",
