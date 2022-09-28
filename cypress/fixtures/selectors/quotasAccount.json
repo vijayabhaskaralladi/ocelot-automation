@@ -15,6 +15,7 @@
       "textingTab": { "selector": "span", "text": "Texting" },
       "roleValue": "#rolesField",
       "viewOtherOfficesSwitch": "#viewAllOfficesField",
+      "viewMyoffice1Switch":{"selector": "input[type='checkbox']", "index": 2},
       "office1Checkbox": { "selector": "input[type='checkbox']", "index": 2},
       "office2Checkbox": { "selector": "input[type='checkbox']", "index": 3},
       "office3Checkbox": { "selector": "input[type='checkbox']", "index": 4}
