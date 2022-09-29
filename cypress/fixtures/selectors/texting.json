@@ -15,7 +15,10 @@
     },
     "phoneNumbers": {
       "phoneNumberFromFirstRow": { "selector": "tbody>tr>td>div.MuiBox-root", "index": 0 },
-      "exportResults": "button[aria-label=' Export results to CSV']"
+      "exportResults": "button[aria-label=' Export results to CSV']",
+      "searchInput": "input[name='keywords']",
+      "records": "tbody.MuiTableBody-root>tr",
+      "archiveDate": "tr>td:nth-child(8)"
     },
     "transcripts": {
       "readStatusButtonFirstRow": { "selector": "td.MuiTableCell-alignCenter>button", "index": 0 },

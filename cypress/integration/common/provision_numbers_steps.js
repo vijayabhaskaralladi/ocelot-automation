@@ -50,15 +50,13 @@ And('Create provision number', (datatable) => {
 });
 
 And('Delete provision number {string}', (provisionNumber) => {
-  const searchInput = 'input[name="keywords"]';
-  const row = 'tbody.MuiTableBody-root>tr';
   const deleteButton = 'button[aria-label="Revoke number"]';
   const confirmDeleteButton = '.MuiDialogActions-root>button:nth-child(2)>span';
 
   cy.replacePlaceholder(provisionNumber).then((number) => {
-    cy.get(searchInput).type(number);
+    cy.getElement('texting.phoneNumbers.searchInput').type(number);
   });
-  cy.get(row).should('have.length',1);
+  cy.getElement('texting.phoneNumbers.records').should('have.length',1);
   cy.get(deleteButton).click();
   cy.get(confirmDeleteButton).click();
   cy.contains('#notistack-snackbar', 'Phone number revoked').should('exist');
