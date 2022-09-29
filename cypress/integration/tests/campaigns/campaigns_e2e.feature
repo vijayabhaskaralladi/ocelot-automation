@@ -36,13 +36,22 @@ Feature: Campaigns
     When Open chatbot "chatbotForAutomation"
     And Open "Texting->Transcripts" menu item
     And Open the latest transcript
-
     Then Verify that page contains text "Hi. Build ${id}"
     And Verify that page contains text "${randomYesResponse}"
     And Verify that page contains text "Yep ${id}"
-    And Click on tag "h6" which contains text "Conversation Details"
-    Then Save current date as "date" using "yyyy-mm-dd" format
+
+    When Click on tag "h6" which contains text "Conversation Details"
+    And Save current date as "date" using "yyyy-mm-dd" format
     Then Tag ".Mui-expanded div" with text "${date}" should "exist"
+
+    When Open chatbot "chatbotForAutomation"
+    And Open "Texting->Phone Numbers" menu item
+    And Type "${PROVISION_NUMBER}" in "texting.phoneNumbers.searchInput"
+    And Verify that selector "texting.phoneNumbers.records" contains "1" elements
+    And Save current month as "month"
+    And Save current year as "year"
+    Then Verify that page contains element "texting.phoneNumbers.archiveDate" with text "${month}"
+    And Verify that page contains element "texting.phoneNumbers.archiveDate" with text "${year}"
 
   Scenario Outline: Binary campaigns - <test_name>
   Test checks 'yes' auto response, needs attention switch and statistics

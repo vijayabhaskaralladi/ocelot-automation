@@ -120,7 +120,9 @@ And('Element {string} should {string}', (selector, expectedStatus) => {
 });
 
 And('Verify that page contains element {string} with text {string}', (element, text) => {
-  cy.containsElement(element, text).should('exist');
+  cy.replacePlaceholder(text).then((keyword) => {
+    cy.containsElement(element, keyword).should('exist');
+  });
 });
 
 And('Type {string} in {string}', (text, selector) => {
@@ -315,4 +317,26 @@ And('Save current date as {string} using {string} format', (key, format) => {
     .replace('yyyy', year);
 
   cy.wrap(date).as(key);
+});
+
+And('Save current month as {string}', (key) => {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'];
+  const currentMonth = months[new Date().getMonth()];
+  cy.wrap(currentMonth).as(key);
+});
+
+And('Save current year as {string}', (key) => {
+  const currentYear = new Date().getFullYear();
+  cy.wrap(currentYear).as(key);
+});
+
+And('Scroll to {string} element',(selector)=>{
+  // this step accepts regular CSS selectors and path to selector value
+  // from support/selectors.js file
+  if (isSelector(selector)) {
+    cy.get(selector).scrollIntoView();
+  } else {
+    cy.getElement(selector).scrollIntoView();
+  }
 });

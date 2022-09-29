@@ -57,15 +57,18 @@ Feature: Permission Manager
     Given Login as "defaultUser"
     And Open chatbot "chatbotForAutomation"
     And Open "Quotas & Account->Permissions" menu item
+    And Choose random value from "Chatbot|Live Chat|Texting" and save it as "Tab"
+    And Click on tag "div[role='tablist']>button>span" which contains text "${Tab}"
     And Choose random value from "Limited|Standard|Admin" and save it as "role"
     And Choose random value from "enabled|disabled" and save it as "viewOtherOfficesSwitch"
-
+    And Choose random value from "enabled|disabled" and save it as "Offices1Switch"
     When Type "LegacyUser{enter}" in "quotasAccount.permissions.searchInput"
     And Click on tag "span" which contains text "LegacyUser"
 
     And Click on "#rolesField"
     And Click on tag "li" which contains text "${role}"
     And Set switch "quotasAccount.permissions.viewOtherOfficesSwitch" to "${viewOtherOfficesSwitch}"
+    And Set switch "quotasAccount.permissions.viewMyoffice1Switch" to "${Offices1Switch}"
     And Click on tag "span" which contains text "Save"
 
     Then Tag "#notistack-snackbar" with text "Permissions saved successfully" should "exist"

@@ -9,6 +9,13 @@ Feature: Permissions - active campaigns
     And Open chatbot "chatbotForAutomation"
     When Open "Texting->Active Campaigns" menu item
     Then Verify that browser tab title contains "Active"
+    And Intercept "${GRAPHQL_URL}graphql" with "SearchCampaigns" keyword in the response as "searchRequest"
+    And Click on "texting.activeCampaigns.filterResults"
+    And Click on "texting.activeCampaigns.statusFilter"
+    And Click on "texting.activeCampaigns.draftFilter"
+    And Wait for "searchRequest" network call
+    Then Verify that element "texting.activeCampaigns.draftFilterName" has the following text "Status: Draft"
+    And Verify that selector "texting.activeCampaigns.campaginListTable" contains more than "1" elements
 
   Scenario: Verify that user can View Inbox page
     Given Login using random user from the list
