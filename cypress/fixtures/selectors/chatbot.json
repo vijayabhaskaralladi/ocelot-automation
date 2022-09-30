@@ -47,7 +47,16 @@
         "contentSharingCheckbox": "#contentShare",
         "questionSaveButton": ".MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary",
         "questionTable": "div.MuiButtonBase-root.MuiAccordionSummary-root",
-        "selectedQuestion": "div:nth-child(2)>div.MuiAccordionSummary-root>div>p"
+        "selectedQuestion": "div:nth-child(2)>div.MuiAccordionSummary-root>div>p",
+        "filterResults": "svg[title='Filter results']",
+        "departmentFilter": {"selector": "input[name='library']", "getPrevious": true},
+        "financialAidFilterValue":{"selector": "li","text":"Financial Aid"},
+        "customQuestionListTable": "div.MuiAccordion-root",
+        "departmentFilterName": "div[title='Department: Financial Aid']",
+        "removeFilter": "svg.MuiChip-deleteIcon",
+        "lockedContentFilter": {"selector": "input[name='locked']", "getPrevious": true},
+        "lockedFilterValue":{"selector": "li","text":"Locked"},
+        "lockedFilterName": "div[title='Locked Content: Locked']"
       },
       "questionTemplates": {
         "search": "input[name='keywords']",

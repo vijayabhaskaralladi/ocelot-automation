@@ -40,7 +40,7 @@ Feature: Permissions - custom questions
     And Wait "5000"
     Then Tag "p" with text "${financialAidLibraryCustomQuestion}" should "exist"
 
-  Scenario: Viewing Custom Questions
+  Scenario: Viewing Custom Questions and Filtering by Financial Aid and Locked Content
     Given Login using random user from the list
       | chatbotLimited          |
       | chatbotStandard         |
@@ -50,6 +50,21 @@ Feature: Permissions - custom questions
     When Open "Chatbot->Knowledgebase->Custom Questions" menu item
     Then Verify that page title is "Custom Questions"
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains more than "2" elements
-
+    And Intercept "${DRUPAL_URL}jsonapi/chatbot_question/chatbot_question*" as "searchRequest"
+    And Click on "chatbot.knowledgebase.customQuestions.filterResults"
+    And Click on "chatbot.knowledgebase.customQuestions.departmentFilter"
+    And Click on "chatbot.knowledgebase.customQuestions.financialAidFilterValue"
+    And Wait for "searchRequest" network call
+    Then Verify that element "chatbot.knowledgebase.customQuestions.departmentFilterName" has the following text "Department: Financial Aid"
+    Then Verify that selector "chatbot.knowledgebase.customQuestions.customQuestionListTable" contains more than "1" elements
+    And Scroll to "chatbot.knowledgebase.customQuestions.removeFilter" element
+    And Click on "chatbot.knowledgebase.customQuestions.removeFilter"
+    And Click on "chatbot.knowledgebase.customQuestions.lockedContentFilter"
+    And Click on "chatbot.knowledgebase.customQuestions.lockedFilterValue"
+    And Wait for "searchRequest" network call
+    Then Verify that element "chatbot.knowledgebase.customQuestions.lockedFilterName" has the following text "Locked Content: Locked"
+    Then Verify that selector "chatbot.knowledgebase.customQuestions.customQuestionListTable" contains more than "1" elements
+    And Scroll to "chatbot.knowledgebase.customQuestions.removeFilter" element
+    And Click on "chatbot.knowledgebase.customQuestions.removeFilter"
     When Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
     Then Element "div.Mui-expanded>div.MuiCollapse-entered" should "exist"
