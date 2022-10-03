@@ -15,7 +15,7 @@ Feature: Permissions - campaigns transcripts
     And Verify that file "campaign-transcripts.csv" from download folder contains text "bot"
     And Verify that file "campaign-transcripts.csv" from download folder contains text "Binary"
 
-  Scenario: Viewing Campaigns Transcripts
+  Scenario: Viewing Campaigns Transcripts and filter by read/unread status
     Given Login using random user from the list
       | campaignsStandard         |
       | campaignsAdmin            |
@@ -23,6 +23,13 @@ Feature: Permissions - campaigns transcripts
     And Open chatbot "chatbotForAutomation"
     When Open "Texting->Transcripts" menu item
     Then Verify that browser tab title contains "Transcripts"
+    And Intercept "${GRAPHQL_URL}graphql" with "GetCampaignTranscriptList" keyword in the response as "searchRequest"
+    And Click on "texting.transcripts.filterResults"
+    And Click on "texting.transcripts.readStatusFilter"
+    And Click on "texting.transcripts.unReadFilter"
+    And Wait for "searchRequest" network call
+    And Verify that element "texting.transcripts.unreadFilterName" has the following text "Read Status: Unread"
+    And Verify that selector "texting.transcripts.transcriptListTable" contains more than "1" elements
 
   Scenario Outline: Verify that user <user_name> can't see Campaigns Transcripts
     Given Login as "<user_name>"
