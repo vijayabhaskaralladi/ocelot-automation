@@ -23,7 +23,9 @@
       "exportResults": "button[aria-label=' Export results to CSV']",
       "searchInput": "input[name='keywords']",
       "records": "tbody.MuiTableBody-root>tr",
-      "archiveDate": "tr>td:nth-child(8)"
+      "archiveDate": "tr>td:nth-child(8)",
+      "editPhoneNumberButton": "button[title='Edit phone number']",
+      "phoneNumberDescription": "#description"
     },
     "transcripts": {
       "readStatusButtonFirstRow": { "selector": "td.MuiTableCell-alignCenter>button", "index": 0 },
