@@ -78,7 +78,6 @@ Feature: Permissions - chatbot analytics
     And Retrieve text from "chatbot.analytics.conversationsNumber" and save as "conversationsNumber1"
     And Retrieve text from "chatbot.analytics.interactionsNumber" and save as "interactionsNumber1"
 
-
     When API: Select "chatbotForAutomation" chatbot
     And Create random number and save it as "id"
     And API: Send first message to specific Office

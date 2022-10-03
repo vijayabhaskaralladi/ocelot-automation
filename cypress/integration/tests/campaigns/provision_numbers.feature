@@ -34,6 +34,19 @@ Feature: Campaigns - provision numbers
     And Delete provision number "${provisionNumber}"
     Then Verify that "${studentNumber}" number "received" "${chatbotNameResponse}" message
 
+    When Open chatbot "chatbotForAutomation"
+    And Open "Texting->Transcripts" menu item
+    And Intercept "${GRAPHQL_URL}graphql" with "getCampaignTranscriptList" keyword in the response as "searchRequest"
+    And Type "What is your name?" in "texting.transcripts.searchInput"
+    And Wait for "searchRequest" network call
+    And Click on "texting.transcripts.viewConversationFirstRow"
+    And Click on tag "h6" which contains text "Conversation Details"
+    And Save current date as "date" using "yyyy-mm-dd" format
+    Then Tag "div>span" with text "${chatbotNameResponse}" should "exist"
+    And Tag "#conversation-details-pane div" with text "${date}" should "exist"
+    And Tag "#conversation-details-pane div" with text "${provisionNumber}" should "exist"
+    And Tag "#conversation-details-pane div" with text "${studentNumber}" should "exist"
+
   Scenario: Unsolicited Message Settings - agent response
   Test creates provision number with agent response mode. Then it send message to this number and checks Inbox and
   conversation details. Also it replies to this number.

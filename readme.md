@@ -20,8 +20,6 @@ This command re-uses existing package-lock.json file
 npm ci
 ```
 
-This command will re-use existing package-lock file.
-
 ### Running a single feature file:
 
 ```console

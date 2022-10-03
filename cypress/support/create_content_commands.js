@@ -7,3 +7,8 @@ Cypress.Commands.add('openCreateCampaignModal', () => {
   cy.getElement('createContent.createContentMenuButton').click();
   cy.getElement('createContent.createCampaign').click();
 });
+
+Cypress.Commands.add('openAddNewCustomVariableModal',()=>{
+  // Click on Add new custom variable button
+  cy.getElement('chatbot.variables.addNewCustomVariableButton').click();
+})

@@ -29,7 +29,14 @@
       "readStatusButtonFirstRow": { "selector": "td.MuiTableCell-alignCenter>button", "index": 0 },
       "exportTranscripts": "button[aria-label=' Export results to CSV']",
       "viewConversationFirstRow": { "selector": "td button.MuiButtonBase-root", "index": 0 },
-      "conversationTab": { "selector": "h6", "text": "Conversation Details" }
+      "conversationTab": { "selector": "h6", "text": "Conversation Details" },
+      "searchInput": "input[name='keywords']",
+      "filterResults": "svg[title='Filter results']",
+      "readStatusFilter": {"selector": "input[name='readStatus']", "getPrevious": true },
+      "readFilter": "li[data-value='Read']",
+      "unReadFilter": "li[data-value='Unread']",
+      "transcriptListTable": "tbody.MuiTableBody-root>tr",
+      "unreadFilterName": "div[title='Read Status: Unread']"
     },
     "archived": {
       "firstRowDropdown": { "selector": "div[role='group']>button:nth-child(2)", "index": 0 },
