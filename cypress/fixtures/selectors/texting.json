@@ -30,6 +30,7 @@
       "exportTranscripts": "button[aria-label=' Export results to CSV']",
       "viewConversationFirstRow": { "selector": "td button.MuiButtonBase-root", "index": 0 },
       "conversationTab": { "selector": "h6", "text": "Conversation Details" },
+      "searchInput": "input[name='keywords']",
       "filterResults": "svg[title='Filter results']",
       "readStatusFilter": {"selector": "input[name='readStatus']", "getPrevious": true },
       "readFilter": "li[data-value='Read']",
