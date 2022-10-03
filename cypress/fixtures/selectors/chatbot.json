@@ -80,7 +80,20 @@
     },
     "variables": {
       "requiredNumber": { "selector": "div.MuiTypography-caption", "index": 0 },
-      "optionalNumber": { "selector": "div.MuiTypography-caption", "index": 1 }
+      "optionalNumber": { "selector": "div.MuiTypography-caption", "index": 1 },
+      "addNewCustomVariableButton": "button[title='Add new custom variable']",
+      "variableName": "input[name='label']",
+      "variablePlaceholder": "input[name='name']",
+      "variableType": "#dataType",
+      "variableValue": "input[name='value']",
+      "variableRichTextValue": "div[aria-label='Rich Text Editor, main']",
+      "variableLinkTextValue": "input[placeholder='Our Homepage']",
+      "variableLinkURLValue": "input[placeholder='https://www.ocelotbot.com/']",
+      "editAllowedValuesButton": "button[data-testid='editAllowedValuesButton']",
+      "dropdownOptionValues": "div[class='MuiInputBase-root MuiInput-root MuiInputBase-formControl MuiInput-formControl'] input[type='text']",
+      "customTab": { "selector": "span.MuiTab-wrapper", "text": "Custom" },
+      "expandList": { "selector": "div.MuiButtonBase-root.MuiAccordionSummary-root", "index": 0 },
+      "confirmVariableDeleteButton": ".MuiDialogActions-root>button:nth-child(2)>span.MuiButton-label"
     },
     "feedback": {
       "netPromoterScoreValue": { "selector": "svg>text", "index": 1 }

@@ -42,3 +42,28 @@ Feature: Permissions - chatbot variables
     And Tag "p" with text "Test Variable (Financial Aid)" should "exist"
     And Tag "div" with text "randomtext_financial_aid" should "exist"
     And Tag "p" with text "Bookstore" should "not.exist"
+
+  Scenario: Creating and deleting variables
+    Given Login as "defaultUser"
+    And Open chatbot "chatbotForAutomation"
+    And Open "Chatbot->Variables" menu item
+    And Create random number and save it as "id"
+    And Choose random value from "Number|Text|Rich Text|Link|Dropdown|Email Address|URL" and save it as "variableType"
+
+    When Create chatbot variable
+      | variableName  | automationVariable${id}                                   |
+      | placeHolder   | autovar${id}                                              |
+      | type          | ${variableType}                                           |
+      | numberValue   | 32                                                        |
+      | textValue     | value for Text variable. link for more https://google.com |
+      | emailValue    | automationsupport@ocelot.com                              |
+      | richTextValue | value for Text variable. link for more https://google.com |
+      | linkText      | New variable modal HomePage                               |
+      | linkURL       | https://ocelot.com                                        |
+      | dropDownValue | Texting                                                   |
+    Then Tag "#notistack-snackbar" with text "Variable saved!" should "exist"
+
+    When Click on "chatbot.variables.customTab"
+    And Click on "chatbot.variables.expandList"
+    And Delete variable by name "automationVariable${id}"
+    Then Tag "#notistack-snackbar" with text "Variable deleted!" should "exist"
