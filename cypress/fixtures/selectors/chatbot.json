@@ -56,7 +56,8 @@
         "removeFilter": "svg.MuiChip-deleteIcon",
         "lockedContentFilter": {"selector": "input[name='locked']", "getPrevious": true},
         "lockedFilterValue":{"selector": "li","text":"Locked"},
-        "lockedFilterName": "div[title='Locked Content: Locked']"
+        "lockedFilterName": "div[title='Locked Content: Locked']",
+        "editResponseField": "div[aria-label='Rich Text Editor, Response']"
       },
       "questionTemplates": {
         "search": "input[name='keywords']",

@@ -2,6 +2,7 @@
   "campaignTemplateName": "Applicant does not want information about institutional scholarships",
   "awaitingReviewQuestion": "Question for 'Awaiting Review' test",
   "financialAidLibraryCustomQuestion": "Financial aid library question for automation chatbot",
+  "customQuestionForEditing": "Is it allowed to edit custom questions?",
   "financialAidLibraryGeneralQuestion": "Am I allowed to make my own schedule for work?",
   "parentCustomQuestion1": "Are you ready to go to school?",
   "parentCustomQuestion2": "Child bot can't delete shared question by the parent bot ?",

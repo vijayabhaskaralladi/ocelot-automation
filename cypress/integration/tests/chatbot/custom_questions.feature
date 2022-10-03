@@ -68,3 +68,22 @@ Feature: Permissions - custom questions
     And Click on "chatbot.knowledgebase.customQuestions.removeFilter"
     When Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
     Then Element "div.Mui-expanded>div.MuiCollapse-entered" should "exist"
+
+  Scenario: Editing Custom Question
+    Given Login using random user from the list
+      | chatbotStandard |
+      | chatbotAdmin    |
+    And Open chatbot "chatbotForAutomation"
+    And Create random number and save it as "id"
+    And Open "Chatbot->Knowledgebase->Custom Questions" menu item
+    And Verify that page title is "Custom Questions"
+    When Type "${customQuestionForEditing}" in "chatbot.knowledgebase.customQuestions.search"
+    And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
+    And Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
+    And Click on tag "span" which contains text "Edit"
+    And Scroll to "chatbot.knowledgebase.customQuestions.editResponseField" element
+    And Type "Updated response ${id}" in "chatbot.knowledgebase.customQuestions.editResponseField"
+    And Click on tag "button" which contains text "Save"
+    Then Tag "#notistack-snackbar" with text "Your question has been successfully published and will soon become part of the bot's knowledgebase!" should "exist"
+    And Tag "div[role='region']>div.MuiAccordionDetails-root" with text "Updated response ${id}" should "exist"
+    And Tag "span.MuiChip-label" with text "new" should "exist"
