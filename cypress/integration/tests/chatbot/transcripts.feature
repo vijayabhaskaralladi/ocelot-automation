@@ -1,5 +1,41 @@
 Feature: Permissions - chatbot transcripts
 
+  Scenario: Chatbot transcripts - filtering
+  This test filters transcripts
+    Given Login as "chatbotAdmin"
+    And Open chatbot "chatbotForAutomation"
+    And Open "Chatbot->Transcripts" menu item
+    And Choose random value from "Yes|No" and save it as "isInquiryForm"
+    And Choose random value from "Read|Unread" and save it as "readStatus"
+    And Choose random value from "MyCampus - Office 1|MyCampus - Office 2" and save it as "office"
+
+    When Intercept "POST: ${MESSAGE_API_DOMAIN}api/legacy/stats/conversations" as "markConversationNetworkCall"
+    And Click on "chatbot.transcripts.filter"
+    And Wait for element "chatbot.transcripts.labelOffice"
+    And Click on "chatbot.transcripts.officeStatus"
+    And Click on tag "li" which contains text "${office}"
+    And Wait for "markConversationNetworkCall" and save it as "markConversationResponse"
+    Then Verify that response "markConversationResponse" has status code "200"
+    And Verify that selector "chatbot.transcripts.rowSelector" contains more than "1" elements
+
+    When Click on "chatbot.transcripts.filter"
+    And Wait for element "chatbot.transcripts.labelReadStatus"
+    And Click on "chatbot.transcripts.readStatus"
+    And Click on tag "li" which contains text "${readStatus}"
+    And Wait for "markConversationNetworkCall" and save it as "markConversationResponse"
+    Then Verify that response "markConversationResponse" has status code "200"
+
+    When Click on "chatbot.transcripts.filter"
+    And Wait for element "chatbot.transcripts.labelInquiryFormStatus"
+    And Click on "chatbot.transcripts.inquiryFormStatus"
+    And Click on tag "li" which contains text "${isInquiryForm}"
+    Then Wait for "markConversationNetworkCall" and save it as "markConversationResponse"
+    And Verify that response "markConversationResponse" has status code "200"
+
+    And Tag "span.MuiChip-label" with text "Inquiry Form: ${isInquiryForm}" should "exist"
+    And Tag "span.MuiChip-label" with text "Read Status: ${readStatus}" should "exist"
+    And Tag "span.MuiChip-label" with text "Office: ${office}" should "exist"
+
   Scenario: Exporting Chatbot Transcripts
     Given API: Select "chatbotForAutomation" chatbot
     And Create random number and save it as "id"
