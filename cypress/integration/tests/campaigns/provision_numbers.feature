@@ -87,3 +87,24 @@ Feature: Campaigns - provision numbers
 
     And Open "Texting->Phone Numbers" menu item
     And Delete provision number "${provisionNumber}"
+
+    Scenario: Create, edit and Delete Provision number
+      Given Login as "campaignsAdmin"
+      And Open chatbot "chatbotForAutomation"
+      And Open "Texting->Phone Numbers" menu item
+      And Create random number and save it as "id"
+      And Create provision number
+        | name                  | ProvisionNumber${id}                                     |
+        | description           | [Automation]:Provision numbers - create/edit/delete      |
+        | areaCode              | 660                                                      |
+        | office                | MyCampus - Office 1                                      |
+        | responseType          | Agent                                                    |
+        | saveProvisionNumberAs | provisionNumber                                          |
+        | inbox                 | CampaignsAdmin Automation                                |
+      And Type "${provisionNumber}" in "texting.phoneNumbers.searchInput"
+      Then Verify that selector "texting.phoneNumbers.records" contains "1" elements
+      And Click on "texting.phoneNumbers.editPhoneNumberButton"
+      And Type "Updated phone number text" in "texting.phoneNumbers.phoneNumberDescription"
+      And Click on tag "button>span" which contains text "Save"
+      Then Tag "#notistack-snackbar" with text "Saved Successfully!" should "exist"
+      And Delete provision number "${provisionNumber}"

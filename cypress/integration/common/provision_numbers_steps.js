@@ -54,7 +54,7 @@ And('Delete provision number {string}', (provisionNumber) => {
   const confirmDeleteButton = '.MuiDialogActions-root>button:nth-child(2)>span';
 
   cy.replacePlaceholder(provisionNumber).then((number) => {
-    cy.getElement('texting.phoneNumbers.searchInput').type(number);
+    cy.getElement('texting.phoneNumbers.searchInput').clear().type(number);
   });
   cy.getElement('texting.phoneNumbers.records').should('have.length',1);
   cy.get(deleteButton).click();
