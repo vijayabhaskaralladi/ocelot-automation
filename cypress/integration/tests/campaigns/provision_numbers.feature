@@ -1,5 +1,33 @@
 Feature: Campaigns - provision numbers
 
+  Scenario: Filter provision numbers
+  Filter the provision numbers based filter options Reusable and single use
+    Given Login using random user from the list
+      | viewOtherOfficesCampaigns |
+      | campaignsStandard         |
+      | campaignsAdmin            |
+    And Open chatbot "chatbotForAutomation"
+    And Open "Texting->Phone Numbers" menu item
+
+    When Intercept "${GRAPHQL_URL}graphql" with "listActivePhoneNumbersAssignments" keyword in the response as "searchRequest"
+    And Click on "texting.phoneNumbers.filter"
+    And Wait for element "texting.phoneNumbers.labelNumberType"
+    And Click on "texting.phoneNumbers.inputNumberType"
+    And Click on tag "li" which contains text "Reusable"
+    And Wait for "searchRequest" and save it as "searchResponse"
+    Then Verify that response "searchResponse" has status code "200"
+    And Tag "span.MuiChip-label" with text "Number Type: Reusable" should "exist"
+    And Verify that selector "texting.phoneNumbers.rowSelector" contains more than "1" elements
+
+    When Intercept "${GRAPHQL_URL}graphql" with "listActivePhoneNumbersAssignments" keyword in the response as "searchRequest"
+    And Click on "texting.phoneNumbers.filter"
+    And Wait for element "texting.phoneNumbers.labelNumberType"
+    And Click on "texting.phoneNumbers.inputNumberType"
+    And Click on tag "li" which contains text "Single Use"
+    And Wait for "searchRequest" and save it as "searchResponse"
+    Then Verify that response "searchResponse" has status code "200"
+    And Tag "span.MuiChip-label" with text "Number Type: Single Use" should "exist"
+
   Scenario: Viewing and Exporting provision numbers
     Given Login using random user from the list
       | viewOtherOfficesCampaigns |
