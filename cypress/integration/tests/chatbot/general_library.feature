@@ -11,7 +11,16 @@ Feature: Permissions - general library
     When Open "Chatbot->Knowledgebase->General Library" menu item
     Then Verify that page title is "General Library"
     And Verify that selector "chatbot.knowledgebase.generalLibrary.questions" contains more than "2" elements
-
+    And Intercept "${DRUPAL_URL}jsonapi/chatbot_question/chatbot_question?filter*" as "filterGeneralLibrary"
+    And Click on "chatbot.knowledgebase.generalLibrary.filterButton"
+    And Click on "chatbot.knowledgebase.generalLibrary.departmentFilter"
+    And Click on "chatbot.knowledgebase.generalLibrary.admissionFilter"
+    And Wait for "filterGeneralLibrary" network call
+    Then Verify that page contains element "chatbot.knowledgebase.generalLibrary.filterValue" with text "Department: Admissions"
+    And Verify that selector "chatbot.knowledgebase.generalLibrary.questions" contains more than "1" elements
+    And Click on "chatbot.knowledgebase.generalLibrary.deleteFilter"
+    And Wait for "filterGeneralLibrary" network call
+    And Verify that selector "chatbot.knowledgebase.generalLibrary.questions" contains more than "1" elements
     When Click on "chatbot.knowledgebase.generalLibrary.viewFirstQuestion"
     Then Element "div.Mui-expanded>div.MuiCollapse-entered" should "exist"
 
