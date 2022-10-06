@@ -1,7 +1,7 @@
 Feature: Test My Bot
 
-  Scenario: Verify Transcript from Test my bot
-  Test creates conversation using 'Test My Bot' button and downloads transcript
+  Scenario: Download transcript from Test my bot
+  Test creates conversation using 'Test My Bot' button and downloads transcript, then it clears the conversation
     Given Login as "defaultUser"
     And Open chatbot "chatbotForAutomation"
     And Create random number and save it as "id"
@@ -22,3 +22,8 @@ Feature: Test My Bot
     And Get full file name with prefix "transcript-automation" in download folder and save it as "transcriptDownloadFile"
     And Verify that file "${transcriptDownloadFile}" from download folder contains text "Hi. Random message ${id}"
     And Verify that file "${transcriptDownloadFile}" from download folder contains text "What is FAFSA?"
+
+    When Click on "chatbot.testMyBot.openMenu"
+    And Click on tag "li" which contains text "Clear conversation"
+    Then Tag "div" with text "Hi. Random message ${id}" should "not.exist"
+    And Tag "div" with text "What is FAFSA?" should "not.exist"
