@@ -19,6 +19,7 @@ import './chatbot_api_commands';
 import './selectors';
 import './commands';
 import './create_content_commands';
+import './drupal_api_commands';
 import 'cypress-mailosaur';
 
 // Alternatively you can use CommonJS syntax:
