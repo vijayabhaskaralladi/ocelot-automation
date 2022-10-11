@@ -61,10 +61,25 @@ And('Verify that response {string} has status code {string}', (responseAlias, st
 And(
   'Verify that response {string} has field {string} equal to {string}',
   (responseAlias, fieldName, expectedValue) => {
+    // Field name supports indexes only for the last element:
+    // name1.name2.name3[0] - ok
+    // name1.name2[0].name3 - will not work
     cy.get(`@${responseAlias}`).then((responseObject) => {
       cy.replacePlaceholder(expectedValue).then((expectedValueReplaced) => {
-        const field = getValueByPath(responseObject, fieldName);
-        expect(field.toString()).to.eq(expectedValueReplaced);
+        if (fieldName.includes('[') && fieldName.includes(']')) {
+          const startIndex = fieldName.indexOf('[');
+          const endIndex = fieldName.indexOf(']');
+
+          const path = fieldName.substring(0, startIndex);
+          const index = parseInt(fieldName.substring(startIndex + 1, endIndex), 10);
+
+          const array = getValueByPath(responseObject, path);
+          const field = array[index];
+          expect(field.toString()).to.eq(expectedValueReplaced);
+        } else {
+          const field = getValueByPath(responseObject, fieldName);
+          expect(field.toString()).to.eq(expectedValueReplaced);
+        }
       });
     });
   },

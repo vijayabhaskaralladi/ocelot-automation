@@ -25,7 +25,11 @@
       "records": "tbody.MuiTableBody-root>tr",
       "archiveDate": "tr>td:nth-child(8)",
       "editPhoneNumberButton": "button[title='Edit phone number']",
-      "phoneNumberDescription": "#description"
+      "phoneNumberDescription": "#description",
+      "filter": "button[aria-label='Filter results']",
+      "labelNumberType": { "selector":"label", "text": "Number Type" },
+      "inputNumberType": { "selector":"div[class*='MuiInput-input']", "index": 2 },
+      "rowSelector": "tr[class='MuiTableRow-root']"
     },
     "transcripts": {
       "readStatusButtonFirstRow": { "selector": "td.MuiTableCell-alignCenter>button", "index": 0 },
