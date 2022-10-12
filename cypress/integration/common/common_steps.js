@@ -100,13 +100,15 @@ And('Click on tag {string} which contains text {string}', (tag, text) => {
 });
 
 And('Tag {string} with text {string} should {string}', (tag, text, expectedStatus) => {
+  // Field 'text' supports 'OR' operator, for example:
+  // Tag "div" with text "Agent|Bot" should "exist"
   validateStatus(expectedStatus);
   // we need different timeouts for 'exist' and 'not.exist'
   // 'exist' - check that element is present or wait till element appears
-  // 'not.exist' - check that element is not presnent in the DOM without waiting
+  // 'not.exist' - check that element is not present in the DOM without waiting
   const TIMEOUT = expectedStatus === 'not.exist' ? 1000 : 20000;
   cy.replacePlaceholder(text).then((textWithReplacedPlaceholder) => {
-    cy.contains(tag, textWithReplacedPlaceholder, { timeout: TIMEOUT }).should(expectedStatus);
+    cy.contains(tag, new RegExp(`${textWithReplacedPlaceholder}`), { timeout: TIMEOUT }).should(expectedStatus);
   });
 });
 

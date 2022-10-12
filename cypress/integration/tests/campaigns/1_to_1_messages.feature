@@ -14,7 +14,12 @@ Feature: 1:1 messages
     Then Verify that "${studentNumber}" number "received" "Hey! Test ${id}" message
 
     When Send SMS "1:1 response ${id}" to "${PROVISION_NUMBER}" from "${studentNumber}"
+    # client admin automatically opens Inbox page after receiving message
     Then Verify that page contains text "Hey! Test ${id}"
+
+    When Click on tag "h6" which contains text "Conversation Details"
+    Then Tag ".MuiAccordionDetails-root>div>div" with text "${studentNumber}" should "exist"
+    And Tag ".MuiAccordionDetails-root>div>div" with text "${PROVISION_NUMBER}" should "exist"
 
   Scenario: Verify that sending message to Opted Out Contact should not receive any messages
     Given Login as "campaignsAdmin"
