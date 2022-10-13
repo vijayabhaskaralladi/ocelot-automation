@@ -8,6 +8,7 @@
   "parentCustomQuestion2": "Child bot can't delete shared question by the parent bot ?",
   "bookstoreLibraryCustomQuestion": "Bookstore library question for automation chatbot",
   "bookstoreLibraryGeneralQuestion":"Does the school have a bookstore?",
+  "lockedQuestion": "Are you ready to go to school?",
   "IDK_AUTO_RESPONSE": "One moment please",
   "IDK_QUESTION": "How far away is the delta quadrant?",
   "searchQuestionTemplate": "Can I buy stamps at the bookstore?",
