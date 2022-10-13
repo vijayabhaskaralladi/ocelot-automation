@@ -4,7 +4,10 @@
       "contactsMessaged": "[data-testid='Contacts Messaged-counter']",
       "contactsResponded": "[data-testid='Contacts Responded-counter']",
       "contactResponsesPerHourChart": { "selector": ".MuiCardContent-root>.chartjs-render-monitor", "index": 0 },
-      "exportAnalytics": "button[aria-label=' Export results to CSV']"
+      "exportAnalytics": "button[aria-label=' Export results to CSV']",
+      "filter": "button[aria-label='Filter results']",
+      "labelOffice": { "selector":"label", "text": "Office" },
+      "officeStatus": { "selector":"div[class*='MuiInput-input']", "index": 1 }
     },
     "activeCampaigns": {
       "viewFirstRow": { "selector": "[role='group']>button:nth-child(1)", "index": 0 },

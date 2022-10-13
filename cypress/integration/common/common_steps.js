@@ -186,7 +186,7 @@ And('Wait {string}', (millis) => {
 });
 
 And('Create random number and save it as {string}', (alias) => {
-  const randomNumber = Math.floor(Math.random() * 10000);
+  const randomNumber = Math.floor(Math.random() * 100000);
   cy.wrap(randomNumber.toString()).as(alias);
 });
 

@@ -9,8 +9,6 @@ Feature: Campaigns
     Given Login as "campaignsAdmin"
     And Open chatbot "chatbotForAutomation"
     And Create random number and save it as "id"
-    And Archive campaign which uses "${PROVISION_NUMBER}" number
-
     And Save "(513) 586-1971" as "firstContact"
     And Save "(970) 670-9874" as "secondContact"
     And Save "(970) 594-8337" as "optedOutContact"
@@ -18,6 +16,7 @@ Feature: Campaigns
 
   Scenario: TMD-84: Binary campaigns - transcripts
   Test checks auto response and transcript
+    Given Archive campaign which uses "${PROVISION_NUMBER}" number
     When Create campaign
       | campaignName     | Binary${id}              |
       | createFrom       | Scratch                  |
@@ -55,6 +54,7 @@ Feature: Campaigns
 
   Scenario Outline: Binary campaigns - <test_name>
   Test checks 'yes' auto response, needs attention switch and statistics
+    Given Archive campaign which uses "${PROVISION_NUMBER}" number
     When Create campaign
       | campaignName        | Binary${id}              |
       | createFrom          | Scratch                  |
@@ -89,6 +89,7 @@ Feature: Campaigns
 
   Scenario Outline: Binary campaign - <test_name>
   Test checks 'no' auto response, needs attention switch and statistics
+    Given Archive campaign which uses "${PROVISION_NUMBER}" number
     When Create campaign
       | campaignName       | Binary${id}              |
       | createFrom         | Scratch                  |
@@ -131,6 +132,7 @@ Feature: Campaigns
       | escalate no response | yes                  | exist                        | Needs Attention      |
 
   Scenario: Binary campaign - other response
+    Given Archive campaign which uses "${PROVISION_NUMBER}" number
     When Create campaign
       | campaignName     | Binary${id}         |
       | createFrom       | Scratch             |
@@ -175,6 +177,7 @@ Feature: Campaigns
 
   Scenario: Simple campaign - bot operated, IDK response
   Bot operated campaign should notify user about 'waiting for an operator' for IDK responses
+    Given Archive campaign which uses "${PROVISION_NUMBER}" number
     When Create campaign
       | campaignName     | Simple${id}               |
       | createFrom       | Scratch                   |
@@ -200,6 +203,7 @@ Feature: Campaigns
 
   Scenario: Sending inboxes messages - bot operated
   Verify Duplicate messages sending to the inboxes
+    Given Archive campaign which uses "${PROVISION_NUMBER}" number
     When Create campaign
       | campaignName     | Simple${id}               |
       | createFrom       | Scratch                   |
@@ -221,24 +225,25 @@ Feature: Campaigns
 
   Scenario: Campaigns Analytics
   Verify that Launching a Campaign Changes the count on Campaign Analytics
+    Given Archive campaign which uses "${PROVISION_NUMBER_OFFICE2}" number
     When Open "Texting->Campaign Analytics" menu item
     And Wait for element "texting.campaignAnalytics.contactResponsesPerHourChart"
     And Retrieve text from "texting.campaignAnalytics.contactsMessaged" and save as "oldContactsMessaged"
     And Retrieve text from "texting.campaignAnalytics.contactsResponded" and save as "oldContactsResponded"
     When Create campaign
-      | campaignName       | Binary${id}              |
-      | createFrom         | Scratch                  |
-      | contentType        | binary                   |
-      | contactList        | ThreeContacts            |
-      | office             | Office 1                 |
-      | message            | Hi. Build ${id}          |
-      | noResponse         | Nope ${id}               |
-      | number             | ${PROVISION_NUMBER}      |
-      | campaignType       | Bot                      |
-      | automaticArchive   | 1 day                    |
-      | escalateNoResponse | no                       |
+      | campaignName       | Binary${id}                 |
+      | createFrom         | Scratch                     |
+      | contentType        | binary                      |
+      | contactList        | ThreeContacts               |
+      | office             | Office 2                    |
+      | message            | Hi. Build ${id}             |
+      | noResponse         | Nope ${id}                  |
+      | number             | ${PROVISION_NUMBER_OFFICE2} |
+      | campaignType       | Bot                         |
+      | automaticArchive   | 1 day                       |
+      | escalateNoResponse | no                          |
     Then Verify that "${firstContact}" number "received" "Hi. Build ${id}" message
-    When Send SMS "${randomNoResponse}" to "${PROVISION_NUMBER}" from "${firstContact}"
+    When Send SMS "${randomNoResponse}" to "${PROVISION_NUMBER_OFFICE2}" from "${firstContact}"
     And Open chatbot "chatbotForAutomation"
     When Open "Texting->Campaign Analytics" menu item
     And Wait for element "texting.campaignAnalytics.contactResponsesPerHourChart"
@@ -247,3 +252,18 @@ Feature: Campaigns
     And Tag "p" with text "Binary${id}" should "exist"
     And Check that difference between "newContactsMessaged" and "oldContactsMessaged" is "2"
     And Check that difference between "newContactsResponded" and "oldContactsResponded" is "1"
+
+    When Intercept "${GRAPHQL_URL}graphql" with "getAnalyticCampaigns" keyword in the response as "searchRequest"
+    And Click on "texting.campaignAnalytics.filter"
+    And Wait for element "texting.campaignAnalytics.labelOffice"
+    And Click on "texting.campaignAnalytics.officeStatus"
+    And Click on tag "li" which contains text "Office 2"
+    And Wait for "searchRequest" and save it as "searchResponse"
+    Then Verify that response "searchResponse" has status code "200"
+    And Tag "p" with text "Binary${id}" should "exist"
+
+    When Click on tag "li" which contains text "Office 2"
+    And Click on tag "li" which contains text "Office 1"
+    And Wait for "searchRequest" and save it as "searchResponse"
+    Then Verify that response "searchResponse" has status code "200"
+    And Tag "p" with text "Binary${id}" should "not.exist"
