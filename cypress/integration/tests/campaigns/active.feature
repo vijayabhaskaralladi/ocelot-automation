@@ -39,3 +39,22 @@ Feature: Permissions - active campaigns
     And Click on "texting.activeCampaigns.generalTab"
     And Retrieve text from "texting.activeCampaigns.campaignName" and save as "CampaignName"
     And Verify that "CampaignName" length is greater than "3"
+
+  Scenario: Active campaigns - Exporting contacts
+    Given Login using random user from the list
+      | campaignsLimited          |
+      | campaignsStandard         |
+      | campaignsAdmin            |
+      | viewOtherOfficesCampaigns |
+    And Open chatbot "chatbotForAutomation"
+    And Open "Texting->Active Campaigns" menu item
+
+    When Click on "texting.activeCampaigns.viewFirstRow"
+    And Click on tag "span" which contains text "Contacts"
+    And Retrieve text from "texting.activeCampaigns.firstContactNumber" and save as "PhoneNumber"
+
+    Then Add reload event listener
+    And Click on "texting.activeCampaigns.exportResults"
+    And Verify that download folder contains "contact-list.csv"
+    And Verify that file "contact-list.csv" from download folder contains text "${PhoneNumber}"
+
