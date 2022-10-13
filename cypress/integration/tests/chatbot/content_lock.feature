@@ -43,3 +43,30 @@ Feature: Content Lock
     Then Verify that page contains text "Content Locked"
     And Verify that page contains text "${lockedBy}"
     And Verify that page contains text "${lockedDate}"
+
+  Scenario: Verify users can lock/unlock custom questions
+    Given Login using random user from the list
+      | ocelotAdmin     |
+      | chatbotAdmin    |
+    And Open chatbot "chatbotForAutomation"
+    And Open "Chatbot->Knowledgebase->Custom Questions" menu item
+    And Type "${lockedQuestion}" in "chatbot.knowledgebase.customQuestions.search"
+    And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
+    When Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
+    When Click on tag "span" which contains text "Edit"
+    And Set switch "chatbot.knowledgebase.customQuestions.contactLockBtn" to "enabled"
+    And Click on "chatbot.knowledgebase.customQuestions.questionSaveButton"
+    Then Verify that page contains element "chatbot.knowledgebase.customQuestions.saveNotify" with text "Your question has been successfully published"
+    And Save current date as "date" using "mm/dd/yyyy" format
+    And Type "${lockedQuestion}" in "chatbot.knowledgebase.customQuestions.search"
+    And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
+    Then Tag ".MuiTypography-caption" with text "${date}" should "exist"
+    And Element "chatbot.knowledgebase.customQuestions.lockBtn" should "exist"
+    When Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
+    When Click on tag "span" which contains text "Edit"
+    And Set switch "chatbot.knowledgebase.customQuestions.contactLockBtn" to "disabled"
+    And Click on "chatbot.knowledgebase.customQuestions.questionSaveButton"
+    Then Verify that page contains element "chatbot.knowledgebase.customQuestions.saveNotify" with text "Your question has been successfully published"
+    And Type "${lockedQuestion}" in "chatbot.knowledgebase.customQuestions.search"
+    And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
+    And Element "chatbot.knowledgebase.customQuestions.lockBtn" should "not.exist"
