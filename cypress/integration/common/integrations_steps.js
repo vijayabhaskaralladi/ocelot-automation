@@ -1,12 +1,11 @@
 import {And} from 'cypress-cucumber-preprocessor/steps';
 import {convertDataTableIntoDict, validateInputParamsAccordingToDict} from '../../support/utils';
 
-const isServiceNowEnabled = (serviceStatusesResponse) => {
+const isApplicationEnabled = (serviceStatusesResponse, application) => {
   const integrations = serviceStatusesResponse.body.data.getProvisionedIntegrations;
-  const isServiceNowEnabled = integrations
-    .filter(item => item.type === 'ServiceNow' && item.status === 'Enabled')
+  return integrations
+    .filter(item => item.type === application && item.status === 'Enabled')
     .length === 1;
-  return isServiceNowEnabled;
 };
 
 And('Enable Service Now', (datatable) => {
@@ -21,7 +20,7 @@ And('Enable Service Now', (datatable) => {
   cy.replacePlaceholder(serviceNowData.authToken).then((token) => {
     cy.replacePlaceholder(serviceNowData.contextualEntity).then((contextualEntity) => {
       cy.getServicesStatuses(token, contextualEntity).then((response)=>{
-        if (isServiceNowEnabled(response)) {
+        if (isApplicationEnabled(response, 'ServiceNow')) {
           cy.contains('h2', 'ServiceNow')
             .parent('div.MuiCardContent-root')
             .next()
@@ -56,8 +55,60 @@ And('Disable Service Now', (datatable) => {
   cy.replacePlaceholder(requestTokens.authToken).then((token) => {
     cy.replacePlaceholder(requestTokens.contextualEntity).then((contextualEntity) => {
       cy.getServicesStatuses(token, contextualEntity).then((response)=>{
-        if (isServiceNowEnabled(response)) {
+        if (isApplicationEnabled(response, 'ServiceNow')) {
           cy.contains('h2', 'ServiceNow')
+            .parent('div.MuiCardContent-root')
+            .next()
+            .contains('span', 'Disable')
+            .click();
+        }
+      });
+    });
+  });
+});
+
+And('Enable Slate', (datatable) => {
+  const slateData = convertDataTableIntoDict(datatable);
+  const requiredParametersAndAcceptableValues = {
+    baseSlateQuery: 'any',
+    authToken: 'any',
+    contextualEntity: 'any'
+  };
+  validateInputParamsAccordingToDict(slateData, requiredParametersAndAcceptableValues);
+
+  cy.replacePlaceholder(slateData.authToken).then((token) => {
+    cy.replacePlaceholder(slateData.contextualEntity).then((contextualEntity) => {
+      cy.getServicesStatuses(token, contextualEntity).then((response)=>{
+        if (!isApplicationEnabled(response, 'Slate')) {
+          cy.contains('h2', 'Slate')
+            .parent('div.MuiCardContent-root')
+            .next()
+            .contains('span', 'Enable')
+            .click();
+          //ToDo: this step doesn't fill Slate URLs,will be implemented later
+          cy.contains(slateData).should('exist');
+          cy.contains('span', 'Save').click();
+          cy.contains('#notistack-snackbar', 'The configuration has been saved successfully!')
+            .should('exist');
+        }
+      });
+    });
+  });
+});
+
+And('Disable Slate', (datatable) => {
+  const requestTokens = convertDataTableIntoDict(datatable);
+  const requiredParametersAndAcceptableValues = {
+    authToken: 'any',
+    contextualEntity: 'any'
+  };
+  validateInputParamsAccordingToDict(requestTokens, requiredParametersAndAcceptableValues);
+
+  cy.replacePlaceholder(requestTokens.authToken).then((token) => {
+    cy.replacePlaceholder(requestTokens.contextualEntity).then((contextualEntity) => {
+      cy.getServicesStatuses(token, contextualEntity).then((response)=>{
+        if (isApplicationEnabled(response, 'ServiceNow')) {
+          cy.contains('h2', 'Slate')
             .parent('div.MuiCardContent-root')
             .next()
             .contains('span', 'Disable')

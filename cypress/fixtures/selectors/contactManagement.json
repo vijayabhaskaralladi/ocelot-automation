@@ -20,7 +20,7 @@
       "nameInput": "#name",
       "tagsInput": "div>input[placeholder*='Add tags...']",
       "createContactListButton": { "selector": "span", "text": "Create Contact List" },
-      "finishButton": { "selector": "span", "text": "Finish" },
+      "finishButton": { "selector": "button>span", "text": "Finish" },
       "cloneNameInput": "input[aria-invalid]",
       "viewFirstRow": {"selector": "[role='group']>button:nth-child(1)", "index": 0},
       "edit_contact" : "[title='Edit Contact']",
