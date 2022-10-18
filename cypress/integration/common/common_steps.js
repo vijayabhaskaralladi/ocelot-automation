@@ -249,6 +249,14 @@ And('Verify that {string} length is greater than {string}', (key, length) => {
   });
 });
 
+And('Verify that {string} contains {string}', (key, substring) => {
+  cy.replacePlaceholder(substring).then((keyword) => {
+    cy.get(`@${key}`).then((text) => {
+      expect(text).to.contain(keyword);
+    });
+  });
+});
+
 And('Click on last element {string}', (selector) => {
   cy.getElement(selector).last().click({ force: true });
   cy.getElement(selector).last().click({ force: true });

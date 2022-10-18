@@ -15,3 +15,12 @@ And('Extract link from email with subject {string} and save as {string}', (subje
     cy.wrap(link).as(alias);
   });
 });
+
+And('Get last email with subject {string} and save it as {string}', (subject, alias) => {
+  cy.mailosaurGetMessage(SERVER_ID, {
+    subject: subject
+  }).then((email) => {
+    const text = email.text.body === '' ? email.html.body : email.text.body;
+    cy.wrap(text).as(alias);
+  });
+});
