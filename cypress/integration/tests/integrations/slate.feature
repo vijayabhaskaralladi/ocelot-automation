@@ -1,6 +1,6 @@
 Feature: Integrations - Slate
 
-  Scenario: Creating Contact Lists from slate
+  Background:
     Given Login as "defaultUser"
     And Open chatbot "centennialUniversity"
     And Create random number and save it as "randomNumber"
@@ -9,7 +9,9 @@ Feature: Integrations - Slate
     And Wait for "liveChatRequest" network call
     And Retrieve "request.headers.authorization" from "liveChatRequest" and save as "token"
     And Retrieve "request.headers.x-contextual-entity" from "liveChatRequest" and save as "contextualEntity"
-    And Enable Slate
+
+  Scenario: Creating Contact Lists from slate
+    When Enable Slate
       | authToken        | ${token}                                         |
       | contextualEntity | ${contextualEntity}                              |
       | baseSlateQuery   | https://oce.test.technolutions.net/manage/query/ |
@@ -40,3 +42,18 @@ Feature: Integrations - Slate
     And Tag "p" with text "Burke" should "exist"
     And Tag "p" with text "paul.burke@ocelotbot.com" should "exist"
     And Tag "p" with text "+18585396564" should "exist"
+
+  Scenario: Turn off slate integration
+    When Disable Slate
+      | authToken        | ${token}                  |
+      | contextualEntity | ${contextualEntity}       |
+    Then Open "Contact Management->Contact Lists" menu item
+    And Verify that page title is "Contact Lists"
+    And Click on "contactManagement.contactLists.addContactListButton"
+    And Tag "span" with text "slate query" should "not.exist"
+    And Click on "contactManagement.contactLists.closeScreen"
+
+    And Click on "contactManagement.contactLists.actionsDropdownFirstRow"
+    And Click on tag "li[role='menuitem']" which contains text "Bulk add"
+    And Tag "span" with text "slate query" should "not.exist"
+    And Click on "contactManagement.contactLists.closeScreen"

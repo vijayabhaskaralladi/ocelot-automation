@@ -113,7 +113,6 @@ And('Tag {string} with text {string} should {string}', (tag, text, expectedStatu
     } else {
       cy.contains(tag, textWithReplacedPlaceholder, { timeout: TIMEOUT }).should(expectedStatus);
     }
-
   });
 });
 

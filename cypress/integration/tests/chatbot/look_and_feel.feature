@@ -27,4 +27,3 @@ Feature: Look & Feel
     Then Tag "#notistack-snackbar" with text "Updated" should "exist"
     And API: Select "chatbotForAutomation" chatbot
     And API: Check that chatbot welcome message is "<p>Welcome message: #${id}. Chatbot name: automation chatbot</p>"
-

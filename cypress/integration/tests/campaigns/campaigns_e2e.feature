@@ -29,6 +29,7 @@ Feature: Campaigns
       | automaticArchive | 1 day                    |
       | campaignType     | Bot                      |
     Then Verify that "${firstContact}" number "received" "Hi. Build ${id}" message
+    And Wait "4000"
     When Send SMS "${randomYesResponse}" to "${PROVISION_NUMBER}" from "${firstContact}"
     Then Verify that "${firstContact}" number "received" "Yep ${id}" message
 
@@ -68,7 +69,7 @@ Feature: Campaigns
       | campaignType        | Bot                      |
       | escalateYesResponse | <escalate_yes_response>  |
     Then Verify that "${firstContact}" number "received" "Hi. Build ${id}" message
-
+    And Wait "4000"
     When Send SMS "${randomYesResponse}" to "${PROVISION_NUMBER}" from "${firstContact}"
     Then Verify that "${firstContact}" number "received" "Yep ${id}" message
     And Tag "p" with text "Needs Attention" should "<is_needs_attention_displayed>"
@@ -104,7 +105,7 @@ Feature: Campaigns
       | escalateNoResponse | <escalate_no_response>   |
 
     Then Verify that "${firstContact}" number "received" "Hi. Build ${id}" message
-
+    And Wait "4000"
     When Send SMS "${randomNoResponse}" to "${PROVISION_NUMBER}" from "${firstContact}"
     Then Verify that "${firstContact}" number "received" "Nope ${id}" message
     And Tag "p" with text "Needs Attention" should "<is_needs_attention_displayed>"
@@ -149,6 +150,7 @@ Feature: Campaigns
     Then Verify that "${firstContact}" number "received" "Hi. Build ${id}" message
     And Verify that "${secondContact}" number "received" "Hi. Build ${id}" message
     And Verify that "${optedOutContact}" number "not.received" "Hi. Build ${id}" message
+    And Wait "4000"
 
     When Send SMS "Other response ${id}" to "${PROVISION_NUMBER}" from "${firstContact}"
     And Tag "p" with text "Needs Attention" should "exist"
@@ -243,6 +245,7 @@ Feature: Campaigns
       | automaticArchive   | 1 day                       |
       | escalateNoResponse | no                          |
     Then Verify that "${firstContact}" number "received" "Hi. Build ${id}" message
+    And Wait "4000"
     When Send SMS "${randomNoResponse}" to "${PROVISION_NUMBER_OFFICE2}" from "${firstContact}"
     And Open chatbot "chatbotForAutomation"
     When Open "Texting->Campaign Analytics" menu item
