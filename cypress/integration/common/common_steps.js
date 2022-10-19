@@ -215,6 +215,7 @@ And('Add {string} to the current URL', (urlSuffix) => {
 });
 
 And('Open chatbot {string}', (chatbotName) => {
+  cy.task('log', `Opening ${chatbotName} chatbot`);
   cy.openChatbot(chatbotName);
 });
 
