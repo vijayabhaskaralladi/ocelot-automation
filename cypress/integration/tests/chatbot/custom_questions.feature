@@ -89,5 +89,4 @@ Feature: Permissions - custom questions
     And Tag "div" with text "Last Modified:" should "exist"
     And Save current date as "date" using "mm/dd/yyyy" format
     And Tag "div" with text "${date}" should "exist"
-    #ToDo: Replace 'New'->'Updated'
-    And Tag "span.MuiChip-label" with text "new" should "exist"
+    And Tag "span.MuiChip-label" with text "updated" should "exist"
