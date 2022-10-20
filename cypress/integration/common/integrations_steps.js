@@ -39,8 +39,7 @@ And('Enable Service Now', (datatable) => {
     const baseUrlInput = 'input[name="baseUri"]';
     cy.get(baseUrlInput).clear().type(serviceNowData.baseUrl);
     cy.contains('span','Save').click();
-    cy.contains('#notistack-snackbar', 'The configuration has been saved successfully!')
-      .should('exist');
+    cy.checkNotificationMessage('The configuration has been saved successfully!');
   });
 });
 
@@ -88,8 +87,7 @@ And('Enable Slate', (datatable) => {
           //ToDo: this step doesn't fill Slate URLs,will be implemented later
           cy.contains(slateData).should('exist');
           cy.contains('span', 'Save').click();
-          cy.contains('#notistack-snackbar', 'The configuration has been saved successfully!')
-            .should('exist');
+          cy.checkNotificationMessage('The configuration has been saved successfully!');
         }
       });
     });

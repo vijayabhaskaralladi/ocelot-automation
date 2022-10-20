@@ -46,7 +46,7 @@ And('Create provision number', (datatable) => {
   cy.get('#inboxSubscriptions').click();
   cy.contains('span.MuiListItemText-primary', provisionNumberData.inbox).click();
   cy.contains('button>span', 'Save').click();
-  cy.contains('#notistack-snackbar', 'Saved Successfully!').should('exist');
+  cy.checkNotificationMessage('Saved Successfully!');
 });
 
 And('Delete provision number {string}', (provisionNumber) => {

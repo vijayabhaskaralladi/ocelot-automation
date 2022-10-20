@@ -359,3 +359,7 @@ And('Scroll to {string} element',(selector)=>{
     cy.getElement(selector).scrollIntoView();
   }
 });
+
+And('Check that notification message {string} appeared',(expectedMessage)=>{
+  cy.checkNotificationMessage(expectedMessage);
+});

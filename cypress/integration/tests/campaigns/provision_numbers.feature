@@ -93,7 +93,8 @@ Feature: Campaigns - provision numbers
       | inbox                 | CampaignsAdmin Automation                                |
 
     When Send SMS "Hey Agent ${id}" to "${provisionNumber}" from "${studentNumber}"
-    Then Tag "#notistack-snackbar" with text "Inbox needs attention" should "exist"
+    Then Check that notification message "Inbox needs attention" appeared
+
 
     When Click on tag "span.MuiButton-label" which contains text "View"
     And Intercept "${GRAPHQL_URL}graphql" with "inboxFilterConversations" keyword in the response as "searchRequest"

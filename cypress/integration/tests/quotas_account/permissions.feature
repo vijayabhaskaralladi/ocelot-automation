@@ -71,5 +71,5 @@ Feature: Permission Manager
     And Set switch "quotasAccount.permissions.viewMyoffice1Switch" to "${Offices1Switch}"
     And Click on tag "span" which contains text "Save"
 
-    Then Tag "#notistack-snackbar" with text "Permissions saved successfully" should "exist"
+    Then Check that notification message "Permissions saved successfully" appeared
 
