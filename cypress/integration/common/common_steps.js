@@ -95,7 +95,11 @@ And('Click on {string}', (selector) => {
 And('Click on tag {string} which contains text {string}', (tag, text) => {
   cy.replacePlaceholder(text).then((keyword) => {
     cy.task('log', `Click on: ${keyword}`);
-    cy.contains(tag, keyword).click({ force: true });
+    if (keyword.includes('^')) {
+      cy.contains(tag,  new RegExp(`${keyword}`, 'g')).click({ force: true });
+    } else {
+      cy.contains(tag, keyword).click({ force: true });
+    }
   });
 });
 
@@ -113,7 +117,6 @@ And('Tag {string} with text {string} should {string}', (tag, text, expectedStatu
     } else {
       cy.contains(tag, textWithReplacedPlaceholder, { timeout: TIMEOUT }).should(expectedStatus);
     }
-
   });
 });
 
@@ -216,6 +219,7 @@ And('Add {string} to the current URL', (urlSuffix) => {
 });
 
 And('Open chatbot {string}', (chatbotName) => {
+  cy.task('log', `Opening ${chatbotName} chatbot`);
   cy.openChatbot(chatbotName);
 });
 

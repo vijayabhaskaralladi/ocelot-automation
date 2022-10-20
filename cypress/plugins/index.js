@@ -17,7 +17,7 @@ module.exports = (on) => {
       // using cy.task('log', 'My Log Message') will keep this message in console logs
       // cy.task() - runs inside node process, console.log will print to the terminal
       // cy.command() - runs in the browser window, console.log will print log to the browser console
-      console.log(`[TEST]: ${msg}`);
+      console.log(`[${new Date().toLocaleTimeString()}]: ${msg}`);
       return null;
     },
     sendSms(data) {

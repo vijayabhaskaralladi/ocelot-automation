@@ -1,9 +1,6 @@
-name: Client Admin Tests
+name: Campaigns
 
 on:
-  #schedule:
-    # Runs on Tue,Fri
-    #- cron: '0 0 * * 2,5'
   workflow_dispatch:
     inputs:
       environmentName:
@@ -15,12 +12,12 @@ on:
         - com
 
 jobs:
-  client-admin-tests:
+  campaigns-tests:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        containers: [ 1, 2 ]
+        containers: [ 1 ]
     steps:
       - name: Setting env variables 'com' environment
         if: ${{ github.event.inputs.environmentName == 'com' || github.event_name == 'schedule' }}
@@ -63,18 +60,12 @@ jobs:
         run: npm ci
       - name: Cypress run
         uses: cypress-io/github-action@v2
-        timeout-minutes: 60
+        timeout-minutes: 40
         with:
-          parallel: true
+          parallel: false
           working-directory: ./
           spec: |
-            ./cypress/integration/tests/chatbot/*.feature
-            ./cypress/integration/tests/chatbot_client/*.feature
-            ./cypress/integration/tests/contact_management/*.feature
-            ./cypress/integration/tests/integrations/*.feature
-            ./cypress/integration/tests/live_chat/*.feature
-            ./cypress/integration/tests/notifications/*.feature
-            ./cypress/integration/tests/quotas_account/*.feature
+            ./cypress/integration/tests/campaigns/*.feature
           browser: chrome
           headless: true
           record: true

@@ -107,7 +107,7 @@ And('Disable Slate', (datatable) => {
   cy.replacePlaceholder(requestTokens.authToken).then((token) => {
     cy.replacePlaceholder(requestTokens.contextualEntity).then((contextualEntity) => {
       cy.getServicesStatuses(token, contextualEntity).then((response)=>{
-        if (isApplicationEnabled(response, 'ServiceNow')) {
+        if (isApplicationEnabled(response, 'Slate')) {
           cy.contains('h2', 'Slate')
             .parent('div.MuiCardContent-root')
             .next()

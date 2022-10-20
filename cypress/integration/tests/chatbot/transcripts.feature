@@ -28,7 +28,7 @@ Feature: Permissions - chatbot transcripts
     When Click on "chatbot.transcripts.filter"
     And Wait for element "chatbot.transcripts.labelInquiryFormStatus"
     And Click on "chatbot.transcripts.inquiryFormStatus"
-    And Click on tag "li" which contains text "${isInquiryForm}"
+    And Click on tag "li" which contains text "^${isInquiryForm}$"
     Then Wait for "markConversationNetworkCall" and save it as "markConversationResponse"
     And Verify that response "markConversationResponse" has status code "200"
 

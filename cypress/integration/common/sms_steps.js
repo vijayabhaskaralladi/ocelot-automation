@@ -7,6 +7,7 @@ And('Send SMS {string} to {string} from {string}', (msg, to, from) => {
         const toNumber = toWithReplacedPlaceholder.replace(/\D/g, '');
         const fromNumber = fromWithReplacedPlaceholder.replace(/\D/g, '');
         cy.log(`Sending <${message}> to <${toNumber}> from <${fromNumber}>`);
+        cy.task('log', `Sending <${message}> to <${toNumber}> from <${fromNumber}>`);
         const dataObj = {message, toNumber, fromNumber};
         cy.task('sendSms', dataObj);
       });

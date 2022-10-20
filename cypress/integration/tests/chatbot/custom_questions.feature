@@ -85,5 +85,8 @@ Feature: Permissions - custom questions
     And Type "Updated response ${id}" in "chatbot.knowledgebase.customQuestions.editResponseField"
     And Click on tag "button" which contains text "Save"
     Then Tag "#notistack-snackbar" with text "Your question has been successfully published and will soon become part of the bot's knowledgebase!" should "exist"
-    And Tag "div[role='region']>div.MuiAccordionDetails-root" with text "Updated response ${id}" should "exist"
-    And Tag "span.MuiChip-label" with text "new" should "exist"
+    And Tag "p" with text "Updated response ${id}" should "exist"
+    And Tag "div" with text "Last Modified:" should "exist"
+    And Save current date as "date" using "mm/dd/yyyy" format
+    And Tag "div" with text "${date}" should "exist"
+    And Tag "span.MuiChip-label" with text "updated" should "exist"

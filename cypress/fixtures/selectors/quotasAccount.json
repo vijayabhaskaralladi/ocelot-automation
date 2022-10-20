@@ -10,7 +10,7 @@
     },
     "permissions": {
       "searchInput": "input[aria-label='Search']",
-      "userRows": "ul>.MuiListItem-button",
+      "userRows": "div.MuiListItem-root.MuiListItem-button",
       "liveChatTab": { "selector": "span", "text": "Live Chat" },
       "textingTab": { "selector": "span", "text": "Texting" },
       "roleValue": "#rolesField",

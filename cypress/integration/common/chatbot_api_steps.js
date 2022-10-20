@@ -84,8 +84,8 @@ And('API: Check that chatbot welcome message is {string}', (expectedWelcomeMessa
     cy.wrap(chatbotConfigUrl).as('chatbotConfigUrl');
   });
 
-  const DELAY = 500;
-  const RETRIES = 10;
+  const DELAY = 5000;
+  const RETRIES = 5;
 
   const iterator = Array.from(Array(RETRIES));
   cy.wrap(false).as('isWelcomeMessageCorrect');

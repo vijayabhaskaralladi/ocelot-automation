@@ -48,7 +48,10 @@
       "EditEmail": { "selector": "input[type='email']", "index": 0 },
       "UpdateButton": { "selector": "button[type='submit']", "index": 1 },
       "ContactManagementTag": {"selector": "span", "text": "contact management"},
-      "singleElement": {"selector": "div p", "text": "1-1 of 1"}
+      "singleElement": {"selector": "div p", "text": "1-1 of 1"},
+      "addNewContact": "[aria-label='Add new contact']",
+      "bulkAddContacts": "[title='Bulk add contacts']",
+      "closeScreen": "[aria-label='close']"
     },
     "optOuts" : {
       "searchInput": "input[type='search']",

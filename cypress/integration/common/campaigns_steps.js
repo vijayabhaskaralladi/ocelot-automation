@@ -55,6 +55,7 @@ And('Create campaign', (datatable) => {
     office: 'any'
   };
   validateInputParamsAccordingToDict(campaignData, requiredParametersAndAcceptableValues);
+  cy.task('log', `Creating campaign ${campaignData.campaignName}`);
 
   cy.openCreateCampaignModal();
   cy.wrap(campaignData).then((data) => {
