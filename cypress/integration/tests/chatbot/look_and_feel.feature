@@ -24,6 +24,6 @@ Feature: Look & Feel
     And Type "Welcome message: #${id}. Chatbot name: !me" in "chatbot.lookAndFeel.welcomeMessageInput"
     And Click on tag "span" which contains text "Save"
 
-    Then Tag "#notistack-snackbar" with text "Updated" should "exist"
+    Then Check that notification message "Updated" appeared
     And API: Select "chatbotForAutomation" chatbot
     And API: Check that chatbot welcome message is "<p>Welcome message: #${id}. Chatbot name: automation chatbot</p>"

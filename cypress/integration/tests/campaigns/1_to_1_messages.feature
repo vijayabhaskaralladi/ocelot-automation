@@ -30,5 +30,5 @@ Feature: 1:1 messages
       | message | Hey! Test ${id}     |
       | to      | ${optedOutNumber}   |
       | from    | ${PROVISION_NUMBER} |
-    Then Tag "#notistack-snackbar" with text "Failed to send. Phone number opted out." should "exist"
+    Then Check that notification message "Failed to send. Phone number opted out." appeared
     And Verify that "${optedOutNumber}" number "not.received" "Hey! Test ${id}" message

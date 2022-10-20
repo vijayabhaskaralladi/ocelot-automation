@@ -61,9 +61,21 @@ Feature: Permissions - chatbot variables
       | linkText      | New variable modal HomePage                               |
       | linkURL       | https://ocelot.com                                        |
       | dropDownValue | Texting                                                   |
-    Then Tag "#notistack-snackbar" with text "Variable saved!" should "exist"
+    Then Check that notification message "Variable saved!" appeared
 
     When Click on "chatbot.variables.customTab"
     And Click on "chatbot.variables.expandList"
     And Delete variable by name "automationVariable${id}"
     Then Tag "#notistack-snackbar" with text "Variable deleted!" should "exist"
+
+  Scenario: Editing variables
+    Given Login as "defaultUser"
+    And Create random number and save it as "id"
+    And Open chatbot "chatbotForAutomation"
+    And Open "Chatbot->Variables" menu item
+    And Click on "chatbot.variables.customTab"
+    And Click on "chatbot.variables.expandList"
+
+    When Set value "NewValue ${id}" to variable "variable_for_editing"
+    Then Check that notification message "Variable saved!" appeared
+    And Tag "td>div" with text "NewValue ${id}" should "exist"

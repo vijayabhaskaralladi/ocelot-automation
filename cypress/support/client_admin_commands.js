@@ -90,3 +90,7 @@ Cypress.Commands.add('openChatbot', (chatbotName) => {
     cy.visit(`/${chatbots[chatbotName].url}`);
   });
 });
+
+Cypress.Commands.add('checkNotificationMessage', (expectedMessage) => {
+  cy.contains('#notistack-snackbar', expectedMessage).should('exist');
+});

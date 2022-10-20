@@ -1,6 +1,8 @@
 import {And} from 'cypress-cucumber-preprocessor/steps';
 import {convertDataTableIntoDict, validateInputParamsAccordingToDict} from '../../support/utils';
 
+const variableNamesColumnSelector = 'tbody.MuiTableBody-root>tr>td:nth-child(1)>p';
+
 And('Create chatbot variable', (datatable) => {
   const variableData = convertDataTableIntoDict(datatable);
   const requiredParametersAndAcceptableValues = {
@@ -76,13 +78,29 @@ And('Create chatbot variable', (datatable) => {
 
 And('Delete variable by name {string}', (variableName) => {
   cy.replacePlaceholder(variableName).then((varName) => {
-    const variableNamesColumnSelector = 'tbody.MuiTableBody-root>tr>td:nth-child(1)>p';
     cy.get(variableNamesColumnSelector).each((element, index) => {
       if (element.text() === varName) {
         const deleteButtonSelector = 'td>button:nth-child(2)';
         cy.get(deleteButtonSelector).eq(index).click({force: true});
         cy.getElement('chatbot.variables.confirmVariableDeleteButton').click({force: true});
       }
+    });
+  });
+});
+
+And('Set value {string} to variable {string}', (newValue, variableName) => {
+  // this step can edit only text variables, new types will be added later
+  cy.replacePlaceholder(variableName).then((varName) => {
+    cy.replacePlaceholder(newValue).then((newVal) => {
+      cy.get(variableNamesColumnSelector).each((element, index) => {
+        if (element.text() === varName) {
+          const editButtonSelector = 'td>button:nth-child(1)';
+          const variableValueSelector = 'input[name="value"]';
+          cy.get(editButtonSelector).eq(index).click({force: true});
+          cy.get(variableValueSelector).clear().type(newVal);
+          cy.contains('span', 'Save').click();
+        }
+      });
     });
   });
 });

@@ -144,7 +144,7 @@ And('Create campaign', (datatable) => {
   });
   cy.contains('span', 'Launch').click();
   cy.contains('span', 'Confirm').click();
-  cy.contains('#notistack-snackbar', 'Campaign launched').should('exist');
+  cy.checkNotificationMessage('Campaign launched');
 });
 
 And('Archive campaign {string}', (campaignName) => {
