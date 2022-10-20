@@ -27,7 +27,6 @@ Feature: Permissions - contact lists
   Limited user shouldn't see 'Actions' dropdown
     Given Login as "campaignsLimited"
     And Open chatbot "chatbotForAutomation"
-
     When Open "Contact Management->Contact Lists" menu item
     Then Element "contactManagement.contactLists.actionsDropdowns" should "not.exist"
 
@@ -35,7 +34,6 @@ Feature: Permissions - contact lists
   Standard user sees 'Actions' dropdown without 'Delete' action
     Given Login as "campaignsStandard"
     And Open chatbot "chatbotForAutomation"
-
     When Open "Contact Management->Contact Lists" menu item
     And Click on "contactManagement.contactLists.actionsDropdownFirstRow"
     Then Tag "li[role='menuitem']" with text "Delete" should "not.exist"
@@ -47,19 +45,14 @@ Feature: Permissions - contact lists
     And Open chatbot "chatbotForAutomation"
     And Open "Contact Management->Contact Lists" menu item
 
-    #ToDo: create step 'Create contact list from file ...'
     When Click on "contactManagement.contactLists.addContactListButton"
     And Attach file "contact_list.csv" to "contactManagement.contactLists.csvInput" input
     And Click on "contactManagement.contactLists.nextButton"
-
-    And Click on "contactManagement.contactLists.header1Input"
-    And Click on tag "span" which contains text "First Name"
-    And Click on "contactManagement.contactLists.header2Input"
-    And Click on tag "span" which contains text "Last Name"
-    And Click on "contactManagement.contactLists.header3Input"
-    And Click on tag "span" which contains text "Email Address"
-    And Click on "contactManagement.contactLists.header4Input"
-    And Click on tag "span" which contains text "Phone Number"
+    And Configure columns for contact list
+      | header1 | First Name    |
+      | header2 | Last Name     |
+      | header3 | Email Address |
+      | header4 | Phone Number  |
     And Click on "contactManagement.contactLists.nextButton"
 
     And Create random number and save it as "randomNumber"
@@ -108,9 +101,9 @@ Feature: Permissions - contact lists
     When Click on "contactManagement.contactLists.actionsDropdownFirstRow"
     And Click on tag "li[role='menuitem']" which contains text "Delete"
     And Click on tag "span" which contains text "Ok"
-
+    Then Check that notification message "Contact list removed" appeared
     And Type "${campaignName}{enter}" in "contactManagement.contactLists.searchInput"
-    Then Element "td>p" should "not.exist"
+    And Element "td>p" should "not.exist"
 
   Scenario: TMD-23: Limited users can't see Contact Lists/Contact Management
     Given Login using random user from the list
@@ -184,3 +177,24 @@ Feature: Permissions - contact lists
     And Click on "contactManagement.contactLists.update_button"
     And Wait for element "contactManagement.contactLists.success_banner"
     Then Tag "div" with text "Contact updated" should "exist"
+
+  Scenario: Bulk add Contact Lists
+    Given Login using random user from the list
+      | campaignsStandard |
+      | campaignsAdmin    |
+    And Open chatbot "chatbotForAutomation"
+    And Open "Contact Management->Contact Lists" menu item
+
+    When Click on "contactManagement.contactLists.actionsDropdownFirstRow"
+    And Click on tag "li[role='menuitem']" which contains text "Bulk add"
+    And Attach file "contact_list_bulk_add.csv" to "contactManagement.contactLists.csvInput" input
+    And Click on "contactManagement.contactLists.nextButton"
+    And Configure columns for contact list
+      | header1 | First Name    |
+      | header2 | Last Name     |
+      | header3 | Email Address |
+      | header4 | Phone Number  |
+    Then Click on tag "span" which contains text "Import Contacts"
+    And Tag "p" with text "Successfully imported" should "exist"
+    And Tag "p" with text "Argument Validation Error" should "not.exist"
+    And Click on "contactManagement.contactLists.finishButton"
