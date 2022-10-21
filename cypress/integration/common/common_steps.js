@@ -96,9 +96,9 @@ And('Click on tag {string} which contains text {string}', (tag, text) => {
   cy.replacePlaceholder(text).then((keyword) => {
     cy.task('log', `Click on: ${keyword}`);
     if (keyword.includes('^')) {
-      cy.contains(tag,  new RegExp(`${keyword}`, 'g')).click({ force: true });
+      cy.contains(tag,  new RegExp(`${keyword}`, 'g')).click({ force: true, timeout: 20000 });
     } else {
-      cy.contains(tag, keyword).click({ force: true });
+      cy.contains(tag, keyword).click({ force: true, timeout: 20000 });
     }
   });
 });
