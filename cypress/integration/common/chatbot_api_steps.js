@@ -4,6 +4,7 @@ import {convertDataTableIntoDict, validateInputParamsAccordingToDict} from '../.
 
 And('API: Select {string} chatbot', (chatbotName) => {
   cy.fixture(`envs/${ENVIRONMENT_NAME}/chatbots`).then((chatbots) => {
+    cy.task('log', `Active chatbot: ${chatbotName}`);
     cy.wrap(chatbots[chatbotName].id).as('activeChatbotId');
   });
 });
@@ -27,7 +28,9 @@ And('API: Send message', (datatable) => {
   cy.get(`@${messageRequestData.conversationIdAlias}`).then((conversationId) => {
     cy.get('@activeChatbotId').then((chatbotId) => {
       cy.replacePlaceholder(messageRequestData.message).then((msg) => {
+        cy.task('log', `Sending message: ${msg}`);
         cy.sendMessage(msg, conversationId, chatbotId).then((response) => {
+          cy.task('log', `Chatbot response: ${JSON.stringify(response.body.output.text)}`);
           if ('saveResponseAs' in messageRequestData) {
             cy.wrap(response).as(messageRequestData.saveResponseAs);
           }
