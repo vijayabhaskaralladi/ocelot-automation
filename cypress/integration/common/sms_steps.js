@@ -25,7 +25,7 @@ And('Verify that {string} number {string} {string} message', (phoneNum, expected
     cy.replacePlaceholder(expectedMsg).then((message) => {
       const dataObj = {message, number: numberParsed};
       const length = expectedStatus.toLowerCase() === 'received' ? 1 : 0;
-      cy.task('log', `Verify that ${numberParsed} ${expectedStatus} ${message}`);
+      cy.task('log', `Verify that <${numberParsed}> ${expectedStatus} <${message}>`);
       cy.task('verifyThatNumberReceivedSms', dataObj).should('have.length', length);
     });
   });
