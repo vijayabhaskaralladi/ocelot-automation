@@ -76,7 +76,7 @@ Feature: Permissions - opt-outs
     And Verify that page title is "Contact Lists"
     And Type "qwert" in "contactManagement.contactLists.searchInput"
     And Wait for element "contactManagement.contactLists.singleElement"
-    And Click on "contactManagement.contactLi`sts.viewFirstRow"
+    And Click on "contactManagement.contactLists.viewFirstRow"
     And Wait for element "contactManagement.contactLists.EditContact"
     And Element "contactManagement.optOuts.optOutButton" should "exist"
 

@@ -43,6 +43,7 @@ module.exports = (on) => {
       let inbox = [];
       let isMessageFound = false;
       while (retries >= 0 && !isMessageFound) {
+        console.log(`[${new Date().toLocaleTimeString()}]: Retries left: ${retries}`);
         retries -= 1;
         await sleep(delay);
         const inboxAll = await client.messages.list({
