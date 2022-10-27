@@ -20,6 +20,7 @@ Feature: chatbot - Content Sharing
     And Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
     And Click on tag "span" which contains text "Edit"
     And Set content sharing switch to "enabled"
+    And Verify that element "chatbot.knowledgebase.customQuestions.contactLockBtn" has attribute "value" with value "true"
     And Click on "chatbot.knowledgebase.customQuestions.questionSaveButton"
 
     Then Open chatbot "chatbotForInquiryForm"

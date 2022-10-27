@@ -30,7 +30,6 @@ function convertCheckboxStatusIntoChainer(state) {
 }
 
 Before(() => {
-  cy.wrap(Cypress.platform.includes('win32')).as('isWinSystem');
   cy.wrap(Cypress.env('GRAPHQL_URL')).as('GRAPHQL_URL');
   cy.wrap(Cypress.env('DRUPAL_URL')).as('DRUPAL_URL');
   cy.wrap(Cypress.env('PROVISION_NUMBER')).as('PROVISION_NUMBER');
