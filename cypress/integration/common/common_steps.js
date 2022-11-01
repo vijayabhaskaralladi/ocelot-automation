@@ -323,8 +323,9 @@ And('Save current date as {string} using {string} format', (key, format) => {
   if (!isFormatCorrect) {
     throw Error(`Unsupported date format ${format}`);
   }
+  const denverTimeString = new Date().toLocaleString('en-US', {timeZone: 'America/Denver'});
+  const today = new Date(denverTimeString);
 
-  const today = new Date();
   const twoDigitDay = ('0' + today.getDate()).slice(-2);
   const twoDigitMonth = ('0' + (today.getMonth() + 1)).slice(-2);
   const year = today.getFullYear();
