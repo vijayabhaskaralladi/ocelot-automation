@@ -1,5 +1,49 @@
 Feature: Permissions - contact lists
 
+  Scenario: Uploading big contact list
+  Test uploads big contact list, removes 1 contact from it and then deletes this contact list
+    Given Login as "defaultUser"
+    And Open chatbot "chatbotForAutomation"
+    And Open "Contact Management->Contact Lists" menu item
+    And Create random number and save it as "randomNumber"
+
+    When Click on "contactManagement.contactLists.addContactListButton"
+    And Attach file "ContactList-5K.csv" to "contactManagement.contactLists.csvInput" input
+    And Click on "contactManagement.contactLists.nextButton"
+    And Configure columns for contact list
+      | header1 | First Name    |
+      | header2 | Last Name     |
+      | header3 | Phone Number  |
+      | header4 | Email Address |
+    And Click on "contactManagement.contactLists.nextButton"
+
+    And Type "BigContactList${randomNumber}" in "contactManagement.contactLists.nameInput"
+    And Type "automation{enter}" in "contactManagement.contactLists.tagsInput"
+    And Click on "contactManagement.contactLists.createContactListButton"
+    And Wait for tag with text
+      | tag     | p            |
+      | text    | Successfully |
+      | timeout | 1000000      |
+    Then Tag "p" with text "Argument Validation Error" should "not.exist"
+    And Click on "contactManagement.contactLists.finishButton"
+
+    Then Type "BigContactList${randomNumber}" in "contactManagement.contactLists.searchInput"
+    And Verify that selector "contactManagement.contactLists.tableRows" contains "1" elements
+    And Click on "contactManagement.contactLists.viewFirstContactListButton"
+    And Click on "contactManagement.contactLists.deleteFirstContact"
+    And Click on tag "span" which contains text "Ok"
+    And Check that notification message "Contact removed" appeared
+
+    Then Open "Contact Management->Contact Lists" menu item
+    And Type "BigContactList${randomNumber}{enter}" in "contactManagement.contactLists.searchInput"
+    And Verify that selector "contactManagement.contactLists.tableRows" contains "1" elements
+    And  Click on "contactManagement.contactLists.actionsDropdownFirstRow"
+    And Click on tag "li[role='menuitem']" which contains text "Delete"
+    And Click on tag "span" which contains text "Ok"
+    Then Check that notification message "Contact list removed" appeared
+    And Type "BigContactList${randomNumber}{enter}" in "contactManagement.contactLists.searchInput"
+    And Element "td>p" should "not.exist"
+
   Scenario: Viewing Contact Lists
     Given Login using random user from the list
       | campaignsLimited          |

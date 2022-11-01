@@ -3,7 +3,7 @@ import 'cypress-file-upload';
 import {
   YES_RESPONSES_FOR_CAMPAIGNS,
   NO_RESPONSES_FOR_CAMPAIGNS,
-  ENVIRONMENT_NAME,
+  ENVIRONMENT_NAME, convertDataTableIntoDict, validateInputParamsAccordingToDict,
 } from '../../support/utils';
 
 // ToDo: move this function to something like utils.js
@@ -232,6 +232,21 @@ And('Verify that page contains text {string}', (text) => {
 
 And('Wait for element {string}', (selectorPath) => {
   cy.getElement(selectorPath).should('exist');
+});
+
+And('Wait for tag with text', (datatable) => {
+  //Wait for
+  //|tag    | p        |
+  //|text   | Success  |
+  //|timeout| 10000    |
+  const data = convertDataTableIntoDict(datatable);
+  const requiredParametersAndAcceptableValues = {
+    tag: 'any',
+    text: 'any',
+    timeout: 'any'
+  };
+  validateInputParamsAccordingToDict(data, requiredParametersAndAcceptableValues);
+  cy.contains(data.tag, data.text, { timeout: data.timeout}).should('exist');
 });
 
 And('Attach file {string} to {string} input', (fileName, selectorPath) => {

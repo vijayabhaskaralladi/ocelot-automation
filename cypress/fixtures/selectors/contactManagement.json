@@ -51,7 +51,8 @@
       "singleElement": {"selector": "div p", "text": "1-1 of 1"},
       "addNewContact": "[aria-label='Add new contact']",
       "bulkAddContacts": "[title='Bulk add contacts']",
-      "closeScreen": "[aria-label='close']"
+      "closeScreen": "[aria-label='close']",
+      "deleteFirstContact": {"selector": "[title='Delete Contact']","index":0}
     },
     "optOuts" : {
       "searchInput": "input[type='search']",
