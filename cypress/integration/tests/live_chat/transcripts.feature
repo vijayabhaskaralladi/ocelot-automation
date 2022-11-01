@@ -1,5 +1,8 @@
 Feature: Permissions - Live Chat transcripts
 
+  Background:
+    Given Save "?startDate=2022-02-07&endDate=2022-05-01" as "dateFilter"
+
   Scenario: Exporting Live Chat Transcripts
   Test expects that transcripts contain at least 1 conversation where student name is 'Unknown Student'
     Given Login as "defaultUser"
@@ -16,7 +19,7 @@ Feature: Permissions - Live Chat transcripts
     And Open chatbot "chatbotForAutomation"
     When Open "Live Chat->Transcripts" menu item
     And URL should include "transcripts"
-    And Add '?startDate=2022-02-07' to the current URL
+    And Add "${dateFilter}" to the current URL
     Then Tag "th.MuiTableCell-root" with text "Hi Office 1" should "not.exist"
     And Tag "th.MuiTableCell-root" with text "Hi Office 2" should "not.exist"
 
@@ -25,7 +28,7 @@ Feature: Permissions - Live Chat transcripts
     And Open chatbot "chatbotForAutomation"
     When Open "Live Chat->Transcripts" menu item
     And URL should include "transcripts"
-    And Add '?startDate=2022-02-07' to the current URL
+    And Add "${dateFilter}" to the current URL
     Then Tag "th.MuiTableCell-root" with text "Hi Office 1" should "exist"
     And Tag "th.MuiTableCell-root" with text "Hi Office 2" should "exist"
 
@@ -34,7 +37,7 @@ Feature: Permissions - Live Chat transcripts
     And Open chatbot "chatbotForAutomation"
     When Open "Live Chat->Transcripts" menu item
     And URL should include "transcripts"
-    And Add '?startDate=2022-02-07' to the current URL
+    And Add "${dateFilter}" to the current URL
     Then Tag "th.MuiTableCell-root" with text "Hi Office 1" should "not.exist"
 
   Scenario: TMD-51: Limited user can't view any Transcript
@@ -48,17 +51,17 @@ Feature: Permissions - Live Chat transcripts
     And Open chatbot "chatbotForAutomation"
     And Open "Live Chat->Transcripts" menu item
     And URL should include "transcripts"
-    And Add "?startDate=2021-07-25&readStatus=Read" to the current URL
+    And Add "?readStatus=unread" to the current URL
     And Intercept "${GRAPHQL_URL}graphql" with "setLiveChatTranscriptReadStatus" keyword in the response as "readStatusRequest"
-
-    When Click on "liveChat.transcripts.readStatusButtonFirstRow"
-    And Wait for "readStatusRequest" network call
-    Then Verify that response "readStatusRequest" has status code "200"
-    And Verify that response "readStatusRequest" has field "response.body.data.setLiveChatTranscriptReadStatus.read_status" equal to "-1"
-    And Verify that element "liveChat.transcripts.readStatusButtonFirstRow" has attribute "aria-label" with value "Mark Read"
 
     When Click on "liveChat.transcripts.readStatusButtonFirstRow"
     And Wait for "readStatusRequest" network call
     Then Verify that response "readStatusRequest" has status code "200"
     And Verify that response "readStatusRequest" has field "response.body.data.setLiveChatTranscriptReadStatus.read_status" equal to "1"
     And Verify that element "liveChat.transcripts.readStatusButtonFirstRow" has attribute "aria-label" with value "Mark Unread"
+
+    When Click on "liveChat.transcripts.readStatusButtonFirstRow"
+    And Wait for "readStatusRequest" network call
+    Then Verify that response "readStatusRequest" has status code "200"
+    And Verify that response "readStatusRequest" has field "response.body.data.setLiveChatTranscriptReadStatus.read_status" equal to "-1"
+    And Verify that element "liveChat.transcripts.readStatusButtonFirstRow" has attribute "aria-label" with value "Mark Read"

@@ -213,7 +213,9 @@ And('URL should include {string}', (substring) => {
 
 And('Add {string} to the current URL', (urlSuffix) => {
   cy.url().then((currentUrl) => {
-    cy.visit(currentUrl + urlSuffix);
+    cy.replacePlaceholder(urlSuffix).then((urlSuffixParsed) => {
+      cy.visit(currentUrl + urlSuffixParsed);
+    });
   });
 });
 
