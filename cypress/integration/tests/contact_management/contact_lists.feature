@@ -135,6 +135,27 @@ Feature: Permissions - contact lists
     Then Type "ClonedList${randomNumber}{enter}" in "contactManagement.contactLists.searchInput"
     And Element "td>p" should "exist"
 
+  Scenario: TMD-27: Updating contact list
+  Test requires at least 1 existing contact list
+    Given Login as "campaignsAdmin"
+    When Open "Contact Management->Contact Lists" menu item
+    And Click on "contactManagement.contactLists.actionsDropdownFirstRow"
+    And Click on tag "li" which contains text "Edit"
+    And Verify that element "contactManagement.contactLists.header1Input" has attribute "value" with value "First Name"
+    And Verify that element "contactManagement.contactLists.header2Input" has attribute "value" with value "Last Name"
+    And Type " " in "contactManagement.contactLists.header1Input"
+    And Type " " in "contactManagement.contactLists.header2Input"
+    And Type "Last Name" in "contactManagement.contactLists.header1Input"
+    And Click on tag "span" which contains text "Last Name"
+    And Type "First Name" in "contactManagement.contactLists.header2Input"
+    And Click on tag "span" which contains text "First Name"
+    And Click on tag "span" which contains text "Next"
+    And Click on tag "span" which contains text "Update Contact List"
+    And Tag "p" with text "Successfully updated" should "exist"
+    And Tag "p" with text "Argument Validation Error" should "not.exist"
+    And Click on tag "span" which contains text "Finish"
+
+  @ignore
   Scenario: TMD-22: Verify that user Campaigns Admin can Delete Contact Lists
   This test requires at least 1 contact list
     Given Login as "campaignsAdmin"
@@ -208,19 +229,6 @@ Feature: Permissions - contact lists
       | user_name         |
       | campaignsStandard |
 
-  @need_to_fix
-  Scenario: TMD-27: Updating contact list
-  Test requires at least 1 existing contact list
-    Given Login as "campaignsAdmin"
-    When Open "Contact Management->Contact Lists" menu item
-    And Wait for element "contactManagement.contactLists.searchInput"
-    And Click on "contactManagement.contactLists.viewFirstRow"
-    And Wait for element "contactManagement.contactLists.edit_contact"
-    And Click on "contactManagement.contactLists.edit_contact"
-    And Type "sample_edit@yopmail.com" in "contactManagement.contactLists.email_text_box"
-    And Click on "contactManagement.contactLists.update_button"
-    And Wait for element "contactManagement.contactLists.success_banner"
-    Then Tag "div" with text "Contact updated" should "exist"
 
   Scenario: Bulk add Contact Lists
     Given Login using random user from the list

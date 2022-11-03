@@ -21,7 +21,11 @@
       "draftFilterName": "div[title='Status: Draft']>span",
       "campaginListTable": "table[data-testid='campaignListTable']>tbody>tr",
       "firstContactNumber": { "selector": "td:nth-child(4)", "index": 0 },
-      "exportResults": "button[title=' Export results to CSV']"
+      "exportResults": "button[title=' Export results to CSV']",
+      "firstRowDropdown": { "selector": "div[role='group']>button:nth-child(2)", "index": 0 },
+      "cloneButton": { "selector": "span>li", "text": "Clone" },
+      "campaignNameInputDialog": "input[aria-invalid='true']",
+      "confirmClone": { "selector": ".MuiDialogActions-root>button>span", "text": "Clone" }
     },
     "phoneNumbers": {
       "phoneNumberFromFirstRow": { "selector": "tbody>tr>td>div.MuiBox-root", "index": 0 },
