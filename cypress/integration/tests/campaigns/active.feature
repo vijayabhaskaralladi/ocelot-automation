@@ -1,5 +1,29 @@
 Feature: Permissions - active campaigns
 
+  Scenario: Cloning active campaign
+    Given Login using random user from the list
+      | campaignsStandard |
+      | campaignsAdmin    |
+    And Open chatbot "chatbotForAutomation"
+    And Open "Texting->Active Campaigns" menu item
+    And Create random number and save it as "randomNumber"
+
+    When Click on "texting.activeCampaigns.firstRowDropdown"
+    And Click on "texting.activeCampaigns.cloneButton"
+    And Type "ClonedActiveCampaign${randomNumber}" in "texting.activeCampaigns.campaignNameInputDialog"
+    And Click on "texting.activeCampaigns.confirmClone"
+    And Element "span.MuiSkeleton-pulse" should "not.exist"
+    And Intercept "${GRAPHQL_URL}graphql" with "SearchCampaigns" keyword in the response as "searchRequest"
+    And Type "ClonedActiveCampaign${randomNumber}" in "texting.activeCampaigns.keywordSearch"
+    And Wait for "searchRequest" network call
+    Then Tag "tr>td>p" with text "ClonedActiveCampaign${randomNumber}" should "exist"
+
+    When Click on "texting.activeCampaigns.firstRowDropdown"
+    And Click on "texting.activeCampaigns.cloneButton"
+    And Type "ClonedActiveCampaign${randomNumber}" in "texting.activeCampaigns.campaignNameInputDialog"
+    And Click on "texting.activeCampaigns.confirmClone"
+    Then Tag "p" with text "Campaign title must be unique" should "exist"
+
   Scenario: View Active Campaigns page
     Given Login using random user from the list
       | campaignsLimited          |
@@ -57,4 +81,3 @@ Feature: Permissions - active campaigns
     And Click on "texting.activeCampaigns.exportResults"
     And Verify that download folder contains "contact-list.csv"
     And Verify that file "contact-list.csv" from download folder contains text "${PhoneNumber}"
-
