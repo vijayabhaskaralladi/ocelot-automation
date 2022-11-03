@@ -73,3 +73,20 @@ Feature: Permission Manager
 
     Then Check that notification message "Permissions saved successfully" appeared
 
+  Scenario: TMD-80: Verify that filtering Permission Manager data filters list of users(chatbot/livechat/texting)
+    Given Login as "defaultUser"
+    And Open chatbot "chatbotForAutomation"
+    And Open "Quotas & Account->Permissions" menu item
+    And Choose random value from "Chatbot|Live Chat|Texting" and save it as "Tab"
+    And Choose random value from "Limited|Standard|Administrator" and save it as "role"
+
+    When Click on tag "div[role='tablist']>button>span" which contains text "${Tab}"
+    And Click on "quotasAccount.permissions.filterRecord"
+    And Click on "quotasAccount.permissions.roleFilter"
+    And Intercept "GET: ${DRUPAL_URL}jsonapi/user/user*" as "searchRequest"
+    And Click on tag "li.MuiButtonBase-root" which contains text "${role}"
+    And Wait for "searchRequest" network call
+
+    And Save number of elements with tag "div.MuiTypography-root>div.MuiChip-sizeSmall>span.MuiChip-label" and "${role}" text as "numberOfLabels"
+    And Save number of elements with selector "div.MuiListItemText-multiline>span" as "totalNumberOfUsers"
+    Then Check that difference between "numberOfLabels" and "totalNumberOfUsers" is "0"

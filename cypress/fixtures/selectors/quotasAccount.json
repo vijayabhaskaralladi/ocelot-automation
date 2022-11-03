@@ -18,7 +18,12 @@
       "viewMyoffice1Switch":{"selector": "input[type='checkbox']", "index": 2},
       "office1Checkbox": { "selector": "input[type='checkbox']", "index": 2},
       "office2Checkbox": { "selector": "input[type='checkbox']", "index": 3},
-      "office3Checkbox": { "selector": "input[type='checkbox']", "index": 4}
+      "office3Checkbox": { "selector": "input[type='checkbox']", "index": 4},
+      "filterRecord": "button[aria-label='Filter results']",
+      "roleFilter": { "selector": "div.MuiPopover-paper div[role='button']", "index": 0},
+      "roleLabel": { "selector": "div.MuiFormControl-root label", "text": "Roles" },
+      "userCount": "div.MuiListItemText-multiline>span",
+      "selectedRoleCount": "div.MuiTypography-root>div.MuiChip-sizeSmall>span.MuiChip-label"
     }
   }
 }
