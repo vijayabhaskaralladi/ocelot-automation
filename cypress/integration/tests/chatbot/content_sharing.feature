@@ -27,6 +27,7 @@ Feature: chatbot - Content Sharing
     And Open "Chatbot->Knowledgebase->Custom Questions" menu item
     And Type "${parentCustomQuestion1}" in "chatbot.knowledgebase.customQuestions.search"
     And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" has the following text "${parentCustomQuestion1}"
+    And Verify that selector "chatbot.knowledgebase.customQuestions.shareIcon" contains "1" elements
 
     When Open chatbot "chatbotForAutomation"
     And Open "Chatbot->Knowledgebase->Custom Questions" menu item
@@ -41,3 +42,5 @@ Feature: chatbot - Content Sharing
     And Open "Chatbot->Knowledgebase->Custom Questions" menu item
     And Type "${parentCustomQuestion1}" in "chatbot.knowledgebase.customQuestions.search"
     And Tag "p.MuiTypography-body1" with text "${parentCustomQuestion1}" should "not.exist"
+    And Element "chatbot.knowledgebase.customQuestions.shareIcon" should "not.exist"
+

@@ -72,7 +72,8 @@
         "editResponseField": "div[aria-label='Rich Text Editor, Response']",
         "contactLockBtn": "#contentLock",
         "lockBtn": "p>svg.MuiSvgIcon-root",
-        "saveNotify": "#notistack-snackbar"
+        "saveNotify": "#notistack-snackbar",
+        "shareIcon": "p>svg.MuiSvgIcon-root:not([title*='Content locked'])"
       },
       "questionTemplates": {
         "search": "input[name='keywords']",
