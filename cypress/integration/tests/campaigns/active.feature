@@ -1,5 +1,20 @@
 Feature: Permissions - active campaigns
 
+  Scenario: Update Campaign
+    Given Login using random user from the list
+      | campaignsStandard         |
+      | campaignsAdmin            |
+      | viewOtherOfficesCampaigns |
+    And Open chatbot "chatbotForAutomation"
+    And Add "/campaigns/active?status=Draft" to the current URL
+    And Click on "texting.activeCampaigns.viewFirstRow"
+    And Create random number and save it as "id"
+    And Choose random value from "1 Day|2 Day|3 Day|4 Day" and save it as "automaticArchive"
+    When Update campaign
+      | campaignName     | EditCampaign${id} |
+      | message          | Hi${id}           |
+      | automaticArchive | 1 day             |
+
   Scenario: Cloning active campaign
     Given Login using random user from the list
       | campaignsStandard |

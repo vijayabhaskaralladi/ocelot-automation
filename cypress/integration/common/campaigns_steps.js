@@ -227,3 +227,28 @@ And('Verify that element {string} has phone number', (element) => {
     expect(phoneRegex.test(phoneText)).to.eq(true,`Extracted phone number: ${phoneText}`);
   });
 });
+
+And('Update campaign', (datatable) => {
+  const campaignData = convertDataTableIntoDict(datatable);
+  const requiredParametersAndAcceptableValues = {
+    campaignName: 'any',
+    message: 'any',
+    automaticArchive: ['1 day', '2 day', '3 day', '4 day'],
+  };
+  validateInputParamsAccordingToDict(campaignData, requiredParametersAndAcceptableValues);
+  cy.replacePlaceholder(campaignData.campaignName).then((campaignName) => {
+    cy.getElement('createContent.campaigns.campaignName').clear().type(campaignName);
+  });
+
+  cy.replacePlaceholder(campaignData.message).then((message) => {
+    cy.getElement('createContent.campaigns.responseMessage').clear().type(message);
+  });
+
+  cy.replacePlaceholder(campaignData.automaticArchive).then((automaticArchive) => {
+    cy.get('#autoArchiveScheduleDays').click();
+    cy.contains('li', automaticArchive).click();
+  });
+
+  cy.getElement('createContent.campaigns.saveAsDraft').click();
+  cy.checkNotificationMessage('Campaign draft saved');
+});

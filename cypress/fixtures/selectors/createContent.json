@@ -24,7 +24,10 @@
       "admissionsItem": { "selector": "span", "text": "Main Campus - Admissions" },
       "firstOfficeItem": { "selector": "span", "text": "MyCampus - Office 1" },
       "saveCampaignButton": { "selector": "span", "text": "Save Campaign" },
-      "launchButton": "[title=\"\"] > .MuiButtonBase-root"
+      "launchButton": "[title=\"\"] > .MuiButtonBase-root",
+      "responseMessage": "[aria-label='Rich Text Editor, Message']",
+      "saveAsDraft": { "selector": "span", "text": "Save Draft" },
+      "campaignName": "#campaignTitle"
     }
   }
 }
