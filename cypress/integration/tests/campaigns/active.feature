@@ -66,6 +66,7 @@ Feature: Permissions - active campaigns
     Then Tag "div.MuiBox-root" with text "Needs Attention" should "exist"
 
   Scenario: Verify that user can View General Settings in a campaign
+  This test requires at least 1 campaign in active state
     Given Login using random user from the list
       | campaignsLimited  |
       | campaignsStandard |

@@ -138,6 +138,7 @@ And('Type {string} in {string}', (text, selector) => {
   // if 'text' contains variable: ${}, this function replaces it with its value from global storage
   cy.replacePlaceholder(text).then((textWithReplacedPlaceholder) => {
     cy.getElement(selector).clear().type(textWithReplacedPlaceholder, { force: true });
+    cy.task('log', `Typing: ${textWithReplacedPlaceholder}`);
   });
 });
 
