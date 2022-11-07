@@ -75,7 +75,8 @@
         "contactLockBtn": "#contentLock",
         "lockBtn": "p>svg.MuiSvgIcon-root",
         "saveNotify": "#notistack-snackbar",
-        "shareIcon": "p>svg.MuiSvgIcon-root:not([title*='Content locked'])"
+        "shareIcon": "p>svg.MuiSvgIcon-root:not([title*='Content locked'])",
+        "buttonSort": "[aria-label='Sort results']"
       },
       "questionTemplates": {
         "search": "input[name='keywords']",
