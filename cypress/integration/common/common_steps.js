@@ -138,6 +138,7 @@ And('Type {string} in {string}', (text, selector) => {
   // if 'text' contains variable: ${}, this function replaces it with its value from global storage
   cy.replacePlaceholder(text).then((textWithReplacedPlaceholder) => {
     cy.getElement(selector).clear().type(textWithReplacedPlaceholder, { force: true });
+    cy.task('log', `Typing: ${textWithReplacedPlaceholder}`);
   });
 });
 
@@ -175,6 +176,10 @@ And(
     cy.getElement(selector).should('have.length', parseInt(numberOfElements, 10));
   },
 );
+
+And('Save number of elements with selector {string} as {string}',(selector, alias)=>{
+  cy.get(selector).its('length').as(alias);
+});
 
 And('Verify that element {string} has the following text {string}', (selector, expectedText) => {
   cy.replacePlaceholder(expectedText).then((expectedTextReplaced) => {
@@ -302,8 +307,8 @@ And('Check that difference between {string} and {string} is {string}', (alias1, 
     cy.get(`@${alias2}`).then((num2) => {
       // retrieved values may contain extra text, like '86 %' or '148 questions'
       // this function removes all non-numeric characters before comparing them
-      const num1Parsed = parseInt(num1.replace(/\D/g, ''), 10);
-      const num2Parsed = parseInt(num2.replace(/\D/g, ''), 10);
+      const num1Parsed = Number.isInteger(num1) ? num1 : parseInt(num1.replace(/\D/g, ''), 10);
+      const num2Parsed = Number.isInteger(num2) ? num2 : parseInt(num2.replace(/\D/g, ''), 10);
       const difference = Math.abs(num2Parsed - num1Parsed);
       expect(difference).to.be.equal(parseInt(expectedDif, 10));
     });
@@ -379,4 +384,10 @@ And('Scroll to {string} element',(selector)=>{
 
 And('Check that notification message {string} appeared',(expectedMessage)=>{
   cy.checkNotificationMessage(expectedMessage);
+});
+
+And('Save number of elements with tag {string} and {string} text as {string}',(tag, text, alias)=>{
+  cy.replacePlaceholder(text).then((keyword) => {
+    cy.get(`${tag}:contains(${keyword})`).its('length').as(alias);
+  });
 });

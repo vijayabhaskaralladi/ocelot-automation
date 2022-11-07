@@ -69,7 +69,7 @@
         "lockedContentFilter": {"selector": "input[name='locked']", "getPrevious": true},
         "lockedFilterValue":{"selector": "li","text":"Locked"},
         "lockedFilterName": "div[title='Locked Content: Locked']",
-        "editResponseField": "div[aria-label='Rich Text Editor, Response']",
+        "editResponseField": "div.ck-content.ck-editor__editable",
         "contactLockBtn": "#contentLock",
         "lockBtn": "p>svg.MuiSvgIcon-root",
         "saveNotify": "#notistack-snackbar",
