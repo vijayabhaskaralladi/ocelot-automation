@@ -44,7 +44,9 @@
         "departmentFilter": {"selector":"div.MuiSelect-selectMenu","index": 2},
         "admissionFilter":"li[data-value='244']",
         "filterValue":"span.MuiChip-label",
-        "deleteFilter":"svg.MuiChip-deleteIcon"
+        "deleteFilter":"svg.MuiChip-deleteIcon",
+        "buttonSort":"[aria-label='Sort results']",
+        "firstQuestion": "#main-content>div>div>div:nth-child(2)>div>div>p.MuiTypography-root"
       },
       "customQuestions": {
         "questions": ".MuiButtonBase-root.MuiAccordionSummary-root",
@@ -73,7 +75,8 @@
         "contactLockBtn": "#contentLock",
         "lockBtn": "p>svg.MuiSvgIcon-root",
         "saveNotify": "#notistack-snackbar",
-        "shareIcon": "p>svg.MuiSvgIcon-root:not([title*='Content locked'])"
+        "shareIcon": "p>svg.MuiSvgIcon-root:not([title*='Content locked'])",
+        "buttonSort": "[aria-label='Sort results']"
       },
       "questionTemplates": {
         "search": "input[name='keywords']",

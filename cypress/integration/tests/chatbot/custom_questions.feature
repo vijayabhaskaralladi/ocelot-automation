@@ -1,5 +1,23 @@
 Feature: Permissions - custom questions
 
+  Scenario: Custom questions - ordering
+    Given Login using random user from the list
+      | chatbotLimited          |
+      | chatbotStandard         |
+      | chatbotAdmin            |
+      | viewOtherOfficesChatbot |
+    And Open chatbot "chatbotForAutomation"
+    When Open "Chatbot->Knowledgebase->Custom Questions" menu item
+    Then Verify that page title is "Custom Questions"
+    And Choose random value from "Changed, Oldest to Most Recent|Changed, Recent to Oldest" and save it as "ordering"
+    And Click on "chatbot.knowledgebase.customQuestions.buttonSort"
+    And Intercept "${DRUPAL_URL}jsonapi/chatbot_question/chatbot_question?filter*" as "orderCustomQuestion"
+    And Click on tag "li" which contains text "${ordering}"
+    And Wait for "orderCustomQuestion" and save it as "orderCustomQuestionResponse"
+    Then Verify that response "orderCustomQuestionResponse" has status code "200"
+    And Tag "span" with text "Sort: ${ordering}" should "exist"
+    And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains more than "5" elements
+
   Scenario: Exporting Custom Questions
     Given Login using random user from the list
       | chatbotStandard         |

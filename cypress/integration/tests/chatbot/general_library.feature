@@ -1,5 +1,24 @@
 Feature: Permissions - general library
 
+  Scenario: General Library - sorting
+    Given Login using random user from the list
+      | chatbotLimited          |
+      | chatbotStandard         |
+      | chatbotAdmin            |
+      | viewOtherOfficesChatbot |
+    And Open chatbot "chatbotForAutomation"
+    When Open "Chatbot->Knowledgebase->General Library" menu item
+    Then Verify that page title is "General Library"
+    And Click on "chatbot.knowledgebase.generalLibrary.buttonSort"
+    And Intercept "${DRUPAL_URL}jsonapi/chatbot_question/chatbot_question?filter*" as "sortGeneralLibrary"
+    And Click on tag "li" which contains text "Title, Z-A"
+    And Wait for "sortGeneralLibrary" and save it as "sortGeneralLibraryResponse"
+
+    Then Verify that response "sortGeneralLibraryResponse" has status code "200"
+    And Tag "span" with text "Sort: Title, Z-A" should "exist"
+    And Verify that element "chatbot.knowledgebase.generalLibrary.firstQuestion" has the following text "${lastGeneralQuestion}"
+    And Verify that selector "chatbot.knowledgebase.generalLibrary.questions" contains more than "5" elements
+
   Scenario: Viewing General Library
     Given Login using random user from the list
       | chatbotLimited          |
