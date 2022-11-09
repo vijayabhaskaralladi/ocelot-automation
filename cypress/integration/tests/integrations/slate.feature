@@ -36,7 +36,9 @@ Feature: Integrations - Slate
 
     Then Type "ContactListFromSlate${randomNumber}" in "contactManagement.contactLists.searchInput"
     And Verify that selector "contactManagement.contactLists.tableRows" contains "1" elements
+    And Intercept "${GRAPHQL_URL}graphql" with "getLiveChatWhosOnlineStatistics" keyword in the response as "whosOnlineRequest"
     And Click on tag "span" which contains text "View"
+    And Wait for "whosOnlineRequest" network call
     And Verify that selector "contactManagement.contactLists.tableRows" contains "10" elements
     And Tag "p" with text "Paul" should "exist"
     And Tag "p" with text "Burke" should "exist"
@@ -45,8 +47,8 @@ Feature: Integrations - Slate
 
   Scenario: Turn off slate integration
     When Disable Slate
-      | authToken        | ${token}                  |
-      | contextualEntity | ${contextualEntity}       |
+      | authToken        | ${token}            |
+      | contextualEntity | ${contextualEntity} |
     Then Open "Contact Management->Contact Lists" menu item
     And Verify that page title is "Contact Lists"
     And Click on "contactManagement.contactLists.addContactListButton"
