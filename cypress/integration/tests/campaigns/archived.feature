@@ -32,8 +32,11 @@ Feature: Permissions - archived campaigns
     And Create random number and save it as "randomNumber"
     And Type "ClonedCampaign${randomNumber}" in "texting.archived.campaignNameInputDialog"
     And Click on "texting.archived.confirmClone"
-    Then Open "Active" menu item
+
+    Then Intercept "${GRAPHQL_URL}graphql" with "getLiveChatWhosOnlineStatistics" keyword in the response as "whosOnlineRequest"
+    And Open "Active" menu item
     And Element "span.MuiSkeleton-pulse" should "not.exist"
+    And Tag "span" with text "Draft|Active" should "exist"
     And Intercept "${GRAPHQL_URL}graphql" with "SearchCampaigns" keyword in the response as "searchRequest"
     And Type "ClonedCampaign${randomNumber}" in "texting.activeCampaigns.keywordSearch"
     And Wait for "searchRequest" network call
