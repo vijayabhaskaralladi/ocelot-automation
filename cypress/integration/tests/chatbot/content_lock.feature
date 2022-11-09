@@ -65,8 +65,10 @@ Feature: Content Lock
     And Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
     And Click on tag "span" which contains text "Edit"
     And Set switch "chatbot.knowledgebase.customQuestions.contactLockBtn" to "disabled"
+    And Intercept "GET: ${DRUPAL_URL}jsonapi/taxonomy_term/libraries?filter*" as "pageRefreshRequest"
     And Click on "chatbot.knowledgebase.customQuestions.questionSaveButton"
     Then Verify that page contains element "chatbot.knowledgebase.customQuestions.saveNotify" with text "Your question has been successfully published"
+    And Wait for "pageRefreshRequest" network call
     And Type "${lockedQuestion}" in "chatbot.knowledgebase.customQuestions.search"
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
     And Save current date as "date" using "mm/dd/yyyy" format
