@@ -3,9 +3,11 @@ import {convertDataTableIntoDict, validateInputParamsAccordingToDict} from '../.
 
 const isApplicationEnabled = (serviceStatusesResponse, application) => {
   const integrations = serviceStatusesResponse.body.data.getProvisionedIntegrations;
-  return integrations
+  const isEnabled = integrations
     .filter(item => item.type === application && item.status === 'Enabled')
     .length === 1;
+  cy.task('log', `Application <${application}> is <${isEnabled ? 'enabled' : 'disabled'}>`);
+  return isEnabled;
 };
 
 And('Enable Service Now', (datatable) => {
@@ -21,12 +23,14 @@ And('Enable Service Now', (datatable) => {
     cy.replacePlaceholder(serviceNowData.contextualEntity).then((contextualEntity) => {
       cy.getServicesStatuses(token, contextualEntity).then((response)=>{
         if (isApplicationEnabled(response, 'ServiceNow')) {
+          cy.task('log', 'Configuring ServiceNow');
           cy.contains('h2', 'ServiceNow')
             .parent('div.MuiCardContent-root')
             .next()
             .contains('span', 'Configure')
             .click();
         } else {
+          cy.task('log', 'Enabling ServiceNow');
           cy.contains('h2', 'ServiceNow')
             .parent('div.MuiCardContent-root')
             .next()
@@ -55,6 +59,7 @@ And('Disable Service Now', (datatable) => {
     cy.replacePlaceholder(requestTokens.contextualEntity).then((contextualEntity) => {
       cy.getServicesStatuses(token, contextualEntity).then((response)=>{
         if (isApplicationEnabled(response, 'ServiceNow')) {
+          cy.task('log', 'Disabling ServiceNow');
           cy.contains('h2', 'ServiceNow')
             .parent('div.MuiCardContent-root')
             .next()
@@ -79,13 +84,14 @@ And('Enable Slate', (datatable) => {
     cy.replacePlaceholder(slateData.contextualEntity).then((contextualEntity) => {
       cy.getServicesStatuses(token, contextualEntity).then((response)=>{
         if (!isApplicationEnabled(response, 'Slate')) {
+          cy.task('log', 'Enabling Slate');
           cy.contains('h2', 'Slate')
             .parent('div.MuiCardContent-root')
             .next()
             .contains('span', 'Enable')
             .click();
           //ToDo: this step doesn't fill Slate URLs,will be implemented later
-          cy.contains(slateData).should('exist');
+          cy.get(`input[value*='${slateData.baseSlateQuery}']`).should('exist');
           cy.contains('span', 'Save').click();
           cy.checkNotificationMessage('The configuration has been saved successfully!');
         }
@@ -106,6 +112,7 @@ And('Disable Slate', (datatable) => {
     cy.replacePlaceholder(requestTokens.contextualEntity).then((contextualEntity) => {
       cy.getServicesStatuses(token, contextualEntity).then((response)=>{
         if (isApplicationEnabled(response, 'Slate')) {
+          cy.task('log', 'Disabling Slate');
           cy.contains('h2', 'Slate')
             .parent('div.MuiCardContent-root')
             .next()
