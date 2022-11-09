@@ -65,6 +65,8 @@ Feature: Permissions - active campaigns
     When Open "Inbox" menu item
     Then Tag "div.MuiBox-root" with text "Needs Attention" should "exist"
 
+  # usually we don't have active campaigns
+  @exclude_from_ci
   Scenario: Verify that user can View General Settings in a campaign
   This test requires at least 1 campaign in active state
     Given Login using random user from the list
