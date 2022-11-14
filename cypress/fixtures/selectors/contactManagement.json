@@ -2,7 +2,8 @@
   "contactManagement": {
     "contacts": {
       "downloadContacts": "button[title=' Export results to CSV']",
-      "contactRow": "tbody>tr.MuiTableRow-root"
+      "contactRow": "tbody>tr.MuiTableRow-root",
+      "searchInput": "input[name='keywords']"
     },
     "contactLists": {
       "viewFirstContactListButton": "tr:first-child>td:nth-child(4)>div>button:first-child",
