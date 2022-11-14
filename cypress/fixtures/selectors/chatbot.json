@@ -81,7 +81,13 @@
       "questionTemplates": {
         "search": "input[name='keywords']",
         "viewFirstQuestion": { "selector": "div.MuiAccordionSummary-expandIcon", "index": 0 },
-        "searchQuestionAnswer": "div[role='region']>div.MuiAccordionDetails-root"
+        "searchQuestionAnswer": "div[role='region']>div.MuiAccordionDetails-root",
+        "filterQuestion": "button[aria-label='Filter results']",
+        "deptLabel": {"selector": "label","text":"Department"},
+        "deptFilter": { "selector": "div.MuiPopover-paper div[role='button']", "index": 1},
+        "filteredHeader": "span.MuiChip-label",
+        "questionCount": "div.MuiAccordionSummary-root",
+        "buttonSort":"[aria-label='Sort results']"
       },
       "moderationQueue": {
         "cellsWithQuestion": "th[role='cell']",

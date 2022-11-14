@@ -30,7 +30,10 @@
       "cannedResponseCount": "div p[data-testid='responseTitle']",
       "editButton": { "selector": "span", "text": "Edit" },
       "editTitle": "input[name='title']",
-      "editResponse": "div.ck.ck-editor__main p"
+      "editResponse": "div.ck.ck-editor__main p",
+      "buttonSort":"[aria-label='Sort results']",
+      "firstQuestion": "#main-content > div > div:nth-child(2) >div > div:nth-child(1) > div > div > div > p",
+      "questions": ".MuiButtonBase-root.MuiAccordionSummary-root"
     },
     "transcripts": {
       "readStatusButtonFirstRow": { "selector": "td>button[aria-label*='Mark']", "index": 0 },

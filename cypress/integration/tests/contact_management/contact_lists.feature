@@ -107,18 +107,6 @@ Feature: Permissions - contact lists
     Then Tag "p" with text "Argument Validation Error" should "not.exist"
     And Click on "contactManagement.contactLists.finishButton"
 
-  Scenario: TMD-20: Editing Contact Lists
-    Given Login using random user from the list
-      | campaignsStandard |
-      | campaignsAdmin    |
-    And Open chatbot "chatbotForAutomation"
-    And Open "Contact Management->Contact Lists" menu item
-
-    When Click on "contactManagement.contactLists.actionsDropdownFirstRow"
-    And Click on tag "li[role='menuitem']" which contains text "Edit"
-
-    Then Tag "h6" with text "Update Contact List" should "exist"
-
   Scenario: TMD-21: Cloning Contact Lists
     Given Login using random user from the list
       | campaignsStandard |
@@ -135,7 +123,7 @@ Feature: Permissions - contact lists
     Then Type "ClonedList${randomNumber}{enter}" in "contactManagement.contactLists.searchInput"
     And Element "td>p" should "exist"
 
-  Scenario: TMD-27: Updating contact list
+  Scenario: TMD-27: Updating contact list - changing columns
   Test requires at least 1 existing contact list
     Given Login as "campaignsAdmin"
     When Open "Contact Management->Contact Lists" menu item
@@ -154,6 +142,21 @@ Feature: Permissions - contact lists
     And Tag "p" with text "Successfully updated" should "exist"
     And Tag "p" with text "Argument Validation Error" should "not.exist"
     And Click on tag "span" which contains text "Finish"
+
+  Scenario: Editing contact from contact list
+    Given Login as "campaignsStandard"
+    And Open chatbot "chatbotForAutomation"
+    And Open "Contact Management->Contact Lists" menu item
+    And Wait for element "contactManagement.contactLists.ContactManagementTag"
+    Then Type "qwer" in "contactManagement.contactLists.searchInput"
+    And Wait for element "contactManagement.contactLists.singleElement"
+    And Click on "contactManagement.contactLists.viewFirstRow"
+    And Wait for element "contactManagement.contactLists.EditContact"
+    And Click on "contactManagement.contactLists.EditContact"
+    And Choose random value from "Edward|Alex|John|Bill|Greg" and save it as "firstName"
+    And Type "${firstName}" in "contactManagement.contactLists.EditFirstName"
+    And Click on "contactManagement.contactLists.UpdateButton"
+    And Tag "p" with text "${firstName}" should "exist"
 
   @ignore
   Scenario: TMD-22: Verify that user Campaigns Admin can Delete Contact Lists
@@ -183,52 +186,6 @@ Feature: Permissions - contact lists
     And Open chatbot "chatbotForAutomation"
     And Open "" menu item
     Then Tag "span.MuiButton-label" with text "Contact Management" should "not.exist"
-
-  @need_to_fix
-  Scenario Outline: Verify that <user_name> can change the columns in Contact List
-    Given Login as "<user_name>"
-    And Open chatbot "chatbotForAutomation"
-    When Open "Contact Management->Contact Lists" menu item
-    Then Type "ContactList" in "contactManagement.contactLists.searchInput"
-    And Wait for element "contactManagement.contactLists.tableRows"
-    When Click on "contactManagement.contactLists.actionsDropdownFirstRow"
-    And Click on "contactManagement.contactLists.EditElement"
-    And Wait for element "contactManagement.contactLists.AdvancedModeButton"
-    And Click on "contactManagement.contactLists.AdvancedModeButton"
-    And Type "Adding" in "contactManagement.contactLists.AddElement"
-    And Click on "contactManagement.contactLists.FieldType"
-    And Click on "contactManagement.contactLists.FieldText"
-    And Click on "contactManagement.contactLists.Column2"
-    And Click on "contactManagement.contactLists.NoneSelection"
-    And Click on "contactManagement.contactLists.AddField"
-    And Click on last element "contactManagement.contactLists.LastElement"
-    And Click on "contactManagement.contactLists.AddColumn2"
-    And Click on "contactManagement.contactLists.NextElement"
-    And Click on "contactManagement.contactLists.UpdateContactList"
-    And Click on "contactManagement.contactLists.finishButton"
-    And Click on "contactManagement.contactLists.ViewButton"
-    And Tag "span" with text "Adding" should "exist"
-    Examples:
-      | user_name         |
-      | campaignsStandard |
-
-  Scenario Outline:TMD-85: Verify that <user_name> can change the columns in Contact List
-    Given Login as "<user_name>"
-    And Open chatbot "chatbotForAutomation"
-    When Open "Contact Management->Contact Lists" menu item
-    And Wait for element "contactManagement.contactLists.ContactManagementTag"
-    Then Type "qwer" in "contactManagement.contactLists.searchInput"
-    And Wait for element "contactManagement.contactLists.singleElement"
-    And Click on "contactManagement.contactLists.viewFirstRow"
-    And Wait for element "contactManagement.contactLists.EditContact"
-    And Click on "contactManagement.contactLists.EditContact"
-    And Type "FirstName" in "contactManagement.contactLists.EditFirstName"
-    And Click on "contactManagement.contactLists.UpdateButton"
-    And Tag "p" with text "FirstName" should "exist"
-    Examples:
-      | user_name         |
-      | campaignsStandard |
-
 
   Scenario: Bulk add Contact Lists
     Given Login using random user from the list

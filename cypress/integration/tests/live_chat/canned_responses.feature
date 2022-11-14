@@ -1,5 +1,24 @@
 Feature: Permissions - Canned responses
 
+  Scenario: Canned responses - sorting
+    Given Login using random user from the list
+      | liveChatLimited          |
+      | liveChatStandard         |
+      | liveChatAdmin            |
+      | viewOtherOfficesLiveChat |
+    And Open chatbot "chatbotForAutomation"
+    When Open "Live Chat->Canned Responses" menu item
+    Then Verify that page title is "Canned Responses"
+    And Click on "liveChat.cannedResponses.buttonSort"
+    And Intercept "${DRUPAL_URL}jsonapi/node/canned_response?filter*" as "sortCannedResponses"
+    And Click on tag "li" which contains text "Title, Z-A"
+    And Wait for "sortCannedResponses" and save it as "sortCannedResponsesresponse"
+
+    Then Verify that response "sortCannedResponsesresponse" has status code "200"
+    And Tag "span" with text "Sort: Title, Z-A" should "exist"
+    And Verify that element "liveChat.cannedResponses.firstQuestion" has the following text "${lastCannedResponse}"
+    And Verify that selector "liveChat.cannedResponses.questions" contains more than "5" elements
+
   Scenario: Viewing/creating Canned Responses
     Given Login using random user from the list
       | liveChatLimited  |
