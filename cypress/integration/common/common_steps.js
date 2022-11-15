@@ -199,6 +199,11 @@ And('Wait {string}', (millis) => {
   cy.wait(parseInt(millis, 10));
 });
 
+And('Create random phone number and save it as {string}', (alias) => {
+  const randomNumber = Math.floor((Math.random() * 9000)+2244440000);
+  cy.wrap(randomNumber.toString()).as(alias);
+});
+
 And('Create random number and save it as {string}', (alias) => {
   const randomNumber = Math.floor(Math.random() * 100000);
   cy.wrap(randomNumber.toString()).as(alias);
