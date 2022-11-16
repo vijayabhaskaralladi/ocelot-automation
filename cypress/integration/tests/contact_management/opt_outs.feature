@@ -29,21 +29,25 @@ Feature: Permissions - opt-outs
     And Open "Contact Management->Opt-outs" menu item
 
     When Click on "contactManagement.optOuts.addContactButton"
-    And Create random number and save it as "randomNumber"
-    And Type "myemail_${randomNumber}@domain.com" in "contactManagement.optOuts.emailInput"
-    And Click on "contactManagement.optOuts.saveOptOut"
+    And Create random phone number and save it as "phone"
+    And Click on "contactManagement.optOuts.phoneDropDown"
+    And Click on tag "li" which contains text "PhoneNumber"
+    And Type "${phone}" in "contactManagement.optOuts.phoneInput"
 
-    Then Type "myemail_${randomNumber}@domain.com{enter}" in "contactManagement.optOuts.searchInput"
+    When Intercept "${GRAPHQL_URL}graphql" with "createOptOutEntry" keyword in the response as "searchRequest"
+    And Click on "contactManagement.optOuts.saveOptOut"
+    And Wait for "searchRequest" and save it as "searchResponse"
+    Then Verify that response "searchResponse" has status code "200"
+    Then Type "${phone}" in "contactManagement.optOuts.searchInput"
     And Wait "1000"
-    And Tag "p" with text "myemail_" should "exist"
+    And Tag "p" with text "${phone}" should "exist"
 
     When Click on "contactManagement.optOuts.deleteFirstRowButton"
     And Click on "contactManagement.optOuts.confirmDeleteButton"
     And Wait "1000"
-
-    Then Type "myemail_${randomNumber}@domain.com{enter}" in "contactManagement.optOuts.searchInput"
+    Then Type "${phone}" in "contactManagement.optOuts.searchInput"
     And Wait "1000"
-    And Tag "p" with text "myemail_" should "not.exist"
+    And Tag "p" with text "${phone}" should "not.exist"
 
   Scenario: TMD-86: Opt In an Opted out contact
   Test opt outs contact and then it removes this email and number from Opt-Outs page and

@@ -203,8 +203,8 @@ Feature: Campaigns
 
     Then Verify that "${firstContact}" number "received" "Operator is here ${id}" message
 
-  Scenario: Sending inboxes messages - bot operated
-  Verify Duplicate messages sending to the inboxes
+  Scenario: Sending messages to archived campaign
+  Test creates and ends campaign. Then it sends message to this campaign and checks inbox.
     Given Archive campaign which uses "${PROVISION_NUMBER}" number
     When Create campaign
       | campaignName     | Simple${id}               |
@@ -218,12 +218,21 @@ Feature: Campaigns
       | automaticArchive | 1 day                     |
       | idkType          | Agent                     |
     Then Verify that "${firstContact}" number "received" "Hi. Simple campaign ${id}" message
+    And Send SMS "Hi. Campaign ${id}" to "${PROVISION_NUMBER}" from "${firstContact}"
     And Click on tag "span" which contains text "End campaign"
     Then Click on tag "span" which contains text "Confirm"
     When Send SMS "Hi. inbox ${id}" to "${PROVISION_NUMBER}" from "${firstContact}"
     And Open chatbot "chatbotForAutomation"
     Then Open "Inbox" menu item
     And Tag "ul.MuiList-root" with text "Hi. inbox ${id}" should "exist"
+
+    #testing filter
+    When Click on "inbox.conversationsFilter"
+    And Intercept "${GRAPHQL_URL}graphql" with "inboxFilterConversations" keyword in the response as "filterRequest"
+    And Click on tag "li.MuiListItem-button" which contains text "No Campaigns"
+    Then Wait for "filterRequest" and save it as "filterResponse"
+    And Verify that response "filterResponse" has status code "200"
+    And Tag "ul.MuiList-root" with text "Hi. Campaign ${id}" should "not.exist"
 
   Scenario: Campaigns Analytics
   Verify that Launching a Campaign Changes the count on Campaign Analytics

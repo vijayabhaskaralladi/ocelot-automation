@@ -64,7 +64,9 @@
       "deleteFirstRowButton": { "selector": "td>button", "index": 0 },
       "confirmDeleteButton": { "selector": ".MuiDialogActions-root>button>span.MuiButton-label", "index": 1 },
       "optOutButton": "tbody.MuiTableBody-root tr:nth-child(1) path[d*='M7']",
-      "exportOptsOuts": "button[aria-label=' Export results to CSV']"
+      "exportOptsOuts": "button[aria-label=' Export results to CSV']",
+      "phoneDropDown": { "selector": "div.MuiSelect-inputRoot div.MuiSelect-selectMenu", "index": 1 },
+      "phoneInput": "input.MuiInput-input[type='text']"
     }
   }
 }
