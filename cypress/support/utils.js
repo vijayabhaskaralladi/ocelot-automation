@@ -24,12 +24,12 @@ export const validateInputParamsAccordingToDict = (inputDict, validationDict) =>
   for (let key in validationDict) {
     const acceptableValuesForParameter = validationDict[key];
     if (!Object.prototype.hasOwnProperty.call(inputDict, key)){
-      throw Error(`Input data doesnt contain ${key}`);
+      throw Error(`Input data doesnt contain <${key}>`);
     }
     const inputVal = inputDict[key].toLowerCase();
     if (acceptableValuesForParameter !== 'any'
       && !acceptableValuesForParameter.includes(inputVal)) {
-      throw Error(`Wrong value of ${key}: ${inputVal}`);
+      throw Error(`Wrong value of <${key}>: <${inputVal}>`);
     }
   }
 };
