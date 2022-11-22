@@ -14,7 +14,7 @@ Feature: Permissions - chatbot variables
     Then Tag "p" with text "Me" should "exist"
     And Tag "td>div" with text "automation chatbot" should "exist"
 
-    When Click on tag "span" which contains text "Custom"
+    When Click on tag "button" which contains text "Custom"
     Then Click on tag "p" which contains text "<library_name>"
     And Tag "p" with text "<variable_name>" should "exist"
     And Tag "div" with text "<variable_value>" should "exist"
@@ -37,7 +37,7 @@ Feature: Permissions - chatbot variables
     Then Tag "p" with text "Me" should "exist"
     And Tag "td>div" with text "automation chatbot" should "exist"
 
-    When Click on tag "span" which contains text "Custom"
+    When Click on tag "button" which contains text "Custom"
     Then Click on tag "p" which contains text "Financial Aid"
     And Tag "p" with text "Test Variable (Financial Aid)" should "exist"
     And Tag "div" with text "randomtext_financial_aid" should "exist"

@@ -107,7 +107,7 @@
     "variables": {
       "requiredNumber": { "selector": "div.MuiTypography-caption", "index": 0 },
       "optionalNumber": { "selector": "div.MuiTypography-caption", "index": 1 },
-      "addNewCustomVariableButton": "button[title='Add new custom variable']",
+      "addNewCustomVariableButton": "[aria-label='add a custom variable']",
       "variableName": "input[name='label']",
       "variablePlaceholder": "input[name='name']",
       "variableType": "#dataType",
@@ -117,9 +117,9 @@
       "variableLinkURLValue": "input[placeholder='https://www.ocelotbot.com/']",
       "editAllowedValuesButton": "button[data-testid='editAllowedValuesButton']",
       "dropdownOptionValues": "div[class='MuiInputBase-root MuiInput-root MuiInputBase-formControl MuiInput-formControl'] input[type='text']",
-      "customTab": { "selector": "span.MuiTab-wrapper", "text": "Custom" },
+      "customTab": { "selector": "button.MuiTab-root", "text": "Custom" },
       "expandList": { "selector": "div.MuiButtonBase-root.MuiAccordionSummary-root", "index": 0 },
-      "confirmVariableDeleteButton": ".MuiDialogActions-root>button:nth-child(2)>span.MuiButton-label"
+      "confirmVariableDeleteButton": { "selector": ".MuiDialogActions-root>button", "text": "Delete"}
     },
     "feedback": {
       "netPromoterScoreValue": { "selector": "svg>text", "index": 1 }

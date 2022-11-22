@@ -11,7 +11,7 @@ And('Create chatbot variable', (datatable) => {
     type: ['number', 'text', 'rich text', 'link', 'dropdown', 'email address', 'url']
   };
 
-  cy.openAddNewCustomVariableModal();
+  cy.getElement('chatbot.variables.addNewCustomVariableButton').click();
 
   cy.replacePlaceholder(variableData.variableName).then((variableName) => {
     cy.getElement('chatbot.variables.variableName').type(variableName);
@@ -25,7 +25,7 @@ And('Create chatbot variable', (datatable) => {
     variableData.type = type;
     validateInputParamsAccordingToDict(variableData, requiredParametersAndAcceptableValues);
     cy.getElement('chatbot.variables.variableType').click({ force: true });
-    cy.contains('li.MuiListItem-button', type).click({ force: true });
+    cy.contains('li.MuiMenuItem-root', type).click({ force: true });
 
     // Provide the value for fields based on selected datatype
     switch (type.toLowerCase()) {
@@ -72,7 +72,7 @@ And('Create chatbot variable', (datatable) => {
     }
 
     // Click on Save button
-    cy.contains('span.MuiButton-label','Save').click();
+    cy.contains('button','Save').click();
   });
 });
 
@@ -98,7 +98,7 @@ And('Set value {string} to variable {string}', (newValue, variableName) => {
           const variableValueSelector = 'input[name="value"]';
           cy.get(editButtonSelector).eq(index).click({force: true});
           cy.get(variableValueSelector).clear().type(newVal);
-          cy.contains('span', 'Save').click();
+          cy.contains('button', 'Save').click();
         }
       });
     });
