@@ -14,12 +14,12 @@ And('Set IDK settings', (datatable) => {
   };
   validateInputParamsAccordingToDict(behaviorSettingsData, requiredParametersAndAcceptableValues);
 
-  cy.contains('span', 'Edit').click();
+  cy.contains('button', 'Edit').click();
   cy.wrap(behaviorSettingsData).then((data) => {
-    const behaviorDropDown = 'div.MuiInput-input';
-    const responseInputSelector = 'div[aria-label="Rich Text Editor, Response"]';
+    const behaviorDropDown = 'div.MuiOutlinedInput-input';
+    const responseInputSelector = '[role="textbox"]';
     cy.get(behaviorDropDown).eq(2).click();
-    cy.contains('li.MuiListItem-root', data.behaviorSettings).click();
+    cy.contains('li.MuiMenuItem-root', data.behaviorSettings).click();
     if (data.behaviorSettings === 'Contact Form') {
       const contactEmailInputSelector = 'div>input[type="email"]';
       const phoneCheckboxSelector = 'input[value="phone"]';

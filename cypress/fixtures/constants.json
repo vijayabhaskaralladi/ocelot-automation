@@ -10,7 +10,7 @@
   "bookstoreLibraryGeneralQuestion":"Does the school have a bookstore?",
   "lockedQuestion": "Are you ready to go to school?",
   "IDK_AUTO_RESPONSE": "One moment please",
-  "IDK_QUESTION": "How far away is the delta quadrant?",
+  "IDK_QUESTION": "Where is non-existing city?",
   "searchQuestionTemplate": "Can I buy stamps at the bookstore?",
   "searchQuestionTemplateAnswer": "We do/do not have stamps for sale at the bookstore. [if yes - enter additional information (webpage, contact information, etc) here.] ",
   "lastGeneralQuestion": "With the earlier filing dates now, will most colleges be responding with financial aid offers earlier?",
