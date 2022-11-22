@@ -85,7 +85,7 @@ Feature: Permissions - custom questions
     And Scroll to "chatbot.knowledgebase.customQuestions.removeFilter" element
     And Click on "chatbot.knowledgebase.customQuestions.removeFilter"
     When Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
-    Then Element "div.Mui-expanded>div.MuiCollapse-entered" should "exist"
+    Then Element "div.Mui-expanded div.MuiAccordionDetails-root" should "exist"
 
   Scenario: Editing Custom Question
     Given Login using random user from the list

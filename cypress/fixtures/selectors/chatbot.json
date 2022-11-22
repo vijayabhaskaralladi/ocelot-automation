@@ -33,7 +33,7 @@
     "knowledgebase": {
       "generalLibrary": {
         "questions": ".MuiButtonBase-root.MuiAccordionSummary-root",
-        "viewFirstQuestion": { "selector": "div.MuiAccordionSummary-expandIcon", "index": 0 },
+        "viewFirstQuestion": { "selector": "[data-testid='ExpandMoreIcon']", "index": 0 },
         "search": "input[name='keywords']",
         "answer": {"selector":".MuiAccordionDetails-root p","index": 0},
         "buttonContentShare": {"selector": "div.MuiTypography-root","text":"Shared Content"},
@@ -41,17 +41,17 @@
         "msgSuccess": {"selector": "div[id='notistack-snackbar']","text": "Your question has been successfully published and will soon become part of the bot's knowledgebase!"},
         "contentShare": "svg[title='Shared with other bot(s)']",
         "filterButton":"button[aria-label='Filter results']",
-        "departmentFilter": {"selector":"div.MuiSelect-selectMenu","index": 2},
-        "admissionFilter":"li[data-value='244']",
+        "departmentFilter": "#formcontrol-library",
+        "admissionFilter": { "selector": "li.MuiMenuItem-gutters", "text": "Admissions" },
         "filterValue":"span.MuiChip-label",
         "deleteFilter":"svg.MuiChip-deleteIcon",
-        "buttonSort":"[aria-label='Sort results']",
-        "firstQuestion": "#main-content>div>div>div:nth-child(2)>div>div>p.MuiTypography-root"
+        "buttonSort":"button[aria-label='Sort results']",
+        "firstQuestion": "div:nth-child(2)>div>div>div>p.GeneralQuestion-heading"
       },
       "customQuestions": {
         "questions": ".MuiButtonBase-root.MuiAccordionSummary-root",
         "search": "input[name='keywords']",
-        "viewFirstQuestion": { "selector": "div.MuiAccordionSummary-expandIcon", "index": 0 },
+        "viewFirstQuestion": { "selector": "[data-testid='ExpandMoreIcon']", "index": 0 },
         "exportCustomQuestions": "button[aria-label=' Export results to CSV']",
         "buttonContentShare": {"selector": "div.MuiTypography-root","text":"Shared Content"},
         "buttonSave": {"selector":"span","text":"Save"},
@@ -62,7 +62,7 @@
         "questionSaveButton": ".MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary",
         "questionTable": "div.MuiButtonBase-root.MuiAccordionSummary-root",
         "selectedQuestion": "div:nth-child(2)>div.MuiAccordionSummary-root>div>p",
-        "filterResults": "svg[title='Filter results']",
+        "filterResults": "[data-testid='FilterListIcon']",
         "departmentFilter": {"selector": "input[name='library']", "getPrevious": true},
         "financialAidFilterValue":{"selector": "li","text":"Financial Aid"},
         "customQuestionListTable": "div.MuiAccordion-root",
@@ -76,7 +76,7 @@
         "lockBtn": "p>svg.MuiSvgIcon-root",
         "saveNotify": "#notistack-snackbar",
         "shareIcon": "p>svg.MuiSvgIcon-root:not([title*='Content locked'])",
-        "buttonSort": "[aria-label='Sort results']"
+        "buttonSort": "button[aria-label='Sort results']"
       },
       "questionTemplates": {
         "search": "input[name='keywords']",
@@ -87,7 +87,7 @@
         "deptFilter": { "selector": "div.MuiPopover-paper div[role='button']", "index": 1},
         "filteredHeader": "span.MuiChip-label",
         "questionCount": "div.MuiAccordionSummary-root",
-        "buttonSort":"[aria-label='Sort results']"
+        "buttonSort":"button[aria-label='Sort results']"
       },
       "moderationQueue": {
         "cellsWithQuestion": "th[role='cell']",
@@ -125,8 +125,8 @@
       "netPromoterScoreValue": { "selector": "svg>text", "index": 1 }
     },
     "embedding": {
-      "scriptText": ".language-htmlBars>span>span",
-      "officeDropdown": "#mui-component-select-campusOffice"
+      "scriptText": "code>span>span",
+      "officeDropdown": "#embedding-campus-office"
     },
 
     "spider": {
