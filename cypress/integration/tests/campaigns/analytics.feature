@@ -17,7 +17,7 @@ Feature: Permissions - campaigns analytics
     Then Verify that download folder contains "campaign-analytics.csv"
     And Verify that file "campaign-analytics.csv" from download folder contains text "Campaign Name"
 
-  Scenario: Limited users can't view Campaigns item in the menu
+  Scenario: Limited users can't view Texting item in the menu
     Given Login using random user from the list
       | viewOtherOfficesLiveChat |
       | viewOtherOfficesChatbot  |
@@ -28,5 +28,4 @@ Feature: Permissions - campaigns analytics
       | chatbotStandard          |
       | chatbotAdmin             |
     And Open chatbot "chatbotForAutomation"
-    And Open "" menu item
-    Then Tag "span.MuiButton-label" with text "Campaigns" should "not.exist"
+    Then Tag "button.MuiButton-label" with text "Texting" should "not.exist"

@@ -57,9 +57,9 @@
       "firstRowDropdown": { "selector": "div[role='group']>button:nth-child(2)", "index": 0 },
       "cloneButton": { "selector": "span>li", "text": "Clone" },
       "campaignNameInputDialog": "input[aria-invalid='true']",
-      "confirmClone": { "selector": ".MuiDialogActions-root>button>span", "text": "Clone" },
+      "confirmClone": { "selector": ".MuiDialogActions-root>button", "text": "Clone" },
       "archivedRowCount": "table[aria-label='Campaigns'] tr",
-      "firstViewButton": { "selector": "tr span[class='MuiButton-label']", "index": 0 },
+      "firstViewButton": { "selector": "tr button[class*='MuiButtonBase-root']", "index": 0 },
       "contactsRowCount": { "selector": "table[aria-label='Contacts'] tr", "index": 0 },
       "contactsMessaged": "span[data-testid='Contacts Messaged-counter']",
       "contactsResponded": "span[data-testid='Contacts Responded-counter']"

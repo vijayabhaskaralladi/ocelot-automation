@@ -12,12 +12,12 @@ Feature: Permissions - archived campaigns
     And Verify that selector "texting.archived.archivedRowCount" contains more than "1" elements
 
     When Click on "texting.archived.firstViewButton"
-    Then Click on tag "span" which contains text "General"
+    Then Click on tag "button" which contains text "General"
     And Tag "h2" with text "General Settings" should "exist"
     And Tag "div" with text "Bot|Operator" should "exist"
-    When Click on tag "span" which contains text "Contacts"
+    When Click on tag "button" which contains text "Contacts"
     Then Verify that selector "texting.archived.contactsRowCount" contains "1" elements
-    When Click on tag "span" which contains text "Analytics"
+    When Click on tag "button" which contains text "Analytics"
     And Verify that element "texting.archived.contactsMessaged" contains positive number
     And Verify that element "texting.archived.contactsResponded" contains positive number
 
@@ -35,7 +35,6 @@ Feature: Permissions - archived campaigns
 
     Then Intercept "${GRAPHQL_URL}graphql" with "getLiveChatWhosOnlineStatistics" keyword in the response as "whosOnlineRequest"
     And Open "Active" menu item
-    And Element "span.MuiSkeleton-pulse" should "not.exist"
     And Tag "span" with text "Draft|Active" should "exist"
     And Intercept "${GRAPHQL_URL}graphql" with "SearchCampaigns" keyword in the response as "searchRequest"
     And Type "ClonedCampaign${randomNumber}" in "texting.activeCampaigns.keywordSearch"
