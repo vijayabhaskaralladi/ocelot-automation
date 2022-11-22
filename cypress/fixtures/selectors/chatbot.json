@@ -1,7 +1,7 @@
 {
   "chatbot": {
     "analytics": {
-      "conversationsNumber": "div>div:nth-child(1)>div.MuiTypography-root.MuiTypography-h3",
+      "conversationsNumber": ".ChatbotAnalytics-numbersOnly:nth-child(1)>div.MuiTypography-h3",
       "interactionsNumber": "div>div:nth-child(1)>div.MuiTypography-root.MuiTypography-subtitle1",
       "filter": "button[aria-label='Filter results']",
       "chatbotDropdown": { "selector": "input[name='chatbotId']", "getPrevious": true },
