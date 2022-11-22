@@ -21,11 +21,14 @@ Cypress.Commands.add('openMenuItem', (menuItem) => {
    */
   cy.log(`Opening ${menuItem}`);
   cy.task('log', `Opening ${menuItem}`);
-  cy.get('button[aria-label="Open menu drawer"]').click({ force: true });
+  // ToDo: check isMenuDrawerOpened
+  // cy.get('button[aria-label="Open menu drawer"]').click({ force: true });
+
   cy.wait(500);
   const items = menuItem.split('->');
   items.forEach((item) => {
-    cy.contains('span.MuiButton-label', new RegExp(item, 'g')).click({ force: true });
+    //const regexp = new RegExp(item, 'g')
+    cy.contains('li>.MuiButton-root', item).click({ force: true });
     cy.wait(1000);
   });
 
