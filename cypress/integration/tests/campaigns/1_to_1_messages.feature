@@ -8,10 +8,10 @@ Feature: 1:1 messages
     And Save "(513) 447-6784" as "studentNumber"
 
     When Send 1:1 message
-      | message | Hey! Test ${id}     |
+      | message | Hi! Test ${id}     |
       | to      | ${studentNumber}    |
       | from    | ${PROVISION_NUMBER} |
-    Then Verify that "${studentNumber}" number "received" "Hey! Test ${id}" message
+    Then Verify that "${studentNumber}" number "received" "Hi! Test ${id}" message
 
     When Send SMS "1:1 response ${id}" to "${PROVISION_NUMBER}" from "${studentNumber}"
     # client admin automatically opens Inbox page after receiving message

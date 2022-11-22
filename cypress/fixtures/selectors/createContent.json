@@ -26,7 +26,7 @@
       "saveCampaignButton": { "selector": "span", "text": "Save Campaign" },
       "launchButton": "[title=\"\"] > .MuiButtonBase-root",
       "responseMessage": "[aria-label='Rich Text Editor, Message']",
-      "saveAsDraft": { "selector": "span", "text": "Save Draft" },
+      "saveAsDraft": { "selector": "button", "text": "Save Draft" },
       "campaignName": "#campaignTitle"
     }
   }

@@ -92,7 +92,7 @@ Feature: Permissions - active campaigns
     And Open "Texting->Active Campaigns" menu item
 
     When Click on "texting.activeCampaigns.viewFirstRow"
-    And Click on tag "span" which contains text "Contacts"
+    And Click on tag "button" which contains text "Contacts"
     And Retrieve text from "texting.activeCampaigns.firstContactNumber" and save as "PhoneNumber"
 
     Then Add reload event listener

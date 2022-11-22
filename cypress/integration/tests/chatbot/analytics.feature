@@ -1,6 +1,7 @@
 Feature: Permissions - chatbot analytics
 
   Scenario: TMD-13: Viewing Chatbot Analytics
+  Test verifies that Analytics dashboard updates values after a conversation
     Given Login using random user from the list
       | viewOtherOfficesChatbot |
       | chatbotLimited          |
@@ -8,7 +9,9 @@ Feature: Permissions - chatbot analytics
       | chatbotAdmin            |
     And Open chatbot "chatbotForAutomation"
 
+    When Intercept "${GRAPHQL_URL}graphql" with "getChatbotStats" keyword in the response as "analyticsRequest"
     And Open "Chatbot->Analytics" menu item
+    And Wait for "analyticsRequest" network call
     Then Verify that element "chatbot.analytics.conversationsNumber" contains positive number
     And Verify that element "chatbot.analytics.interactionsNumber" contains positive number
 
@@ -29,6 +32,8 @@ Feature: Permissions - chatbot analytics
 
     And Open chatbot "chatbotForAutomation"
     And Open "Chatbot->Analytics" menu item
+    And Wait for "analyticsRequest" network call
+
     And Retrieve text from "chatbot.analytics.conversationsNumber" and save as "conversationsNumber2"
     And Retrieve text from "chatbot.analytics.interactionsNumber" and save as "interactionsNumber2"
 
@@ -51,7 +56,11 @@ Feature: Permissions - chatbot analytics
     And Retrieve text from "chatbot.analytics.interactionsNumber" and save as "interactionsNumber1"
 
     When API: Select "chatbotForInquiryForm" chatbot
-    And API: Create dialog and save conversation_id as "conversationId"
+    And API: Send first message "Skip questions" and save response as "chatbotResponse"
+    And Retrieve "body.context.conversation_id" from "chatbotResponse" and save as "conversationId"
+    And API: Send message
+      | message             | What is FAFSA? |
+      | conversationIdAlias | conversationId |
 
     And Open chatbot "chatbotForAutomation"
     And Open "Chatbot->Analytics" menu item
@@ -62,7 +71,7 @@ Feature: Permissions - chatbot analytics
     And Retrieve text from "chatbot.analytics.interactionsNumber" and save as "interactionsNumber2"
 
     Then Check that difference between "conversationsNumber2" and "conversationsNumber1" is "1"
-    And Check that difference between "interactionsNumber2" and "interactionsNumber1" is "1"
+    And Check that difference between "interactionsNumber2" and "interactionsNumber1" is "2"
 
   Scenario: Viewing Chatbot Analytics - by office
     Given Login as "defaultUser"
