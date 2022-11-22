@@ -23,10 +23,10 @@ And('Send 1:1 message', (datatable) => {
     cy.get(toInput).type(to);
   });
 
-  const messageInput = 'div[aria-label="Rich Text Editor, Message"]';
+  const messageInput = 'div[aria-label="Rich Text Editor, Message"] > p';
   cy.replacePlaceholder(messageData.message).then((message) => {
     cy.get(messageInput).type(message);
   });
 
-  cy.contains('span', 'Send').click();
+  cy.contains('button', 'Send').click();
 });
