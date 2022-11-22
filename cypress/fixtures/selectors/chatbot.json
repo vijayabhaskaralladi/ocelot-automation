@@ -97,7 +97,7 @@
       "awaitingReview": {
         "searchQuestion": "input[name='keywords']",
         "firstRowAwaitingQuestion": "div[role='button'] p",
-        "viewFirstAwaitingQuestion": { "selector": "div.MuiAccordionSummary-expandIcon", "index": 0 },
+        "viewFirstAwaitingQuestion": { "selector": "div.MuiAccordionSummary-expandIconWrapper", "index": 0 },
         "editAwaitingResponse": "div.ck.ck-editor__main p"
       }
     },

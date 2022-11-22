@@ -11,14 +11,11 @@ Feature: Permissions - awaiting review
     When Open "Chatbot->Knowledgebase->Awaiting Review" menu item
     Then Tag "p" with text "${awaitingReviewQuestion}" should "exist"
 
-  Scenario Outline: Verify that user <user_name> can't view Awaiting Review
-    Given Login as "<user_name>"
+  Scenario: Verify that limited user can't view Awaiting Review
+    Given Login as "chatbotLimited"
     And Open chatbot "chatbotForAutomation"
     When Open "Chatbot->Knowledgebase" menu item
-    Then Tag "span.MuiButton-label" with text "Awaiting Review" should "not.exist"
-    Examples:
-      | user_name               |
-      | chatbotLimited          |
+    Then Tag "li>a" with text "Awaiting Review" should "not.exist"
 
   Scenario: Editing Awaiting Review questions
     Verify that editing an Awaiting review question does not remove the same question from Awaiting review page.
@@ -32,9 +29,9 @@ Feature: Permissions - awaiting review
     And Verify that element "chatbot.knowledgebase.awaitingReview.firstRowAwaitingQuestion" has the following text "${awaitingReviewQuestion}"
     And Click on "chatbot.knowledgebase.awaitingReview.viewFirstAwaitingQuestion"
     And Create random number and save it as "random"
-    And Click on tag "span" which contains text "Edit"
+    And Click on tag "button" which contains text "Edit"
     And Type "RandomText${random}" in "chatbot.knowledgebase.awaitingReview.editAwaitingResponse"
-    And Click on tag "span" which contains text "Save"
+    And Click on tag "button" which contains text "Save"
     And Verify that page contains text "Your question has been successfully published"
     And Type "${awaitingReviewQuestion}" in "chatbot.knowledgebase.awaitingReview.searchQuestion"
     And Verify that element "chatbot.knowledgebase.awaitingReview.firstRowAwaitingQuestion" has the following text "${awaitingReviewQuestion}"
