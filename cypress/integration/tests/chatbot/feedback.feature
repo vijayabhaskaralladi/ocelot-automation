@@ -40,4 +40,4 @@ Feature: Permissions - chatbot feedback
       | campaignsAdmin            |
     And Open chatbot "chatbotForAutomation"
     And Open "Chatbot" menu item
-    Then Tag "span.MuiButton-label" with text "Feedback" should "not.exist"
+    Then Tag "li>a" with text "Feedback" should "not.exist"
