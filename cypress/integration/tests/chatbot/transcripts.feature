@@ -12,22 +12,20 @@ Feature: Permissions - chatbot transcripts
     When Intercept "POST: ${MESSAGE_API_DOMAIN}api/legacy/stats/conversations" as "markConversationNetworkCall"
     And Click on "chatbot.transcripts.filter"
     And Wait for element "chatbot.transcripts.labelOffice"
-    And Click on "chatbot.transcripts.officeStatus"
+    And Click on "chatbot.transcripts.officeFilter"
     And Click on tag "li" which contains text "${office}"
     And Wait for "markConversationNetworkCall" and save it as "markConversationResponse"
     Then Verify that response "markConversationResponse" has status code "200"
     And Verify that selector "chatbot.transcripts.rowSelector" contains more than "1" elements
 
     When Click on "chatbot.transcripts.filter"
-    And Wait for element "chatbot.transcripts.labelReadStatus"
-    And Click on "chatbot.transcripts.readStatus"
+    And Click on "chatbot.transcripts.readStatusFilter"
     And Click on tag "li" which contains text "${readStatus}"
     And Wait for "markConversationNetworkCall" and save it as "markConversationResponse"
     Then Verify that response "markConversationResponse" has status code "200"
 
     When Click on "chatbot.transcripts.filter"
-    And Wait for element "chatbot.transcripts.labelInquiryFormStatus"
-    And Click on "chatbot.transcripts.inquiryFormStatus"
+    And Click on "chatbot.transcripts.inquiryFormFilter"
     And Click on tag "li" which contains text "^${isInquiryForm}$"
     Then Wait for "markConversationNetworkCall" and save it as "markConversationResponse"
     And Verify that response "markConversationResponse" has status code "200"
@@ -90,7 +88,7 @@ Feature: Permissions - chatbot transcripts
       | campaignsAdmin            |
     And Open chatbot "chatbotForAutomation"
     And Open "Chatbot" menu item
-    Then Tag "span.MuiButton-label" with text "Transcripts" should "not.exist"
+    Then Tag "li>a" with text "Transcripts" should "not.exist"
 
   Scenario: TMD-29: Marking transcript as Read/Unread
   This test creates conversation and verifies that specified users can mark this transcript as Read/Unread

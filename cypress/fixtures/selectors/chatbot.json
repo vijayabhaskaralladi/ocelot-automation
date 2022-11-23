@@ -18,10 +18,10 @@
       "labelOffice": { "selector":"label", "text": "Office(s)" },
       "labelReadStatus": { "selector":"label", "text": "Read Status" },
       "labelInquiryFormStatus": { "selector":"label", "text": "Inquiry Form" },
-      "officeStatus": { "selector":"div[class*='MuiInput-input']", "index": 1 },
-      "readStatus": { "selector":"div[class*='MuiInput-input']", "index": 3 },
-      "inquiryFormStatus": { "selector":"div[class*='MuiInput-input']", "index": 4 },
-      "rowSelector": "tr[class='MuiTableRow-root MuiTableRow-hover']"
+      "officeFilter": "#formcontrol-officeId",
+      "readStatusFilter": "#formcontrol-readStatus",
+      "inquiryFormFilter": "#formcontrol-leadCapture",
+      "rowSelector": "tbody>tr.MuiTableRow-root"
     },
     "interactions": {
       "exportInteractions": "button[aria-label=' Export results to CSV']",
