@@ -131,7 +131,7 @@
 
     "spider": {
       "spiderTable": ".MuiTable-root>tbody>tr",
-      "viewFirstSpiderButton": { "selector": "button[title='View Content']", "index": 0 }
+      "viewFirstSpiderButton": { "selector": "button[aria-label='View Content']", "index": 0 }
     },
     "testMyBot":{
       "buttonTestMyBot": "button[title='Test My Bot']",
