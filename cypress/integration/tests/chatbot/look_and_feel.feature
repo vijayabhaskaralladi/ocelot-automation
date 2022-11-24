@@ -9,7 +9,7 @@ Feature: Look & Feel
     And Tag "div" with text "Simple" should "exist"
     And Tag "div" with text "May I help you?" should "exist"
     And Tag "div" with text "Hi there! I’m a chatbot here to answer your questions. What would you like to know?" should "exist"
-    And Click on "button.MuiTab-textColorInherit:not([class*='Mui-selected'])"
+    And Click on "button[role='tab']:not([aria-selected='true'])"
     And Tag "p" with text "Office 1" should "exist"
     And Tag "p" with text "Office 2" should "exist"
     And Tag "p" with text "Office 3" should "exist"
@@ -20,9 +20,9 @@ Feature: Look & Feel
     And Open "Chatbot->Look & Feel" menu item
     And Create random number and save it as "id"
 
-    When Click on tag "span" which contains text "Edit"
+    When Click on tag "button" which contains text "Edit"
     And Type "Welcome message: #${id}. Chatbot name: !me" in "chatbot.lookAndFeel.welcomeMessageInput"
-    And Click on tag "span" which contains text "Save"
+    And Click on tag "button" which contains text "Save"
 
     Then Check that notification message "Updated" appeared
     And API: Select "chatbotForAutomation" chatbot
