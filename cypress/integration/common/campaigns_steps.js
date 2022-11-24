@@ -1,7 +1,6 @@
 import { And } from 'cypress-cucumber-preprocessor/steps';
 import {convertDataTableIntoDict, validateInputParamsAccordingToDict} from '../../support/utils';
 
-const archiveButtonSelector = '#split-button-menu>span:nth-child(2)>li';
 const BINARY_CONTENT_TYPE = 'binary';
 
 And('Create campaign from template', (datatable) => {
@@ -140,10 +139,10 @@ And('Create campaign', (datatable) => {
     }
   });
   cy.replacePlaceholder(campaignData.number).then((provisionNumber) => {
-    cy.get(`[aria-label="${provisionNumber}"]`).click();
+    cy.get(`[aria-label="${provisionNumber}"]`).eq(1).click();
   });
-  cy.contains('span', 'Launch').click();
-  cy.contains('span', 'Confirm').click();
+  cy.contains('button', 'Launch').click();
+  cy.contains('button', 'Confirm').click();
   cy.checkNotificationMessage('Campaign launched');
 });
 
@@ -154,8 +153,8 @@ And('Archive campaign {string}', (campaignName) => {
     });
   });
   cy.get('button.MuiButton-containedSizeSmall').eq(1).click();
-  cy.get(archiveButtonSelector).click();
-  cy.get('span').contains('Confirm').click();
+  cy.getElement('createContent.campaigns.archiveButtonSelector').click({force:true});
+  cy.get('button').contains('Confirm').click();
 });
 
 And('Select available Phone number from phone number list', () => {
@@ -212,8 +211,8 @@ And('Archive campaign which uses {string} number', (number) => {
       });
       const campaignOptionsButtonSelector = 'div>button.MuiButton-containedSizeSmall:nth-child(2)';
       cy.get(campaignOptionsButtonSelector).click();
-      cy.get(archiveButtonSelector).click();
-      cy.get('button>span').contains('Confirm').click({force: true});
+      cy.getElement('createContent.campaigns.archiveButtonSelector').click({force:true});
+      cy.get('button').contains('Confirm').click({force: true});
     } else {
       cy.log('Provision number isnt in use.');
     }

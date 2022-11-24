@@ -7,7 +7,7 @@
       "exportAnalytics": "button[aria-label=' Export results to CSV']",
       "filter": "button[aria-label='Filter results']",
       "labelOffice": { "selector":"label", "text": "Office" },
-      "officeStatus": { "selector":"div[class*='MuiInput-input']", "index": 1 }
+      "officeStatus": "#formcontrol-office"
     },
     "activeCampaigns": {
       "viewFirstRow": { "selector": "[role='group']>button:nth-child(1)", "index": 0 },

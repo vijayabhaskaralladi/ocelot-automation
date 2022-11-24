@@ -52,7 +52,8 @@ Feature: Campaigns
     And Save current year as "year"
     Then Verify that page contains element "texting.phoneNumbers.archiveDate" with text "${month}"
     And Verify that page contains element "texting.phoneNumbers.archiveDate" with text "${year}"
-
+ #ToDo: issue with updating override response from application
+  @exclude_from_ci
   Scenario Outline: Binary campaigns - <test_name>
   Test checks 'yes' auto response, needs attention switch and statistics
     Given Archive campaign which uses "${PROVISION_NUMBER}" number
@@ -75,7 +76,11 @@ Feature: Campaigns
     And Tag "p" with text "Needs Attention" should "<is_needs_attention_displayed>"
 
     When Click on tag "p" which contains text "<conversation_keyword>"
-    And Click on "[title='Message Tool']"
+    And Click on tag "div" which contains text "Message Tool"
+    And Wait for tag with text
+        | tag      | p                 |
+        | text     | “YES” Response    |
+        | timeout  | 60000             |
     And Tag "span" with text "“YES” Response - " should "exist"
 
     When Intercept "${GRAPHQL_URL}graphql" with "getCampaignAnalytics" keyword in the response as "graphql"
@@ -87,7 +92,8 @@ Feature: Campaigns
       | test_name             | escalate_yes_response | is_needs_attention_displayed | conversation_keyword |
       | yes response          | no                    | not.exist                    | Bot-operated         |
       | escalate yes response | yes                   | exist                        | Needs Attention      |
-
+#ToDo: issue with updating override response from application
+  @exclude_from_ci
   Scenario Outline: Binary campaign - <test_name>
   Test checks 'no' auto response, needs attention switch and statistics
     Given Archive campaign which uses "${PROVISION_NUMBER}" number
@@ -111,7 +117,7 @@ Feature: Campaigns
     And Tag "p" with text "Needs Attention" should "<is_needs_attention_displayed>"
 
     When Click on tag "p" which contains text "<conversation_keyword>"
-    And Click on "[title='Message Tool']"
+    And Click on tag "div" which contains text "Message Tool"
     And Tag "span" with text "“NO” Response - " should "exist"
     And Tag "p" with text "Hi. Build ${id}" should "exist"
     And Tag "div" with text "${randomNoResponse}" should "exist"
@@ -131,7 +137,8 @@ Feature: Campaigns
       | test_name            | escalate_no_response | is_needs_attention_displayed | conversation_keyword |
       | no response          | no                   | not.exist                    | Bot-operated         |
       | escalate no response | yes                  | exist                        | Needs Attention      |
-
+#ToDo: issue with updating override response from application
+  @exclude_from_ci
   Scenario: Binary campaign - other response
     Given Archive campaign which uses "${PROVISION_NUMBER}" number
     When Create campaign
@@ -156,7 +163,7 @@ Feature: Campaigns
     And Tag "p" with text "Needs Attention" should "exist"
 
     When Click on tag "p" which contains text "Needs Attention"
-    And Click on "[title='Message Tool']"
+    And Click on tag "div" which contains text "Message Tool"
     And Tag "span" with text "“OTHER” Response - " should "exist"
     And Tag "p" with text "Hi. Build ${id}" should "exist"
     And Tag "div" with text "Other response ${id}" should "exist"
@@ -196,10 +203,10 @@ Feature: Campaigns
     Then Verify that "${firstContact}" number "received" "${IDK_AUTO_RESPONSE}" message
 
     When Click on tag "p" which contains text "Needs Attention"
-    And Click on "[title='Message Tool']"
+    And Click on tag "div" which contains text "Message Tool"
     And Type "Operator is here ${id}" in "texting.activeCampaigns.responseInput"
     And Wait "1000"
-    And Click on tag "span.MuiButton-label" which contains text "Send"
+    And Click on tag "button.MuiButtonBase-root" which contains text "Send"
 
     Then Verify that "${firstContact}" number "received" "Operator is here ${id}" message
 
@@ -219,8 +226,8 @@ Feature: Campaigns
       | idkType          | Agent                     |
     Then Verify that "${firstContact}" number "received" "Hi. Simple campaign ${id}" message
     And Send SMS "Hi. Campaign ${id}" to "${PROVISION_NUMBER}" from "${firstContact}"
-    And Click on tag "span" which contains text "End campaign"
-    Then Click on tag "span" which contains text "Confirm"
+    And Click on tag "button" which contains text "End campaign"
+    Then Click on tag "button" which contains text "Confirm"
     When Send SMS "Hi. inbox ${id}" to "${PROVISION_NUMBER}" from "${firstContact}"
     And Open chatbot "chatbotForAutomation"
     Then Open "Inbox" menu item
@@ -229,7 +236,7 @@ Feature: Campaigns
     #testing filter
     When Click on "inbox.conversationsFilter"
     And Intercept "${GRAPHQL_URL}graphql" with "inboxFilterConversations" keyword in the response as "filterRequest"
-    And Click on tag "li.MuiListItem-button" which contains text "No Campaigns"
+    And Click on tag "li.MuiMenuItem-root" which contains text "No Campaigns"
     Then Wait for "filterRequest" and save it as "filterResponse"
     And Verify that response "filterResponse" has status code "200"
     And Tag "ul.MuiList-root" with text "Hi. Campaign ${id}" should "not.exist"
@@ -267,7 +274,7 @@ Feature: Campaigns
 
     When Intercept "${GRAPHQL_URL}graphql" with "getAnalyticCampaigns" keyword in the response as "searchRequest"
     And Click on "texting.campaignAnalytics.filter"
-    And Wait for element "texting.campaignAnalytics.labelOffice"
+    And Wait for element "texting.campaignAnalytics.officeStatus"
     And Click on "texting.campaignAnalytics.officeStatus"
     And Click on tag "li" which contains text "Office 2"
     And Wait for "searchRequest" and save it as "searchResponse"

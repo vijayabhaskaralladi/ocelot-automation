@@ -12,7 +12,7 @@
       "addTemplateButton": "[aria-label*='Use Applicant does not want information']",
       "addContactListButton": {"selector":"button[class='MuiButtonBase-root MuiIconButton-root']", "index":  0},
       "campaignTitleInput": "#campaign-title",
-      "messageInput": "[aria-label='Rich Text Editor, main']",
+      "messageInput": "[aria-label='Rich Text Editor, Message']",
       "yesResponse": { "selector": "[aria-label='Rich Text Editor, Auto-Respond Message (Optional)']", "index": 0 },
       "noResponse": { "selector": "[aria-label='Rich Text Editor, Auto-Respond Message (Optional)']", "index": 1 },
       "сampusOfficeDropdown": { "selector": "[data-testid='grouped-campus-office']", "getPrevious": "true" },
@@ -23,11 +23,12 @@
       "campaignInboxes": "div>div>div>#inboxSubscriptions",
       "admissionsItem": { "selector": "span", "text": "Main Campus - Admissions" },
       "firstOfficeItem": { "selector": "span", "text": "MyCampus - Office 1" },
-      "saveCampaignButton": { "selector": "span", "text": "Save Campaign" },
+      "saveCampaignButton": { "selector": "button", "text": "Save Campaign" },
       "launchButton": "[title=\"\"] > .MuiButtonBase-root",
       "responseMessage": "[aria-label='Rich Text Editor, Message']",
       "saveAsDraft": { "selector": "button", "text": "Save Draft" },
-      "campaignName": "#campaignTitle"
+      "campaignName": "#campaignTitle",
+      "archiveButtonSelector": {"selector": "li","text": "Stop and archive"}
     }
   }
 }
