@@ -36,9 +36,9 @@ Feature: Chatbot interactions
      When Open "Chatbot->Interactions" menu item
      And Retrieve text from "chatbot.interactions.chatbotInteractions" and save as "conversationText"
      And Click on "chatbot.interactions.viewConversationButton"
-     Then Tag "span" with text "${conversationText}" should "exist"
-     And Tag "ul div" with text "chatbotInteraction${randomNumber}" should "exist"
+     Then Tag "div.MuiBox-root" with text "${conversationText}" should "exist"
+     And Tag "div" with text "chatbotInteraction${randomNumber}" should "exist"
 
      When Click on "chatbot.interactions.conversationDetails"
      And Save current date as "date" using "yyyy-mm-dd" format
-     Then Tag "div" with text "${date}" should "exist"
+     Then Tag "div.ConversationDetailsPane-timeBox" with text "${date}" should "exist"
