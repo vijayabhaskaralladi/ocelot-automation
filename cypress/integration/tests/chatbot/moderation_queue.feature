@@ -19,11 +19,8 @@ Feature: Permissions - moderation queue
     And Get full file name with prefix "api-chatbot-kb-moderation-queue-" in download folder and save it as "moderationQueueFileName"
     And Verify that file "${moderationQueueFileName}" from download folder contains text "${moderationQueueQuestion}"
 
-  Scenario Outline: Verify that user <user_name> can't see Moderation Queue
-    Given Login as "<user_name>"
+  Scenario: Limited user can't see Moderation Queue
+    Given Login as "chatbotLimited"
     And Open chatbot "chatbotForAutomation"
     When Open "Chatbot->Knowledgebase" menu item
-    Then Tag "span.MuiButton-label" with text "Moderation Queue" should "not.exist"
-    Examples:
-      | user_name      |
-      | chatbotLimited |
+    Then Tag "li>a" with text "Moderation Queue" should "not.exist"

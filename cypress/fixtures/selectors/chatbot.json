@@ -90,7 +90,7 @@
         "buttonSort":"button[aria-label='Sort results']"
       },
       "moderationQueue": {
-        "cellsWithQuestion": "th[role='cell']",
+        "cellsWithQuestion": "th.MuiTableCell-body",
         "exportModerationQueue": "button[aria-label=' Export results to CSV']",
         "firstRowQuestion": "tbody>tr:nth-child(1)>th"
       },
