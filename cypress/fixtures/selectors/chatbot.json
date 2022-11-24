@@ -134,9 +134,9 @@
       "viewFirstSpiderButton": { "selector": "button[aria-label='View Content']", "index": 0 }
     },
     "testMyBot":{
-      "buttonTestMyBot": "button[title='Test My Bot']",
+      "buttonTestMyBot": "svg[data-testid='MessageIcon']",
       "inputAskQuestion": "textarea[aria-label='Ask a question']",
-      "openMenu": "button[aria-label='Open Menu']"
+      "openMenu": "svg[data-testid='MoreVertIcon']"
     }
   }
 }
