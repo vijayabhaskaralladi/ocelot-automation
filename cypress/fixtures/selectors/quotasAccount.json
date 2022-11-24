@@ -11,8 +11,8 @@
     "permissions": {
       "searchInput": "input[aria-label='Search']",
       "userRows": "div.MuiListItem-root.MuiListItem-button",
-      "liveChatTab": { "selector": "span", "text": "Live Chat" },
-      "textingTab": { "selector": "span", "text": "Texting" },
+      "liveChatTab": { "selector": "button", "text": "Live Chat" },
+      "textingTab": { "selector": "button", "text": "Texting" },
       "roleValue": "#rolesField",
       "viewOtherOfficesSwitch": "#viewAllOfficesField",
       "viewMyoffice1Switch":{"selector": "input[type='checkbox']", "index": 2},

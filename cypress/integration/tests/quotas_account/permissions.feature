@@ -10,8 +10,7 @@ Feature: Permission Manager
       | liveChatLimited   |
       | liveChatStandard  |
     And Open chatbot "chatbotForAutomation"
-    When Open "" menu item
-    Then Tag "span.MuiButton-label" with text "Quotas & Account" should "not.exist"
+    Then Tag "li>button" with text "Quotas & Account" should "not.exist"
 
   Scenario: TMD-79: Admin users without Permission Manager role can't open Permission Manager
   These users can see "Quotas & Account" menu item but it shouldn't contain "Permissions" sub item
@@ -21,7 +20,7 @@ Feature: Permission Manager
       | liveChatAdmin  |
     And Open chatbot "chatbotForAutomation"
     When Open "Quotas & Account" menu item
-    Then Tag "span.MuiButton-label" with text "Permissions" should "not.exist"
+    Then Tag "li>a" with text "Permissions" should "not.exist"
 
   Scenario: TMD-80: Verify that Permission Manager shows list of users(chatbot/livechat/texting)
   This test verifies that permission manager gets user records
@@ -58,7 +57,7 @@ Feature: Permission Manager
     And Open chatbot "chatbotForAutomation"
     And Open "Quotas & Account->Permissions" menu item
     And Choose random value from "Chatbot|Live Chat|Texting" and save it as "Tab"
-    And Click on tag "div[role='tablist']>button>span" which contains text "${Tab}"
+    And Click on tag "div[role='tablist']>button" which contains text "${Tab}"
     And Choose random value from "Limited|Standard|Admin" and save it as "role"
     And Choose random value from "enabled|disabled" and save it as "viewOtherOfficesSwitch"
     And Choose random value from "enabled|disabled" and save it as "Offices1Switch"
@@ -80,11 +79,11 @@ Feature: Permission Manager
     And Choose random value from "Chatbot|Live Chat|Texting" and save it as "Tab"
     And Choose random value from "Limited|Standard|Administrator" and save it as "role"
 
-    When Click on tag "div[role='tablist']>button>span" which contains text "${Tab}"
+    When Click on tag "div[role='tablist']>button" which contains text "${Tab}"
     And Click on "quotasAccount.permissions.filterRecord"
     And Click on "quotasAccount.permissions.roleFilter"
     And Intercept "GET: ${DRUPAL_URL}jsonapi/user/user*" as "searchRequest"
-    And Click on tag "li.MuiButtonBase-root" which contains text "${role}"
+    And Click on tag "li[role='option']" which contains text "${role}"
     And Wait for "searchRequest" network call
 
     And Save number of elements with tag "div.MuiTypography-root>div.MuiChip-sizeSmall>span.MuiChip-label" and "${role}" text as "numberOfLabels"
