@@ -9,7 +9,7 @@ Feature: Permissions - question templates
     And Open chatbot "chatbotForAutomation"
     When Open "Chatbot->Knowledgebase->Question Templates" menu item
     And Click on "chatbot.knowledgebase.generalLibrary.viewFirstQuestion"
-    Then Element "div.Mui-expanded>div.MuiCollapse-entered" should "exist"
+    Then Element "div>div.Mui-expanded" should "exist"
 
   Scenario: Searching Question Templates
     Given Login using random user from the list
@@ -22,7 +22,7 @@ Feature: Permissions - question templates
     And Type "${searchQuestionTemplate}" in "chatbot.knowledgebase.customQuestions.search"
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
     And Click on "chatbot.knowledgebase.generalLibrary.viewFirstQuestion"
-    Then Element "div.Mui-expanded>div.MuiCollapse-entered" should "exist"
+    Then Element "div>div.Mui-expanded" should "exist"
     And Verify that element "chatbot.knowledgebase.questionTemplates.searchQuestionAnswer" has the following text "${searchQuestionTemplateAnswer}"
 
   Scenario: Filtering and Sorting Question Templates

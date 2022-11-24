@@ -33,7 +33,7 @@
     "knowledgebase": {
       "generalLibrary": {
         "questions": ".MuiButtonBase-root.MuiAccordionSummary-root",
-        "viewFirstQuestion": { "selector": "[data-testid='ExpandMoreIcon']", "index": 0 },
+        "viewFirstQuestion": { "selector": ".MuiAccordionSummary-expandIconWrapper>[data-testid='ExpandMoreIcon']", "index": 0 },
         "search": "input[name='keywords']",
         "answer": {"selector":".MuiAccordionDetails-root p","index": 0},
         "buttonContentShare": {"selector": "div.MuiTypography-root","text":"Shared Content"},
