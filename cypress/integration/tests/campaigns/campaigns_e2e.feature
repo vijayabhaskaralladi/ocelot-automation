@@ -74,13 +74,9 @@ Feature: Campaigns
     When Send SMS "${randomYesResponse}" to "${PROVISION_NUMBER}" from "${firstContact}"
     Then Verify that "${firstContact}" number "received" "Yep ${id}" message
     And Tag "p" with text "Needs Attention" should "<is_needs_attention_displayed>"
-
+    And Refresh the page
     When Click on tag "p" which contains text "<conversation_keyword>"
     And Click on tag "div" which contains text "Message Tool"
-    And Wait for tag with text
-        | tag      | p                 |
-        | text     | “YES” Response    |
-        | timeout  | 60000             |
     And Tag "span" with text "“YES” Response - " should "exist"
 
     When Intercept "${GRAPHQL_URL}graphql" with "getCampaignAnalytics" keyword in the response as "graphql"
@@ -116,6 +112,7 @@ Feature: Campaigns
     Then Verify that "${firstContact}" number "received" "Nope ${id}" message
     And Tag "p" with text "Needs Attention" should "<is_needs_attention_displayed>"
 
+    And Refresh the page
     When Click on tag "p" which contains text "<conversation_keyword>"
     And Click on tag "div" which contains text "Message Tool"
     And Tag "span" with text "“NO” Response - " should "exist"
@@ -161,7 +158,7 @@ Feature: Campaigns
 
     When Send SMS "Other response ${id}" to "${PROVISION_NUMBER}" from "${firstContact}"
     And Tag "p" with text "Needs Attention" should "exist"
-
+    And Refresh the page
     When Click on tag "p" which contains text "Needs Attention"
     And Click on tag "div" which contains text "Message Tool"
     And Tag "span" with text "“OTHER” Response - " should "exist"
@@ -170,7 +167,7 @@ Feature: Campaigns
 
     And Type "Second Message ${id}" in "texting.activeCampaigns.responseInput"
     And Wait "1000"
-    And Click on tag "span.MuiButton-label" which contains text "Send"
+    And  Click on tag "button.MuiButtonBase-root" which contains text "Send"
     Then Verify that "${firstContact}" number "received" "Second Message ${id}" message
 
     # uncomment when NUG-1497 will be resolved
@@ -202,6 +199,7 @@ Feature: Campaigns
     When Send SMS "${IDK_QUESTION}" to "${PROVISION_NUMBER}" from "${firstContact}"
     Then Verify that "${firstContact}" number "received" "${IDK_AUTO_RESPONSE}" message
 
+    And Refresh the page
     When Click on tag "p" which contains text "Needs Attention"
     And Click on tag "div" which contains text "Message Tool"
     And Type "Operator is here ${id}" in "texting.activeCampaigns.responseInput"

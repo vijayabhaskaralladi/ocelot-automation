@@ -398,3 +398,7 @@ And('Save number of elements with tag {string} and {string} text as {string}',(t
     cy.get(`${tag}:contains(${keyword})`).its('length').as(alias);
   });
 });
+
+And('Refresh the page', ()=> {
+  cy.reload();
+});
