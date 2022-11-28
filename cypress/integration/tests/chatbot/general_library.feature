@@ -56,7 +56,7 @@ Feature: Permissions - general library
       | campaignsAdmin            |
     And Open chatbot "chatbotForAutomation"
     When Open "Chatbot" menu item
-    Then Tag "span.MuiButton-label" with text "Knowledgebase" should "not.exist"
+    Then Tag "li>button" with text "Knowledgebase" should "not.exist"
 
   Scenario: Verify that User having access to Bookstore Library cannot view FinancialAid library question
     Given Login as "chatbotStandard-BookstoreOffice"
