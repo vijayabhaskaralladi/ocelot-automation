@@ -98,7 +98,7 @@ Feature: Permissions - custom questions
     When Type "${customQuestionForEditing}" in "chatbot.knowledgebase.customQuestions.search"
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
     And Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
-    And Click on tag "span" which contains text "Edit"
+    And Click on tag "button" which contains text "Edit"
     And Scroll to "chatbot.knowledgebase.customQuestions.editResponseField" element
     And Type "Updated response ${id}" in "chatbot.knowledgebase.customQuestions.editResponseField"
     And Click on tag "button" which contains text "Save"
@@ -107,5 +107,4 @@ Feature: Permissions - custom questions
     And Tag "div" with text "Last Modified:" should "exist"
     And Save current date as "date" using "mm/dd/yyyy" format
     And Tag "div" with text "${date}" should "exist"
-    #ToDo: uncomment this line after 11/25/2022
-    #And Tag "span.MuiChip-label" with text "updated" should "exist"
+    And Tag "span.MuiChip-label" with text "updated" should "exist"

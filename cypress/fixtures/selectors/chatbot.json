@@ -80,7 +80,7 @@
       },
       "questionTemplates": {
         "search": "input[name='keywords']",
-        "viewFirstQuestion": { "selector": "div.MuiAccordionSummary-expandIcon", "index": 0 },
+        "viewFirstQuestion": { "selector": ".MuiAccordionSummary-expandIconWrapper>div.MuiAccordionSummary-expandIcon", "index": 0 },
         "searchQuestionAnswer": "div[role='region']>div.MuiAccordionDetails-root",
         "filterQuestion": "button[aria-label='Filter results']",
         "deptLabel": {"selector": "label","text":"Department"},
