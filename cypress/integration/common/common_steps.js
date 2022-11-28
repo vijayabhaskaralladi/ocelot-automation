@@ -111,6 +111,7 @@ And('Tag {string} with text {string} should {string}', (tag, text, expectedStatu
   // 'not.exist' - check that element is not present in the DOM without waiting
   const TIMEOUT = expectedStatus === 'not.exist' ? 1000 : 20000;
   cy.replacePlaceholder(text).then((textWithReplacedPlaceholder) => {
+    cy.task('log', `Checking that text <${textWithReplacedPlaceholder}> <${expectedStatus}>`);
     if (textWithReplacedPlaceholder.includes('|')) {
       cy.contains(tag, new RegExp(`${textWithReplacedPlaceholder}`), { timeout: TIMEOUT }).should(expectedStatus);
     } else {

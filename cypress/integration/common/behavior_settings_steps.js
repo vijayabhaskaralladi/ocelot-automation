@@ -77,7 +77,7 @@ And('Enable Inquiry Form', (datatable) => {
   const inquiryFormData = convertDataTableIntoDict(datatable);
 
   // enable if not enabled
-  cy.contains('span', 'Edit').click();
+  cy.contains('button', 'Edit').click();
   cy.get('#leadCaptureEnabled')
     .invoke('attr', 'value')
     .then((value) => {
