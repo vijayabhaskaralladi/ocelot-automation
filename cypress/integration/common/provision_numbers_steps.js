@@ -37,27 +37,27 @@ And('Create provision number', (datatable) => {
   });
 
   cy.get('#description').type(provisionNumberData.description);
-  cy.get(officeDropdown).prev().click();
-  cy.contains('span.MuiTypography-displayBlock', provisionNumberData.office).click();
+  cy.get(officeDropdown).click();
+  cy.contains('span.MuiListItemText-primary', provisionNumberData.office).click();
 
   cy.get('#campaignType').click();
-  cy.contains('[aria-labelledby="campaignType-label"]>li.MuiListItem-root', provisionNumberData.responseType).click();
+  cy.contains('[aria-labelledby="campaignType-label"]>li.MuiButtonBase-root', provisionNumberData.responseType).click();
 
   cy.get('#inboxSubscriptions').click();
   cy.contains('span.MuiListItemText-primary', provisionNumberData.inbox).click();
-  cy.contains('button>span', 'Save').click();
+  cy.contains('button', 'Save').click();
   cy.checkNotificationMessage('Saved Successfully!');
 });
 
 And('Delete provision number {string}', (provisionNumber) => {
   const deleteButton = 'button[aria-label="Revoke number"]';
-  const confirmDeleteButton = '.MuiDialogActions-root>button:nth-child(2)>span';
+  const confirmDeleteButton = 'button';
 
   cy.replacePlaceholder(provisionNumber).then((number) => {
     cy.getElement('texting.phoneNumbers.searchInput').clear().type(number);
   });
   cy.getElement('texting.phoneNumbers.records').should('have.length',1);
   cy.get(deleteButton).click();
-  cy.get(confirmDeleteButton).click();
+  cy.get(confirmDeleteButton).contains('Ok').click();
   cy.contains('#notistack-snackbar', 'Phone number revoked').should('exist');
 });

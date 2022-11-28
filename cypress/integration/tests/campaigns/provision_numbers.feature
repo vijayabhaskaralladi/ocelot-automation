@@ -11,7 +11,7 @@ Feature: Campaigns - provision numbers
 
     When Intercept "${GRAPHQL_URL}graphql" with "listActivePhoneNumbersAssignments" keyword in the response as "searchRequest"
     And Click on "texting.phoneNumbers.filter"
-    And Wait for element "texting.phoneNumbers.labelNumberType"
+    And Wait for element "texting.phoneNumbers.inputNumberType"
     And Click on "texting.phoneNumbers.inputNumberType"
     And Click on tag "li" which contains text "Reusable"
     And Wait for "searchRequest" and save it as "searchResponse"
@@ -21,7 +21,7 @@ Feature: Campaigns - provision numbers
 
     When Intercept "${GRAPHQL_URL}graphql" with "listActivePhoneNumbersAssignments" keyword in the response as "searchRequest"
     And Click on "texting.phoneNumbers.filter"
-    And Wait for element "texting.phoneNumbers.labelNumberType"
+    And Wait for element "texting.phoneNumbers.inputNumberType"
     And Click on "texting.phoneNumbers.inputNumberType"
     And Click on tag "li" which contains text "Single Use"
     And Wait for "searchRequest" and save it as "searchResponse"
@@ -95,8 +95,7 @@ Feature: Campaigns - provision numbers
     When Send SMS "Hey Agent ${id}" to "${provisionNumber}" from "${studentNumber}"
     Then Check that notification message "Inbox needs attention" appeared
 
-
-    When Click on tag "span.MuiButton-label" which contains text "View"
+    When Click on tag "button" which contains text "View"
     And Intercept "${GRAPHQL_URL}graphql" with "inboxFilterConversations" keyword in the response as "searchRequest"
     And Type "Hey Agent ${id}" in "inbox.searchInput"
     And Wait for "searchRequest" network call
@@ -134,6 +133,6 @@ Feature: Campaigns - provision numbers
       Then Verify that selector "texting.phoneNumbers.records" contains "1" elements
       And Click on "texting.phoneNumbers.editPhoneNumberButton"
       And Type "Updated phone number text" in "texting.phoneNumbers.phoneNumberDescription"
-      And Click on tag "button>span" which contains text "Save"
+      And Click on tag "button" which contains text "Save"
       Then Tag "#notistack-snackbar" with text "Saved Successfully!" should "exist"
       And Delete provision number "${provisionNumber}"

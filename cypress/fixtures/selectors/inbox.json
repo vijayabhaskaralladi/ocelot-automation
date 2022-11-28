@@ -3,6 +3,6 @@
     "searchInput": "input[name='keywords']",
     "conversationsFilter": { "tag": "div", "text": "All Conversations" },
     "messageInput": "div.ck-editor__editable",
-    "sendButton": { "selector": "button>span.MuiButton-label", "text": "Send" }
+    "sendButton": { "selector": "button", "text": "Send" }
   }
 }

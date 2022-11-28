@@ -30,15 +30,15 @@
     "phoneNumbers": {
       "phoneNumberFromFirstRow": { "selector": "tbody>tr>td>div.MuiBox-root", "index": 0 },
       "exportResults": "button[aria-label=' Export results to CSV']",
-      "searchInput": "input[name='keywords']",
+      "searchInput": "input[name='keywords'][placeholder*='Search by phone number']",
       "records": "tbody.MuiTableBody-root>tr",
       "archiveDate": "tr>td:nth-child(8)",
-      "editPhoneNumberButton": "button[title='Edit phone number']",
+      "editPhoneNumberButton": "button[aria-label='Edit phone number']",
       "phoneNumberDescription": "#description",
       "filter": "button[aria-label='Filter results']",
       "labelNumberType": { "selector":"label", "text": "Number Type" },
-      "inputNumberType": { "selector":"div[class*='MuiInput-input']", "index": 2 },
-      "rowSelector": "tr[class='MuiTableRow-root']"
+      "inputNumberType": "div[id='formcontrol-type']",
+      "rowSelector": "tr[class*='MuiTableRow-root']"
     },
     "transcripts": {
       "readStatusButtonFirstRow": { "selector": "td.MuiTableCell-alignCenter>button", "index": 0 },
