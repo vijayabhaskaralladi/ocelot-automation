@@ -184,7 +184,7 @@ And('Optout first contact if opted-In', () => {
       cy.log('Contact already opted out');
     } else {
       cy.wrap(element1.find('path[d*="M7"]')).click();
-      cy.get('button[class*="Primary"]').click();
+      cy.get('div.MuiDialogActions-root button[class*="Primary"]').click();
     }
   });
 });

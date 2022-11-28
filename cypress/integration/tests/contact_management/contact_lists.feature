@@ -31,15 +31,16 @@ Feature: Permissions - contact lists
     And Verify that selector "contactManagement.contactLists.tableRows" contains "1" elements
     And Click on "contactManagement.contactLists.viewFirstContactListButton"
     And Click on "contactManagement.contactLists.deleteFirstContact"
-    And Click on tag "span" which contains text "Ok"
+    And Click on tag "button" which contains text "Ok"
     And Check that notification message "Contact removed" appeared
 
-    Then Open "Contact Management->Contact Lists" menu item
+    And Open chatbot "chatbotForAutomation"
+    And Open "Contact Management->Contact Lists" menu item
     And Type "BigContactList${randomNumber}{enter}" in "contactManagement.contactLists.searchInput"
     And Verify that selector "contactManagement.contactLists.tableRows" contains "1" elements
     And  Click on "contactManagement.contactLists.actionsDropdownFirstRow"
     And Click on tag "li[role='menuitem']" which contains text "Delete"
-    And Click on tag "span" which contains text "Ok"
+    And Click on tag "button" which contains text "Ok"
     Then Check that notification message "Contact list removed" appeared
     And Type "BigContactList${randomNumber}{enter}" in "contactManagement.contactLists.searchInput"
     And Element "td>p" should "not.exist"
@@ -118,7 +119,7 @@ Feature: Permissions - contact lists
     When Click on "contactManagement.contactLists.actionsDropdownFirstRow"
     And Click on tag "li[role='menuitem']" which contains text "Clone"
     And Type "ClonedList${randomNumber}" in "contactManagement.contactLists.cloneNameInput"
-    And Click on tag ".MuiDialogActions-root>button>span" which contains text "Clone"
+    And Click on tag ".MuiDialogActions-root>button" which contains text "Clone"
 
     Then Type "ClonedList${randomNumber}{enter}" in "contactManagement.contactLists.searchInput"
     And Element "td>p" should "exist"
@@ -137,11 +138,11 @@ Feature: Permissions - contact lists
     And Click on tag "span" which contains text "Last Name"
     And Type "First Name" in "contactManagement.contactLists.header2Input"
     And Click on tag "span" which contains text "First Name"
-    And Click on tag "span" which contains text "Next"
-    And Click on tag "span" which contains text "Update Contact List"
+    And Click on tag "button" which contains text "Next"
+    And Click on tag "button" which contains text "Update Contact List"
     And Tag "p" with text "Successfully updated" should "exist"
     And Tag "p" with text "Argument Validation Error" should "not.exist"
-    And Click on tag "span" which contains text "Finish"
+    And Click on tag "button" which contains text "Finish"
 
   Scenario: Editing contact from contact list
     Given Login as "campaignsStandard"
@@ -149,7 +150,7 @@ Feature: Permissions - contact lists
     And Open "Contact Management->Contact Lists" menu item
     And Wait for element "contactManagement.contactLists.ContactManagementTag"
     Then Type "qwer" in "contactManagement.contactLists.searchInput"
-    And Wait for element "contactManagement.contactLists.singleElement"
+    And Verify that selector "contactManagement.contactLists.singleElement" contains "1" elements
     And Click on "contactManagement.contactLists.viewFirstRow"
     And Wait for element "contactManagement.contactLists.EditContact"
     And Click on "contactManagement.contactLists.EditContact"
@@ -158,7 +159,6 @@ Feature: Permissions - contact lists
     And Click on "contactManagement.contactLists.UpdateButton"
     And Tag "p" with text "${firstName}" should "exist"
 
-  @ignore
   Scenario: TMD-22: Verify that user Campaigns Admin can Delete Contact Lists
   This test requires at least 1 contact list
     Given Login as "campaignsAdmin"
@@ -168,7 +168,7 @@ Feature: Permissions - contact lists
 
     When Click on "contactManagement.contactLists.actionsDropdownFirstRow"
     And Click on tag "li[role='menuitem']" which contains text "Delete"
-    And Click on tag "span" which contains text "Ok"
+    And Click on tag "button" which contains text "Ok"
     Then Check that notification message "Contact list removed" appeared
     And Type "${campaignName}{enter}" in "contactManagement.contactLists.searchInput"
     And Element "td>p" should "not.exist"
@@ -184,8 +184,8 @@ Feature: Permissions - contact lists
       | chatbotStandard          |
       | chatbotAdmin             |
     And Open chatbot "chatbotForAutomation"
-    And Open "" menu item
-    Then Tag "span.MuiButton-label" with text "Contact Management" should "not.exist"
+    And Open "Home" menu item
+    Then Tag "button.MuiButton-root" with text "Contact Management" should "not.exist"
 
   Scenario: Bulk add Contact Lists
     Given Login using random user from the list
@@ -203,7 +203,7 @@ Feature: Permissions - contact lists
       | header2 | Last Name     |
       | header3 | Email Address |
       | header4 | Phone Number  |
-    Then Click on tag "span" which contains text "Import Contacts"
+    Then Click on tag "button" which contains text "Import Contacts"
     And Tag "p" with text "Successfully imported" should "exist"
     And Tag "p" with text "Argument Validation Error" should "not.exist"
     And Click on "contactManagement.contactLists.finishButton"

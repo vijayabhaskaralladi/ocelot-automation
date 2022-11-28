@@ -20,7 +20,7 @@ Feature: Permissions - opt-outs
 
     Then Type "myemail_${randomNumber}@domain.com{enter}" in "contactManagement.optOuts.searchInput"
     And Wait "1000"
-    And Tag "p" with text "myemail_" should "exist"
+    And Tag "p" with text "myemail_${randomNumber}@domain.com" should "exist"
     And Element "contactManagement.optOuts.deleteButtons" should "not.exist"
 
   Scenario: Verify that user Campaigns Admin can Add/Search/Delete Opt-outs
@@ -57,32 +57,36 @@ Feature: Permissions - opt-outs
     And Open "Contact Management->Contact Lists" menu item
 
     And Type "qwert" in "contactManagement.contactLists.searchInput"
-    And Wait for element "contactManagement.contactLists.singleElement"
-    And Click on "contactManagement.contactLists.viewFirstRow"
+    And Verify that page contains text "1–1 of 1"
+    And Click on tag "div[role='group'] button" which contains text "View"
     And Wait for element "contactManagement.contactLists.EditContact"
     And Optout first contact if opted-In
     And Get the opted out the PhoneNumber and EMail
 
+    And Open chatbot "chatbotForAutomation"
     When Open "Contact Management->Opt-outs" menu item
     And Type "${email}" in "contactManagement.optOuts.searchInput"
-    And Wait for element "contactManagement.contactLists.singleElement"
+    And Verify that page contains text "1–1 of 1"
+#    And Wait for element "contactManagement.contactLists.singleElement"
     And Click on "contactManagement.optOuts.deleteFirstRowButton"
     And Click on "contactManagement.optOuts.confirmDeleteButton"
     And Check that notification message "Opt-out contact removed" appeared
 
     And Type "${phnNumber}" in "contactManagement.optOuts.searchInput"
-    And Wait for element "contactManagement.contactLists.singleElement"
+    And Verify that page contains text "1–1 of 1"
+#    And Wait for element "contactManagement.contactLists.singleElement"
     And Click on "contactManagement.optOuts.deleteFirstRowButton"
     And Click on "contactManagement.optOuts.confirmDeleteButton"
     And Check that notification message "Opt-out contact removed" appeared
 
+    And Open chatbot "chatbotForAutomation"
     Then Open "Contact Management->Contact Lists" menu item
     And Verify that page title is "Contact Lists"
     And Type "qwert" in "contactManagement.contactLists.searchInput"
-    And Wait for element "contactManagement.contactLists.singleElement"
+    And Verify that page contains text "1–1 of 1"
     And Click on "contactManagement.contactLists.viewFirstRow"
     And Wait for element "contactManagement.contactLists.EditContact"
-    And Element "contactManagement.optOuts.optOutButton" should "exist"
+    And Element "contactManagement.optOuts.optButton" should "exist"
 
   Scenario: Exporting Opt-Outs
     Given Login using random user from the list
