@@ -18,9 +18,9 @@ Feature: Integrations - Slate
 
     When Open "Contact Management->Contact Lists" menu item
     And Click on "contactManagement.contactLists.addContactListButton"
-    And Click on tag "span" which contains text "slate query"
+    And Click on tag "button" which contains text "slate query"
     And Click on "[aria-label='1 Sales Demo Query']"
-    And Click on tag "span" which contains text "Next"
+    And Click on tag "button" which contains text "Next"
     And Configure columns for contact list
       | header1 | First Name    |
       | header2 | Last Name     |
@@ -37,7 +37,7 @@ Feature: Integrations - Slate
     Then Type "ContactListFromSlate${randomNumber}" in "contactManagement.contactLists.searchInput"
     And Verify that selector "contactManagement.contactLists.tableRows" contains "1" elements
     And Intercept "${GRAPHQL_URL}graphql" with "getLiveChatWhosOnlineStatistics" keyword in the response as "whosOnlineRequest"
-    And Click on tag "span" which contains text "View"
+    And Click on tag "button" which contains text "View"
     And Wait for "whosOnlineRequest" network call
     And Verify that selector "contactManagement.contactLists.tableRows" contains "10" elements
     And Tag "p" with text "Paul" should "exist"
@@ -52,10 +52,10 @@ Feature: Integrations - Slate
     Then Open "Contact Management->Contact Lists" menu item
     And Verify that page title is "Contact Lists"
     And Click on "contactManagement.contactLists.addContactListButton"
-    And Tag "span" with text "slate query" should "not.exist"
+    And Tag "button" with text "slate query" should "not.exist"
     And Click on "contactManagement.contactLists.closeScreen"
 
     And Click on "contactManagement.contactLists.actionsDropdownFirstRow"
     And Click on tag "li[role='menuitem']" which contains text "Bulk add"
-    And Tag "span" with text "slate query" should "not.exist"
+    And Tag "button" with text "slate query" should "not.exist"
     And Click on "contactManagement.contactLists.closeScreen"

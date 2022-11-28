@@ -88,11 +88,11 @@ And('Enable Slate', (datatable) => {
           cy.contains('h2', 'Slate')
             .parent('div.MuiCardContent-root')
             .next()
-            .contains('span', 'Enable')
+            .contains('button', 'Enable')
             .click();
           //ToDo: this step doesn't fill Slate URLs,will be implemented later
           cy.get(`input[value*='${slateData.baseSlateQuery}']`).should('exist');
-          cy.contains('span', 'Save').click();
+          cy.contains('button', 'Save').click();
           cy.checkNotificationMessage('The configuration has been saved successfully!');
         }
       });
@@ -116,7 +116,7 @@ And('Disable Slate', (datatable) => {
           cy.contains('h2', 'Slate')
             .parent('div.MuiCardContent-root')
             .next()
-            .contains('span', 'Disable')
+            .contains('button', 'Disable')
             .click();
         }
       });
