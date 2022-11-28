@@ -16,7 +16,7 @@ Feature: Permissions - Canned responses
 
     Then Verify that response "sortCannedResponsesresponse" has status code "200"
     And Tag "span" with text "Sort: Title, Z-A" should "exist"
-    And Verify that element "liveChat.cannedResponses.firstQuestion" has the following text "${lastCannedResponse}"
+    And Verify that element "liveChat.cannedResponses.firstCannedResponseItem" has the following text "${lastCannedResponse}"
     And Verify that selector "liveChat.cannedResponses.questions" contains more than "5" elements
 
   Scenario: Viewing/creating Canned Responses
@@ -33,7 +33,7 @@ Feature: Permissions - Canned responses
     And Type "Response${randomNumber}" in "liveChat.cannedResponses.responseText"
     And Type "automation{enter}" in "liveChat.cannedResponses.tagsInput"
     And Click on "liveChat.cannedResponses.campusesDropdown"
-    And Click on tag "span.MuiTypography-displayBlock" which contains text "All Campuses/Offices"
+    And Click on tag "span.MuiTypography-body1.MuiListItemText-primary" which contains text "All Campuses/Offices"
     And Click on "liveChat.cannedResponses.saveButton"
 
     Then Type "CannedResponse${randomNumber}{enter}" in "liveChat.cannedResponses.searchInput"
@@ -61,7 +61,7 @@ Feature: Permissions - Canned responses
     And Type "Response${randomNumber}" in "liveChat.cannedResponses.responseText"
     And Type "automation{enter}" in "liveChat.cannedResponses.tagsInput"
     And Click on "liveChat.cannedResponses.campusesDropdown"
-    And Click on tag "span.MuiTypography-displayBlock" which contains text "All Campuses/Offices"
+    And Click on tag "span.MuiTypography-body1.MuiListItemText-primary" which contains text "All Campuses/Offices"
     And Click on "liveChat.cannedResponses.saveButton"
 
     When Intercept "GET: ${DRUPAL_URL}jsonapi/node/canned_response*" as "searchRequest"
