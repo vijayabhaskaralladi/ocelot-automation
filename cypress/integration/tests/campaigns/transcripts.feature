@@ -53,10 +53,10 @@ Feature: Permissions - campaigns transcripts
     And Click on "texting.transcripts.readStatusButtonFirstRow"
     And Wait for "markTranscriptAsRead" network call
     Then Verify that response "markTranscriptAsRead" has status code "200"
-    And Verify that element "texting.transcripts.readStatusButtonFirstRow" has attribute "aria-label" with value "Mark Read"
+    And Verify that element "texting.transcripts.readStatusButtonFirstRow" has attribute "aria-label" with value "Mark Unread"
 
     When Intercept "${GRAPHQL_URL}graphql" with "setCampaignTranscriptReadStatus" keyword in the response as "markTranscriptAsUnread"
     And Click on "texting.transcripts.readStatusButtonFirstRow"
     And Wait for "markTranscriptAsUnread" network call
     Then Verify that response "markTranscriptAsUnread" has status code "200"
-    And Verify that element "texting.transcripts.readStatusButtonFirstRow" has attribute "aria-label" with value "Mark Unread"
+    And Verify that element "texting.transcripts.readStatusButtonFirstRow" has attribute "aria-label" with value "Mark Read"
