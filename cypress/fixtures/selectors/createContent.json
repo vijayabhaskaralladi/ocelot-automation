@@ -6,11 +6,11 @@
     "campaigns": {
       "createFromTemplate": "button[aria-label='Create from Ocelot library']",
       "createFromScratch": "button[aria-label='Create from scratch']",
-      "admissions": { "selector": "span", "text": "Admissions"},
+      "admissions": { "selector": "button", "text": "Admissions"},
       "searchInput": "input[name='keywords']",
       "selectContactListForCampaign": {"selector": "ul[aria-label='contact lists']>li", "index": 0},
       "addTemplateButton": "[aria-label*='Use Applicant does not want information']",
-      "addContactListButton": {"selector":"button[class='MuiButtonBase-root MuiIconButton-root']", "index":  0},
+      "addContactListButton": {"selector":"button[class*='MuiIconButton-sizeLarge'][aria-label*='contact list']", "index":  0},
       "campaignTitleInput": "#campaign-title",
       "messageInput": "[aria-label='Rich Text Editor, Message']",
       "yesResponse": { "selector": "[aria-label='Rich Text Editor, Auto-Respond Message (Optional)']", "index": 0 },

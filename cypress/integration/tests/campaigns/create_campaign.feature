@@ -16,12 +16,12 @@ Feature: Permissions - create campaigns
     Given Login using random user from the list
       | campaignsLimited         |
       | viewOtherOfficesLiveChat |
-      | viewOtherOfficesChatbot  |
       | liveChatLimited          |
       | liveChatStandard         |
       | liveChatAdmin            |
       | chatbotLimited           |
       | chatbotStandard          |
       | chatbotAdmin             |
-    Then Tag "li" with text "Create Campaign" should "not.exist"
-    And Element "button[aria-label='Create Content']:not([title])" should "not.exist"
+    Then Element "button[aria-label='Create Content']:not([title])" should "not.exist"
+    And Tag "li" with text "Create Campaign" should "not.exist"
+
