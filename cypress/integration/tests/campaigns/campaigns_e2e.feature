@@ -44,16 +44,16 @@ Feature: Campaigns
     And Save current date as "date" using "yyyy-mm-dd" format
     Then Tag ".Mui-expanded div" with text "${date}" should "exist"
 
-    When Open chatbot "chatbotForAutomation"
-    And Open "Texting->Phone Numbers" menu item
-    And Type "${PROVISION_NUMBER}" in "texting.phoneNumbers.searchInput"
-    And Verify that selector "texting.phoneNumbers.records" contains "1" elements
-    And Save current month as "month"
-    And Save current year as "year"
-    Then Verify that page contains element "texting.phoneNumbers.archiveDate" with text "${month}"
-    And Verify that page contains element "texting.phoneNumbers.archiveDate" with text "${year}"
- #ToDo: issue with updating override response from application
-  @exclude_from_ci
+    #ToDo: uncomment these steps when 'Phone Numbers' page will contain 'Archive Date' column
+    #When Open chatbot "chatbotForAutomation"
+    #And Open "Texting->Phone Numbers" menu item
+    #And Type "${PROVISION_NUMBER}" in "texting.phoneNumbers.searchInput"
+    #And Verify that selector "texting.phoneNumbers.records" contains "1" elements
+    #And Save current month as "month"
+    #And Save current year as "year"
+    #Then Verify that page contains element "texting.phoneNumbers.archiveDate" with text "${month}"
+    #And Verify that page contains element "texting.phoneNumbers.archiveDate" with text "${year}"
+
   Scenario Outline: Binary campaigns - <test_name>
   Test checks 'yes' auto response, needs attention switch and statistics
     Given Archive campaign which uses "${PROVISION_NUMBER}" number
@@ -88,8 +88,7 @@ Feature: Campaigns
       | test_name             | escalate_yes_response | is_needs_attention_displayed | conversation_keyword |
       | yes response          | no                    | not.exist                    | Bot-operated         |
       | escalate yes response | yes                   | exist                        | Needs Attention      |
-#ToDo: issue with updating override response from application
-  @exclude_from_ci
+
   Scenario Outline: Binary campaign - <test_name>
   Test checks 'no' auto response, needs attention switch and statistics
     Given Archive campaign which uses "${PROVISION_NUMBER}" number
@@ -134,8 +133,7 @@ Feature: Campaigns
       | test_name            | escalate_no_response | is_needs_attention_displayed | conversation_keyword |
       | no response          | no                   | not.exist                    | Bot-operated         |
       | escalate no response | yes                  | exist                        | Needs Attention      |
-#ToDo: issue with updating override response from application
-  @exclude_from_ci
+
   Scenario: Binary campaign - other response
     Given Archive campaign which uses "${PROVISION_NUMBER}" number
     When Create campaign
