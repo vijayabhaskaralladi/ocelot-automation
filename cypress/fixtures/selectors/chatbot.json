@@ -51,7 +51,7 @@
       "customQuestions": {
         "questions": ".MuiButtonBase-root.MuiAccordionSummary-root",
         "search": "input[name='keywords']",
-        "viewFirstQuestion": { "selector": "[data-testid='ExpandMoreIcon']", "index": 0 },
+        "viewFirstQuestion": { "selector": ".MuiAccordionSummary-expandIconWrapper>[data-testid='ExpandMoreIcon']", "index": 0 },
         "exportCustomQuestions": "button[aria-label=' Export results to CSV']",
         "buttonContentShare": {"selector": "div.MuiTypography-root","text":"Shared Content"},
         "buttonSave": {"selector":"span","text":"Save"},

@@ -8,12 +8,10 @@ Feature: Content Lock
       | chatbotAdmin    |
     And Open chatbot "chatbotForAutomation"
     And Open "Chatbot->Knowledgebase->Custom Questions" menu item
-    And Intercept "${DRUPAL_URL}jsonapi/chatbot_question/chatbot_question*" as "searchRequest"
-    And Type "Custom question for automation{enter}" in "chatbot.knowledgebase.customQuestions.search"
-    And Wait for "searchRequest" network call
+    And Type "Custom question for automation" in "chatbot.knowledgebase.customQuestions.search"
+    And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
     When Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
-    Then Tag "span" with text "Edit" should "exist"
-    When Click on tag "span" which contains text "Edit"
+    And Click on tag "button" which contains text "Edit"
     Then Tag "h1" with text "Edit Question" should "exist"
     And Verify that page contains text "Content Locked"
 
@@ -23,11 +21,11 @@ Feature: Content Lock
       | chatbotStandard |
     And Open chatbot "chatbotForAutomation"
     And Open "Chatbot->Knowledgebase->Custom Questions" menu item
-    And Type "Custom question for automation{enter}" in "chatbot.knowledgebase.customQuestions.search"
+    And Type "Custom question for automation" in "chatbot.knowledgebase.customQuestions.search"
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
     When Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
-    Then Tag "span" with text "Edit" should "not.exist"
-    When Click on tag "span" which contains text "View"
+    Then Tag "button" with text "Edit" should "not.exist"
+    When Click on tag "button" which contains text "View"
     Then Tag "h1" with text "View" should "exist"
     And Verify that page contains text "Content Locked"
 
@@ -35,11 +33,10 @@ Feature: Content Lock
     Given Login as "defaultUser"
     And Open chatbot "chatbotForAutomation"
     And Open "Chatbot->Knowledgebase->Custom Questions" menu item
-    And Intercept "${DRUPAL_URL}jsonapi/chatbot_question/chatbot_question*" as "searchRequest"
-    And Type "Custom question for Content Lock tests{enter}" in "chatbot.knowledgebase.customQuestions.search"
-    And Wait for "searchRequest" network call
+    And Type "Custom question for Content Lock tests" in "chatbot.knowledgebase.customQuestions.search"
+    And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
     When Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
-    And Click on tag "span" which contains text "View"
+    And Click on tag "button" which contains text "View"
     Then Verify that page contains text "Content Locked"
     And Verify that page contains text "${lockedBy}"
     And Verify that page contains text "${lockedDate}"
@@ -54,7 +51,7 @@ Feature: Content Lock
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
 
     When Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
-    And Click on tag "span" which contains text "Edit"
+    And Click on tag "button" which contains text "Edit"
     And Set switch "chatbot.knowledgebase.customQuestions.contactLockBtn" to "enabled"
     And Click on "chatbot.knowledgebase.customQuestions.questionSaveButton"
     Then Verify that page contains element "chatbot.knowledgebase.customQuestions.saveNotify" with text "Your question has been successfully published"
@@ -63,7 +60,7 @@ Feature: Content Lock
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
     And Element "chatbot.knowledgebase.customQuestions.lockBtn" should "exist"
     And Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
-    And Click on tag "span" which contains text "Edit"
+    And Click on tag "button" which contains text "Edit"
     And Set switch "chatbot.knowledgebase.customQuestions.contactLockBtn" to "disabled"
     And Intercept "GET: ${DRUPAL_URL}jsonapi/taxonomy_term/libraries?filter*" as "pageRefreshRequest"
     And Click on "chatbot.knowledgebase.customQuestions.questionSaveButton"
