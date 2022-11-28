@@ -11,8 +11,8 @@ And('Manage subscriptions', (datatable) => {
   validateInputParamsAccordingToDict(subscriptionsData, requiredParametersAndAcceptableValues);
 
   cy.task('log', `Changing subscription for <${subscriptionsData.campaignName}>. Action: <${subscriptionsData.action}>`);
-  const manageSubscriptionsButton = 'button[type="submit"]>span[class="MuiButton-label"]';
-  cy.get(manageSubscriptionsButton).click();
+  const manageSubscriptionsButton = 'button';
+  cy.get(manageSubscriptionsButton).contains('Manage Subscriptions').click({force:true});
   // waiting for 'Manage Subscriptions' table
   cy.contains('td', 'Draft').should('exist');
   cy.replacePlaceholder(subscriptionsData.campaignName).then((campaignName) => {

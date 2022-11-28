@@ -400,6 +400,6 @@ And('Save number of elements with tag {string} and {string} text as {string}',(t
   });
 });
 
-And('Refresh the page', ()=> {
+And('Refresh the page', () => {
   cy.reload();
 });
