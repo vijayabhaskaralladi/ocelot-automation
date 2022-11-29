@@ -26,19 +26,19 @@ Feature: Chatbot interactions
     And Verify that file "${interactionsFileName}" from download folder contains text "chatbotInteraction${randomNumber1}"
     And Verify that file "${interactionsFileName}" from download folder contains text "chatbotInteraction${randomNumber2}"
 
-   Scenario: Viewing interactions
-     Given Create random number and save it as "randomNumber"
-     And API: Select "chatbotForAutomation" chatbot
-     And API: Send first message "chatbotInteraction${randomNumber}" and save response as "response1"
-     And Login as "defaultUser"
-     And Open chatbot "chatbotForAutomation"
+  Scenario: Viewing interactions
+    Given Create random number and save it as "randomNumber"
+    And API: Select "chatbotForAutomation" chatbot
+    And API: Send first message "chatbotInteraction${randomNumber}" and save response as "response1"
+    And Login as "defaultUser"
+    And Open chatbot "chatbotForAutomation"
 
-     When Open "Chatbot->Interactions" menu item
-     And Retrieve text from "chatbot.interactions.chatbotInteractions" and save as "conversationText"
-     And Click on "chatbot.interactions.viewConversationButton"
-     Then Tag "div.MuiBox-root" with text "${conversationText}" should "exist"
-     And Tag "div" with text "chatbotInteraction${randomNumber}" should "exist"
+    When Open "Chatbot->Interactions" menu item
+    And Retrieve text from "chatbot.interactions.chatbotInteractions" and save as "conversationText"
+    And Click on "chatbot.interactions.viewConversationButton"
+    Then Tag "div.MuiBox-root" with text "${conversationText}" should "exist"
+    And Tag "div" with text "chatbotInteraction${randomNumber}" should "exist"
 
-     When Click on "chatbot.interactions.conversationDetails"
-     And Save current date as "date" using "yyyy-mm-dd" format
-     Then Tag "div.ConversationDetailsPane-timeBox" with text "${date}" should "exist"
+    When Click on "chatbot.interactions.conversationDetails"
+    And Save current date as "date" using "yyyy-mm-dd" format
+    Then Tag "div.ConversationDetailsPane-timeBox" with text "${date}" should "exist"
