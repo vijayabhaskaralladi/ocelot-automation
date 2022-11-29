@@ -68,7 +68,7 @@ Feature: Permission Manager
     And Click on tag "li" which contains text "${role}"
     And Set switch "quotasAccount.permissions.viewOtherOfficesSwitch" to "${viewOtherOfficesSwitch}"
     And Set switch "quotasAccount.permissions.viewMyoffice1Switch" to "${Offices1Switch}"
-    And Click on tag "span" which contains text "Save"
+    And Click on tag "button" which contains text "Save"
 
     Then Check that notification message "Permissions saved successfully" appeared
 
