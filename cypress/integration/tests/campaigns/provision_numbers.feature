@@ -70,7 +70,7 @@ Feature: Campaigns - provision numbers
     And Click on "texting.transcripts.viewConversationFirstRow"
     And Click on tag "h6" which contains text "Conversation Details"
     And Save current date as "date" using "yyyy-mm-dd" format
-    Then Tag "div>span" with text "${chatbotNameResponse}" should "exist"
+    Then Tag "div" with text "${chatbotNameResponse}" should "exist"
     And Tag "#conversation-details-pane div" with text "${date}" should "exist"
     And Tag "#conversation-details-pane div" with text "${provisionNumber}" should "exist"
     And Tag "#conversation-details-pane div" with text "${studentNumber}" should "exist"
