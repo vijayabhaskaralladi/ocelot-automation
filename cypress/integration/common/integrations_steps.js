@@ -27,14 +27,14 @@ And('Enable Service Now', (datatable) => {
           cy.contains('h2', 'ServiceNow')
             .parent('div.MuiCardContent-root')
             .next()
-            .contains('span', 'Configure')
+            .contains('button', 'Configure')
             .click();
         } else {
           cy.task('log', 'Enabling ServiceNow');
           cy.contains('h2', 'ServiceNow')
             .parent('div.MuiCardContent-root')
             .next()
-            .contains('span', 'Enable')
+            .contains('button', 'Enable')
             .click();
         }
       });
@@ -42,7 +42,7 @@ And('Enable Service Now', (datatable) => {
 
     const baseUrlInput = 'input[name="baseUri"]';
     cy.get(baseUrlInput).clear().type(serviceNowData.baseUrl);
-    cy.contains('span','Save').click();
+    cy.contains('button','Save').click();
     cy.checkNotificationMessage('The configuration has been saved successfully!');
   });
 });
@@ -63,7 +63,7 @@ And('Disable Service Now', (datatable) => {
           cy.contains('h2', 'ServiceNow')
             .parent('div.MuiCardContent-root')
             .next()
-            .contains('span', 'Disable')
+            .contains('button', 'Disable')
             .click();
         }
       });
