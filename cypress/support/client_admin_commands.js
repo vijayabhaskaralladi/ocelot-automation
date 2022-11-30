@@ -22,11 +22,15 @@ Cypress.Commands.add('openMenuItem', (menuItem) => {
   cy.log(`Opening ${menuItem}`);
   cy.task('log', `Opening ${menuItem}`);
   // checking isMenuDrawerOpened
-  cy.get('div.MuiDrawer-paperAnchorDockedLeft').then((element)=>{
-    if(!element.is(':visible')){
-      cy.get('button[aria-label="Open menu drawer"]').click({force: true});
-    }
-  });
+  cy.get('#__next')
+    .invoke('attr', 'aria-hidden')
+    .then((ariaHidden) => {
+      const isMenuOpened = ariaHidden === 'true';
+      if (!isMenuOpened) {
+        const menuButton = 'button[aria-label="Open menu drawer"]';
+        cy.get(menuButton).click({force: true});
+      }
+    });
   cy.wait(500);
   const items = menuItem.split('->');
   items.forEach((item) => {
