@@ -197,6 +197,7 @@ And('Select {string} from {string}', (itemSelector, menuSelector) => {
 });
 
 And('Wait {string}', (millis) => {
+  cy.task('log', `Sleeping <${millis}> ms`);
   cy.wait(parseInt(millis, 10));
 });
 
