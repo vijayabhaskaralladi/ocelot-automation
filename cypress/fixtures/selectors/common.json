@@ -1,0 +1,45 @@
+{
+  "common": {
+    "analytics": {
+      "startDate": {"selector":"input[aria-invalid='false']","index": 0},
+      "endDate": {"selector":"input[aria-invalid='false']","index": 1},
+      "filterResults": "button[aria-label='Filter results']"
+    },
+    "transcripts": {
+      "searchInput": "input[type='search']",
+      "startDate": {"selector":"input[aria-invalid='false']","index": 0},
+      "endDate":{"selector":"input[aria-invalid='false']","index": 0},
+      "filterResults": "button[aria-label='Filter results']",
+      "exportResultsToCSV": "button[aria-label=\" Export results to CSV\"]",
+      "unreadStatus": { "selector": "button>svg[data-testid=\"RadioButtonUncheckedIcon\"]", "index": 0 },
+      "readStatus": { "selector": "button>svg[data-testid=\"CheckCircleOutlineIcon\"]", "index": 0 },
+      "transcriptSearchResultList": "table[@class='ConversationLog-table']>tbody>tr",
+      "viewConversation": "button[aria-label=\"View Conversation\"]"
+    },
+    "questions": {
+      "searchInput": "input[type='search']",
+      "filterResults": "button[aria-label='Filter results']",
+      "sortResults": "input[aria-label='Sort results']",
+      "viewFirstQuestion": { "selector": ".MuiAccordionSummary-expandIconWrapper>[data-testid='ExpandMoreIcon']", "index": 0 },
+      "questionSearchResultList": "[id='main-content']>div>div:nth-child(2)>div>div",
+      "exportResultsToCSV": "button[aria-label=\" Export results to CSV\"]",
+      "editQuestion": "{ selector: 'button', text: 'edit' }"
+    },
+    "campagins": {
+      "actions": {
+        "actiondropdown": "[data-testid=\"ArrowDropDownIcon\"]",
+        "clone": { "selector": "#split-button-menu>span>li", "index": 0 },
+        "view": "{ selector: 'button', text: 'View' }"
+      },
+      "searchInput": "input[type='search']",
+      "filterResults": "button[aria-label='Filter results']"
+    },
+    "liveChat": {
+      "searchInput": "input[type='search']",
+      "filterResults": "button[aria-label='Filter results']"
+    },
+    "contactManagement": {
+      "searchInput": "input[type='search']"
+    }
+  }
+}
