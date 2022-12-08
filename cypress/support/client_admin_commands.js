@@ -27,16 +27,24 @@ Cypress.Commands.add('openMenuItem', (menuItem) => {
     .then((ariaHidden) => {
       const isMenuOpened = ariaHidden === 'true';
       if (!isMenuOpened) {
+        cy.log('Opening menu drawer');
         const menuButton = 'button[aria-label="Open menu drawer"]';
         cy.get(menuButton).click({force: true});
+        cy.wait(500);
       }
     });
-  cy.wait(500);
   const items = menuItem.split('->');
+  const menuItemSelector = '[role="presentation"]>.AppDrawer-paper li>.MuiButton-root';
   items.forEach((item) => {
-    //const regexp = new RegExp(item, 'g')
-    cy.contains('li>.MuiButton-root', item).click({force: true});
-    cy.wait(1000);
+    cy.contains(menuItemSelector, item)
+      .parent()
+      .then((element) => {
+        const isItemExpanded = element.find('div.MuiCollapse-entered').length > 0;
+        if (!isItemExpanded) {
+          cy.contains(menuItemSelector, item).click({force: true});
+          cy.wait(1000);  
+        }
+      });
   });
 
   cy.verifyThatNoErrorsDisplayed();
@@ -97,7 +105,13 @@ Cypress.Commands.add('replacePlaceholder', (textWithPlaceholder) => {
 Cypress.Commands.add('openChatbot', (chatbotName) => {
   cy.wrap(chatbotName).as('currentChatbot');
   cy.fixture(`envs/${ENVIRONMENT_NAME}/chatbots`).then((chatbots) => {
-    cy.visit(`/${chatbots[chatbotName].url}`);
+    cy.get('head>title')
+      .invoke('text')
+      .then((title) => {
+        if (!title.includes(chatbots[chatbotName].title)) {
+          cy.visit(`/${chatbots[chatbotName].url}`);
+        }
+      });
   });
 });
 

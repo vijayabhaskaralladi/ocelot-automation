@@ -1,18 +1,22 @@
 {
   "aimsCommunityCollege": {
     "url": "7rVC1WJoGFKu8Esee2v5wV",
-    "id": "343578a7-91d1-4881-8a70-a53fd9300e89"
+    "id": "343578a7-91d1-4881-8a70-a53fd9300e89",
+    "title": "Aims Community College"
   },
   "chatbotForAutomation": {
     "url": "dGHTpdnAZZSPAqaFMbG4NS",
-    "id": "66dd3a5f-27f4-4d0b-b872-c3f7a576b24a"
+    "id": "66dd3a5f-27f4-4d0b-b872-c3f7a576b24a",
+    "title": "Rappahannock College"
   },
   "chatbotForInquiryForm": {
     "url": "nZRkfFGXgvrMZNgG3hvmZD",
-    "id": "b223b569-c2af-4db4-85d8-06c91a236227"
+    "id": "b223b569-c2af-4db4-85d8-06c91a236227",
+    "title": "AutomationInquiryForm"
   },
   "centennialUniversity": {
     "url": "6h8zpGPMEEMEk4aBCV3PX1",
-    "id": "2abe4333-67c6-4673-bfca-449089d93372"
+    "id": "2abe4333-67c6-4673-bfca-449089d93372",
+    "title": "Centennial University"
   }
 }

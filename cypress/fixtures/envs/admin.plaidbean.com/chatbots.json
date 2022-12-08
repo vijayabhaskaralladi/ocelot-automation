@@ -1,18 +1,22 @@
 {
   "aimsCommunityCollege": {
     "url": "7rVC1WJoGFKu8Esee2v5wV",
-    "id": "343578a7-91d1-4881-8a70-a53fd9300e89"
+    "id": "343578a7-91d1-4881-8a70-a53fd9300e89",
+    "title": "Aims Community College"
   },
   "chatbotForAutomation": {
     "url": "9Z8LBSsFsVo9fYonqATCqt",
-    "id": "48c34acb-10d1-4b5d-a975-2500a4bb45f3"
+    "id": "48c34acb-10d1-4b5d-a975-2500a4bb45f3",
+    "title": "automation chatbot"
   },
   "chatbotForInquiryForm": {
     "url": "eWR7Tx32QpMHGEKEwui92A",
-    "id": "70ef3c96-cda6-4093-a2e3-dc09a7ab7fa4"
+    "id": "70ef3c96-cda6-4093-a2e3-dc09a7ab7fa4",
+    "title": "AutomationInquiryForm"
   },
   "centennialUniversity": {
     "url": "6h8zpGPMEEMEk4aBCV3PX1",
-    "id": "2abe4333-67c6-4673-bfca-449089d93372"
+    "id": "2abe4333-67c6-4673-bfca-449089d93372",
+    "title": "Centennial University"
   }
 }
