@@ -4,6 +4,12 @@ exports.ENVIRONMENT_NAME = ENVIRONMENT_NAME;
 // retrieves nested value from JSON object using string path
 export const getValueByPath = (object, path) => path.split('.').reduce((r, k) => r[k], object);
 
+export const extractBotHomePageUrl = (url) => {
+  const homePageUrl = url
+    .replace(/inbox(.*)|chatbot(.*)|live-chat(.*)|campaigns(.*)|contact-management(.*)|integrations(.*)|quotas-account(.*)/, '');
+  return homePageUrl;
+};
+
 export const convertDataTableIntoDict = (datatable) => {
   // Converts data tables into dict
   // [[key1, val1], [key2,val2],...]

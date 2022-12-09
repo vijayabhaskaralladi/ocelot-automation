@@ -1,5 +1,5 @@
 import { And } from 'cypress-cucumber-preprocessor/steps';
-import {convertDataTableIntoDict, validateInputParamsAccordingToDict} from '../../support/utils';
+import {convertDataTableIntoDict, extractBotHomePageUrl, validateInputParamsAccordingToDict} from '../../support/utils';
 
 const BINARY_CONTENT_TYPE = 'binary';
 
@@ -149,7 +149,8 @@ And('Create campaign', (datatable) => {
 And('Archive campaign {string}', (campaignName) => {
   cy.url().then((currentUrl) => {
     cy.replacePlaceholder(campaignName).then((campaign) => {
-      cy.visit(`${currentUrl}/campaigns/active?keywords=${campaign}`);
+      const botHomePage = extractBotHomePageUrl(currentUrl);
+      cy.visit(`${botHomePage}/campaigns/active?keywords=${campaign}`);
     });
   });
   cy.get('button.MuiButton-containedSizeSmall').eq(1).click();
@@ -207,7 +208,8 @@ And('Archive campaign which uses {string} number', (number) => {
         cy.openChatbot(chatbotName);
       });
       cy.url().then((currentUrl) => {
-        cy.visit(`${currentUrl}/campaigns/active?keywords=${campaignName}`);
+        const botHomePage = extractBotHomePageUrl(currentUrl);
+        cy.visit(`${botHomePage}/campaigns/active?keywords=${campaignName}`);
       });
       const campaignOptionsButtonSelector = 'div>button.MuiButton-containedSizeSmall:nth-child(2)';
       cy.get(campaignOptionsButtonSelector).click();
