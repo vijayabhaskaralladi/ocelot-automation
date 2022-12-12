@@ -56,7 +56,7 @@ Feature: Campaigns - provision numbers
       | office                | MyCampus - Office 1                                      |
       | responseType          | Bot                                                      |
       | saveProvisionNumberAs | provisionNumber                                          |
-      | inbox                 | CampaignsAdmin Automation                                |
+      | inbox                 | ${INBOX_NAME}                                            |
 
     When Send SMS "What is your name?" to "${provisionNumber}" from "${studentNumber}"
     And Delete provision number "${provisionNumber}"
@@ -90,7 +90,7 @@ Feature: Campaigns - provision numbers
       | office                | MyCampus - Office 1                                      |
       | responseType          | Agent                                                    |
       | saveProvisionNumberAs | provisionNumber                                          |
-      | inbox                 | CampaignsAdmin Automation                                |
+      | inbox                 | ${INBOX_NAME}                                            |
 
     When Send SMS "Hey Agent ${id}" to "${provisionNumber}" from "${studentNumber}"
     Then Check that notification message "Inbox needs attention" appeared
@@ -128,7 +128,7 @@ Feature: Campaigns - provision numbers
         | office                | MyCampus - Office 1                                      |
         | responseType          | Agent                                                    |
         | saveProvisionNumberAs | provisionNumber                                          |
-        | inbox                 | CampaignsAdmin Automation                                |
+        | inbox                 | ${INBOX_NAME}                                            |
       And Type "${provisionNumber}" in "texting.phoneNumbers.searchInput"
       Then Verify that selector "texting.phoneNumbers.records" contains "1" elements
       And Click on "texting.phoneNumbers.editPhoneNumberButton"

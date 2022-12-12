@@ -60,12 +60,12 @@ And('Create campaign', (datatable) => {
   cy.wrap(campaignData).then((data) => {
     let selector;
     switch (data.createFrom.toLowerCase()) {
-      case 'library':
-      case 'previous':
-        throw Error('Not implemented');
-      case 'scratch':
-        selector = 'createContent.campaigns.createFromScratch';
-        break;
+    case 'library':
+    case 'previous':
+      throw Error('Not implemented');
+    case 'scratch':
+      selector = 'createContent.campaigns.createFromScratch';
+      break;
     }
     cy.getElement(selector).click();
   });

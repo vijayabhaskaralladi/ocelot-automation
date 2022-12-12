@@ -9,6 +9,7 @@ And('Create provision number', (datatable) => {
     office: 'any',
     responseType: ['bot', 'agent', 'none'],
     saveProvisionNumberAs: 'any',
+    inbox: 'any'
   };
   validateInputParamsAccordingToDict(provisionNumberData, requiredParametersAndAcceptableValues);
 
@@ -44,7 +45,9 @@ And('Create provision number', (datatable) => {
   cy.contains('[aria-labelledby="campaignType-label"]>li.MuiButtonBase-root', provisionNumberData.responseType).click();
 
   cy.get('#inboxSubscriptions').click();
-  cy.contains('span.MuiListItemText-primary', provisionNumberData.inbox).click();
+  cy.replacePlaceholder(provisionNumberData.inbox).then((provisionNumberNameInbox) => {
+    cy.contains('span', provisionNumberNameInbox).click();
+  });
   cy.contains('button', 'Save').click();
   cy.checkNotificationMessage('Saved Successfully!');
 });

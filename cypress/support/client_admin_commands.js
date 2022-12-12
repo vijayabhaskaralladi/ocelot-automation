@@ -118,3 +118,4 @@ Cypress.Commands.add('openChatbot', (chatbotName) => {
 Cypress.Commands.add('checkNotificationMessage', (expectedMessage) => {
   cy.contains('#notistack-snackbar', expectedMessage).should('exist');
 });
+
