@@ -14,7 +14,7 @@
       "unreadStatus": { "selector": "button>svg[data-testid=\"RadioButtonUncheckedIcon\"]", "index": 0 },
       "readStatus": { "selector": "button>svg[data-testid=\"CheckCircleOutlineIcon\"]", "index": 0 },
       "transcriptSearchResultList": "table[@class='ConversationLog-table']>tbody>tr",
-      "viewConversation": "button[aria-label=\"View Conversation\"]"
+      "viewConversation": { "selector": "button[aria-label='View Conversation']", "index": 0 }
     },
     "questions": {
       "searchInput": "input[type='search']",
@@ -25,14 +25,19 @@
       "exportResultsToCSV": "button[aria-label=\" Export results to CSV\"]",
       "editQuestion": "{ selector: 'button', text: 'edit' }"
     },
-    "campagins": {
+    "texting": {
+      "viewFirstRow": { "selector": "[role='group']>button:nth-child(1)", "index": 0 },
       "actions": {
-        "actiondropdown": "[data-testid=\"ArrowDropDownIcon\"]",
-        "clone": { "selector": "#split-button-menu>span>li", "index": 0 },
-        "view": "{ selector: 'button', text: 'View' }"
+        "actiondropdown": { "selector": "[data-testid='ArrowDropDownIcon']", "index": 0 },
+        "cloneButton": { "selector": "#split-button-menu>span>li", "index": 0 },
+        "view": { "selector": "button", "text": "View" }
       },
+      "confirmClone": { "selector": ".MuiDialogActions-root>button", "text": "Clone" },
       "searchInput": "input[type='search']",
-      "filterResults": "button[aria-label='Filter results']"
+      "filterResults": "button[aria-label='Filter results']",
+      "statusFilter": {"selector": "input[name='status']", "getPrevious": true },
+      "draftFilter": "li[data-value='Draft']",
+      "exportResultsToCSV": "button[aria-label=\" Export results to CSV\"]"
     },
     "liveChat": {
       "searchInput": "input[type='search']",

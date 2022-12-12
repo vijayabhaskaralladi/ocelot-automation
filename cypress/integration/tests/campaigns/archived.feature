@@ -11,7 +11,7 @@ Feature: Permissions - archived campaigns
     Then Verify that browser tab title contains "Archived"
     And Verify that selector "texting.archived.archivedRowCount" contains more than "1" elements
 
-    When Click on "texting.archived.firstViewButton"
+    When Click on "common.texting.viewFirstRow"
     Then Click on tag "button" which contains text "General"
     And Tag "h2" with text "General Settings" should "exist"
     And Tag "div" with text "Bot|Operator" should "exist"
@@ -27,11 +27,11 @@ Feature: Permissions - archived campaigns
       | campaignsAdmin    |
     And Open chatbot "chatbotForAutomation"
     When Open "Texting->Archived" menu item
-    And Click on "texting.archived.firstRowDropdown"
-    Then Click on "texting.archived.cloneButton"
+    And Click on "common.texting.actions.actiondropdown"
+    Then Click on "common.texting.actions.cloneButton"
     And Create random number and save it as "randomNumber"
     And Type "ClonedCampaign${randomNumber}" in "texting.archived.campaignNameInputDialog"
-    And Click on "texting.archived.confirmClone"
+    And Click on "common.texting.confirmClone"
 
     Then Intercept "${GRAPHQL_URL}graphql" with "getLiveChatWhosOnlineStatistics" keyword in the response as "whosOnlineRequest"
     And Open "Active" menu item

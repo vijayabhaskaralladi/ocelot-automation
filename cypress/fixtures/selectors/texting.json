@@ -10,22 +10,14 @@
       "officeStatus": "#formcontrol-office"
     },
     "activeCampaigns": {
-      "viewFirstRow": { "selector": "[role='group']>button:nth-child(1)", "index": 0 },
       "generalTab": { "selector": "span.MuiTab-wrapper", "text": "General" },
       "campaignName": { "selector": "div.MuiFormControl-fullWidth>div", "index": 0 },
       "keywordSearch": "input[name='keywords']",
       "responseInput": "[aria-label='Rich Text Editor, main']",
-      "filterResults": "svg[aria-label='Filter results']",
-      "statusFilter": {"selector": "input[name='status']", "getPrevious": true },
-      "draftFilter": "li[data-value='Draft']",
       "draftFilterName": "div[title='Status: Draft']>span",
       "campaginListTable": "table[aria-label='Campaigns']>tbody>tr",
       "firstContactNumber": { "selector": "td:nth-child(4)", "index": 0 },
-      "exportResults": "button[aria-label=' Export results to CSV']",
-      "firstRowDropdown": { "selector": "div[role='group']>button:nth-child(2)", "index": 0 },
-      "cloneButton": { "selector": "span>li", "text": "Clone" },
-      "campaignNameInputDialog": "input[aria-invalid='true']",
-      "confirmClone": { "selector": ".MuiDialogActions-root>button", "text": "Clone" }
+      "campaignNameInputDialog": "input[aria-invalid='true']"
     },
     "phoneNumbers": {
       "phoneNumberFromFirstRow": { "selector": "tbody>tr>td>div.MuiBox-root", "index": 0 },
@@ -35,7 +27,6 @@
       "archiveDate": "tr>td:nth-child(8)",
       "editPhoneNumberButton": "button[aria-label='Edit phone number']",
       "phoneNumberDescription": "#description",
-      "filter": "button[aria-label='Filter results']",
       "labelNumberType": { "selector":"label", "text": "Number Type" },
       "inputNumberType": "div[id='formcontrol-type']",
       "rowSelector": "tr[class*='MuiTableRow-root']"
@@ -54,12 +45,8 @@
       "unreadFilterName": "div[title='Read Status: Unread']"
     },
     "archived": {
-      "firstRowDropdown": { "selector": "div[role='group']>button:nth-child(2)", "index": 0 },
-      "cloneButton": { "selector": "span>li", "text": "Clone" },
       "campaignNameInputDialog": "input[aria-invalid='true']",
-      "confirmClone": { "selector": ".MuiDialogActions-root>button", "text": "Clone" },
       "archivedRowCount": "table[aria-label='Campaigns'] tr",
-      "firstViewButton": { "selector": "tr button[class*='MuiButtonBase-root']", "index": 0 },
       "contactsRowCount": { "selector": "table[aria-label='Contacts'] tr", "index": 0 },
       "contactsMessaged": "span[data-testid='Contacts Messaged-counter']",
       "contactsResponded": "span[data-testid='Contacts Responded-counter']"

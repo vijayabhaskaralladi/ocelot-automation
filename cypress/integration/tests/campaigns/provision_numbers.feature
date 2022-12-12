@@ -10,7 +10,7 @@ Feature: Campaigns - provision numbers
     And Open "Texting->Phone Numbers" menu item
 
     When Intercept "${GRAPHQL_URL}graphql" with "listActivePhoneNumbersAssignments" keyword in the response as "searchRequest"
-    And Click on "texting.phoneNumbers.filter"
+    And Click on "common.texting.filterResults"
     And Wait for element "texting.phoneNumbers.inputNumberType"
     And Click on "texting.phoneNumbers.inputNumberType"
     And Click on tag "li" which contains text "Reusable"
@@ -20,7 +20,7 @@ Feature: Campaigns - provision numbers
     And Verify that selector "texting.phoneNumbers.rowSelector" contains more than "1" elements
 
     When Intercept "${GRAPHQL_URL}graphql" with "listActivePhoneNumbersAssignments" keyword in the response as "searchRequest"
-    And Click on "texting.phoneNumbers.filter"
+    And Click on "common.texting.filterResults"
     And Wait for element "texting.phoneNumbers.inputNumberType"
     And Click on "texting.phoneNumbers.inputNumberType"
     And Click on tag "li" which contains text "Single Use"
@@ -39,7 +39,7 @@ Feature: Campaigns - provision numbers
 
     When Intercept "${MESSAGE_API_DOMAIN}phone-numbers/exported*" as "downloadRequest"
     And Add reload event listener
-    And  Click on "texting.phoneNumbers.exportResults"
+    And  Click on "common.texting.exportResultsToCSV"
     And Wait for "downloadRequest" network call
     Then Verify that download folder contains "phone-numbers.csv"
 

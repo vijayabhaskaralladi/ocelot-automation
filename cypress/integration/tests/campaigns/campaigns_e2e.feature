@@ -269,7 +269,7 @@ Feature: Campaigns
     And Check that difference between "newContactsResponded" and "oldContactsResponded" is "1"
 
     When Intercept "${GRAPHQL_URL}graphql" with "getAnalyticCampaigns" keyword in the response as "searchRequest"
-    And Click on "texting.campaignAnalytics.filter"
+    And Click on "common.texting.filterResults"
     And Wait for element "texting.campaignAnalytics.officeStatus"
     And Click on "texting.campaignAnalytics.officeStatus"
     And Click on tag "li" which contains text "Office 2"
