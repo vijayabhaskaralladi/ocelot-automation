@@ -1,5 +1,7 @@
 Feature: 1:1 messages
 
+  # MAINT-2233: [1:1 text] 'Message is required' error appears even with all filled fields
+  @exclude_from_ci
   Scenario: Sending messages
   Provision number should have 'Agent' response type; also don't forget to add inbox
     Given Login as "campaignsAdmin"
@@ -21,6 +23,8 @@ Feature: 1:1 messages
     Then Tag ".MuiAccordionDetails-root>div>div" with text "${studentNumber}" should "exist"
     And Tag ".MuiAccordionDetails-root>div>div" with text "${PROVISION_NUMBER}" should "exist"
 
+  # MAINT-2233: [1:1 text] 'Message is required' error appears even with all filled fields
+  @exclude_from_ci
   Scenario: Verify that sending message to Opted Out Contact should not receive any messages
     Given Login as "campaignsAdmin"
     And Open chatbot "chatbotForAutomation"
