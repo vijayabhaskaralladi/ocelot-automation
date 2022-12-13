@@ -7,7 +7,8 @@ Feature: Permissions - active campaigns
       | viewOtherOfficesCampaigns |
     And Open chatbot "chatbotForAutomation"
     And Open "Texting->Active Campaigns" menu item
-    And Add "active?status=Draft" to the current URL
+    And URL should include "campaigns"
+    And Add "?status=Draft" to the current URL
     And Click on "common.texting.viewFirstRow"
     And Create random number and save it as "id"
     And Choose random value from "1 Day|2 Day|3 Day|4 Day" and save it as "automaticArchive"

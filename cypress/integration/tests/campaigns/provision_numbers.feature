@@ -47,7 +47,7 @@ Feature: Campaigns - provision numbers
     Given Login as "campaignsAdmin"
     And Open chatbot "chatbotForAutomation"
     And Open "Texting->Phone Numbers" menu item
-    And Save "(513) 548-3310" as "studentNumber"
+    And Save "(513) 586-1971" as "studentNumber"
     And Create random number and save it as "id"
     And Create provision number
       | name                  | ProvisionNumber${id}                                     |
@@ -59,8 +59,8 @@ Feature: Campaigns - provision numbers
       | inbox                 | ${INBOX_NAME}                                            |
 
     When Send SMS "What is your name?" to "${provisionNumber}" from "${studentNumber}"
-    And Delete provision number "${provisionNumber}"
     Then Verify that "${studentNumber}" number "received" "${chatbotNameResponse}" message
+    And Delete provision number "${provisionNumber}"
 
     When Open chatbot "chatbotForAutomation"
     And Open "Texting->Transcripts" menu item
