@@ -34,7 +34,7 @@ Feature: Permissions - contact lists
     And Click on tag "button" which contains text "Ok"
     And Check that notification message "Contact removed" appeared
 
-    And Open chatbot "chatbotForAutomation"
+    And Open chatbot home page
     And Open "Contact Management->Contact Lists" menu item
     And Type "BigContactList${randomNumber}{enter}" in "contactManagement.contactLists.searchInput"
     And Verify that selector "contactManagement.contactLists.tableRows" contains "1" elements
