@@ -3,7 +3,7 @@ import 'cypress-file-upload';
 import {
   YES_RESPONSES_FOR_CAMPAIGNS,
   NO_RESPONSES_FOR_CAMPAIGNS,
-  ENVIRONMENT_NAME, convertDataTableIntoDict, validateInputParamsAccordingToDict,
+  ENVIRONMENT_NAME, convertDataTableIntoDict, validateInputParamsAccordingToDict, extractBotHomePageUrl,
 } from '../../support/utils';
 
 // ToDo: move this function to something like utils.js
@@ -403,4 +403,11 @@ And('Save number of elements with tag {string} and {string} text as {string}',(t
 
 And('Refresh the page', () => {
   cy.reload();
+});
+
+And('Open chatbot home page', () => {
+  cy.task('log', 'Opening chatbot home page');
+  cy.url().then((currentUrl) => {
+    cy.visit(extractBotHomePageUrl(currentUrl));
+  });
 });
