@@ -30,3 +30,10 @@ And('Client Admin test setup', () => {
     }
   });
 });
+
+And('Logout', () => {
+  cy.window().then(win => win.sessionStorage.clear());
+  cy.clearCookies();
+  cy.clearLocalStorage();
+});
+
