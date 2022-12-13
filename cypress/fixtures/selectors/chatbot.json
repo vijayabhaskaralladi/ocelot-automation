@@ -3,7 +3,6 @@
     "analytics": {
       "conversationsNumber": ".ChatbotAnalytics-numbersOnly:nth-child(1)>div.MuiTypography-h3",
       "interactionsNumber": "div>div:nth-child(1)>div.MuiTypography-root.MuiTypography-subtitle1",
-      "filter": "button[aria-label='Filter results']",
       "chatbotDropdown": { "selector": "input[name='chatbotId']", "getPrevious": true },
       "officeDropdown": { "selector": "input[name='officeId']", "getPrevious": true }
     },
@@ -33,26 +32,19 @@
     "knowledgebase": {
       "generalLibrary": {
         "questions": ".MuiButtonBase-root.MuiAccordionSummary-root",
-        "viewFirstQuestion": { "selector": ".MuiAccordionSummary-expandIconWrapper>[data-testid='ExpandMoreIcon']", "index": 0 },
-        "search": "input[name='keywords']",
         "answer": {"selector":".MuiAccordionDetails-root p","index": 0},
         "buttonContentShare": {"selector": "div.MuiTypography-root","text":"Shared Content"},
         "buttonSave": {"selector":"span","text":"Save"},
         "msgSuccess": {"selector": "div[id='notistack-snackbar']","text": "Your question has been successfully published and will soon become part of the bot's knowledgebase!"},
         "contentShare": "svg[title='Shared with other bot(s)']",
-        "filterButton":"button[aria-label='Filter results']",
         "departmentFilter": "#formcontrol-library",
         "admissionFilter": { "selector": "li.MuiMenuItem-gutters", "text": "Admissions" },
         "filterValue":"span.MuiChip-label",
         "deleteFilter":"svg.MuiChip-deleteIcon",
-        "buttonSort":"button[aria-label='Sort results']",
         "firstQuestion": "div:nth-child(2)>div>div>div>p.GeneralQuestion-heading"
       },
       "customQuestions": {
         "questions": ".MuiButtonBase-root.MuiAccordionSummary-root",
-        "search": "input[name='keywords']",
-        "viewFirstQuestion": { "selector": ".MuiAccordionSummary-expandIconWrapper>[data-testid='ExpandMoreIcon']", "index": 0 },
-        "exportCustomQuestions": "button[aria-label=' Export results to CSV']",
         "buttonContentShare": {"selector": "div.MuiTypography-root","text":"Shared Content"},
         "buttonSave": {"selector":"span","text":"Save"},
         "msgSuccess": {"selector": "div[id='notistack-snackbar']","text": "Your question has been successfully published and will soon become part of the bot's knowledgebase!"},
@@ -62,7 +54,6 @@
         "questionSaveButton": ".MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary",
         "questionTable": "div.MuiButtonBase-root.MuiAccordionSummary-root",
         "selectedQuestion": "div:nth-child(2)>div.MuiAccordionSummary-root>div>p",
-        "filterResults": "[data-testid='FilterListIcon']",
         "departmentFilter": {"selector": "input[name='library']", "getPrevious": true},
         "financialAidFilterValue":{"selector": "li","text":"Financial Aid"},
         "customQuestionListTable": "div.MuiAccordion-root",
@@ -75,29 +66,21 @@
         "contactLockBtn": "#contentLock",
         "lockBtn": "p>svg.MuiSvgIcon-root",
         "saveNotify": "#notistack-snackbar",
-        "shareIcon": "[data-testid='ShareIcon']",
-        "buttonSort": "button[aria-label='Sort results']"
+        "shareIcon": "[data-testid='ShareIcon']"
       },
       "questionTemplates": {
-        "search": "input[name='keywords']",
-        "viewFirstQuestion": { "selector": ".MuiAccordionSummary-expandIconWrapper>div.MuiAccordionSummary-expandIcon", "index": 0 },
         "searchQuestionAnswer": "div[role='region']>div.MuiAccordionDetails-root",
-        "filterQuestion": "button[aria-label='Filter results']",
         "deptLabel": {"selector": "label","text":"Department"},
         "deptFilter": { "selector": "div.MuiPopover-paper div[role='button']", "index": 1},
         "filteredHeader": "span.MuiChip-label",
-        "questionCount": "div.MuiAccordionSummary-root",
-        "buttonSort":"button[aria-label='Sort results']"
+        "questionCount": "div.MuiAccordionSummary-root"
       },
       "moderationQueue": {
         "cellsWithQuestion": "th.MuiTableCell-body",
-        "exportModerationQueue": "button[aria-label=' Export results to CSV']",
         "firstRowQuestion": "tbody>tr:nth-child(1)>th"
       },
       "awaitingReview": {
-        "searchQuestion": "input[name='keywords']",
         "firstRowAwaitingQuestion": "div[role='button'] p",
-        "viewFirstAwaitingQuestion": { "selector": "div.MuiAccordionSummary-expandIconWrapper", "index": 0 },
         "editAwaitingResponse": "div.ck.ck-editor__main p"
       }
     },

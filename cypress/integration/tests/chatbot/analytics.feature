@@ -46,7 +46,7 @@ Feature: Permissions - chatbot analytics
     And Open chatbot "chatbotForAutomation"
 
     When Open "Chatbot->Analytics" menu item
-    And Click on "chatbot.analytics.filter"
+    And Click on "common.analytics.filterResults"
     And Click on "chatbot.analytics.chatbotDropdown"
     And Click on tag "li" which contains text "AutomationInquiryForm"
 
@@ -66,7 +66,7 @@ Feature: Permissions - chatbot analytics
 #
 #    And Open chatbot "chatbotForAutomation"
 #    And Open "Chatbot->Analytics" menu item
-#    And Click on "chatbot.analytics.filter"
+#    And Click on "common.analytics.filterResults"
 #    And Click on "chatbot.analytics.chatbotDropdown"
 #    And Click on tag "li" which contains text "AutomationInquiryForm"
 #    And Retrieve text from "chatbot.analytics.conversationsNumber" and save as "conversationsNumber2"
@@ -80,7 +80,7 @@ Feature: Permissions - chatbot analytics
     And Open chatbot "chatbotForAutomation"
 
     When Open "Chatbot->Analytics" menu item
-    And Click on "chatbot.analytics.filter"
+    And Click on "common.analytics.filterResults"
     And Click on "chatbot.analytics.officeDropdown"
     And Click on tag "li" which contains text "MyCampus - Office 2"
 
@@ -100,7 +100,7 @@ Feature: Permissions - chatbot analytics
 #
 #    And Open chatbot "chatbotForAutomation"
 #    And Open "Chatbot->Analytics" menu item
-#    And Click on "chatbot.analytics.filter"
+#    And Click on "common.analytics.filterResults"
 #    And Click on "chatbot.analytics.officeDropdown"
 #    And Click on tag "li" which contains text "MyCampus - Office 2"
 #    And Retrieve text from "chatbot.analytics.conversationsNumber" and save as "conversationsNumber2"

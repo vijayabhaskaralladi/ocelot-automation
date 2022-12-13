@@ -17,18 +17,19 @@
       "viewConversation": { "selector": "button[aria-label='View Conversation']", "index": 0 }
     },
     "questions": {
-      "searchInput": "input[type='search']",
+      "searchQuestion": "input[type='search']",
       "filterResults": "button[aria-label='Filter results']",
-      "sortResults": "input[aria-label='Sort results']",
+      "sortResults": "button[aria-label='Sort results']",
       "viewFirstQuestion": { "selector": ".MuiAccordionSummary-expandIconWrapper>[data-testid='ExpandMoreIcon']", "index": 0 },
       "questionSearchResultList": "[id='main-content']>div>div:nth-child(2)>div>div",
       "exportResultsToCSV": "button[aria-label=\" Export results to CSV\"]",
-      "editQuestion": "{ selector: 'button', text: 'edit' }"
+      "editQuestion": { "selector": "button", "text": "edit" },
+      "createQuestion": { "selector": "button[aria-label*='Create'],button[aria-label*='Add']", "index": 1 }
     },
     "texting": {
       "viewFirstRow": { "selector": "[role='group']>button:nth-child(1)", "index": 0 },
       "actions": {
-        "actiondropdown": { "selector": "[data-testid='ArrowDropDownIcon']", "index": 0 },
+        "actionDropdown": { "selector": "[data-testid='ArrowDropDownIcon']", "index": 0 },
         "cloneButton": { "selector": "#split-button-menu>span>li", "index": 0 },
         "view": { "selector": "button", "text": "View" }
       },

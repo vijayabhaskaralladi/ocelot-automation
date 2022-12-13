@@ -10,7 +10,7 @@ Feature: Permissions - custom questions
     When Open "Chatbot->Knowledgebase->Custom Questions" menu item
     Then Verify that page title is "Custom Questions"
     And Choose random value from "Changed, Oldest to Most Recent|Changed, Recent to Oldest" and save it as "ordering"
-    And Click on "chatbot.knowledgebase.customQuestions.buttonSort"
+    And Click on "common.questions.sortResults"
     And Intercept "${DRUPAL_URL}jsonapi/chatbot_question/chatbot_question?filter*" as "orderCustomQuestion"
     And Click on tag "li" which contains text "${ordering}"
     And Wait for "orderCustomQuestion" and save it as "orderCustomQuestionResponse"
@@ -27,7 +27,7 @@ Feature: Permissions - custom questions
     And Open chatbot "chatbotForAutomation"
     When Open "Chatbot->Knowledgebase->Custom Questions" menu item
     And Add reload event listener
-    And Click on "chatbot.knowledgebase.customQuestions.exportCustomQuestions"
+    And Click on "common.questions.exportResultsToCSV"
     Then Verify that download folder contains "review-custom"
     And Get full file name with prefix "review-custom" in download folder and save it as "customQuestionsFile"
     And Verify that file "${customQuestionsFile}" from download folder contains text "Custom question for automation"
@@ -37,7 +37,7 @@ Feature: Permissions - custom questions
     Given Login as "chatbotStandard-FinancialAidOffice"
     And Open chatbot "chatbotForAutomation"
     When Open "Chatbot->Knowledgebase->Custom Questions" menu item
-    And Type "${financialAidLibraryCustomQuestion}" in "chatbot.knowledgebase.customQuestions.search"
+    And Type "${financialAidLibraryCustomQuestion}" in "common.questions.searchQuestion"
     Then Tag "p.MuiTypography-body1" with text "${financialAidLibraryCustomQuestion}" should "exist"
 
   Scenario: TMD-44: User shouldn't see custom questions from other libraries
@@ -45,7 +45,7 @@ Feature: Permissions - custom questions
     Given Login as "chatbotStandard-FinancialAidOffice"
     And Open chatbot "chatbotForAutomation"
     When Open "Chatbot->Knowledgebase->Custom Questions" menu item
-    And Type "${bookstoreLibraryCustomQuestion}" in "chatbot.knowledgebase.customQuestions.search"
+    And Type "${bookstoreLibraryCustomQuestion}" in "common.questions.searchQuestion"
     And Wait "5000"
     Then Tag "p" with text "${bookstoreLibraryCustomQuestion}" should "not.exist"
 
@@ -54,7 +54,7 @@ Feature: Permissions - custom questions
     Given Login as "chatbotStandard-AthleticsOffice"
     And Open chatbot "chatbotForAutomation"
     When Open "Chatbot->Knowledgebase->Custom Questions" menu item
-    And Type "${financialAidLibraryCustomQuestion}" in "chatbot.knowledgebase.customQuestions.search"
+    And Type "${financialAidLibraryCustomQuestion}" in "common.questions.searchQuestion"
     And Wait "5000"
     Then Tag "p" with text "${financialAidLibraryCustomQuestion}" should "exist"
 
@@ -69,7 +69,7 @@ Feature: Permissions - custom questions
     Then Verify that page title is "Custom Questions"
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains more than "2" elements
     And Intercept "${DRUPAL_URL}jsonapi/chatbot_question/chatbot_question*" as "searchRequest"
-    And Click on "chatbot.knowledgebase.customQuestions.filterResults"
+    And Click on "common.questions.filterResults"
     And Click on "chatbot.knowledgebase.customQuestions.departmentFilter"
     And Click on "chatbot.knowledgebase.customQuestions.financialAidFilterValue"
     And Wait for "searchRequest" network call
@@ -95,7 +95,7 @@ Feature: Permissions - custom questions
     And Create random number and save it as "id"
     And Open "Chatbot->Knowledgebase->Custom Questions" menu item
     And Verify that page title is "Custom Questions"
-    When Type "${customQuestionForEditing}" in "chatbot.knowledgebase.customQuestions.search"
+    When Type "${customQuestionForEditing}" in "common.questions.searchQuestion"
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
     And Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
     And Click on tag "button" which contains text "Edit"

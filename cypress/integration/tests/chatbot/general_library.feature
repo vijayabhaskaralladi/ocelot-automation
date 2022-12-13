@@ -9,7 +9,7 @@ Feature: Permissions - general library
     And Open chatbot "chatbotForAutomation"
     When Open "Chatbot->Knowledgebase->General Library" menu item
     Then Verify that page title is "General Library"
-    And Click on "chatbot.knowledgebase.generalLibrary.buttonSort"
+    And Click on "common.questions.sortResults"
     And Intercept "${DRUPAL_URL}jsonapi/chatbot_question/chatbot_question?filter*" as "sortGeneralLibrary"
     And Click on tag "li" which contains text "Title, Z-A"
     And Wait for "sortGeneralLibrary" and save it as "sortGeneralLibraryResponse"
@@ -62,7 +62,7 @@ Feature: Permissions - general library
     Given Login as "chatbotStandard-BookstoreOffice"
     And Open chatbot "chatbotForAutomation"
     And Open "Chatbot->Knowledgebase->General Library" menu item
-    When Type "${bookstoreLibraryGeneralQuestion}" in "chatbot.knowledgebase.generalLibrary.search"
+    When Type "${bookstoreLibraryGeneralQuestion}" in "common.questions.searchQuestion"
     Then Verify that selector "chatbot.knowledgebase.generalLibrary.questions" contains "1" elements
-    When Type "${financialAidLibraryGeneralQuestion}" in "chatbot.knowledgebase.generalLibrary.search"
+    When Type "${financialAidLibraryGeneralQuestion}" in "common.questions.searchQuestion"
     Then Verify that selector "chatbot.knowledgebase.generalLibrary.questions" contains "0" elements

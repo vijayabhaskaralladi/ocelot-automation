@@ -27,7 +27,7 @@ Feature: Permissions - archived campaigns
       | campaignsAdmin    |
     And Open chatbot "chatbotForAutomation"
     When Open "Texting->Archived" menu item
-    And Click on "common.texting.actions.actiondropdown"
+    And Click on "common.texting.actions.actionDropdown"
     Then Click on "common.texting.actions.cloneButton"
     And Create random number and save it as "randomNumber"
     And Type "ClonedCampaign${randomNumber}" in "texting.archived.campaignNameInputDialog"

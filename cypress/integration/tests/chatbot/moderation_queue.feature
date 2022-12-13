@@ -14,7 +14,7 @@ Feature: Permissions - moderation queue
     And Retrieve text from "chatbot.knowledgebase.moderationQueue.firstRowQuestion" and save as "moderationQueueQuestion"
 
     When Add reload event listener
-    And Click on "chatbot.knowledgebase.moderationQueue.exportModerationQueue"
+    And Click on "common.questions.exportResultsToCSV"
     Then Verify that download folder contains "api-chatbot-kb-moderation-queue-"
     And Get full file name with prefix "api-chatbot-kb-moderation-queue-" in download folder and save it as "moderationQueueFileName"
     And Verify that file "${moderationQueueFileName}" from download folder contains text "${moderationQueueQuestion}"

@@ -24,7 +24,7 @@ Feature: Permissions - active campaigns
     And Open "Texting->Active Campaigns" menu item
     And Create random number and save it as "randomNumber"
 
-    When Click on "common.texting.actions.actiondropdown"
+    When Click on "common.texting.actions.actionDropdown"
     And Click on "common.texting.actions.cloneButton"
     And Type "ClonedActiveCampaign${randomNumber}" in "texting.activeCampaigns.campaignNameInputDialog"
     And Click on "common.texting.confirmClone"
@@ -34,7 +34,7 @@ Feature: Permissions - active campaigns
     And Wait for "searchRequest" network call
     Then Tag "tr>td>p" with text "ClonedActiveCampaign${randomNumber}" should "exist"
 
-    When Click on "common.texting.actions.actiondropdown"
+    When Click on "common.texting.actions.actionDropdown"
     And Click on "common.texting.actions.cloneButton"
     And Type "ClonedActiveCampaign${randomNumber}" in "texting.activeCampaigns.campaignNameInputDialog"
     And Click on "common.texting.confirmClone"
