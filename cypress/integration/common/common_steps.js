@@ -32,7 +32,6 @@ function convertCheckboxStatusIntoChainer(state) {
 Before(() => {
   cy.wrap(Cypress.env('GRAPHQL_URL')).as('GRAPHQL_URL');
   cy.wrap(Cypress.env('DRUPAL_URL')).as('DRUPAL_URL');
-  cy.wrap(Cypress.env('PROVISION_NUMBER')).as('PROVISION_NUMBER');
 
   // Binary Campaigns can accept different Y/N answers.
   // Automation will use different Y/N message each run to check

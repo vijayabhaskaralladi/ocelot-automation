@@ -10,7 +10,6 @@
     "MESSAGE_API_DOMAIN": "https://ai.plaidbean.net/",
     "GRAPHQL_URL": "https://ai.plaidbean.net/",
     "DRUPAL_URL": "https://cms.plaidbean.net/",
-    "PROVISION_NUMBER": "(513) 854-4802",
     "TAGS": "not @ignore and not @exclude_from_ci and not @need_to_fix"
   },
   "testFiles": "**/*.feature"

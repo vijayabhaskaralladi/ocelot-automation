@@ -29,7 +29,6 @@ jobs:
           echo "MESSAGE_API_DOMAIN=https://ai.plaidbean.com/" >> $GITHUB_ENV
           echo "GRAPHQL_URL=https://gql.plaidbean.com/" >> $GITHUB_ENV
           echo "DRUPAL_URL=https://cms.plaidbean.com/" >> $GITHUB_ENV
-          echo "PROVISION_NUMBER=(513) 647-2774" >> $GITHUB_ENV
 
       - name: Setting env varibles 'net' environment
         if: ${{ github.event.inputs.environmentName == 'net' }}
@@ -38,7 +37,6 @@ jobs:
           echo "MESSAGE_API_DOMAIN=https://ai.plaidbean.net/" >> $GITHUB_ENV
           echo "GRAPHQL_URL=https://ai.plaidbean.net/" >> $GITHUB_ENV
           echo "DRUPAL_URL=https://cms.plaidbean.net/" >> $GITHUB_ENV
-          echo "PROVISION_NUMBER=(513) 854-4802" >> $GITHUB_ENV
 
       - uses: actions/checkout@v2
       - uses: webfactory/ssh-agent@v0.5.4
@@ -80,7 +78,7 @@ jobs:
           record: true
           config-file: ./cypress.json
           config: baseUrl=${{ env.BASE_URL }}
-          env: MESSAGE_API_DOMAIN=${{ env.MESSAGE_API_DOMAIN }},GRAPHQL_URL=${{ env.GRAPHQL_URL }},DRUPAL_URL=${{ env.DRUPAL_URL }},CYPRESS_MAILOSAUR_API_KEY=${{ env.CYPRESS_MAILOSAUR_API_KEY }},PROVISION_NUMBER=${{ env.PROVISION_NUMBER }}
+          env: MESSAGE_API_DOMAIN=${{ env.MESSAGE_API_DOMAIN }},GRAPHQL_URL=${{ env.GRAPHQL_URL }},DRUPAL_URL=${{ env.DRUPAL_URL }},CYPRESS_MAILOSAUR_API_KEY=${{ env.CYPRESS_MAILOSAUR_API_KEY }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
