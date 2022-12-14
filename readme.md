@@ -23,13 +23,15 @@ npm ci
 ### Running a single feature file:
 
 ```console
-npx cypress run --headed --no-exit --browser=chrome --spec "cypress/integration/tests/chatbot/analytics.feature"
+npx cypress run --headed --no-exit --spec "cypress/integration/tests/chatbot/analytics.feature" --config-file config/com.json
 ```
 **--headed** means that cypress will open a regular headed browser (*)
 
 **--browser=chrome** optional parameter
 
 **--no-exit** means that cypress won't close browser window in the end
+
+**--config-file** use config/com.json for .com environment
 
 _A headless browser is a type of software that can access webpages but does not show them to the user and can pipe 
 the content of the webpages to another program_
