@@ -31,7 +31,7 @@ Feature: Permissions - general library
     Then Verify that page title is "General Library"
     And Verify that selector "chatbot.knowledgebase.generalLibrary.questions" contains more than "2" elements
     And Intercept "${DRUPAL_URL}jsonapi/chatbot_question/chatbot_question?filter*" as "filterGeneralLibrary"
-    And Click on "chatbot.knowledgebase.generalLibrary.filterButton"
+    And Click on "common.questions.filterResults"
     And Click on "chatbot.knowledgebase.generalLibrary.departmentFilter"
     And Click on "chatbot.knowledgebase.generalLibrary.admissionFilter"
     And Wait for "filterGeneralLibrary" network call
