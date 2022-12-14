@@ -84,7 +84,7 @@ Feature: Permissions - custom questions
     Then Verify that selector "chatbot.knowledgebase.customQuestions.customQuestionListTable" contains more than "1" elements
     And Scroll to "chatbot.knowledgebase.customQuestions.removeFilter" element
     And Click on "chatbot.knowledgebase.customQuestions.removeFilter"
-    When Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
+    When Click on "common.questions.viewFirstQuestion"
     Then Element "div.Mui-expanded div.MuiAccordionDetails-root" should "exist"
 
   Scenario: Editing Custom Question
@@ -97,7 +97,7 @@ Feature: Permissions - custom questions
     And Verify that page title is "Custom Questions"
     When Type "${customQuestionForEditing}" in "common.questions.searchQuestion"
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
-    And Click on "chatbot.knowledgebase.customQuestions.viewFirstQuestion"
+    And Click on "common.questions.viewFirstQuestion"
     And Click on tag "button" which contains text "Edit"
     And Scroll to "chatbot.knowledgebase.customQuestions.editResponseField" element
     And Type "Updated response ${id}" in "chatbot.knowledgebase.customQuestions.editResponseField"
