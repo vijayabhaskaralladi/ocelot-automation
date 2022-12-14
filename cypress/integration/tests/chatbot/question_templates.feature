@@ -32,7 +32,7 @@ Feature: Permissions - question templates
       | chatbotAdmin    |
     And Open chatbot "chatbotForAutomation"
     When Open "Chatbot->Knowledgebase->Question Templates" menu item
-    And Click on "chatbot.knowledgebase.questionTemplates.filterQuestion"
+    And Click on "common.questions.filterResults"
     And Wait for element "chatbot.knowledgebase.questionTemplates.deptLabel"
     And Click on "chatbot.knowledgebase.questionTemplates.deptFilter"
     And Choose random value from "Academic Advising|Admissions|Athletics" and save it as "DepartmentFilter"
