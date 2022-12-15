@@ -18,37 +18,41 @@ Feature: Permissions - chatbot analytics
     And Retrieve text from "chatbot.analytics.conversationsNumber" and save as "conversationsNumber1"
     And Retrieve text from "chatbot.analytics.interactionsNumber" and save as "interactionsNumber1"
 
-#    MAINT-2236: Chatbot analytics doesn't update values immediately
-#    When API: Select "chatbotForAutomation" chatbot
-#    And API: Create dialog and save conversation_id as "conversationId"
-#    And API: Send message
-#      | message             | Second message |
-#      | conversationIdAlias | conversationId |
-#    And API: Send message
-#      | message             | Third message  |
-#      | conversationIdAlias | conversationId |
-#    And API: Send message
-#      | message             | Fourth message |
-#      | conversationIdAlias | conversationId |
-#
-#    And Open chatbot "chatbotForAutomation"
-#    And Open "Chatbot->Analytics" menu item
-#    And Wait for "analyticsRequest" network call
-#
-#    And Retrieve text from "chatbot.analytics.conversationsNumber" and save as "conversationsNumber2"
-#    And Retrieve text from "chatbot.analytics.interactionsNumber" and save as "interactionsNumber2"
-#
-#    And Check that difference between "conversationsNumber2" and "conversationsNumber1" is "1"
-#    And Check that difference between "interactionsNumber2" and "interactionsNumber1" is "4"
+    When API: Select "chatbotForAutomation" chatbot
+    And API: Create dialog and save conversation_id as "conversationId"
+    And API: Send message
+      | message             | Second message |
+      | conversationIdAlias | conversationId |
+    And API: Send message
+      | message             | Third message  |
+      | conversationIdAlias | conversationId |
+    And API: Send message
+      | message             | Fourth message |
+      | conversationIdAlias | conversationId |
+
+    Then Logout
+    And Login as "defaultUser"
+    And Open chatbot "chatbotForAutomation"
+    And Intercept "${GRAPHQL_URL}graphql" with "getChatbotStats" keyword in the response as "analyticsRequest"
+    And Open "Chatbot->Analytics" menu item
+    And Wait for "analyticsRequest" network call
+
+    And Retrieve text from "chatbot.analytics.conversationsNumber" and save as "conversationsNumber2"
+    And Retrieve text from "chatbot.analytics.interactionsNumber" and save as "interactionsNumber2"
+
+    And Check that difference between "conversationsNumber2" and "conversationsNumber1" is "1"
+    And Check that difference between "interactionsNumber2" and "interactionsNumber1" is "4"
 
   Scenario: Viewing Child bot Analytics
     Given Login as "defaultUser"
     And Open chatbot "chatbotForAutomation"
+    And Open "Chatbot->Analytics" menu item
 
-    When Open "Chatbot->Analytics" menu item
+    When Intercept "${GRAPHQL_URL}graphql" with "getChatbotStats" keyword in the response as "analyticsRequest"
     And Click on "common.analytics.filterResults"
     And Click on "chatbot.analytics.chatbotDropdown"
     And Click on tag "li" which contains text "AutomationInquiryForm"
+    And Wait for "analyticsRequest" network call
 
     Then Verify that element "chatbot.analytics.conversationsNumber" contains positive number
     And Verify that element "chatbot.analytics.interactionsNumber" contains positive number
@@ -78,11 +82,13 @@ Feature: Permissions - chatbot analytics
   Scenario: Viewing Chatbot Analytics - by office
     Given Login as "defaultUser"
     And Open chatbot "chatbotForAutomation"
+    And Open "Chatbot->Analytics" menu item
 
-    When Open "Chatbot->Analytics" menu item
+    When Intercept "${GRAPHQL_URL}graphql" with "getChatbotStats" keyword in the response as "analyticsRequest"
     And Click on "common.analytics.filterResults"
     And Click on "chatbot.analytics.officeDropdown"
     And Click on tag "li" which contains text "MyCampus - Office 2"
+    And Wait for "analyticsRequest" network call
 
     Then Verify that element "chatbot.analytics.conversationsNumber" contains positive number
     And Verify that element "chatbot.analytics.interactionsNumber" contains positive number
