@@ -3,6 +3,7 @@ Feature: Permissions - Live Chat transcripts
   Background:
     Given Save "?startDate=2022-02-07&endDate=2022-05-01" as "dateFilter"
 
+  @do_not_run_on_com
   Scenario: Exporting Live Chat Transcripts
   Test expects that transcripts contain at least 1 conversation where student name is 'Unknown Student'
     Given Login as "defaultUser"
@@ -46,6 +47,7 @@ Feature: Permissions - Live Chat transcripts
     When Open "Live Chat" menu item
     Then Tag "span.MuiButton-label" with text "Transcripts" should "not.exist"
 
+  @do_not_run_on_com
   Scenario: Marking Live Chat transcripts as read and unread
     Given Login as "liveChatAdmin"
     And Open chatbot "chatbotForAutomation"
