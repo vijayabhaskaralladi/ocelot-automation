@@ -40,7 +40,7 @@ Feature: Permissions - general library
     And Click on "chatbot.knowledgebase.generalLibrary.deleteFilter"
     And Wait for "filterGeneralLibrary" network call
     And Verify that selector "chatbot.knowledgebase.generalLibrary.questions" contains more than "1" elements
-    When Click on "chatbot.knowledgebase.generalLibrary.viewFirstQuestion"
+    When Click on "common.questions.viewFirstQuestion"
     Then Element "div.Mui-expanded>div.MuiCollapse-entered" should "exist"
 
   Scenario: Limited users can't view General Library
