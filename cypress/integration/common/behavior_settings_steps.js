@@ -17,7 +17,7 @@ And('Set IDK settings', (datatable) => {
   cy.contains('button', 'Edit').click();
   cy.wrap(behaviorSettingsData).then((data) => {
     const behaviorDropDown = 'div.MuiOutlinedInput-input';
-    const responseInputSelector = '[role="textbox"]';
+    const responseInputSelector = '[aria-label="Rich Text Editor, main"],[aria-label="Rich Text Editor, Form Submission Success Message"]';
     cy.get(behaviorDropDown).eq(2).click();
     cy.contains('li.MuiMenuItem-root', data.behaviorSettings).click();
     if (data.behaviorSettings === 'Contact Form') {
