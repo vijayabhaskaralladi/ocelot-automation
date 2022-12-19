@@ -1,9 +1,9 @@
 name: Client Admin Tests
 
 on:
-  #schedule:
-    # Runs on Tue,Fri
-    #- cron: '0 0 * * 2,5'
+  schedule:
+    # Runs on Mon-Fri at 4-00 am
+    - cron: '0 4 * * 1-5'
   workflow_dispatch:
     inputs:
       environmentName:
