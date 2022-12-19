@@ -48,6 +48,7 @@ And('Wait for {string} network call', (responseAlias) => {
 });
 
 And('Verify that response {string} has status code {string}', (responseAlias, statusCode) => {
+  cy.task('log', `Verify that ${responseAlias} has status code ${statusCode}`);
   cy.get(`@${responseAlias}`).then((responseObject) => {
     // storage may have 2 different response objects
     if (responseObject.body === undefined) {
@@ -66,6 +67,7 @@ And(
     // name1.name2[0].name3 - will not work
     cy.get(`@${responseAlias}`).then((responseObject) => {
       cy.replacePlaceholder(expectedValue).then((expectedValueReplaced) => {
+        cy.task('log', `Verify that <${responseAlias}> has field <${fieldName}> equal to <${expectedValueReplaced}>`);
         if (fieldName.includes('[') && fieldName.includes(']')) {
           const startIndex = fieldName.indexOf('[');
           const endIndex = fieldName.indexOf(']');
@@ -75,10 +77,14 @@ And(
 
           const array = getValueByPath(responseObject, path);
           const field = array[index];
-          expect(field.toString()).to.eq(expectedValueReplaced);
+          cy.task('log', `Extracted value: ${field}`).then(() => {
+            expect(field.toString()).to.eq(expectedValueReplaced);
+          });
         } else {
           const field = getValueByPath(responseObject, fieldName);
-          expect(field.toString()).to.eq(expectedValueReplaced);
+          cy.task('log', `Extracted value: ${field}`).then(() => {
+            expect(field.toString()).to.eq(expectedValueReplaced);
+          });
         }
       });
     });
@@ -89,7 +95,10 @@ And(
   'Verify that bot response {string} contains {string} message {string}',
   (responseAlias, expectedMessage, langCode) => {
     cy.get(`@${responseAlias}`).then((responseObject) => {
-      expect(responseObject.body.output.text[langCode]).to.contain(expectedMessage);
+      const botResponse = responseObject.body.output.text[langCode];
+      cy.task('log', `Bot response <${botResponse}> should contain <${expectedMessage}>`).then(() => {
+        expect(botResponse).to.contain(expectedMessage);
+      });
     });
   }
 );

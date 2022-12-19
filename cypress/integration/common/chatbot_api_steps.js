@@ -44,6 +44,7 @@ And('API: Send message', (datatable) => {
 And('API: Send first message {string} and save response as {string}', (message, responseAlias) => {
   cy.get('@activeChatbotId').then((chatbotId) => {
     cy.replacePlaceholder(message).then((msg) => {
+      cy.task('log', `Sending first message: ${msg}`);
       cy.sendFirstMessage(chatbotId, msg).as(responseAlias);
     });
   });
