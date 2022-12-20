@@ -39,7 +39,7 @@ Feature: Integrations - Slate
     And Intercept "${GRAPHQL_URL}graphql" with "getLiveChatWhosOnlineStatistics" keyword in the response as "whosOnlineRequest"
     And Click on tag "button" which contains text "View"
     And Wait for "whosOnlineRequest" network call
-    And Verify that selector "contactManagement.contactLists.tableRows" contains "10" elements
+    And Verify that selector "contactManagement.contactLists.tableRows" contains "11" elements
     And Tag "p" with text "Paul" should "exist"
     And Tag "p" with text "Burke" should "exist"
     And Tag "p" with text "paul.burke@ocelotbot.com" should "exist"
