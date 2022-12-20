@@ -26,10 +26,12 @@ jobs:
         if: ${{ github.event.inputs.environmentName == 'com' || github.event_name == 'schedule' }}
         run: |
           echo "CONFIG_FILE_NAME=./config/com.json" >> $GITHUB_ENV
+          echo "CYPRESS_KEY=${{ secrets.CYPRESS_RECORD_KEY_COM }}" >> $GITHUB_ENV
       - name: Setting env varibles 'net' environment
         if: ${{ github.event.inputs.environmentName == 'net' }}
         run: |
           echo "CONFIG_FILE_NAME=./config/net.json" >> $GITHUB_ENV
+          echo "CYPRESS_KEY=${{ secrets.CYPRESS_RECORD_KEY_NET }}" >> $GITHUB_ENV
 
       - uses: actions/checkout@v2
       - uses: webfactory/ssh-agent@v0.5.4
@@ -72,7 +74,7 @@ jobs:
           config-file: ${{ env.CONFIG_FILE_NAME }}
           env: CYPRESS_MAILOSAUR_API_KEY=${{ env.CYPRESS_MAILOSAUR_API_KEY }}
         env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          CYPRESS_RECORD_KEY: ${{ env.CYPRESS_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
