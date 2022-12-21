@@ -1,7 +1,6 @@
 Feature: 1:1 messages
 
-  # MAINT-2233: [1:1 text] 'Message is required' error appears even with all filled fields
-  @exclude_from_ci
+  # ToDo: MAINT-2233: [1:1 text] 'Message is required' error appears even with all filled fields
   Scenario: Sending messages
   Provision number should have 'Agent' response type; also don't forget to add inbox
     Given Login as "campaignsAdmin"
@@ -10,21 +9,20 @@ Feature: 1:1 messages
     And Save "(513) 447-6784" as "studentNumber"
 
     When Send 1:1 message
-      | message | Hi! Test ${id}     |
+      | message | Hi! Test ${id}      |
       | to      | ${studentNumber}    |
       | from    | ${PROVISION_NUMBER} |
     Then Verify that "${studentNumber}" number "received" "Hi! Test ${id}" message
 
     When Send SMS "1:1 response ${id}" to "${PROVISION_NUMBER}" from "${studentNumber}"
     # client admin automatically opens Inbox page after receiving message
-    Then Verify that page contains text "Hey! Test ${id}"
+    Then Verify that page contains text "Hi! Test ${id}"
 
     When Click on tag "h6" which contains text "Conversation Details"
     Then Tag ".MuiAccordionDetails-root>div>div" with text "${studentNumber}" should "exist"
     And Tag ".MuiAccordionDetails-root>div>div" with text "${PROVISION_NUMBER}" should "exist"
 
-  # MAINT-2233: [1:1 text] 'Message is required' error appears even with all filled fields
-  @exclude_from_ci
+  # ToDo: MAINT-2233: [1:1 text] 'Message is required' error appears even with all filled fields
   Scenario: Verify that sending message to Opted Out Contact should not receive any messages
     Given Login as "campaignsAdmin"
     And Open chatbot "chatbotForAutomation"
