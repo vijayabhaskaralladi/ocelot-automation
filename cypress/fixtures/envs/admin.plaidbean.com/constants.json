@@ -1,9 +1,9 @@
 {
   "lockedBy": "ocelot admin",
   "lockedDate": "05/13/2022",
-  "chatbotForAutomationOffice1Id": "4605",
-  "chatbotForAutomationOffice2Id": "4606",
-  "chatbotForAutomationCampusId": "4608",
+  "chatbotForAutomationOffice1Id": "4603",
+  "chatbotForAutomationOffice2Id": "4604",
+  "chatbotForAutomationCampusId": "4605",
   "chatbotNameResponse": "My name is automation chatbot. I was created by Ocelot and Automation chatbot to help answer your questions. Ask away.",
   "PROVISION_NUMBER_OFFICE2": "(251) 306-2895",
   "INBOX_NAME": "campaigns admin",
