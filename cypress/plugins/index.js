@@ -6,9 +6,18 @@ module.exports = (on) => {
   const client = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
   require('cypress-log-to-output').install(on, (type, event) => {
-    return event.level === 'error' || event.type === 'error';
+    const isConsoleErrorHappened = event.level === 'error' || event.type === 'error';
+    if (isConsoleErrorHappened) {
+      if (!global.numberOfConsoleErrors) {
+        global.numberOfConsoleErrors = 0;
+      }
+      global.numberOfConsoleErrors++;
+    }
+    return isConsoleErrorHappened;
   });
-
+  on('after:run', () => {
+    console.error(`Total number of console errors: ${global.numberOfConsoleErrors}`);
+  });
   on('task', {
     generateOTP: require('cypress-otp'),
     log(msg) {

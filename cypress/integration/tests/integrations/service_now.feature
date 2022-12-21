@@ -1,5 +1,6 @@
 Feature: Service Now integration
 
+  @do_not_run_on_com
   Scenario: Service Now integration
     Given Login as "defaultUser"
     And Open chatbot "chatbotForAutomation"

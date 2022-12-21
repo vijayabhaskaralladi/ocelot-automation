@@ -14,6 +14,7 @@ Feature: Look & Feel
     And Tag "p" with text "Office 2" should "exist"
     And Tag "p" with text "Office 3" should "exist"
 
+  @do_not_run_on_com
   Scenario: Changing welcome message
     Given Login as "defaultUser"
     And Open chatbot "chatbotForAutomation"
