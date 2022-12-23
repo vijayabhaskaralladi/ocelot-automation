@@ -63,7 +63,6 @@ Feature: Permissions - opt-outs
     And Optout first contact if opted-In
     And Get the opted out the PhoneNumber and EMail
 
-    And Open chatbot "chatbotForAutomation"
     When Open "Contact Management->Opt-outs" menu item
     And Type "${email}" in "contactManagement.optOuts.searchInput"
     And Verify that page contains text "1–1 of 1"

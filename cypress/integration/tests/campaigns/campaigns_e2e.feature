@@ -33,8 +33,7 @@ Feature: Campaigns
     When Send SMS "${randomYesResponse}" to "${PROVISION_NUMBER}" from "${firstContact}"
     Then Verify that "${firstContact}" number "received" "Yep ${id}" message
 
-    When Open chatbot "chatbotForAutomation"
-    And Open "Texting->Transcripts" menu item
+    When Open "Texting->Transcripts" menu item
     And Open the latest transcript
     Then Verify that page contains text "Hi. Build ${id}"
     And Verify that page contains text "${randomYesResponse}"
@@ -225,7 +224,6 @@ Feature: Campaigns
     And Click on tag "button" which contains text "End campaign"
     Then Click on tag "button" which contains text "Confirm"
     When Send SMS "Hi. inbox ${id}" to "${PROVISION_NUMBER}" from "${firstContact}"
-    And Open chatbot "chatbotForAutomation"
     Then Open "Inbox" menu item
     And Tag "ul.MuiList-root" with text "Hi. inbox ${id}" should "exist"
 
