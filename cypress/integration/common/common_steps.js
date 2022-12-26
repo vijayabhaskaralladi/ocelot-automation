@@ -329,7 +329,7 @@ And('Set switch {string} to {string}', (switchSelector, status) => {
     cy.replacePlaceholder(status).then((setStatus) => {
       if((switchState === 'false' && setStatus === 'enabled')
           || (switchState === 'true' && setStatus === 'disabled')) {
-        cy.getElement(switchSelector).click();
+        cy.getElement(switchSelector).click({force:true});
       }
     });
   });
