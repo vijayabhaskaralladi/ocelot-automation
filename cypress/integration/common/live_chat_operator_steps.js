@@ -1,4 +1,5 @@
 import {And} from 'cypress-cucumber-preprocessor/steps';
+import {getValueByPath} from '../../support/utils';
 
 And('Set operator status to {string}', (status) => {
   const acceptableValues = ['available', 'away'];
@@ -13,8 +14,8 @@ And('Set operator status to {string}', (status) => {
   const chatStatusSwitch = 'span>[type="checkbox"]';
   cy.replacePlaceholder('${GRAPHQL_URL}graphql').then((url) => {
     cy.intercept(url, (req) => {
-      if (JSON.stringify(req.body).includes('GetLiveChatOperatorStatus')) {
-        req.alias = 'getOperatorRequest';
+      if (JSON.stringify(req.body).includes('setLiveChatOperatorStatus')) {
+        req.alias = 'changeStatusRequest';
       }
     });
   });
@@ -27,7 +28,13 @@ And('Set operator status to {string}', (status) => {
       // cy.get('#notistack-snackbar', {timeout: 5000}).should('be.visible');
     }
   });
-  cy.wait('@getOperatorRequest');
+  cy.wait('@changeStatusRequest').then((responseObject) => {
+    expect(responseObject.response.statusCode).to.eq(200);
+    const fieldName = 'response.body.data.setLiveChatOperatorStatus';
+    const expectedStatus = status.toLowerCase();
+    const actualStatus = getValueByPath(responseObject, fieldName).toLowerCase();
+    expect(actualStatus).to.eq(expectedStatus);
+  });
   // closing the menu
   cy.get('body').click(0,0);
 });

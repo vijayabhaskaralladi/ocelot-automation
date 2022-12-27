@@ -43,6 +43,8 @@ And('Enable Service Now', (datatable) => {
     const baseUrlInput = 'input[name="baseUri"]';
     cy.get(baseUrlInput).clear().type(serviceNowData.baseUrl);
     cy.contains('button','Save').click();
+    cy.wait(1000);
+    cy.verifyThatNoErrorsDisplayed();
     cy.checkNotificationMessage('The configuration has been saved successfully!');
   });
 });
@@ -65,6 +67,7 @@ And('Disable Service Now', (datatable) => {
             .next()
             .contains('button', 'Disable')
             .click();
+          cy.verifyThatNoErrorsDisplayed();
         }
       });
     });
