@@ -120,6 +120,12 @@
       "buttonTestMyBot": "svg[data-testid='MessageIcon']",
       "inputAskQuestion": "textarea[aria-label='Ask a question']",
       "openMenu": "svg[data-testid='MoreVertIcon']"
+    },
+    "clarifyingQuestions": {
+      "searchQuestion": "input[name='keywords']",
+      "editButton": "div[role='group'] svg",
+      "editTitle":"input[name='name']",
+      "saveBtn": "svg[data-testid='SaveIcon']"
     }
   }
 }
