@@ -1,4 +1,5 @@
 {
+  "comment": "Constants which are the same for all environments",
   "campaignTemplateName": "Applicant does not want information about institutional scholarships",
   "awaitingReviewQuestion": "Question for 'Awaiting Review' test",
   "financialAidLibraryCustomQuestion": "Financial aid library question for automation chatbot",
@@ -13,6 +14,5 @@
   "IDK_QUESTION": "Where is non-existing city?",
   "searchQuestionTemplate": "Can I buy stamps at the bookstore?",
   "searchQuestionTemplateAnswer": "We do/do not have stamps for sale at the bookstore. [if yes - enter additional information (webpage, contact information, etc) here.] ",
-  "lastGeneralQuestion": "With the earlier filing dates now, will most colleges be responding with financial aid offers earlier?",
-  "lastCannedResponse": "ReleaseTest"
+  "lastGeneralQuestion": "With the earlier filing dates now, will most colleges be responding with financial aid offers earlier?"
 }
