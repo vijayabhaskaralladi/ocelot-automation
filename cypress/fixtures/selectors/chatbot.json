@@ -99,7 +99,7 @@
       "variableLinkTextValue": "input[placeholder='Our Homepage']",
       "variableLinkURLValue": "input[placeholder='https://www.ocelotbot.com/']",
       "editAllowedValuesButton": "button[data-testid='editAllowedValuesButton']",
-      "dropdownOptionValues": "div[class='MuiInputBase-root MuiInput-root MuiInputBase-formControl MuiInput-formControl'] input[type='text']",
+      "dropdownOptionValues": "div.MuiInputBase-root input[data-key='0']",
       "customTab": { "selector": "button.MuiTab-root", "text": "Custom" },
       "expandList": { "selector": "div.MuiButtonBase-root.MuiAccordionSummary-root", "index": 0 },
       "confirmVariableDeleteButton": { "selector": ".MuiDialogActions-root>button", "text": "Delete"}
