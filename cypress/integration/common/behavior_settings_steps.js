@@ -75,6 +75,10 @@ And('Set IDK settings', (datatable) => {
 
 And('Enable Inquiry Form', (datatable) => {
   const inquiryFormData = convertDataTableIntoDict(datatable);
+  const requiredParametersAndAcceptableValues = {
+    message: 'any'
+  };
+  validateInputParamsAccordingToDict(inquiryFormData, requiredParametersAndAcceptableValues);
 
   // enable if not enabled
   cy.contains('button', 'Edit').click();
@@ -85,6 +89,10 @@ And('Enable Inquiry Form', (datatable) => {
         cy.get('#leadCaptureEnabled').click();
       }
     });
+
+  cy.replacePlaceholder(inquiryFormData.message).then((message) => {
+    cy.get('[aria-label="Rich Text Editor, Text Lead In Message"]').clear().type(message);
+  });
 
   // setting values to checkboxes
   const CHECKBOXES = [
