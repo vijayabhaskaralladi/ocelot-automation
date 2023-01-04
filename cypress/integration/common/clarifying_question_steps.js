@@ -23,17 +23,17 @@ And('Create Clarifying Question', (datatable) => {
     cy.get(questionInput).type(question);
   });
 
-  cy.wrap().then(() => {
+  cy.wrap('ToDo').then(() => {
     const choices = clarifyingQuestionData.choices.split(';');
     const choiceInput = 'input[placeholder="Add choice"]';
     if (choices.length === 1) {
       throw Error('At least 2 choices required');
     }
     cy.replacePlaceholder(choices[0]).then((choice1) => {
-      cy.get(choiceInput).eq(0).type(choice1)
+      cy.get(choiceInput).eq(0).type(choice1);
     });
     cy.replacePlaceholder(choices[1]).then((choice2) => {
-      cy.get(choiceInput).eq(1).type(choice2)
+      cy.get(choiceInput).eq(1).type(choice2);
     });
 
     if (choices.length === 3) {
