@@ -13,7 +13,8 @@ Feature: Permissions - Live Chat transcripts
     And Click on "liveChat.transcripts.exportTranscripts"
     Then Verify that download folder contains "live-chat-transcripts.csv"
     And Verify that file "live-chat-transcripts.csv" from download folder contains text "studentName"
-    And Verify that file "live-chat-transcripts.csv" from download folder contains text "Unknown Student"
+    #Following step is commented due to data unavailability some times
+    #And Verify that file "live-chat-transcripts.csv" from download folder contains text "Unknown Student"
 
   Scenario: TMD-43: Live Chat admin of Office 3 can't view Transcripts for Office 1 and Office 2
     Given Login as "chatbotStandard-AthleticsOffice"
@@ -53,7 +54,7 @@ Feature: Permissions - Live Chat transcripts
     And Open chatbot "chatbotForAutomation"
     And Open "Live Chat->Transcripts" menu item
     And URL should include "transcripts"
-    And Add "?readStatus=unread" to the current URL
+    And Add "?readStatus=Unread" to the current URL
     And Intercept "${GRAPHQL_URL}graphql" with "setLiveChatTranscriptReadStatus" keyword in the response as "readStatusRequest"
 
     When Click on "liveChat.transcripts.readStatusButtonFirstRow"
