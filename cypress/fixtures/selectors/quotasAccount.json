@@ -23,7 +23,9 @@
       "roleFilter": { "selector": "div.MuiPopover-paper div[role='button']", "index": 0},
       "roleLabel": { "selector": "div.MuiFormControl-root label", "text": "Roles" },
       "userCount": "div.MuiListItemText-multiline>span",
-      "selectedRoleCount": "div.MuiTypography-root>div.MuiChip-sizeSmall>span.MuiChip-label"
+      "selectedRoleCount": "div.MuiTypography-root>div.MuiChip-sizeSmall>span.MuiChip-label",
+      "roleDropDown": {"selector":"li[role='option']", "text": "Limited"},
+      "usersList": ".PermissionsManagerUserList-list"
     }
   }
 }

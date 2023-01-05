@@ -259,7 +259,9 @@ And('Wait for tag with text', (datatable) => {
     timeout: 'any'
   };
   validateInputParamsAccordingToDict(data, requiredParametersAndAcceptableValues);
-  cy.contains(data.tag, data.text, { timeout: data.timeout}).should('exist');
+  cy.replacePlaceholder(data.text).then((text) => {
+     cy.contains(data.tag, text, { timeout: data.timeout}).should('exist');
+  });
 });
 
 And('Attach file {string} to {string} input', (fileName, selectorPath) => {
@@ -334,6 +336,29 @@ And('Set switch {string} to {string}', (switchSelector, status) => {
     });
   });
 });
+
+And('Set switch for slider {string} to {string}', (switchSelector, status) => {
+  cy.getElement(switchSelector).invoke('attr','value').then(switchState => {
+    cy.replacePlaceholder(status).then((setStatus) => {
+      if((switchState === '0' && setStatus === 'enabled')
+          || (switchState === '1' && setStatus === 'disabled')) {
+        cy.getElement(switchSelector).click({force:true});
+      }
+    });
+  });
+});
+
+And('Set switch for checkbox {string} to {string}', (switchSelector, status) => {
+  cy.getElement(switchSelector).invoke('prop','checked').then(switchState => {
+    cy.replacePlaceholder(status).then((setStatus) => {
+      if((switchState === 'false' && setStatus === 'enabled')
+          || (switchState === 'true' && setStatus === 'disabled')) {
+        cy.getElement(switchSelector).click({force:true});
+      }
+    });
+  });
+});
+
 
 And('Choose random value from {string} and save it as {string}', (list, key) => {
   // Example: Choose random value from "Office 1|Office 2|Office 3" and save it as "office"

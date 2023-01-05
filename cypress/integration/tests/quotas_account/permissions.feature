@@ -62,12 +62,16 @@ Feature: Permission Manager
     And Choose random value from "enabled|disabled" and save it as "viewOtherOfficesSwitch"
     And Choose random value from "enabled|disabled" and save it as "Offices1Switch"
     When Type "LegacyUser{enter}" in "quotasAccount.permissions.searchInput"
+    Then Wait for tag with text
+      | tag     | span       |
+      | text    | LegacyUser |
+      | timeout | 10000      |
     And Click on tag "span" which contains text "LegacyUser"
 
     And Click on "#rolesField"
     And Click on tag "li" which contains text "${role}"
-    And Set switch "quotasAccount.permissions.viewOtherOfficesSwitch" to "${viewOtherOfficesSwitch}"
-    And Set switch "quotasAccount.permissions.viewMyoffice1Switch" to "${Offices1Switch}"
+    And Set switch for slider "quotasAccount.permissions.viewOtherOfficesSwitch" to "${viewOtherOfficesSwitch}"
+    And Set switch for checkbox "quotasAccount.permissions.viewMyoffice1Switch" to "${Offices1Switch}"
     And Click on tag "button" which contains text "Save"
 
     Then Check that notification message "Permissions saved successfully" appeared
@@ -82,9 +86,13 @@ Feature: Permission Manager
     When Click on tag "div[role='tablist']>button" which contains text "${Tab}"
     And Click on "quotasAccount.permissions.filterRecord"
     And Click on "quotasAccount.permissions.roleFilter"
-    And Intercept "GET: ${DRUPAL_URL}jsonapi/user/user*" as "searchRequest"
+    And Wait "2000"
     And Click on tag "li[role='option']" which contains text "${role}"
-    And Wait for "searchRequest" network call
+    Then Wait for tag with text
+      | tag     | span    |
+      | text    | ${role} |
+      | timeout | 10000   |
+    And Wait for element "quotasAccount.permissions.usersList"
 
     And Save number of elements with tag "div.MuiTypography-root>div.MuiChip-sizeSmall>span.MuiChip-label" and "${role}" text as "numberOfLabels"
     And Save number of elements with selector "div.MuiListItemText-multiline>span" as "totalNumberOfUsers"
