@@ -1,5 +1,6 @@
 Feature: Permissions - chatbot variables
 
+  @do_not_run_on_com
   Scenario Outline: User should see variables for his library - <library_name>
   User should see variables for his office(library) and variables which are visible for everyone. Also user shouldn't see
   variables from other libraries
@@ -24,6 +25,7 @@ Feature: Permissions - chatbot variables
       | Financial Aid | chatbotStandard-FinancialAidOffice | Test Variable (Financial Aid) | randomtext_financial_aid | Bookstore                              |
       | Bookstore     | chatbotStandard-BookstoreOffice    | Test Variable (Bookstore)     | randomtext_bookstore     | Financial Aid                          |
 
+  @do_not_run_on_com
   Scenario: Verify that user from Athletics office can see Custom variable from Financial Aid office(same libraries)
   User should be able to see custom variables from other offices if they have the same libraries
     Given Login as "chatbotStandard-AthleticsOffice"

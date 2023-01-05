@@ -17,6 +17,7 @@ Feature: Permissions - awaiting review
     When Open "Chatbot->Knowledgebase" menu item
     Then Tag "li>a" with text "Awaiting Review" should "not.exist"
 
+  @do_not_run_on_com
   Scenario: Editing Awaiting Review questions
     Verify that editing an Awaiting review question does not remove the same question from Awaiting review page.
     Given Login using random user from the list

@@ -87,6 +87,7 @@ Feature: Permissions - custom questions
     When Click on "common.questions.viewFirstQuestion"
     Then Element "div.Mui-expanded div.MuiAccordionDetails-root" should "exist"
 
+  @do_not_run_on_com
   Scenario: Editing Custom Question
     Given Login using random user from the list
       | chatbotStandard |
