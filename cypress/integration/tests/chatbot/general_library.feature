@@ -1,5 +1,6 @@
 Feature: Permissions - general library
 
+  @do_not_run_on_com
   Scenario: General Library - sorting
     Given Login using random user from the list
       | chatbotLimited          |
@@ -19,6 +20,7 @@ Feature: Permissions - general library
     And Verify that element "chatbot.knowledgebase.generalLibrary.firstQuestion" has the following text "${lastGeneralQuestion}"
     And Verify that selector "chatbot.knowledgebase.generalLibrary.questions" contains more than "5" elements
 
+  @do_not_run_on_com
   Scenario: Viewing General Library
     Given Login using random user from the list
       | chatbotLimited          |

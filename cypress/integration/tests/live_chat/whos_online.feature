@@ -11,6 +11,7 @@ Feature: Permissions - Live Chat Who's online
     Then Verify that element "liveChat.whosOnline.agentsOnline" contains positive number
     And Verify that element "liveChat.whosOnline.totalAgents" contains positive number
 
+  @do_not_run_on_com
   Scenario: Viewing Who is Online when someone is online
     Given Login using random user from the list
       | viewOtherOfficesLiveChat |
