@@ -15,7 +15,7 @@ Feature: Service Now integration
       | baseUrl          | https://dev128364.service-now.com/ |
       | authToken        | ${token}                           |
       | contextualEntity | ${contextualEntity}                |
-    And Open chatbot "chatbotForAutomation"
+    And Open chatbot home page
     And Open "Integrations->Applications" menu item
     Then API: Send first message "Where can I obtain updates and new releases for Mac OS X?" and save response as "response"
     And Verify that response "response" has field "body.output.text[0]" equal to "<p>I have a link in the explore bar below that may answer your question.</p>"
