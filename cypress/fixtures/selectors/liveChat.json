@@ -37,6 +37,8 @@
     },
     "transcripts": {
       "readStatusButtonFirstRow": { "selector": "td>button[aria-label*='Mark']", "index": 0 },
+      "statusWithReadButtonFirstRow": { "selector": "td>button[aria-label='Mark Unread']", "index": 0 },
+      "statusWithUnReadButtonFirstRow": { "selector": "td>button[aria-label='Mark Read']", "index": 0 },
       "exportTranscripts": "button[aria-label=' Export results to CSV']"
     }
   }

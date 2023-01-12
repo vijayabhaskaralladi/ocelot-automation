@@ -54,16 +54,19 @@ Feature: Permissions - Live Chat transcripts
     And Open chatbot "chatbotForAutomation"
     And Open "Live Chat->Transcripts" menu item
     And URL should include "transcripts"
-    And Add "?readStatus=Unread" to the current URL
-    And Intercept "${GRAPHQL_URL}graphql" with "setLiveChatTranscriptReadStatus" keyword in the response as "readStatusRequest"
+    And Intercept "POST: ${GRAPHQL_URL}graphql" as "liveChatTranscriptsRequest"
+    And Add "?readStatus=Unread&startDate=2022-05-31" to the current URL
+    And Wait for "liveChatTranscriptsRequest" network call
+    And Verify that response "liveChatTranscriptsRequest" has status code "200"
 
-    When Click on "liveChat.transcripts.readStatusButtonFirstRow"
+    And Intercept "${GRAPHQL_URL}graphql" with "setLiveChatTranscriptReadStatus" keyword in the response as "readStatusRequest"
+    When Click on "liveChat.transcripts.statusWithUnReadButtonFirstRow"
     And Wait for "readStatusRequest" network call
     Then Verify that response "readStatusRequest" has status code "200"
     And Verify that response "readStatusRequest" has field "response.body.data.setLiveChatTranscriptReadStatus.read_status" equal to "1"
     And Verify that element "liveChat.transcripts.readStatusButtonFirstRow" has attribute "aria-label" with value "Mark Unread"
 
-    When Click on "liveChat.transcripts.readStatusButtonFirstRow"
+    When Click on "liveChat.transcripts.statusWithReadButtonFirstRow"
     And Wait for "readStatusRequest" network call
     Then Verify that response "readStatusRequest" has status code "200"
     And Verify that response "readStatusRequest" has field "response.body.data.setLiveChatTranscriptReadStatus.read_status" equal to "-1"
