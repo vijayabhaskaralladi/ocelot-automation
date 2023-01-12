@@ -79,6 +79,7 @@ Feature: Permissions - Canned responses
     And Element "div.MuiButtonBase-root.MuiAccordionSummary-root" should "not.exist"
     And Tag "p" with text "CannedResponse${randomNumber}" should "not.exist"
 
+  @do_not_run_on_com
   Scenario: Editing Canned Response
     Given Login as "defaultUser"
     When Open chatbot "chatbotForAutomation"

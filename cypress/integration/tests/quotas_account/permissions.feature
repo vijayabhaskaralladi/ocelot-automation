@@ -51,6 +51,7 @@ Feature: Permission Manager
     And Verify that checkbox "quotasAccount.permissions.office2Checkbox" is "checked"
     And Verify that checkbox "quotasAccount.permissions.office3Checkbox" is "unchecked"
 
+  @do_not_run_on_com
   Scenario: Updating permissions
   This test requires user with name 'LegacyUser'. It updates it's 'chatbot role' and 'view other offices'.
     Given Login as "defaultUser"
@@ -76,6 +77,7 @@ Feature: Permission Manager
 
     Then Check that notification message "Permissions saved successfully" appeared
 
+  @do_not_run_on_com
   Scenario: TMD-80: Verify that filtering Permission Manager data filters list of users(chatbot/livechat/texting)
     Given Login as "defaultUser"
     And Open chatbot "chatbotForAutomation"
