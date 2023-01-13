@@ -1,5 +1,7 @@
 Feature: Permissions - chatbot feedback
 
+  # We don't use feedback feature in production
+  @ignore
   Scenario: Viewing and Exporting Chatbot Feedback
   Test sends feedback via API and verifies that feedback message is present on the Feedback page. After it
   test downloads feedback and checks that exported file contains unique keyword.
@@ -10,7 +12,6 @@ Feature: Permissions - chatbot feedback
       | conversationId  | ${conversationId}        |
       | score           | 7                        |
       | feedbackMessage | Feedback ${randomNumber} |
-
     When Login using random user from the list
       | viewOtherOfficesChatbot |
       | chatbotLimited          |
@@ -28,6 +29,7 @@ Feature: Permissions - chatbot feedback
     And Get full file name with prefix "feedback-" in download folder and save it as "feedbackFile"
     And Verify that file "${feedbackFile}" from download folder contains text "Feedback ${randomNumber}"
 
+  @ignore
   Scenario: Limited users can't see Chatbot Feedback
     Given Login using random user from the list
       | viewOtherOfficesLiveChat  |
