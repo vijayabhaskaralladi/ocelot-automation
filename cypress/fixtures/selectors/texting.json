@@ -41,7 +41,7 @@
       "readStatusFilter": {"selector": "input[name='readStatus']", "getPrevious": true },
       "readFilter": "li[data-value='Read']",
       "unReadFilter": "li[data-value='Unread']",
-      "transcriptListTable": "tbody.MuiTableBody-root>tr",
+      "transcriptListTable": "table[class*='MuiTable-root'] tbody tr",
       "unreadFilterName": "div[title='Read Status: Unread']"
     },
     "archived": {

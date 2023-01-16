@@ -34,6 +34,7 @@ Feature: Campaigns
     Then Verify that "${firstContact}" number "received" "Yep ${id}" message
 
     When Open "Texting->Transcripts" menu item
+    Then Verify that selector "texting.transcripts.transcriptListTable" contains more than "1" elements
     And Open the latest transcript
     Then Verify that page contains text "Hi. Build ${id}"
     And Verify that page contains text "${randomYesResponse}"
