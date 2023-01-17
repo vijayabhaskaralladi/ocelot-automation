@@ -17,7 +17,7 @@ And('Set IDK settings', (datatable) => {
   cy.contains('button', 'Edit').click();
   cy.wrap(behaviorSettingsData).then((data) => {
     const behaviorDropDown = 'div.MuiOutlinedInput-input';
-    const responseInputSelector = '[aria-label="Rich Text Editor, main"],[aria-label="Rich Text Editor, Form Submission Success Message"]';
+    const responseInputSelector ='div[role="textbox"]';
     cy.get(behaviorDropDown).eq(2).click();
     cy.contains('li.MuiMenuItem-root', data.behaviorSettings).click();
     if (data.behaviorSettings === 'Contact Form') {
@@ -59,12 +59,12 @@ And('Set IDK settings', (datatable) => {
           cy.log(`IDK contact email: ${data.email} already present`);
         }
       });
-      cy.get(responseInputSelector).clear().type(data.message);
+      cy.get(responseInputSelector).eq(0).clear().type(data.message);
     }
 
     if (data.behaviorSettings === 'Custom Response') {
       cy.replacePlaceholder(data.message).then((customResponse) => {
-        cy.get(responseInputSelector).clear().type(customResponse);
+        cy.get(responseInputSelector).eq(0).clear().type(customResponse);
       });
     }
 
