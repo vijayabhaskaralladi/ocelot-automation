@@ -92,12 +92,11 @@ Feature: Permissions - Canned responses
     And Type "EditedCannedTitle${id}" in "liveChat.cannedResponses.editTitle"
     And Type "EditedCannedResponse${id}" in "liveChat.cannedResponses.editResponse"
     And Click on "liveChat.cannedResponses.saveButton"
-    Then Type "EditedCannedTitle${id}" in "liveChat.cannedResponses.searchInput"
-    When Intercept "GET: ${DRUPAL_URL}jsonapi/node/canned_response*" as "searchRequest"
+    Then Verify that selector "liveChat.cannedResponses.cannedResponseCount" contains more than "5" elements
+    When Intercept "GET: ${DRUPAL_URL}jsonapi/node/canned_response?filter*" as "searchRequest"
     And Type "EditedCannedTitle${id}{enter}" in "liveChat.cannedResponses.searchInput"
     And Wait for "searchRequest" network call
     And Verify that page contains text "1–1 of 1"
-#    Then Verify that selector "liveChat.cannedResponses.cannedResponseCount" contains "1" elements
     And Click on "liveChat.cannedResponses.firstCannedResponseItem"
     And Tag "p" with text "EditedCannedTitle${id}" should "exist"
     And Tag "p" with text "EditedCannedResponse${id}" should "exist"
