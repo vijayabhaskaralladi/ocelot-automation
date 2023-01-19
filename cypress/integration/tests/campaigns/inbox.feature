@@ -20,6 +20,10 @@ Feature: Inbox
       | automaticArchive | 1 day                     |
       | idkType          | Agent                     |
     And Open "Inbox" menu item
+    And Wait for tag with text
+      | tag     | button               |
+      | text    | Manage Subscriptions |
+      | timeout | 10000                |
     And Manage subscriptions
       | campaignName | MyCampaign${id} |
       | action       | subscribe       |
