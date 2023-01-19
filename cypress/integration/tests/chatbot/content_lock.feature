@@ -43,8 +43,8 @@ Feature: Content Lock
 
   Scenario: Verify users can lock/unlock custom questions
     Given Login using random user from the list
-      | ocelotAdmin     |
-      | chatbotAdmin    |
+      | ocelotAdmin  |
+      | chatbotAdmin |
     And Open chatbot "chatbotForAutomation"
     And Open "Chatbot->Knowledgebase->Custom Questions" menu item
     And Type "${lockedQuestion}" in "common.questions.searchQuestion"
@@ -62,7 +62,7 @@ Feature: Content Lock
     And Click on "common.questions.viewFirstQuestion"
     And Click on tag "button" which contains text "Edit"
     And Set switch "chatbot.knowledgebase.customQuestions.contactLockBtn" to "disabled"
-    And Intercept "GET: ${DRUPAL_URL}jsonapi/taxonomy_term/libraries?filter*" as "pageRefreshRequest"
+    And Intercept "GET: ${DRUPAL_URL}jsonapi/chatbot_question/chatbot_question?filter*" as "pageRefreshRequest"
     And Click on "chatbot.knowledgebase.customQuestions.questionSaveButton"
     Then Verify that page contains element "chatbot.knowledgebase.customQuestions.saveNotify" with text "Your question has been successfully published"
     And Wait for "pageRefreshRequest" network call
