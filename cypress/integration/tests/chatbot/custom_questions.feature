@@ -37,7 +37,7 @@ Feature: Permissions - custom questions
     Given Login as "chatbotStandard-FinancialAidOffice"
     And Open chatbot "chatbotForAutomation"
     When Open "Chatbot->Knowledgebase->Custom Questions" menu item
-    And Type "${financialAidLibraryCustomQuestion}" in "common.questions.searchQuestion"
+    And Find "${financialAidLibraryCustomQuestion}"
     Then Tag "p.MuiTypography-body1" with text "${financialAidLibraryCustomQuestion}" should "exist"
 
   Scenario: TMD-44: User shouldn't see custom questions from other libraries
@@ -45,7 +45,7 @@ Feature: Permissions - custom questions
     Given Login as "chatbotStandard-FinancialAidOffice"
     And Open chatbot "chatbotForAutomation"
     When Open "Chatbot->Knowledgebase->Custom Questions" menu item
-    And Type "${bookstoreLibraryCustomQuestion}" in "common.questions.searchQuestion"
+    And Find "${bookstoreLibraryCustomQuestion}"
     And Wait "5000"
     Then Tag "p" with text "${bookstoreLibraryCustomQuestion}" should "not.exist"
 
@@ -54,7 +54,7 @@ Feature: Permissions - custom questions
     Given Login as "chatbotStandard-AthleticsOffice"
     And Open chatbot "chatbotForAutomation"
     When Open "Chatbot->Knowledgebase->Custom Questions" menu item
-    And Type "${financialAidLibraryCustomQuestion}" in "common.questions.searchQuestion"
+    And Find "${financialAidLibraryCustomQuestion}"
     And Wait "5000"
     Then Tag "p" with text "${financialAidLibraryCustomQuestion}" should "exist"
 
@@ -96,7 +96,7 @@ Feature: Permissions - custom questions
     And Create random number and save it as "id"
     And Open "Chatbot->Knowledgebase->Custom Questions" menu item
     And Verify that page title is "Custom Questions"
-    When Type "${customQuestionForEditing}" in "common.questions.searchQuestion"
+    When Find "${customQuestionForEditing}"
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
     And Click on "common.questions.viewFirstQuestion"
     And Click on tag "button" which contains text "Edit"

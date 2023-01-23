@@ -437,3 +437,19 @@ And('Open chatbot home page', () => {
     cy.visit(extractBotHomePageUrl(currentUrl));
   });
 });
+
+And('Find {string}', (text) => {
+  // wait for 1+ line on the page
+  // this selector supports custom questions, canned responses, LC/campaigns transcripts, contacts
+  const rowSelector = 'tbody>tr.MuiTableRow-root, ' +
+      'div.AppContent-body>div>div>div.MuiAccordionSummary-root, ' +
+      'div.AppContent-body>div>div>div.GeneralQuestion-panel, ' +
+      'div.CannedResponse-summaryPrimary';
+  cy.get(rowSelector).should('have.length.gte', 1);
+
+  // type text in the search input
+  cy.replacePlaceholder(text).then((searchText) => {
+    const searchInput = 'input[type="search"]';
+    cy.get(searchInput).clear().type(searchText);
+  });
+});
