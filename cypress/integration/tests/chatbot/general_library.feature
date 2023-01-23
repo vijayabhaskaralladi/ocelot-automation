@@ -64,7 +64,7 @@ Feature: Permissions - general library
     Given Login as "chatbotStandard-BookstoreOffice"
     And Open chatbot "chatbotForAutomation"
     And Open "Chatbot->Knowledgebase->General Library" menu item
-    When Type "${bookstoreLibraryGeneralQuestion}" in "common.questions.searchQuestion"
+    When Find "${bookstoreLibraryGeneralQuestion}"
     Then Verify that selector "chatbot.knowledgebase.generalLibrary.questions" contains "1" elements
-    When Type "${financialAidLibraryGeneralQuestion}" in "common.questions.searchQuestion"
+    When Find "${financialAidLibraryGeneralQuestion}"
     Then Verify that selector "chatbot.knowledgebase.generalLibrary.questions" contains "0" elements

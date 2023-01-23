@@ -8,7 +8,7 @@ Feature: Content Lock
       | chatbotAdmin    |
     And Open chatbot "chatbotForAutomation"
     And Open "Chatbot->Knowledgebase->Custom Questions" menu item
-    And Type "Custom question for automation" in "common.questions.searchQuestion"
+    And Find "Custom question for automation"
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
     When Click on "common.questions.viewFirstQuestion"
     And Click on tag "button" which contains text "Edit"
@@ -21,7 +21,7 @@ Feature: Content Lock
       | chatbotStandard |
     And Open chatbot "chatbotForAutomation"
     And Open "Chatbot->Knowledgebase->Custom Questions" menu item
-    And Type "Custom question for automation" in "common.questions.searchQuestion"
+    And Find "Custom question for automation"
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
     When Click on "common.questions.viewFirstQuestion"
     Then Tag "button" with text "Edit" should "not.exist"
@@ -33,7 +33,7 @@ Feature: Content Lock
     Given Login as "defaultUser"
     And Open chatbot "chatbotForAutomation"
     And Open "Chatbot->Knowledgebase->Custom Questions" menu item
-    And Type "Custom question for Content Lock tests" in "common.questions.searchQuestion"
+    And Find "Custom question for Content Lock tests"
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
     When Click on "common.questions.viewFirstQuestion"
     And Click on tag "button" which contains text "View"
@@ -47,7 +47,7 @@ Feature: Content Lock
       | chatbotAdmin |
     And Open chatbot "chatbotForAutomation"
     And Open "Chatbot->Knowledgebase->Custom Questions" menu item
-    And Type "${lockedQuestion}" in "common.questions.searchQuestion"
+    And Find "${lockedQuestion}"
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
 
     When Click on "common.questions.viewFirstQuestion"

@@ -451,7 +451,7 @@ And('Find {string}', (text) => {
 
   // type text in the search input
   cy.replacePlaceholder(text).then((searchText) => {
-    const searchInput = 'input[type="search"]';
+    const searchInput = 'input[type="search"], input[name="keywords"]';
     cy.get(searchInput).clear().type(searchText);
   });
 });

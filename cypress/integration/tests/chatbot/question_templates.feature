@@ -19,7 +19,7 @@ Feature: Permissions - question templates
       | viewOtherOfficesChatbot |
     And Open chatbot "chatbotForAutomation"
     When Open "Chatbot->Knowledgebase->Question Templates" menu item
-    And Type "${searchQuestionTemplate}" in "common.questions.searchQuestion"
+    And Find "${searchQuestionTemplate}"
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
     And Click on "common.questions.viewFirstQuestion"
     Then Element "div>div.Mui-expanded" should "exist"

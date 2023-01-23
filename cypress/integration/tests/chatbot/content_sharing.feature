@@ -4,7 +4,7 @@ Feature: Chatbot - Content Sharing
     Given Login as "chatbotAdmin"
     And Open chatbot "chatbotForInquiryForm"
     When Open "Chatbot->Knowledgebase->Custom Questions" menu item
-    And Type "${parentCustomQuestion2}" in "common.questions.searchQuestion"
+    And Find "${parentCustomQuestion2}"
     And Verify that selector "chatbot.knowledgebase.customQuestions.questions" contains "1" elements
     And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" has the following text "${parentCustomQuestion2}"
     And Click on "common.questions.viewFirstQuestion"
@@ -15,7 +15,7 @@ Feature: Chatbot - Content Sharing
     And Open chatbot "chatbotForAutomation"
 
     When Open "Chatbot->Knowledgebase->Custom Questions" menu item
-    And Type "${parentCustomQuestion1}" in "common.questions.searchQuestion"
+    And Find "${parentCustomQuestion1}"
     And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" has the following text "${parentCustomQuestion1}"
     And Click on "common.questions.viewFirstQuestion"
     And Click on tag "button" which contains text "Edit"
@@ -25,11 +25,11 @@ Feature: Chatbot - Content Sharing
 
     Then Open chatbot "chatbotForInquiryForm"
     And Open "Chatbot->Knowledgebase->Custom Questions" menu item
-    And Type "${parentCustomQuestion1}" in "common.questions.searchQuestion"
+    And Find "${parentCustomQuestion1}"
     And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" has the following text "${parentCustomQuestion1}"
     And Verify that selector "chatbot.knowledgebase.customQuestions.shareIcon" contains "1" elements
 
-    When Open chatbot "chatbotForAutomation"
+    When Open chatbot home page
     And Open "Chatbot->Knowledgebase->Custom Questions" menu item
     And Type "${parentCustomQuestion1}" in "common.questions.searchQuestion"
     And Verify that element "chatbot.knowledgebase.customQuestions.selectedQuestion" has the following text "${parentCustomQuestion1}"
@@ -40,7 +40,6 @@ Feature: Chatbot - Content Sharing
 
     Then Open chatbot "chatbotForInquiryForm"
     And Open "Chatbot->Knowledgebase->Custom Questions" menu item
-    And Type "${parentCustomQuestion1}" in "common.questions.searchQuestion"
+    And Find "${parentCustomQuestion1}"
     And Tag "p.CustomQuestion-heading" with text "${parentCustomQuestion1}" should "not.exist"
     And Element "chatbot.knowledgebase.customQuestions.shareIcon" should "not.exist"
-

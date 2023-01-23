@@ -27,7 +27,7 @@ Feature: Permissions - contact lists
     Then Tag "p" with text "Argument Validation Error" should "not.exist"
     And Click on "contactManagement.contactLists.finishButton"
 
-    Then Type "BigContactList${randomNumber}" in "contactManagement.contactLists.searchInput"
+    Then Find "BigContactList${randomNumber}"
     And Verify that selector "contactManagement.contactLists.tableRows" contains "1" elements
     And Click on "contactManagement.contactLists.viewFirstContactListButton"
     And Click on "contactManagement.contactLists.deleteFirstContact"
@@ -36,7 +36,7 @@ Feature: Permissions - contact lists
 
     And Open chatbot home page
     And Open "Contact Management->Contact Lists" menu item
-    And Type "BigContactList${randomNumber}{enter}" in "contactManagement.contactLists.searchInput"
+    And Find "BigContactList${randomNumber}{enter}"
     And Verify that selector "contactManagement.contactLists.tableRows" contains "1" elements
     And  Click on "contactManagement.contactLists.actionsDropdownFirstRow"
     And Click on tag "li[role='menuitem']" which contains text "Delete"
@@ -149,7 +149,7 @@ Feature: Permissions - contact lists
     And Open chatbot "chatbotForAutomation"
     And Open "Contact Management->Contact Lists" menu item
     And Wait for element "contactManagement.contactLists.ContactManagementTag"
-    Then Type "qwer" in "contactManagement.contactLists.searchInput"
+    Then Find "qwer"
     And Verify that selector "contactManagement.contactLists.singleElement" contains "1" elements
     And Click on "contactManagement.contactLists.viewFirstRow"
     And Wait for element "contactManagement.contactLists.EditContact"

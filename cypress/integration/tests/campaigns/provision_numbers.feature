@@ -64,7 +64,7 @@ Feature: Campaigns - provision numbers
 
     When Open "Texting->Transcripts" menu item
     And Intercept "${GRAPHQL_URL}graphql" with "getCampaignTranscriptList" keyword in the response as "searchRequest"
-    And Type "What is your name?" in "texting.transcripts.searchInput"
+    And Find "What is your name?"
     And Wait for "searchRequest" network call
     And Click on "texting.transcripts.viewConversationFirstRow"
     And Click on tag "h6" which contains text "Conversation Details"
@@ -128,7 +128,7 @@ Feature: Campaigns - provision numbers
       | responseType          | Agent                                               |
       | saveProvisionNumberAs | provisionNumber                                     |
       | inbox                 | ${INBOX_NAME}                                       |
-    And Type "${provisionNumber}" in "texting.phoneNumbers.searchInput"
+    And Find "${provisionNumber}"
     Then Verify that selector "texting.phoneNumbers.records" contains "1" elements
     And Click on "texting.phoneNumbers.editPhoneNumberButton"
     And Type "Updated phone number text" in "texting.phoneNumbers.phoneNumberDescription"
