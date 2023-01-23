@@ -339,9 +339,11 @@ And('Set switch {string} to {string}', (switchSelector, status) => {
 
 And('Set switch for slider {string} to {string}', (switchSelector, status) => {
   cy.getElement(switchSelector).invoke('attr','value').then(switchState => {
+    const isSwitchEnabled = switchState === '1' || switchState === 'true';
     cy.replacePlaceholder(status).then((setStatus) => {
-      if((switchState === '0' && setStatus === 'enabled')
-          || (switchState === '1' && setStatus === 'disabled')) {
+      const isClickRequired = (isSwitchEnabled === false && setStatus === 'enabled')
+          || (isSwitchEnabled === true && setStatus === 'disabled');
+      if (isClickRequired) {
         cy.getElement(switchSelector).click({force:true});
       }
     });
@@ -349,7 +351,7 @@ And('Set switch for slider {string} to {string}', (switchSelector, status) => {
 });
 
 And('Set switch for checkbox {string} to {string}', (switchSelector, status) => {
-  cy.getElement(switchSelector).invoke('prop','checked').then(switchState => {
+  cy.getElement(switchSelector).parent('span').invoke('attr','Mui-checked').then(switchState => {
     cy.replacePlaceholder(status).then((setStatus) => {
       if((switchState === 'false' && setStatus === 'enabled')
           || (switchState === 'true' && setStatus === 'disabled')) {

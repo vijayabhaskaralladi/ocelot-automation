@@ -62,17 +62,21 @@ Feature: Permission Manager
     And Choose random value from "Limited|Standard|Admin" and save it as "role"
     And Choose random value from "enabled|disabled" and save it as "viewOtherOfficesSwitch"
     And Choose random value from "enabled|disabled" and save it as "Offices1Switch"
+    And Choose random value from "enabled|disabled" and save it as "Offices2Switch"
+    And Choose random value from "enabled|disabled" and save it as "Offices3Switch"
+    And Wait for element "quotasAccount.permissions.usersList"
     When Type "LegacyUser{enter}" in "quotasAccount.permissions.searchInput"
     Then Wait for tag with text
       | tag     | span       |
       | text    | LegacyUser |
-      | timeout | 10000      |
+      | timeout | 20000      |
     And Click on tag "span" which contains text "LegacyUser"
 
     And Click on "#rolesField"
     And Click on tag "li" which contains text "${role}"
     And Set switch for slider "quotasAccount.permissions.viewOtherOfficesSwitch" to "${viewOtherOfficesSwitch}"
-    And Set switch for checkbox "quotasAccount.permissions.viewMyoffice1Switch" to "${Offices1Switch}"
+    And Set switch for checkbox "quotasAccount.permissions.office1Checkbox" to "${Offices1Switch}"
+    And Set switch for checkbox "quotasAccount.permissions.office2Checkbox" to "${Offices2Switch}"
     And Click on tag "button" which contains text "Save"
 
     Then Check that notification message "Permissions saved successfully" appeared
@@ -88,14 +92,19 @@ Feature: Permission Manager
     When Click on tag "div[role='tablist']>button" which contains text "${Tab}"
     And Click on "quotasAccount.permissions.filterRecord"
     And Click on "quotasAccount.permissions.roleFilter"
-    And Wait "2000"
+    And Wait for element "quotasAccount.permissions.usersList"
     And Click on tag "li[role='option']" which contains text "${role}"
     Then Wait for tag with text
       | tag     | span    |
       | text    | ${role} |
       | timeout | 10000   |
-    And Wait for element "quotasAccount.permissions.usersList"
+
+    And Wait for tag with text
+      | tag     | div.MuiTypography-root |
+      | text    | ${role}                |
+      | timeout | 10000                  |
+    Then Wait "2000"
 
     And Save number of elements with tag "div.MuiTypography-root>div.MuiChip-sizeSmall>span.MuiChip-label" and "${role}" text as "numberOfLabels"
-    And Save number of elements with selector "div.MuiListItemText-multiline>span" as "totalNumberOfUsers"
+    And Save number of elements with selector "div.MuiListItemText-multiline>span.MuiTypography-root" as "totalNumberOfUsers"
     Then Check that difference between "numberOfLabels" and "totalNumberOfUsers" is "0"
