@@ -440,10 +440,12 @@ And('Open chatbot home page', () => {
 
 And('Find {string}', (text) => {
   // wait for 1+ line on the page
-  // this selector supports custom questions, canned responses, LC/campaigns transcripts, contacts
+  // this selector supports custom questions, awaiting review questions,
+  // canned responses, LC/campaigns transcripts, contacts
   const rowSelector = 'tbody>tr.MuiTableRow-root, ' +
       'div.AppContent-body>div>div>div.MuiAccordionSummary-root, ' +
       'div.AppContent-body>div>div>div.GeneralQuestion-panel, ' +
+      '#main-content>div>div>div>div.MuiPaper-rounded, ' +
       'div.CannedResponse-summaryPrimary';
   cy.get(rowSelector).should('have.length.gte', 1);
 

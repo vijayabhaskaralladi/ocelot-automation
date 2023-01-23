@@ -26,7 +26,7 @@ Feature: Permissions - awaiting review
       | viewOtherOfficesChatbot |
     And Open chatbot "chatbotForAutomation"
     When Open "Chatbot->Knowledgebase->Awaiting Review" menu item
-    And Type "${awaitingReviewQuestion}" in "common.questions.searchQuestion"
+    And Find "${awaitingReviewQuestion}"
     And Verify that element "chatbot.knowledgebase.awaitingReview.firstRowAwaitingQuestion" has the following text "${awaitingReviewQuestion}"
     And Click on "common.questions.viewFirstQuestion"
     And Create random number and save it as "random"
@@ -34,6 +34,5 @@ Feature: Permissions - awaiting review
     And Type "RandomText${random}" in "chatbot.knowledgebase.awaitingReview.editAwaitingResponse"
     And Click on tag "button" which contains text "Save"
     And Verify that page contains text "Your question has been successfully published"
-    And Type "${awaitingReviewQuestion}" in "common.questions.searchQuestion"
+    And Find "${awaitingReviewQuestion}"
     And Verify that element "chatbot.knowledgebase.awaitingReview.firstRowAwaitingQuestion" has the following text "${awaitingReviewQuestion}"
-
