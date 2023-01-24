@@ -309,7 +309,9 @@ And('Verify that checkbox {string} is {string}', (selector, expectedState) => {
 });
 
 And('Save {string} as {string}', (value, key) => {
-  cy.wrap(value).as(key);
+  cy.replacePlaceholder(value).then((val) => {
+    cy.wrap(val).as(key);
+  });
 });
 
 And('Check that difference between {string} and {string} is {string}', (alias1, alias2, expectedDif) => {

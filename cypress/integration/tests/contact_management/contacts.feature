@@ -7,6 +7,8 @@ Feature: Contacts
       | viewOtherOfficesCampaigns |
     When Open "Contact Management->Contacts" menu item
     Then Verify that page title is "Contacts"
+    And Save "${contactForManage}" as "number"
+    And Add "?startDate=2022-9-31" to the current URL
     And Save "(210) 389-2841" as "number"
 
     And Intercept "${GRAPHQL_URL}graphql" with "GetCampaignStudentProfiles" keyword in the response as "searchRequest"
