@@ -5,7 +5,7 @@
   "financialAidLibraryCustomQuestion": "Financial aid library question for automation chatbot",
   "customQuestionForEditing": "Is it allowed to edit custom questions?",
   "financialAidLibraryGeneralQuestion": "Am I allowed to make my own schedule for work?",
-  "parentCustomQuestion1": "Are you ready to go to school?",
+  "parentCustomQuestion1": "Added this Question for Content Sharing(Automation)?",
   "parentCustomQuestion2": "Child bot can't delete shared question by the parent bot ?",
   "bookstoreLibraryCustomQuestion": "Bookstore library question for automation chatbot",
   "bookstoreLibraryGeneralQuestion":"Does the school have a bookstore?",
