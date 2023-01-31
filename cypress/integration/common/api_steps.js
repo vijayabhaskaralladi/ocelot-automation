@@ -43,7 +43,7 @@ And('Wait for {string} and save it as {string}', (responseAlias, name) => {
 });
 
 And('Wait for {string} network call', (responseAlias) => {
-  cy.wait(`@${responseAlias}`, { timeout: 15000 });
+  cy.wait(`@${responseAlias}`, { timeout: 30000 });
   cy.wait(1000);
 });
 

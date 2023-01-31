@@ -45,6 +45,7 @@ Feature: Notifications
     And Tag "h6" with text "Inbox message notifications" should "exist"
     When Intercept "${GRAPHQL_URL}graphql" with "notificationSettings" keyword in the response as "saveRequest"
     And Click on "notifications.saveButton"
+    And Check that notification message "Saved" appeared
 
     Then Wait for "saveRequest" network call
     And Verify that response "saveRequest" has status code "200"
