@@ -29,5 +29,4 @@ And('Send 1:1 message', (datatable) => {
     });
     cy.wait(1000);
     cy.contains('button', 'Send').click();
-
 });

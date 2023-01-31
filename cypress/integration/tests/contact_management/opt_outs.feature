@@ -55,33 +55,32 @@ Feature: Permissions - opt-outs
     Given Login as "campaignsAdmin"
     And Open chatbot "chatbotForAutomation"
     And Open "Contact Management->Contact Lists" menu item
+    And Save "qwert" as "contactListName"
 
-    And Type "qwert" in "contactManagement.contactLists.searchInput"
+    And Find "${contactListName}"
     And Verify that page contains text "1–1 of 1"
-    And Click on tag "div[role='group'] button" which contains text "View"
+    And Click on tag "div[role='group']>button" which contains text "View"
     And Wait for element "contactManagement.contactLists.EditContact"
     And Optout first contact if opted-In
     And Get the opted out the PhoneNumber and EMail
 
     When Open "Contact Management->Opt-outs" menu item
-    And Type "${email}" in "contactManagement.optOuts.searchInput"
+    And Verify that page title is "Opt-outs"
+    And Find "${email}"
     And Verify that page contains text "1–1 of 1"
-#    And Wait for element "contactManagement.contactLists.singleElement"
     And Click on "contactManagement.optOuts.deleteFirstRowButton"
     And Click on "contactManagement.optOuts.confirmDeleteButton"
     And Check that notification message "Opt-out contact removed" appeared
 
-    And Type "${phnNumber}" in "contactManagement.optOuts.searchInput"
+    And Find "${phoneNumber}"
     And Verify that page contains text "1–1 of 1"
-#    And Wait for element "contactManagement.contactLists.singleElement"
     And Click on "contactManagement.optOuts.deleteFirstRowButton"
     And Click on "contactManagement.optOuts.confirmDeleteButton"
     And Check that notification message "Opt-out contact removed" appeared
 
-    And Open chatbot "chatbotForAutomation"
     Then Open "Contact Management->Contact Lists" menu item
     And Verify that page title is "Contact Lists"
-    And Type "qwert" in "contactManagement.contactLists.searchInput"
+    And Find "${contactListName}"
     And Verify that page contains text "1–1 of 1"
     And Click on "contactManagement.contactLists.viewFirstRow"
     And Wait for element "contactManagement.contactLists.EditContact"
