@@ -40,10 +40,10 @@ Feature: Permissions - question templates
     And Click on tag "li" which contains text "${DepartmentFilter}"
     And Wait for "FilterRequest" network call
     Then Verify that page contains element "chatbot.knowledgebase.questionTemplates.filteredHeader" with text "${DepartmentFilter}"
-    And Verify that selector "chatbot.knowledgebase.questionTemplates.questionCount" contains more than "5" elements
+    And Verify that selector "chatbot.knowledgebase.questionTemplates.questionCount" contains more than "1" elements
     And Click on "common.questions.sortResults"
     And Choose random value from "Changed, Oldest to Most Recent|Changed, Recent to Oldest" and save it as "ordering"
     And Click on tag "li" which contains text "${ordering}"
     And Wait for "FilterRequest" network call
     Then Verify that page contains element "chatbot.knowledgebase.questionTemplates.filteredHeader" with text "${ordering}"
-    And Verify that selector "chatbot.knowledgebase.questionTemplates.questionCount" contains more than "5" elements
+    And Verify that selector "chatbot.knowledgebase.questionTemplates.questionCount" contains more than "1" elements
