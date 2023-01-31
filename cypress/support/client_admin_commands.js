@@ -61,7 +61,7 @@ Cypress.Commands.add('clientAdminTestSetup', () => {
 });
 
 Cypress.Commands.add('verifyMainTitle', (expectedPageTitle) => {
-  cy.contains('h1.MuiTypography-root', expectedPageTitle, { timeout: 15000 }).should('exist');
+  cy.contains('h1.MuiTypography-root', expectedPageTitle).should('exist');
 });
 
 Cypress.Commands.add('verifyThatPageContainsTitles', (expectedTitles) => {
