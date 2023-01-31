@@ -23,13 +23,11 @@ And('Send 1:1 message', (datatable) => {
         cy.get(toInput).type(to);
     });
 
-    const messageInput = 'div[aria-label="Rich Text Editor, Message"] > p';
+    const messageInput = 'div[aria-label*="Rich Text Editor"] > p,[aria-multiline="true"]';
     cy.replacePlaceholder(messageData.message).then((message) => {
         cy.get(messageInput).type(message);
     });
-
-    cy.contains('button', 'Send').click();
-    //Below code is a work around for MAINT-2233.
     cy.wait(1000);
     cy.contains('button', 'Send').click();
+
 });
