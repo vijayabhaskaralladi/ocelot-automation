@@ -91,7 +91,8 @@ And('Enable Inquiry Form', (datatable) => {
     });
 
   cy.replacePlaceholder(inquiryFormData.message).then((message) => {
-    cy.get('[aria-label="Rich Text Editor, Text Lead In Message"]').clear().type(message);
+    const inquiryFormInput = '[aria-label="Rich Text Editor, Text Lead In Message"], [aria-multiline="true"]';
+    cy.get(inquiryFormInput).last().clear().type(message);
   });
 
   // setting values to checkboxes

@@ -16,7 +16,6 @@ Feature: Contacts
     Then Verify that response "searchRequestResponse" has status code "200"
     And Verify that selector "contactManagement.contacts.contactRow" contains "1" elements
 
-  @ignore
   Scenario: TMD-14: Viewing and Exporting contacts
     Given Login using random user from the list
       | campaignsStandard         |
