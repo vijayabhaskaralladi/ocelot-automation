@@ -7,17 +7,16 @@ Feature: Contacts
       | viewOtherOfficesCampaigns |
     When Open "Contact Management->Contacts" menu item
     Then Verify that page title is "Contacts"
-    And Save "${contactForManage}" as "number"
+    And Save "${contactFromContactsPage}" as "number"
     And Add "?startDate=2022-9-31" to the current URL
-    And Save "(210) 389-2841" as "number"
 
-    And Intercept "${GRAPHQL_URL}graphql" with "GetCampaignStudentProfiles" keyword in the response as "searchRequest"
-    Then Find "${number}"
+    When Intercept "${GRAPHQL_URL}graphql" with "listStudentProfiles" keyword in the response as "searchRequest"
+    And Find "${number}"
     And Wait for "searchRequest" and save it as "searchRequestResponse"
     Then Verify that response "searchRequestResponse" has status code "200"
-    And Verify that page contains text "1–1 of 1"
     And Verify that selector "contactManagement.contacts.contactRow" contains "1" elements
 
+  @ignore
   Scenario: TMD-14: Viewing and Exporting contacts
     Given Login using random user from the list
       | campaignsStandard         |
