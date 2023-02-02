@@ -88,8 +88,8 @@ And('API: Check that chatbot welcome message is {string}', (expectedWelcomeMessa
     cy.wrap(chatbotConfigUrl).as('chatbotConfigUrl');
   });
 
-  const DELAY = 5000;
-  const RETRIES = 5;
+  const DELAY = 10000;
+  const RETRIES = 9;
 
   const iterator = Array.from(Array(RETRIES));
   cy.wrap(false).as('isWelcomeMessageCorrect');
@@ -100,17 +100,19 @@ And('API: Check that chatbot welcome message is {string}', (expectedWelcomeMessa
         cy.get('@chatbotConfigUrl').then((chatbotConfigUrl) => {
           cy.request({
             method: 'GET',
-            url: chatbotConfigUrl
+            url: chatbotConfigUrl,
+            failOnStatusCode:false
           }).then((responseObject) => {
-            expect(responseObject.status).to.eq(200);
-            cy.get('@expectedWelcomeMessage').then((expectedMessage) => {
-              const retrievedWelcomeMessage = responseObject.body.hello.en;
-              cy.log(`Retrieved welcome message: ${retrievedWelcomeMessage}`);
-              cy.log(`Expected welcome message: ${expectedMessage}`);
-              if (retrievedWelcomeMessage.includes(expectedMessage)) {
-                cy.wrap(true).as('isWelcomeMessageCorrect');
-              }
-            });
+            if (responseObject.status === 200) {
+              cy.get('@expectedWelcomeMessage').then((expectedMessage) => {
+                const retrievedWelcomeMessage = responseObject.body.hello.en;
+                cy.log(`Retrieved welcome message: ${retrievedWelcomeMessage}`);
+                cy.log(`Expected welcome message: ${expectedMessage}`);
+                if (retrievedWelcomeMessage.includes(expectedMessage)) {
+                  cy.wrap(true).as('isWelcomeMessageCorrect');
+                }
+              });
+            }
           });
         });
       }

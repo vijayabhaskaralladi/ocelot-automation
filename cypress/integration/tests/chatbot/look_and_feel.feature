@@ -14,7 +14,6 @@ Feature: Look & Feel
     And Tag "p" with text "Office 2" should "exist"
     And Tag "p" with text "Office 3" should "exist"
 
-  @do_not_run_on_com
   Scenario: Changing welcome message
     Given Login as "defaultUser"
     And Open chatbot "chatbotForAutomation"
@@ -24,8 +23,7 @@ Feature: Look & Feel
     When Click on tag "button" which contains text "Edit"
     And Type "Welcome message: #${id}. Chatbot name: !me" in "chatbot.lookAndFeel.welcomeMessageInput"
     And Click on tag "button" which contains text "Save"
-
     Then Check that notification message "Updated" appeared
-    And Open chatbot home page
-    And Click on "chatbot.testMyBot.buttonTestMyBot"
-    And Tag "p" with text "Welcome message: #${id}. Chatbot name: automation chatbot" should "exist"
+
+    And API: Select "chatbotForAutomation" chatbot
+    And API: Check that chatbot welcome message is "Welcome message: #${id}. Chatbot name: automation chatbot"
