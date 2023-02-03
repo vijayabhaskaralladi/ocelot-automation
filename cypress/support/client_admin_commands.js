@@ -33,7 +33,7 @@ Cypress.Commands.add('openMenuItem', (menuItem) => {
         cy.wait(500);
       }
     });
-  const items = menuItem.split('->');
+  const items = menuItem.replace('Knowledgebase', 'Knowledge base').split('->');
   const menuItemSelector = '[role="presentation"]>.AppDrawer-paper li>.MuiButton-root';
   items.forEach((item) => {
     cy.contains(menuItemSelector, item)
