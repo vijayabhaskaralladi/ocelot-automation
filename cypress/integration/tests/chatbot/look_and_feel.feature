@@ -8,7 +8,7 @@ Feature: Look & Feel
     And Tag "div" with text "Bottom-Right" should "exist"
     And Tag "div" with text "Simple" should "exist"
     And Tag "div" with text "May I help you?" should "exist"
-    And Tag "div" with text "Hi there! I’m a chatbot here to answer your questions. What would you like to know?" should "exist"
+    And Tag ".LookAndFeelSettingsForm-markdownPreview" with text "Welcome message: #" should "exist"
     And Click on "button[role='tab']:not([aria-selected='true'])"
     And Tag "p" with text "Office 1" should "exist"
     And Tag "p" with text "Office 2" should "exist"
