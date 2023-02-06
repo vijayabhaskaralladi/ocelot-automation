@@ -103,7 +103,7 @@ Feature: Permissions - custom questions
     And Scroll to "chatbot.knowledgebase.customQuestions.editResponseField" element
     And Type "Updated response ${id}" in "chatbot.knowledgebase.customQuestions.editResponseField"
     And Click on tag "button" which contains text "Save"
-    Then Check that notification message "Your question has been successfully published and will soon become part of the bot's knowledgebase!" appeared
+    Then Check that notification message "Your question has been successfully published and will soon become part of the bot's knowledge base!" appeared
     And Tag "p" with text "Updated response ${id}" should "exist"
     And Tag "div" with text "Last Modified:" should "exist"
     And Save current date as "date" using "mm/dd/yyyy" format
