@@ -9,7 +9,8 @@ Feature: Notifications
     And Open chatbot "chatbotForAutomation"
     When Open "Notifications" menu item
     Then Verify that page contains text "Configure sounds and timings for notifications within the admin"
-    And Tag "h6" with text "Live chat notifications" should "exist"
+    And Tag "h6" with text "Incoming live chat notifications" should "exist"
+    And Tag "h6" with text 'Live chat "Away" notifications' should "exist"
     And Tag "h6" with text "Inbox message notifications" should "not.exist"
 
     When Intercept "${GRAPHQL_URL}graphql" with "notificationSettings" keyword in the response as "saveRequest"
@@ -28,7 +29,8 @@ Feature: Notifications
     When Open "Notifications" menu item
     Then Verify that page contains text "Configure sounds and timings for notifications within the admin"
     And Tag "h6" with text "Inbox message notifications" should "exist"
-    And Tag "h6" with text "Live chat notifications" should "not.exist"
+    And Tag "h6" with text 'Incoming live chat notifications' should "not.exist"
+    And Tag "h6" with text 'Live chat "Away" notifications' should "not.exist"
 
     When Intercept "${GRAPHQL_URL}graphql" with "notificationSettings" keyword in the response as "saveRequest"
     And Click on "notifications.saveButton"
@@ -41,7 +43,8 @@ Feature: Notifications
     And Open chatbot "chatbotForAutomation"
     When Open "Notifications" menu item
     Then Verify that page contains text "Configure sounds and timings for notifications within the admin"
-    And Tag "h6" with text "Live chat notifications" should "exist"
+    And Tag "h6" with text "Incoming live chat notifications" should "exist"
+    And Tag "h6" with text 'Live chat "Away" notifications' should "exist"
     And Tag "h6" with text "Inbox message notifications" should "exist"
     When Intercept "${GRAPHQL_URL}graphql" with "notificationSettings" keyword in the response as "saveRequest"
     And Click on "notifications.saveButton"
