@@ -25,7 +25,7 @@
       "firstOfficeItem": { "selector": "span", "text": "MyCampus - Office 1" },
       "saveCampaignButton": { "selector": "button", "text": "Save Campaign" },
       "launchButton": "[title=\"\"] > .MuiButtonBase-root",
-      "responseMessage": "[aria-label='Rich Text Editor, Message']",
+      "responseMessage": "[aria-label='Rich Text Editor, Message'], [aria-multiline='true']",
       "saveAsDraft": { "selector": "button", "text": "Save Draft" },
       "campaignName": "#campaignTitle",
       "archiveButtonSelector": {"selector": "li","text": "Stop and archive"}
