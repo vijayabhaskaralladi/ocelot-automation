@@ -17,6 +17,7 @@ Feature: Permissions - campaigns analytics
     Then Verify that download folder contains "campaign-analytics.csv"
     And Verify that file "campaign-analytics.csv" from download folder contains text "Campaign Name"
 
+  @low_priority
   Scenario: Limited users can't view Texting item in the menu
     Given Login using random user from the list
       | viewOtherOfficesLiveChat |

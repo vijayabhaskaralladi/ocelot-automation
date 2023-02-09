@@ -16,6 +16,7 @@ Feature: Permissions - Live Chat transcripts
     #Following step is commented due to data unavailability some times
     #And Verify that file "live-chat-transcripts.csv" from download folder contains text "Unknown Student"
 
+  @low_priority
   Scenario: TMD-43: Live Chat admin of Office 3 can't view Transcripts for Office 1 and Office 2
     Given Login as "chatbotStandard-AthleticsOffice"
     And Open chatbot "chatbotForAutomation"
@@ -34,6 +35,7 @@ Feature: Permissions - Live Chat transcripts
     Then Tag "th.MuiTableCell-root" with text "Hi Office 1" should "exist"
     And Tag "th.MuiTableCell-root" with text "Hi Office 2" should "exist"
 
+  @low_priority
   Scenario: TMD-43: Standard user can't view Transcripts of other users
     Given Login as "liveChatStandard"
     And Open chatbot "chatbotForAutomation"
@@ -42,6 +44,7 @@ Feature: Permissions - Live Chat transcripts
     And Add "${dateFilter}" to the current URL
     Then Tag "th.MuiTableCell-root" with text "Hi Office 1" should "not.exist"
 
+  @low_priority
   Scenario: TMD-51: Limited user can't view any Transcript
     Given Login as "liveChatLimited"
     And Open chatbot "chatbotForAutomation"

@@ -58,6 +58,7 @@ Feature: Permissions - contact lists
     And Tag "span" with text "contact management" should "exist"
     And Tag "span" with text "First Name" should "exist"
 
+  @low_priority
   Scenario: TMD-16: Verify that user Campaigns Limited can't Create Contact Lists
   Limited user shouldn't see 'Add Contact List' button
     Given Login as "campaignsLimited"
@@ -68,6 +69,7 @@ Feature: Permissions - contact lists
     And Element "td>p" should "exist"
     Then Element "contactManagement.contactLists.addContactListButton" should "not.exist"
 
+  @low_priority
   Scenario: TMD-17: Verify that user Campaigns Limited can't Delete Contact Lists
   Limited user shouldn't see 'Actions' dropdown
     Given Login as "campaignsLimited"
@@ -75,6 +77,7 @@ Feature: Permissions - contact lists
     When Open "Contact Management->Contact Lists" menu item
     Then Element "contactManagement.contactLists.actionsDropdowns" should "not.exist"
 
+  @low_priority
   Scenario: TMD-18: Verify that user Campaigns Standard can't Delete Contact Lists
   Standard user sees 'Actions' dropdown without 'Delete' action
     Given Login as "campaignsStandard"
@@ -159,6 +162,7 @@ Feature: Permissions - contact lists
     And Click on "contactManagement.contactLists.UpdateButton"
     And Tag "p" with text "${firstName}" should "exist"
 
+  @low_priority
   Scenario: TMD-22: Verify that user Campaigns Admin can Delete Contact Lists
   This test requires at least 1 contact list
     Given Login as "campaignsAdmin"

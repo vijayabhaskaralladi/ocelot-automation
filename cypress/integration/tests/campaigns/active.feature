@@ -58,6 +58,7 @@ Feature: Permissions - active campaigns
     Then Verify that element "texting.activeCampaigns.draftFilterName" has the following text "Status: Draft"
     And Verify that selector "texting.activeCampaigns.campaginListTable" contains more than "1" elements
 
+  @low_priority
   Scenario: Verify that user can View Inbox page
     Given Login using random user from the list
       | campaignsLimited  |

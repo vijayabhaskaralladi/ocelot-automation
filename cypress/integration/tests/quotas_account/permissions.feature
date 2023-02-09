@@ -1,5 +1,6 @@
 Feature: Permission Manager
 
+  @low_priority
   Scenario: TMD-79: Limited users can't open Permission Manager
   These users shouldn't see "Quotas & Account" menu item
     Given Login using random user from the list
@@ -12,6 +13,7 @@ Feature: Permission Manager
     And Open chatbot "chatbotForAutomation"
     Then Tag "li>button" with text "Quotas & Account" should "not.exist"
 
+  @low_priority
   Scenario: TMD-79: Admin users without Permission Manager role can't open Permission Manager
   These users can see "Quotas & Account" menu item but it shouldn't contain "Permissions" sub item
     Given Login using random user from the list

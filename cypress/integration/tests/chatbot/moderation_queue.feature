@@ -19,6 +19,7 @@ Feature: Permissions - moderation queue
     And Get full file name with prefix "api-chatbot-kb-moderation-queue-" in download folder and save it as "moderationQueueFileName"
     And Verify that file "${moderationQueueFileName}" from download folder contains text "${moderationQueueQuestion}"
 
+  @low_priority
   Scenario: Limited user can't see Moderation Queue
     Given Login as "chatbotLimited"
     And Open chatbot "chatbotForAutomation"

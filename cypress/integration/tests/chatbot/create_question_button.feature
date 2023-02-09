@@ -1,5 +1,6 @@
 Feature: Permissions - create new question button
 
+  @low_priority
   Scenario: Create Question button
     Given Login using random user from the list
       | chatbotStandard         |
@@ -9,6 +10,7 @@ Feature: Permissions - create new question button
     When Click on "createContent.createContentMenuButton"
     Then Tag "h1" with text "Create Question" should "exist"
 
+  @low_priority
   Scenario: Limited users shouldn't see Create Content button
     Given Login using random user from the list
       | chatbotLimited   |

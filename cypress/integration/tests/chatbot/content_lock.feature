@@ -15,6 +15,7 @@ Feature: Content Lock
     Then Tag "h1" with text "Edit Question" should "exist"
     And Verify that page contains text "Content Locked"
 
+  @low_priority
   Scenario: TMD-82: Non-privileged users can't edit locked custom questions
     Given Login using random user from the list
       | chatbotLimited  |

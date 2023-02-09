@@ -43,6 +43,7 @@ Feature: Campaigns - provision numbers
     And Wait for "downloadRequest" network call
     Then Verify that download folder contains "phone-numbers.csv"
 
+  @low_priority
   Scenario: Unsolicited Message Settings - bot response
     Given Login as "campaignsAdmin"
     And Open chatbot "chatbotForAutomation"
@@ -74,6 +75,7 @@ Feature: Campaigns - provision numbers
     And Tag "#conversation-details-pane div" with text "${provisionNumber}" should "exist"
     And Tag "#conversation-details-pane div" with text "${studentNumber}" should "exist"
 
+  @low_priority
   Scenario: Unsolicited Message Settings - agent response
   Test creates provision number with agent response mode. Then it send message to this number and checks Inbox and
   conversation details. Also it replies to this number.

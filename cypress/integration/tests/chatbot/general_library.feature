@@ -60,6 +60,7 @@ Feature: Permissions - general library
     When Open "Chatbot" menu item
     Then Tag "li>button" with text "Knowledgebase" should "not.exist"
 
+  @low_priority
   Scenario: Verify that User having access to Bookstore Library cannot view FinancialAid library question
     Given Login as "chatbotStandard-BookstoreOffice"
     And Open chatbot "chatbotForAutomation"

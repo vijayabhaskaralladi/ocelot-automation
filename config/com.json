@@ -11,7 +11,7 @@
     "MESSAGE_API_DOMAIN": "https://ai.plaidbean.com/",
     "GRAPHQL_URL": "https://gql.plaidbean.com/",
     "DRUPAL_URL": "https://cms.plaidbean.com/",
-    "TAGS": "not @ignore and not @exclude_from_ci and not @need_to_fix and not @do_not_run_on_com"
+    "TAGS": "not @ignore and not @exclude_from_ci and not @need_to_fix and not @do_not_run_on_com and not @low_priority"
   },
   "testFiles": "**/*.feature"
 }

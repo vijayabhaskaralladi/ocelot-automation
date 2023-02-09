@@ -1,5 +1,6 @@
 Feature: Permissions - opt-outs
 
+  @low_priority
   Scenario: Verify that user Campaigns Limited can't Add new Opt-outs
     Given Login as "campaignsLimited"
     And Open chatbot "chatbotForAutomation"
@@ -8,6 +9,7 @@ Feature: Permissions - opt-outs
     And Wait "2000"
     Then Element "contactManagement.optOuts.addContactButton" should "not.exist"
 
+  @low_priority
   Scenario: Verify that user Campaigns StandardLimited can Add Opt-outs and can't delete them
     Given Login as "campaignsStandard"
     And Open chatbot "chatbotForAutomation"

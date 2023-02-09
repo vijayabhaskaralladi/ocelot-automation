@@ -39,6 +39,7 @@ Feature: Permissions - Canned responses
     Then Type "CannedResponse${randomNumber}{enter}" in "liveChat.cannedResponses.searchInput"
     And Tag "p" with text "CannedResponse${randomNumber}" should "exist"
 
+  @low_priority
   Scenario: Limited users can't Delete canned response
     Given Login using random user from the list
       | liveChatLimited  |

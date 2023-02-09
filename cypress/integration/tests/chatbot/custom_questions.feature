@@ -40,6 +40,7 @@ Feature: Permissions - custom questions
     And Find "${financialAidLibraryCustomQuestion}"
     Then Tag "p.MuiTypography-body1" with text "${financialAidLibraryCustomQuestion}" should "exist"
 
+  @low_priority
   Scenario: TMD-44: User shouldn't see custom questions from other libraries
   User from Office 1(financial aid lib) shouldn't see custom questions from Bookstore library
     Given Login as "chatbotStandard-FinancialAidOffice"

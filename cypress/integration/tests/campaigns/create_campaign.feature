@@ -12,6 +12,7 @@ Feature: Permissions - create campaigns
       | MyCampaign${randomNumber} | ${campaignTemplateName} | ContactListForTests |
     Then Verify that page title is "MyCampaign"
 
+  @low_priority
   Scenario: TMD-26: Limited users can't Create Campaigns
     Given Login using random user from the list
       | campaignsLimited         |

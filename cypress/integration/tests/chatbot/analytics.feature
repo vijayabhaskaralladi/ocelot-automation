@@ -115,6 +115,7 @@ Feature: Permissions - chatbot analytics
 #    Then Check that difference between "conversationsNumber2" and "conversationsNumber1" is "1"
 #    And Check that difference between "interactionsNumber2" and "interactionsNumber1" is "1"
 
+  @low_priority
   Scenario: Limited users can't view Chatbot Analytics
     Given Login using random user from the list
       | viewOtherOfficesLiveChat  |

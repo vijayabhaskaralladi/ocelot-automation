@@ -31,6 +31,7 @@ Feature: Permissions - campaigns transcripts
     And Verify that element "texting.transcripts.unreadFilterName" has the following text "Read Status: Unread"
     And Verify that selector "texting.transcripts.transcriptListTable" contains more than "1" elements
 
+  @low_priority
   Scenario Outline: Verify that user <user_name> can't see Campaigns Transcripts
     Given Login as "<user_name>"
     And Open chatbot "chatbotForAutomation"

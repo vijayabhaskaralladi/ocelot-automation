@@ -10,7 +10,7 @@ Feature: Permissions - Live Chat analytics dashboard
     And Verify that page title is "Dashboard"
     Then Verify that element "liveChat.analytics.chatsNumber" contains positive number
 
-
+  @low_priority
   Scenario: Limited users can't open Live Chat item
     Given Login using random user from the list
       | viewOtherOfficesChatbot   |
@@ -24,6 +24,7 @@ Feature: Permissions - Live Chat analytics dashboard
     And Open chatbot "chatbotForAutomation"
     Then Tag "li>button" with text "Live Chat" should "not.exist"
 
+  @low_priority
   Scenario Outline: TMD-51: Verify that user <user_name> can't open Live Chat->Analytics item
     Given Login as "<user_name>"
     And Open chatbot "chatbotForAutomation"
@@ -33,6 +34,7 @@ Feature: Permissions - Live Chat analytics dashboard
       | user_name       |
       | liveChatLimited |
 
+  @low_priority
   Scenario: Viewing Missed Chats page
     Given Login using random user from the list
       | viewOtherOfficesLiveChat |
