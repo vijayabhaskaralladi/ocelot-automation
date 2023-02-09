@@ -13,7 +13,7 @@
       "generalTab": { "selector": "span.MuiTab-wrapper", "text": "General" },
       "campaignName": { "selector": "div.MuiFormControl-fullWidth>div", "index": 0 },
       "keywordSearch": "input[name='keywords']",
-      "responseInput": "[aria-label='Rich Text Editor, main']",
+      "responseInput": "[aria-label='Rich Text Editor, main'],[aria-multiline='true']",
       "draftFilterName": "div[title='Status: Draft']>span",
       "campaginListTable": "table[aria-label='Campaigns']>tbody>tr",
       "firstContactNumber": { "selector": "td:nth-child(4)", "index": 0 },
