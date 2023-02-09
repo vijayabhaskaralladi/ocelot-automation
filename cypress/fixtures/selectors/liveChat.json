@@ -23,7 +23,7 @@
       "successDeletionNotification": { "selector": "#notistack-snackbar", "text": "Your response has been deleted." },
       "createButton": "button[aria-label='Add New Canned Response']",
       "titleInput": "input[aria-label='Title']",
-      "responseText": "div[aria-label='Rich Text Editor, Response']",
+      "responseText": "div[aria-label='Rich Text Editor, Response'],[aria-multiline='true']",
       "tagsInput": "input[aria-labelledby='canned-response-tags']",
       "saveButton": "button.MuiButton-containedPrimary",
       "campusesDropdown": "#canned-response-campus-office",
