@@ -40,7 +40,7 @@ Feature: Inbox
     And Click on tag "li.MuiMenuItem-root" which contains text "MyCampaign${id}"
     Then Wait for "filterRequest" and save it as "filterResponse"
     And Verify that response "filterResponse" has status code "200"
-    Then Tag "ul.MuiList-root" with text "Random message ${id}" should "exist"
+    Then Tag "li.MuiButtonBase-root" with text "Random message ${id}" should "exist"
 
     When Manage subscriptions
       | campaignName | MyCampaign${id} |
@@ -52,4 +52,4 @@ Feature: Inbox
     And Click on tag "li.MuiMenuItem-root" which contains text "All Conversations"
     Then Wait for "filterRequest" and save it as "filterResponse"
     And Verify that response "filterResponse" has status code "200"
-    Then Tag "ul.MuiList-root" with text "Second message ${id}" should "not.exist"
+    Then Tag "li.MuiButtonBase-root" with text "Second message ${id}" should "not.exist"
