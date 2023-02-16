@@ -32,8 +32,6 @@ Feature: Permissions - opt-outs
 
     When Click on "contactManagement.optOuts.addContactButton"
     And Create random phone number and save it as "phone"
-    And Click on "contactManagement.optOuts.phoneDropDown"
-    And Click on tag "li" which contains text "PhoneNumber"
     And Type "${phone}" in "contactManagement.optOuts.phoneInput"
 
     When Intercept "${GRAPHQL_URL}graphql" with "createOptOutEntry" keyword in the response as "searchRequest"

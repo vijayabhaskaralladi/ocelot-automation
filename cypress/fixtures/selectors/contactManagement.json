@@ -48,7 +48,6 @@
       "confirmDeleteButton": { "selector": ".MuiDialogActions-root>button", "text": "Ok" },
       "optButton": "tbody.MuiTableBody-root tr:nth-child(1) span[aria-label='Opt-out Contact'] svg",
       "exportOptsOuts": "button[aria-label=' Export results to CSV']",
-      "phoneDropDown": "div[id='opt-out-type']",
       "phoneInput": "input.MuiOutlinedInput-input"
     }
   }
