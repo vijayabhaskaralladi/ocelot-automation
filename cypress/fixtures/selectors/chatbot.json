@@ -53,7 +53,7 @@
         "contentSharingCheckbox": "#contentShare",
         "questionSaveButton": ".MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary",
         "questionTable": "div.MuiButtonBase-root.MuiAccordionSummary-root",
-        "selectedQuestion": "div:nth-child(2)>div.MuiAccordionSummary-root>div>p",
+        "selectedQuestion": "div:nth-child(1)>div.MuiAccordionSummary-root>div>p",
         "departmentFilter": {"selector": "input[name='library']", "getPrevious": true},
         "financialAidFilterValue":{"selector": "li","text":"Financial Aid"},
         "customQuestionListTable": "div.MuiAccordion-root",
