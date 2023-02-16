@@ -74,7 +74,7 @@ Feature: Permissions - custom questions
     And Click on "chatbot.knowledgebase.customQuestions.departmentFilter"
     And Click on "chatbot.knowledgebase.customQuestions.financialAidFilterValue"
     And Wait for "searchRequest" network call
-    Then Verify that element "chatbot.knowledgebase.customQuestions.departmentFilterName" has the following text "Department: Financial Aid"
+    Then Verify that element "chatbot.knowledgebase.customQuestions.departmentFilterName" has the following text "Library: Financial Aid"
     Then Verify that selector "chatbot.knowledgebase.customQuestions.customQuestionListTable" contains more than "1" elements
     And Scroll to "chatbot.knowledgebase.customQuestions.removeFilter" element
     And Click on "chatbot.knowledgebase.customQuestions.removeFilter"
