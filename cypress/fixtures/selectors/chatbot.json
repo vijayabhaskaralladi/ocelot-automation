@@ -70,8 +70,10 @@
       },
       "questionTemplates": {
         "searchQuestionAnswer": "div[role='region']>div.MuiAccordionDetails-root",
-        "deptLabel": {"selector": "label","text":"Department"},
-        "deptFilter": { "selector": "div.MuiPopover-paper div[role='button']", "index": 1},
+        "categoryLabel": {"selector": "label","text":"Category"},
+        "categoryFilter": { "selector": "div.MuiPopover-paper div[role='button']", "index": 0},
+        "libraryLabel": {"selector": "label","text":"Library"},
+        "libraryFilter": { "selector": "div.MuiPopover-paper div[role='button']", "index": 0},
         "filteredHeader": "span.MuiChip-label",
         "questionCount": "div.MuiAccordionSummary-root"
       },
