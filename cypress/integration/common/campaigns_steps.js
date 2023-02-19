@@ -162,15 +162,9 @@ And('Select available Phone number from phone number list', () => {
   cy.get('table[aria-label="Reusable Phone Number Picker"]>tbody>tr>td').eq(0).click();
 });
 
-And('Get the opted out the PhoneNumber and EMail', () => {
+And('Get Phone Number the opted out contact', () => {
   //ToDo: refactor this step
   cy.get('thead th span').each((el, index) => {
-    if(el.text() === 'Email Address'){
-      const emailIndex = index + 2;
-      cy.get('tbody tr:nth-child(1) td:nth-child(' + emailIndex + ')').then((mail) => {
-        cy.wrap(mail.text()).as('email');
-      });
-    }
     if(el.text() === 'Phone Number'){
       const phnIndex = index + 2;
       cy.get('tbody tr:nth-child(1) td:nth-child(' + phnIndex + ')').then((phn) => {

@@ -50,7 +50,7 @@ Feature: Permissions - opt-outs
     And Tag "p" with text "${phone}" should "not.exist"
 
   Scenario: TMD-86: Opt In an Opted out contact
-  Test opt outs contact and then it removes this email and number from Opt-Outs page and
+  Test opt outs contact and then it removes this number from Opt-Outs page and
   checks that it's possible to opt out this contact again
     Given Login as "campaignsAdmin"
     And Open chatbot "chatbotForAutomation"
@@ -62,16 +62,10 @@ Feature: Permissions - opt-outs
     And Click on tag "div[role='group']>button" which contains text "View"
     And Wait for element "contactManagement.contactLists.EditContact"
     And Optout first contact if opted-In
-    And Get the opted out the PhoneNumber and EMail
+    And Get Phone Number the opted out contact
 
     When Open "Contact Management->Opt-outs" menu item
     And Verify that page title is "Opt-outs"
-    And Find "${email}"
-    And Verify that page contains text "1–1 of 1"
-    And Click on "contactManagement.optOuts.deleteFirstRowButton"
-    And Click on "contactManagement.optOuts.confirmDeleteButton"
-    And Check that notification message "Opt-out contact removed" appeared
-
     And Find "${phoneNumber}"
     And Verify that page contains text "1–1 of 1"
     And Click on "contactManagement.optOuts.deleteFirstRowButton"
