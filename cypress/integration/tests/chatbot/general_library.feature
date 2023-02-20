@@ -37,7 +37,7 @@ Feature: Permissions - general library
     And Click on "chatbot.knowledgebase.generalLibrary.departmentFilter"
     And Click on "chatbot.knowledgebase.generalLibrary.admissionFilter"
     And Wait for "filterGeneralLibrary" network call
-    Then Verify that page contains element "chatbot.knowledgebase.generalLibrary.filterValue" with text "Department: Admissions"
+    Then Verify that page contains element "chatbot.knowledgebase.generalLibrary.filterValue" with text "Library: Admissions"
     And Verify that selector "chatbot.knowledgebase.generalLibrary.questions" contains more than "1" elements
     And Click on "chatbot.knowledgebase.generalLibrary.deleteFilter"
     And Wait for "filterGeneralLibrary" network call

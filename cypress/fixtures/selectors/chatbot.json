@@ -40,7 +40,7 @@
         "departmentFilter": "#formcontrol-library",
         "admissionFilter": { "selector": "li.MuiMenuItem-gutters", "text": "Admissions" },
         "filterValue":"span.MuiChip-label",
-        "deleteFilter":"svg.MuiChip-deleteIcon",
+        "deleteFilter":{"selector":"svg.MuiChip-deleteIcon","index": 0},
         "firstQuestion": "div:nth-child(2)>div>div>div>p.GeneralQuestion-heading"
       },
       "customQuestions": {

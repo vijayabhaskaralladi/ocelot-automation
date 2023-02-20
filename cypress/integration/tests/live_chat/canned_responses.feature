@@ -66,7 +66,7 @@ Feature: Permissions - Canned responses
     And Click on "liveChat.cannedResponses.saveButton"
 
     When Intercept "GET: ${DRUPAL_URL}jsonapi/node/canned_response*" as "searchRequest"
-    And Type "CannedResponse${randomNumber}{enter}" in "liveChat.cannedResponses.searchInput"
+    And Find "CannedResponse${randomNumber}"
     And Wait for "searchRequest" network call
     And Tag "p" with text "CannedResponse${randomNumber}" should "exist"
 
@@ -75,7 +75,7 @@ Feature: Permissions - Canned responses
     And Click on "liveChat.cannedResponses.confirmDelete"
     And Element "liveChat.cannedResponses.successDeletionNotification" should "exist"
 
-    Then  Type "CannedResponse${randomNumber}{enter}" in "liveChat.cannedResponses.searchInput"
+    And Find "CannedResponse${randomNumber}"
     And Wait for "searchRequest" network call
     And Element "div.MuiButtonBase-root.MuiAccordionSummary-root" should "not.exist"
     And Tag "p" with text "CannedResponse${randomNumber}" should "not.exist"
