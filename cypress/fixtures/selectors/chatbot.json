@@ -62,7 +62,7 @@
         "lockedContentFilter": {"selector": "input[name='locked']", "getPrevious": true},
         "lockedFilterValue":{"selector": "li","text":"Locked"},
         "lockedFilterName": "div[title='Locked Content: Locked']",
-        "editResponseField": "div.ck-content.ck-editor__editable",
+        "editResponseField": "div.ck-content.ck-editor__editable,[aria-multiline='true']",
         "contactLockBtn": "#contentLock",
         "lockBtn": "svg[aria-label='Content is locked']",
         "saveNotify": "#notistack-snackbar",
@@ -83,7 +83,7 @@
       },
       "awaitingReview": {
         "firstRowAwaitingQuestion": "div[role='button'] p",
-        "editAwaitingResponse": "div.ck.ck-editor__main p"
+        "editAwaitingResponse": "div.ck.ck-editor__main p,[aria-multiline='true'] p"
       }
     },
     "lookAndFeel": {
@@ -97,7 +97,7 @@
       "variablePlaceholder": "input[name='name']",
       "variableType": "#dataType",
       "variableValue": "input[name='value']",
-      "variableRichTextValue": "div[aria-label='Rich Text Editor, main']",
+      "variableRichTextValue": "div[aria-label='Rich Text Editor, main'],[aria-multiline='true']",
       "variableLinkTextValue": "input[placeholder='Our Homepage']",
       "variableLinkURLValue": "input[placeholder='https://www.ocelotbot.com/']",
       "editAllowedValuesButton": "button[data-testid='editAllowedValuesButton']",
