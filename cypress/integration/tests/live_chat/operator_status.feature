@@ -11,12 +11,8 @@ Feature: Live Chat - Operator Status
     And Open chatbot "chatbotForAutomation"
     And Wait for "getStatisticsRequest" network call
 
-    And Intercept "${GRAPHQL_URL}graphql" with "getLiveChatOperatorStatus" keyword in the response as "getLiveChatRequest"
     When Set operator status to "available"
-    And Wait for "getLiveChatRequest" network call
     Then Tag "div" with text "You set your status to available." should "exist"
 
-    And Intercept "${GRAPHQL_URL}graphql" with "getLiveChatOperatorStatus" keyword in the response as "getLiveChatRequest"
     When Set operator status to "away"
-    And Wait for "getLiveChatRequest" network call
     Then Tag "div" with text "You set your status to away" should "exist"
