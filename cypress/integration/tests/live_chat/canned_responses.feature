@@ -51,6 +51,7 @@ Feature: Permissions - Canned responses
     And Click on "liveChat.cannedResponses.firstCannedResponseItem"
     And Tag "span" with text "Delete" should "not.exist"
 
+  @do_not_run_on_com
   Scenario: Creating and Deleting canned response
     Given Login as "liveChatAdmin"
     And Open chatbot "chatbotForAutomation"
