@@ -36,7 +36,7 @@ Feature: Permissions - Canned responses
     And Click on tag "span.MuiTypography-body1.MuiListItemText-primary" which contains text "All Campuses/Offices"
     And Click on "liveChat.cannedResponses.saveButton"
 
-    Then Type "CannedResponse${randomNumber}{enter}" in "liveChat.cannedResponses.searchInput"
+    Then Find "CannedResponse${randomNumber}{enter}"
     And Tag "p" with text "CannedResponse${randomNumber}" should "exist"
 
   @low_priority

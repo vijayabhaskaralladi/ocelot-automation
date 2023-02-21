@@ -448,7 +448,8 @@ And('Find {string}', (text) => {
       'div.AppContent-body>div>div>div.MuiAccordionSummary-root, ' +
       'div.AppContent-body>div>div>div.GeneralQuestion-panel, ' +
       '#main-content>div>div>div>div.MuiPaper-rounded, ' +
-      'div.CannedResponse-summaryPrimary';
+      'div.CannedResponse-summaryPrimary, ' +
+      'div.MuiPaper-root > div > div.MuiAccordionSummary-content';
   cy.get(rowSelector).should('have.length.gte', 1);
 
   // type text in the search input
