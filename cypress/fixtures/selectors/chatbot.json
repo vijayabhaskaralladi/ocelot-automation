@@ -87,7 +87,7 @@
       }
     },
     "lookAndFeel": {
-      "welcomeMessageInput": "div[aria-label='Rich Text Editor, main']"
+      "welcomeMessageInput": "div[aria-label='Rich Text Editor, main'], [data-slate-editor='true']"
     },
     "variables": {
       "requiredNumber": { "selector": "div.MuiTypography-caption", "index": 0 },

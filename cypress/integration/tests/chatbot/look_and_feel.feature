@@ -24,6 +24,7 @@ Feature: Look & Feel
     And Type "Welcome message: #${id}. Chatbot name: !me" in "chatbot.lookAndFeel.welcomeMessageInput"
     And Click on tag "button" which contains text "Save"
     Then Check that notification message "Updated" appeared
+    And Wait "10000"
 
     And API: Select "chatbotForAutomation" chatbot
     And API: Check that chatbot welcome message is "Welcome message: #${id}. Chatbot name: automation chatbot"

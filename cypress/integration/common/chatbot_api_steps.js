@@ -89,7 +89,7 @@ And('API: Check that chatbot welcome message is {string}', (expectedWelcomeMessa
   });
 
   const DELAY = 10000;
-  const RETRIES = 9;
+  const RETRIES = 6;
 
   const iterator = Array.from(Array(RETRIES));
   cy.wrap(false).as('isWelcomeMessageCorrect');
@@ -101,7 +101,7 @@ And('API: Check that chatbot welcome message is {string}', (expectedWelcomeMessa
           cy.request({
             method: 'GET',
             url: chatbotConfigUrl,
-            failOnStatusCode:false
+            failOnStatusCode: false
           }).then((responseObject) => {
             if (responseObject.status === 200) {
               cy.get('@expectedWelcomeMessage').then((expectedMessage) => {
@@ -112,6 +112,8 @@ And('API: Check that chatbot welcome message is {string}', (expectedWelcomeMessa
                   cy.wrap(true).as('isWelcomeMessageCorrect');
                 }
               });
+            } else {
+              cy.task('log', `Chatbot config returned ${responseObject.status} status`);
             }
           });
         });
