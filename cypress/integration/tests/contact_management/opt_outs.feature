@@ -33,21 +33,24 @@ Feature: Permissions - opt-outs
     When Click on "contactManagement.optOuts.addContactButton"
     And Create random phone number and save it as "phone"
     And Type "${phone}" in "contactManagement.optOuts.phoneInput"
-
-    When Intercept "${GRAPHQL_URL}graphql" with "createOptOutEntry" keyword in the response as "searchRequest"
+    And Intercept "${GRAPHQL_URL}graphql" with "createOptOutEntry" keyword in the response as "searchRequest"
     And Click on "contactManagement.optOuts.saveOptOut"
     And Wait for "searchRequest" and save it as "searchResponse"
     Then Verify that response "searchResponse" has status code "200"
-    Then Type "${phone}" in "contactManagement.optOuts.searchInput"
+    And Check that notification message "Opt-out contact added" appeared
+
+    When Type "${phone}" in "contactManagement.optOuts.searchInput"
     And Wait "1000"
-    And Tag "p" with text "${phone}" should "exist"
+    Then Tag "p" with text "${phone}" should "exist"
 
     When Click on "contactManagement.optOuts.deleteFirstRowButton"
     And Click on "contactManagement.optOuts.confirmDeleteButton"
     And Wait "1000"
-    Then Type "${phone}" in "contactManagement.optOuts.searchInput"
+    Then Check that notification message "Opt-out contact removed" appeared
+
+    When Type "${phone}" in "contactManagement.optOuts.searchInput"
     And Wait "1000"
-    And Tag "p" with text "${phone}" should "not.exist"
+    Then Tag "p" with text "${phone}" should "not.exist"
 
   Scenario: TMD-86: Opt In an Opted out contact
   Test opt outs contact and then it removes this number from Opt-Outs page and
