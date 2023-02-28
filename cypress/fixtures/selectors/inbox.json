@@ -4,7 +4,7 @@
     "inboxFilter": { "tag": "div", "text": "All Inboxes" },
     "conversationsFilter": { "tag": "div", "text": "All Conversations" },
     "conversationsFilterWithNoData": "div[aria-haspopup='listbox'] > span.notranslate",
-    "messageInput": "div.ck-editor__editable",
+    "messageInput": "div[aria-multiline='true']",
     "sendButton": { "selector": "button", "text": "Send" }
   }
 }
