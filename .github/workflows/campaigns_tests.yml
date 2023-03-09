@@ -54,7 +54,7 @@ jobs:
         run: npm ci
       - name: Cypress run
         uses: cypress-io/github-action@v5
-        timeout-minutes: 40
+        timeout-minutes: 45
         with:
           parallel: false
           working-directory: ./

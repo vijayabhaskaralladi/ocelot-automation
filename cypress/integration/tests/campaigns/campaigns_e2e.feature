@@ -44,14 +44,15 @@ Feature: Campaigns
     And Save current date as "date" using "yyyy-mm-dd" format
     Then Tag ".Mui-expanded div" with text "${date}" should "exist"
 
-    When Open chatbot "chatbotForAutomation"
-    And Open "Texting->Phone Numbers" menu item
-    And Type "${PROVISION_NUMBER}" in "texting.phoneNumbers.searchInput"
-    And Verify that selector "texting.phoneNumbers.records" contains "1" elements
-    And Save current month as "month"
-    And Save current year as "year"
-    Then Verify that page contains element "texting.phoneNumbers.archiveDate" with text "${month}"
-    And Verify that page contains element "texting.phoneNumbers.archiveDate" with text "${year}"
+#    Archive Date column is present only when flag inUseReusableNumberSelection is enabled
+#    When Open chatbot "chatbotForAutomation"
+#    And Open "Texting->Phone Numbers" menu item
+#    And Type "${PROVISION_NUMBER}" in "texting.phoneNumbers.searchInput"
+#    And Verify that selector "texting.phoneNumbers.records" contains "1" elements
+#    And Save current month as "month"
+#    And Save current year as "year"
+#    Then Verify that page contains element "texting.phoneNumbers.archiveDate" with text "${month}"
+#    And Verify that page contains element "texting.phoneNumbers.archiveDate" with text "${year}"
 
   Scenario Outline: Binary campaigns - <test_name>
   Test checks 'yes' auto response, needs attention switch and statistics

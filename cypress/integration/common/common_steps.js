@@ -420,6 +420,7 @@ And('Scroll to {string} element',(selector)=>{
 });
 
 And('Check that notification message {string} appeared',(expectedMessage)=>{
+  cy.task('log', `Check that notification message has text ${expectedMessage}`);
   cy.checkNotificationMessage(expectedMessage);
 });
 

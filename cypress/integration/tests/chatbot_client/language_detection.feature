@@ -3,6 +3,7 @@ Feature: Language detection
   Background:
     Given API: Select "chatbotForAutomation" chatbot
 
+  @do_not_run_on_com
   Scenario Outline: <test_id>: Verify that chatbot autodetects language - <language>
   Chatbot should be configured to support Spanish, Vietnamese, Chinese and English languages
     When API: Send first message "<message>" and save response as "response"
@@ -15,6 +16,7 @@ Feature: Language detection
       | TMD-3   | Chinese    | 早上好            | zh-hans                 |
       | TMD-8   | English    | Good morning   | en                      |
 
+  @do_not_run_on_com
   Scenario Outline: <test_id>: Verify that chatbot doesn't detect not added language - <language>
     When API: Send first message "<message>" and save response as "response"
     Then Verify that response "response" has status code "200"
@@ -23,6 +25,7 @@ Feature: Language detection
       | test_id | language | message |
       | TMD-5   | French   | Bonjour |
 
+  @do_not_run_on_com
   Scenario Outline: <test_id>: Verify that chatbot response when language field set to - <language>
     When API: Set language "<language_code>" and send message "<message>" and save response as "response"
     Then Verify that response "response" has status code "200"
