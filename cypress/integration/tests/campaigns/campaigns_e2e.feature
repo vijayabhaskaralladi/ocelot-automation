@@ -200,6 +200,8 @@ Feature: Campaigns
     And Refresh the page
     When Click on tag "p" which contains text "Needs Attention"
     And Click on tag "div" which contains text "Message Tool"
+    #Unfortunately there's no easy way to wait till input will be active
+    And Wait "3000"
     And Type "Operator is here ${id}" in "texting.activeCampaigns.responseInput"
     And Wait "1000"
     And Click on tag "button.MuiButtonBase-root" which contains text "Send"
