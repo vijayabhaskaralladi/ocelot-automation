@@ -27,7 +27,7 @@ module.exports = {
       'always'
     ],
     'no-plusplus': ['error', {'allowForLoopAfterthoughts': true}],
-    'no-console': 2,
+    'no-console': 0,
     'no-var': 2,
     'max-len': ['error', {'code': 100}],
     'no-dupe-else-if': 2,

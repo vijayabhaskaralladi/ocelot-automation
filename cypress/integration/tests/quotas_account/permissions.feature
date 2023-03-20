@@ -76,7 +76,7 @@ Feature: Permission Manager
 
     And Click on "#rolesField"
     And Click on tag "li" which contains text "${role}"
-    And Set switch for slider "quotasAccount.permissions.viewOtherOfficesSwitch" to "${viewOtherOfficesSwitch}"
+    And Set switch "quotasAccount.permissions.viewOtherOfficesSwitch" to "${viewOtherOfficesSwitch}"
     And Set switch for checkbox "quotasAccount.permissions.office1Checkbox" to "${Offices1Switch}"
     And Set switch for checkbox "quotasAccount.permissions.office2Checkbox" to "${Offices2Switch}"
     And Click on tag "button" which contains text "Save"

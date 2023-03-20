@@ -3,7 +3,8 @@ import 'cypress-file-upload';
 import {
   YES_RESPONSES_FOR_CAMPAIGNS,
   NO_RESPONSES_FOR_CAMPAIGNS,
-  ENVIRONMENT_NAME, convertDataTableIntoDict, validateInputParamsAccordingToDict, extractBotHomePageUrl,
+  ENVIRONMENT_NAME,
+  convertDataTableIntoDict, validateInputParamsAccordingToDict, extractBotHomePageUrl,
 } from '../../support/utils';
 
 // ToDo: move this function to something like utils.js
@@ -210,10 +211,6 @@ And('Create random number and save it as {string}', (alias) => {
   cy.wrap(randomNumber.toString()).as(alias);
 });
 
-And('Visit base URL', () => {
-  cy.visit('/');
-});
-
 And('Visit {string}', (url) => {
   cy.replacePlaceholder(url).then((parsedUrl) => {
     cy.visit(parsedUrl);
@@ -260,7 +257,7 @@ And('Wait for tag with text', (datatable) => {
   };
   validateInputParamsAccordingToDict(data, requiredParametersAndAcceptableValues);
   cy.replacePlaceholder(data.text).then((text) => {
-     cy.contains(data.tag, text, { timeout: data.timeout}).should('exist');
+    cy.contains(data.tag, text, { timeout: data.timeout}).should('exist');
   });
 });
 
@@ -290,11 +287,6 @@ And('Verify that {string} contains {string}', (key, substring) => {
       expect(text).to.contain(keyword);
     });
   });
-});
-
-And('Click on last element {string}', (selector) => {
-  cy.getElement(selector).last().click({ force: true });
-  cy.getElement(selector).last().click({ force: true });
 });
 
 And(
@@ -327,24 +319,11 @@ And('Check that difference between {string} and {string} is {string}', (alias1, 
   });
 });
 
-// ToDo: replace other steps for switches with this one
 And('Set switch {string} to {string}', (switchSelector, status) => {
   cy.getElement(switchSelector).invoke('attr','value').then(switchState => {
     cy.replacePlaceholder(status).then((setStatus) => {
-      if((switchState === 'false' && setStatus === 'enabled')
-          || (switchState === 'true' && setStatus === 'disabled')) {
-        cy.getElement(switchSelector).click({force:true});
-      }
-    });
-  });
-});
-
-And('Set switch for slider {string} to {string}', (switchSelector, status) => {
-  cy.getElement(switchSelector).invoke('attr','value').then(switchState => {
-    const isSwitchEnabled = switchState === '1' || switchState === 'true';
-    cy.replacePlaceholder(status).then((setStatus) => {
-      const isClickRequired = (isSwitchEnabled === false && setStatus === 'enabled')
-          || (isSwitchEnabled === true && setStatus === 'disabled');
+      const isClickRequired = (String(switchState) === 'false' && setStatus === 'enabled')
+          || (String(switchState) === 'true' && setStatus === 'disabled');
       if (isClickRequired) {
         cy.getElement(switchSelector).click({force:true});
       }
@@ -362,7 +341,6 @@ And('Set switch for checkbox {string} to {string}', (switchSelector, status) => 
     });
   });
 });
-
 
 And('Choose random value from {string} and save it as {string}', (list, key) => {
   // Example: Choose random value from "Office 1|Office 2|Office 3" and save it as "office"

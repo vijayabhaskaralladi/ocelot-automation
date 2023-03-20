@@ -1,8 +1,6 @@
 Feature: Clarifying Questions Library
 
-  # Ignored because feature is not released yet
-  @ignore
-  Scenario: Viewing Clarifying Questions
+  Scenario: View/Search Clarifying Questions
     Given Login as "defaultUser"
     And Open chatbot "chatbotForAutomation"
     And Open "Chatbot->Knowledgebase->Clarifying Questions Library" menu item
@@ -18,8 +16,6 @@ Feature: Clarifying Questions Library
     Then Verify that page contains text "Automated Question ${id}"
     Then Verify that page contains text "choice 1-${id}"
 
-  #  Ignored because feature is not released yet
-  @ignore
   Scenario: Editing/Deleting Clarifying Questions
     Given Login as "defaultUser"
     And Open chatbot "chatbotForAutomation"
@@ -30,7 +26,7 @@ Feature: Clarifying Questions Library
       | title    | Automated title ${ids}          |
       | question | Automated Question ${ids}       |
       | choices  | choice 1-${ids};choice 2-${ids} |
-    And Type "Automated title ${ids}" in "chatbot.clarifyingQuestion.searchQuestion"
+    And Type "Automated title ${ids}" in "chatbot.clarifyingQuestions.searchQuestion"
     And Verify that page contains text "1–1 of 1"
     And Click on "chatbot.clarifyingQuestions.editButton"
     And Click on tag "li" which contains text "Edit"

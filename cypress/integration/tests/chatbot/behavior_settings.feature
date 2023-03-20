@@ -1,7 +1,6 @@
 Feature: Behavior Settings
 
-  Scenario: Behavior Settings - IDK settings
-  Users create IDK settings for custom response
+  Scenario: Behavior Settings - IDK custom response
     Given Login as "defaultUser"
     And Open chatbot "chatbotForAutomation"
     And Open "Chatbot->Behavior Settings" menu item
