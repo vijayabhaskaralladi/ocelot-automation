@@ -116,7 +116,7 @@
 
     "spider": {
       "spiderTable": ".MuiTable-root>tbody>tr",
-      "viewFirstSpiderButton": { "selector": "button[aria-label='View Content']", "index": 0 }
+      "viewFirstSpiderButton": { "selector": "svg[data-testid='VisibilityIcon']", "index": 0 }
     },
     "testMyBot":{
       "buttonTestMyBot": "svg[data-testid='MessageIcon']",
