@@ -1,5 +1,19 @@
 Feature: Permissions - custom questions
 
+  Scenario: Create Custom Question
+    Given Login as "defaultUser"
+    And Open chatbot "chatbotForAutomation"
+    And Create random number and save it as "id"
+    And Choose random value from "enabled|disabled" and save it as "contentLock"
+    And Choose random value from "enabled|disabled" and save it as "contentSharing"
+    When Create custom question
+      | question       | My Custom Question #${id} |
+      | response       | My Custom Response #${id} |
+      | library        | Financial Aid             |
+      | category       | Academic Calendar         |
+      | contentLock    | ${contentLock}            |
+      | contentSharing | ${contentSharing}         |
+
   Scenario: Custom questions - ordering
     Given Login using random user from the list
       | chatbotLimited          |
