@@ -31,16 +31,20 @@ And('Create custom question', (datatable) => {
   });
 
   // Library
-  const libraryDropdown = '#multiple-libraries-tags';
-  const libraryItem = '#multiple-libraries-tags-listbox>li';
-  cy.get(libraryDropdown).click();
-  cy.contains(libraryItem, questionData.library).click();
+  cy.replacePlaceholder(questionData.library).then((library) => {
+    const libraryDropdown = '#multiple-libraries-tags';
+    const libraryItem = '#multiple-libraries-tags-listbox>li';
+    cy.get(libraryDropdown).click();
+    cy.contains(libraryItem, library).click();
+  });
 
   // Category
-  const categoryDropdown = '#multiple-categories-tags';
-  const categoryItem = '#multiple-categories-tags-listbox>li';
-  cy.get(categoryDropdown).click();
-  cy.contains(categoryItem, questionData.category).click();
+  cy.replacePlaceholder(questionData.category).then((category) => {
+    const categoryDropdown = '#multiple-categories-tags';
+    const categoryItem = '#multiple-categories-tags-listbox>li';
+    cy.get(categoryDropdown).click();
+    cy.contains(categoryItem, category).click();
+  });
 
   // switches
   cy.replacePlaceholder(questionData.contentLock).then((contentLock) => {

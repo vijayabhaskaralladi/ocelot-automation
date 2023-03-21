@@ -1,18 +1,27 @@
 Feature: Permissions - custom questions
 
-  Scenario: Create Custom Question
+  Scenario: Create Custom Question and check Moderation Queue
     Given Login as "defaultUser"
     And Open chatbot "chatbotForAutomation"
     And Create random number and save it as "id"
     And Choose random value from "enabled|disabled" and save it as "contentLock"
     And Choose random value from "enabled|disabled" and save it as "contentSharing"
+    And Choose random value from "Financial Aid|Admissions|Bookstore" and save it as "library"
+    And Choose random value from "Academic Calendar|Accounting Services" and save it as "category"
     When Create custom question
       | question       | My Custom Question #${id} |
       | response       | My Custom Response #${id} |
-      | library        | Financial Aid             |
-      | category       | Academic Calendar         |
+      | library        | ${library}                |
+      | category       | ${category}               |
       | contentLock    | ${contentLock}            |
       | contentSharing | ${contentSharing}         |
+
+    When Open "Chatbot->Knowledgebase->Moderation Queue" menu item
+    And Find "My Custom Question #${id}"
+    And Verify that selector "chatbot.knowledgebase.moderationQueue.question" contains "1" elements
+    Then Tag "td" with text "Pending" should "exist"
+    And Save current month as "currentMonth"
+    And Tag "td" with text "${currentMonth}" should "exist"
 
   Scenario: Custom questions - ordering
     Given Login using random user from the list

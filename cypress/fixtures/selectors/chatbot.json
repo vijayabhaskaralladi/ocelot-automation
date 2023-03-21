@@ -79,7 +79,8 @@
       },
       "moderationQueue": {
         "cellsWithQuestion": "th.MuiTableCell-body",
-        "firstRowQuestion": "tbody>tr:nth-child(1)>th"
+        "firstRowQuestion": "tbody>tr:nth-child(1)>th",
+        "question": "tbody>tr>th"
       },
       "awaitingReview": {
         "firstRowAwaitingQuestion": "div[role='button'] p",
