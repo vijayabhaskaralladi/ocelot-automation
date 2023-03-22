@@ -56,7 +56,7 @@ Feature: Permissions - chatbot transcripts
     And Verify that file "${transcriptsFile}" from download folder contains text "HeyHey${id}"
 
   Scenario: TMD-28: Viewing Chatbot Transcripts
-    Validate date and other parameters on Conversation page of transcripts
+  Validate date and other parameters on Conversation page of transcripts
     Given API: Select "chatbotForAutomation" chatbot
     And Create random number and save it as "id"
     And API: Create dialog and save conversation_id as "conversationId"
@@ -140,16 +140,16 @@ Feature: Permissions - chatbot transcripts
 
     And Create random number and save it as "id"
     And API: Send first message to specific Office
-      | message             | Hi Office 1 ${id}                |
-      | officeId            | ${chatbotForAutomationOffice1Id} |
-      | campusId            | ${chatbotForAutomationCampusId}  |
-      | saveResponseAs      | response1                        |
+      | message        | Hi Office 1 ${id}                |
+      | officeId       | ${chatbotForAutomationOffice1Id} |
+      | campusId       | ${chatbotForAutomationCampusId}  |
+      | saveResponseAs | response1                        |
 
     And API: Send first message to specific Office
-      | message           | Hi Office 2 ${id}                |
-      | officeId          | ${chatbotForAutomationOffice2Id} |
-      | campusId          | ${chatbotForAutomationCampusId}  |
-      | saveResponseAs    | response2                        |
+      | message        | Hi Office 2 ${id}                |
+      | officeId       | ${chatbotForAutomationOffice2Id} |
+      | campusId       | ${chatbotForAutomationCampusId}  |
+      | saveResponseAs | response2                        |
 
     When Login as "defaultUser"
     And Open chatbot "chatbotForAutomation"
@@ -159,3 +159,18 @@ Feature: Permissions - chatbot transcripts
     And Click on tag "li" which contains text "MyCampus - Office 1"
     Then Tag "th" with text "Hi Office 1 ${id}" should "exist"
     And Tag "th" with text "Hi Office 2 ${id}" should "not.exist"
+
+  Scenario: Viewing childbot transcripts
+    Given  API: Select "chatbotForInquiryForm" chatbot
+    And Create random number and save it as "id"
+    And API: Send first message "Answer Question(s) ${id}" and save response as "repsonse"
+    And Login as "chatbotAdmin"
+    And Open chatbot "chatbotForAutomation"
+    And Open "Chatbot->Transcripts" menu item
+
+    When Click on "chatbot.transcripts.filter"
+    And Click on "chatbot.transcripts.chatbotFilter"
+    And Click on tag "li" which contains text "AutomationInquiryForm"
+
+    Then Tag "span.MuiChip-label" with text "Chatbot: AutomationInquiryForm" should "exist"
+    And Tag "th" with text "Answer Question(s) ${id}" should "exist"
