@@ -20,6 +20,7 @@
       "officeFilter": "#formcontrol-officeId",
       "readStatusFilter": "#formcontrol-readStatus",
       "inquiryFormFilter": "#formcontrol-leadCapture",
+      "chatbotFilter": "#formcontrol-chatbotId",
       "rowSelector": "tbody>tr.MuiTableRow-root"
     },
     "interactions": {
